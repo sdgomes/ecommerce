@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "purple RAY";
+}
+
+@(await Component.InvokeAsync<HeroAreaViewComponent>())
+@(await Component.InvokeAsync<FeaturedCategoriesViewComponent>())
+@(await Component.InvokeAsync<TrendingProductViewComponent>())
+@(await Component.InvokeAsync<BannerViewComponent>())
+@(await Component.InvokeAsync<SpecialOfferViewComponent>())
+@(await Component.InvokeAsync<HomeProductListViewComponent>())
+@* @(await Component.InvokeAsync<BrandsViewComponent>())
+@(await Component.InvokeAsync<BlogSectionViewComponent>()) *@
+@(await Component.InvokeAsync<ShippingInfoViewComponent>())
+
+
+@section Scripts {
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+        tns({
+            container: '.hero-slider',
+            slideBy: 'page',
+            autoplay: true,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            gutter: 0,
+            items: 1,
+            nav: false,
+            controls: true,
+            controlsText: ['<i class="fa-light fa-angle-left"></i>', '<i class="fa-light fa-angle-right"></i>'],
+        });
+
+        // tns({
+        //     container: '.brands-logo-carousel',
+        //     autoplay: true,
+        //     autoplayButtonOutput: false,
+        //     mouseDrag: true,
+        //     gutter: 15,
+        //     nav: false,
+        //     controls: false,
+        //     responsive: {
+        //         0: {
+        //             items: 1,
+        //         },
+        //         540: {
+        //             items: 3,
+        //         },
+        //         768: {
+        //             items: 5,
+        //         },
+        //         992: {
+        //             items: 6,
+        //         }
+        //     }
+        // });
+    });
+
+    
+</script>
+}

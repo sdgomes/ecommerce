@@ -1,0 +1,81 @@
+[{
+    "Imagem": "product-1.jpg",
+    "PreInfo": "CD, Lançamentos, Pronta Entrega",
+    "NomeProduto": "CD Troye Sivan – Something To Give Each Other",
+    "Nota": 5,
+    "PrecoDesconto": "",
+    "PrecoOriginal": "R$ 199,00",
+    "Id": "RQcHofRqTCNmmDdK3XCy5v",
+    "Desconto": 0,
+    "Tipo": ""
+},{
+    "Imagem": "product-2.jpg",
+    "PreInfo": "Vinil, Lançamentos",
+    "NomeProduto": "Vinil Taylor Swift – 1989 (Taylor’s Version) – Rose Garden Pink",
+    "Nota": 4,
+    "PrecoDesconto": "R$ 449,92",
+    "PrecoOriginal": "R$ 599,90",
+    "Id": "A4LEkPWdVQaBlgSAGHMp99",
+    "Desconto": 25,
+    "Tipo": ""
+},{
+    "Imagem": "product-3.jpg",
+    "PreInfo": "Vinil, Lançamentos, Pronta Entrega",
+    "NomeProduto": "Nicki Minaj - Pink Friday 2 [Blue Vinyl]",
+    "Nota": 5,
+    "PrecoDesconto": "",
+    "PrecoOriginal": "R$ 549,90",
+    "Id": "HINIRH5ije0aJF9xgFevSD",
+    "Desconto": 0,
+    "Tipo": ""
+},{
+    "Imagem": "product-4.jpg",
+    "PreInfo": "Pronta Entrega, Vinil",
+    "NomeProduto": "Vinil Louis Tomlinson – Faith in the Future – LP Preto",
+    "Nota": 3,
+    "PrecoDesconto": "",
+    "PrecoOriginal": "R$ 449,90",
+    "Id": "MKuDtmFo8uLcoDMLGbbg2q",
+    "Desconto": 0,
+    "Tipo": "Novo"
+},{
+    "Imagem": "product-5.jpg",
+    "PreInfo": "Pré-venda, Vinil",
+    "NomeProduto": "Bring Me The Horizon - Post Human : Nex Gen",
+    "Nota": 5,
+    "PrecoDesconto": "",
+    "PrecoOriginal": "R$ 839,90",
+    "Id": "QUVSuVIcXExUd4dfHFN7Ie",
+    "Desconto": 0,
+    "Tipo": ""
+},{
+    "Imagem": "product-6.jpg",
+    "PreInfo": "Pré-venda, Vinil",
+    "NomeProduto": "Megan Thee Stallion - Hiss",
+    "Nota": 4,
+    "PrecoDesconto": "",
+    "PrecoOriginal": "R$ 109,90",
+    "Id": "IfrMCqvwklnSvLvBmR890O",
+    "Desconto": 0,
+    "Tipo": ""
+},{
+    "Imagem": "product-7.jpg",
+    "PreInfo": "CD, Pronta Entrega",
+    "NomeProduto": "Blossoms - Blossoms",
+    "Nota": 3,
+    "PrecoDesconto": "R$ 194,95",
+    "PrecoOriginal": "R$ 389,90",
+    "Id": "Q2gafGK8OfWTOwzN0HWy0S",
+    "Desconto": 50,
+    "Tipo": ""
+},{
+    "Imagem": "product-8.jpg",
+    "PreInfo": "Pré-venda, Vinil",
+    "NomeProduto": "Allie X - Girl With No Face",
+    "Nota": 3,
+    "PrecoDesconto": "",
+    "PrecoOriginal": "R$ 379,90",
+    "Id": "PKGmUsNXkEjuwoFgGiigZA",
+    "Desconto": 0,
+    "Tipo": ""
+}]

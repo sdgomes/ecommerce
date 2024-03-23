@@ -1,0 +1,39 @@
+@model List<ViewFeaturedCategories>
+
+<section class="featured-categories section">
+    <div class="container mx-auto sm:px-4">
+
+        <div class="flex flex-wrap">
+            <div class="w-full">
+                <div class="section-title">
+                    <h2>Categorias em Destaque</h2>
+                    <p>Dos clássicos atemporais até aos sons contemporâneos mais vibrantes, oferecemos uma ampla seleção para todos os gostos musicais.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap">
+
+            @foreach (var Item in Model)
+            {
+                <div class="lg:w-1/3 px-4 md:w-1/2 w-full">
+
+                    <div class="single-category">
+                        <h3 class="heading">@Item.Categoria</h3>
+                        <ul>
+                            @foreach (var SubCategoria in Item.SubCategoria)
+                            {
+                                <li><a asp-action="Index" asp-controller="Shop" asp-route-categoria="@SubCategoria">@SubCategoria</a></li>
+                            }
+                            <li><a asp-action="Index" asp-controller="Shop" class="italic">Ver tudo</a></li>
+                        </ul>
+                        <div class="images">
+                            <img src="/img/images/featured-categories/@Item.Image" alt="...">
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,30 @@
+{
+  "Anuncio": {
+    "Titulo": "Venda semanal!",
+    "Texto": "Economizando até 50% em todos os itens da loja online esta semana."
+  },
+  "Slider": [
+    {
+      "PreTitulo": "Pronta Entrega, Vinil e Outras Mídias (CD e K7)",
+      "Titulo": "Solar Power",
+      "SubTitulo": "O terceiro álbum de estúdio da cantora e compositora neozelandesa Lorde, lançado no dia 20 de agosto de 2021 pela Universal Music.",
+      "InformativoPreco": ["Agora por apenas", "R$ 259.99"],
+      "Imagem": "slider-bg1.jpg",
+      "Id": "O9gnY2t2a9jnp8eRhGN2EX"
+    },
+    {
+      "PreTitulo": "Grande oferta de venda",
+      "Titulo": "Obtenha o POP Celebration em várias mídias",
+      "SubTitulo": "Celebration é o terceiro álbum de grandes êxitos da artista musical estadunidense Madonna. O seu lançamento ocorreu em 18 de setembro de 2009.",
+      "InformativoPreco": ["Combo Completo:", "R$ 590.00"],
+      "Imagem": "slider-bg2.jpg",
+      "Id": "a6Wmkpbhy5jx4HhbpRqUAN"
+    }
+  ],
+  "Oferta": {
+    "PreTitulo": "Ariana Grande",
+    "Titulo": "Eternal Sunshine",
+    "Preco": "R$ 259.99",
+    "Imagem": "slider-bnr.jpg"
+  }
+}

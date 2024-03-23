@@ -1,0 +1,53 @@
+[{
+    "categoria": "Black Music",
+    "image": "fetured-item-1.png",
+    "subCategoria": [
+        "Blues",
+        "Funk",
+        "Hip Hop",
+        "Hits"
+    ]
+},{
+    "categoria": "Eletrônica",
+    "image": "fetured-item-2.png",
+    "subCategoria": [
+        "Break",
+        "Dance",
+        "Electro",
+        "Hardcore"
+    ]
+},{
+    "categoria": "MPB",
+    "image": "fetured-item-3.png",
+    "subCategoria": [
+        "Forró",
+        "Jovem Guarda",
+        "Lambada",
+        "Pagode"
+    ]
+},{
+    "categoria": "Rock",
+    "image": "fetured-item-4.png",
+    "subCategoria": [
+        "Heavy Metal",
+        "Hard Rock",
+        "New Wave",
+        "Punk Rock"
+    ]
+},{
+    "categoria": "POP",
+    "image": "fetured-item-5.png",
+    "subCategoria": [
+        "Pop Internacional",
+        "Pop Nacional",
+        "Pop Teen"
+    ]
+},{
+    "categoria": "Trilha Sonora",
+    "image": "fetured-item-6.png",
+    "subCategoria": [
+        "Trilha de Serie",
+        "Trilhas de Filmes",
+        "Trilhas de Novelas"
+    ]
+}]

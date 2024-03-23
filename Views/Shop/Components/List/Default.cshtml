@@ -1,0 +1,86 @@
+@model List<ViewList>
+<div>
+    <div class="flex flex-wrap -mx-4">
+        @foreach (var Item in Model)
+        {
+            <div class="lg:w-full px-4 md:w-full w-full">
+
+                <div class="single-product">
+                    <div class="flex flex-wrap  items-center">
+                        <div class="w-fit">
+                            <div class="product-image w-[205px]">
+                                <img src="~/img/images/products/@Item.Imagem" alt="...">
+                                @if (Item.Tipo != "")
+                                {
+                                    <span class="new-tag">@Item.Tipo</span>
+                                }
+
+                                @if (Item.Desconto > 0)
+                                {
+                                    <span class="sale-tag">-@Item.Desconto%</span>
+                                }
+                                <div class="button flex gap-1">
+                                    <a asp-action="Index" asp-controller="Cart" asp-route-id="@Item.Id" class="btn !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853]">
+                                        <i class="fa-light fa-cart-circle-plus text-sm"></i>
+                                        Carrinho
+                                    </a>
+                                    <a asp-action="Index" asp-controller="Favorites" asp-route-id="@Item.Id" class="btn !w-fit !flex !itens-center"><i class="fa-solid fa-heart text-sm"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:w-2/3 px-4 md:w-2/3 w-full">
+                            <div class="product-info">
+                                <span class="category">@Item.PreInfo</span>
+                                <h4 class="title">
+                                    <a asp-action="Index" asp-controller="ShopSingle" asp-route-id="@Item.Id">@Item.NomeProduto</a>
+                                </h4>
+                                <ul class="review">
+                                    @for (var i = 1; i < 5; i++)
+                                    {
+                                        if (i <= Item.Nota)
+                                        {
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        }
+                                        else
+                                        {
+                                            <li><i class="fa-light fa-star"></i></li>
+                                        }
+                                    }
+                                    <li><span>@Item.Nota Review(s)</span></li>
+                                </ul>
+                                <div class="price">
+                                    @if (Item.Desconto > 0)
+                                    {
+                                        <span>@Item.PrecoDesconto</span>
+                                        <span class="discount-price">@Item.PrecoOriginal</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@Item.PrecoOriginal</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+
+    @*<div class="flex flex-wrap ">
+            <div class="w-full">
+
+                <div class="pagination">
+                    <ul class="pagination-list flex mt-[40px]">
+                        <li class="active"><a class="hover:!bg-[#130235] hover:!text-white !text-gray-800 font-semibold" href="javascript:void(0)">1</a></li>
+                        <li class=""><a class="hover:!text-gray-800 font-semibold" href="javascript:void(0)">2</a></li>
+                        <li class=""><a class="hover:!text-gray-800 font-semibold" href="javascript:void(0)">3</a></li>
+                        <li class=""><a class="hover:!text-gray-800 font-semibold" href="javascript:void(0)">4</a></li>
+                        <li class=""><a class="hover:!text-gray-800 font-semibold" href="javascript:void(0)"><i class="fa-regular fa-angle-right"></i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>*@
+</div>

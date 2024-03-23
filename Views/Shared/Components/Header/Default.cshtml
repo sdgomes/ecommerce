@@ -1,0 +1,242 @@
+﻿@model ViewHeader
+
+<div class="topbar">
+    <div class="container mx-auto sm:px-4">
+        <div class="flex flex-wrap  items-center">
+            <div class="lg:w-1/3 pr-4 md:w-1/3 px-4 w-full">
+                <div class="top-left">
+                    <ul class="menu-top-link">
+                        <li>
+                            <div class="select-position">
+                                <select name="currency">
+                                    <option value="0" selected>R$ BRL</option>
+                                    <option value="1">€ EURO</option>
+                                    <option value="2">R$  USD</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="select-position">
+                                <select name="language">
+                                    <option value="0" selected>Português</option>
+                                    <option value="1">Español</option>
+                                    <option value="2">English</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="lg:w-1/3 px-4 md:w-1/3 w-full">
+                <div class="top-middle">
+                    <ul class="useful-links">
+                        <li><a asp-action="Index" asp-controller="Home">Início</a></li>
+                        <li><a asp-action="Index" asp-controller="About">Sobre Nós</a></li>
+                        <li><a asp-action="Index" asp-controller="ContactUs">Contate-nos</a></li>
+                        <li><a asp-action="Index" asp-controller="Faq">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="lg:w-1/3 px-4 md:w-1/3 w-full">
+                <div class="top-end">
+                    <div class="user">
+                        <i class="fa-light fa-user"></i>
+                        Seja Bem-vindo (a)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="header-middle">
+    <div class="container mx-auto sm:px-4">
+        <div class="flex flex-wrap  items-center">
+            <div class="lg:w-1/4 px-4 md:w-1/4 w-3/5">
+
+                <a class="inline-block pt-1 pb-1 mr-4 text-lg whitespace-no-wrap" asp-action="Index" asp-controller="Home">
+                    <img src="~/img/logos/large_logo_white.png" alt="...">
+                </a>
+
+            </div>
+            <div class="lg:w-2/5 md:w-3/5 px-4 sm:block hidden">
+
+                <div class="main-menu-search">
+
+                    <div class="navbar-search search-style-5">
+                        <div class="search-select">
+                            <div class="select-position">
+                                <select id="select1">
+                                    <option selected="">Todos</option>
+                                    <option value="1">CDs</option>
+                                    <option value="2">Vinil</option>
+                                    <option value="3">DVDs</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="search-input">
+                            <input type="text" placeholder="Pesquisa">
+                        </div>
+                        <div class="search-btn">
+                            <button class="!text-gray-800 hover:!text-white"><i class="fa-light fa-magnifying-glass"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="lg:w-1/3 px-4 md:w-1/5 w-2/5">
+                <div class="middle-right-area">
+                    <a href="tel:+5511933299566" class="nav-hotline">
+                        <i class="fa-light fa-phone"></i>
+                        <h3>
+                            Contato:
+                            <span>(+55) 11 93329 9566</span>
+                        </h3>
+                    </a>
+                    <div class="navbar-cart">
+                        <div class="wishlist">
+                            <a asp-action="Index" asp-controller="Favorites">
+                                <i class="fa-light fa-heart"></i>
+                                <span class="total-items">@Model.Favoritos</span>
+                            </a>
+                        </div>
+                        <div class="cart-items">
+                            <a href="javascript:void(0)" class="main-btn">
+                                <i class="fa-light fa-cart-shopping"></i>
+                                <span class="total-items">@Model.Carrinho.Count</span>
+                            </a>
+
+                            <div class="shopping-item">
+                                <div class="dropdown-cart-header">
+                                    <span>@Model.Carrinho.Count Itens</span>
+                                    <a asp-action="Index" asp-controller="Cart">Ver carrinho</a>
+                                </div>
+                                <ul class="shopping-list">
+                                    @foreach (var (Item, Index) in Model.Carrinho.Select((Item, Index) => (Item, Index)))
+                                    {
+                                        @if (Index < 2)
+                                        {
+                                            <li>
+                                                <a href="javascript:void(0)" class="remove" title="Remove this item">
+                                                    <i class="fa-light fa-xmark"></i>
+                                                </a>
+                                                <div class="cart-img-head">
+                                                    <a class="cart-img" asp-action="Index" asp-controller="ShopSingle" asp-route-id="@Item.Id">
+                                                        <img src="~/img/images/cart/@Item.Imagem" alt="...">
+                                                    </a>
+                                                </div>
+
+                                                <div class="content">
+                                                    <h4>
+                                                        <a asp-action="Index" asp-controller="ShopSingle" asp-route-id="@Item.Id">
+                                                            @Item.DescricaoProduto
+                                                        </a>
+                                                    </h4>
+                                                    <p class="quantity">@(Item.Quantidade)x - <span class="amount">@Item.PrecoOriginal</span></p>
+                                                </div>
+                                            </li>
+                                        }
+                                    }
+
+                                </ul>
+                                <div class="bottom">
+                                    <div class="total">
+                                        <span>Total</span>
+                                        <span class="total-amount">R$ 2.389,60</span>
+                                    </div>
+                                    <div class="button">
+                                        <a asp-action="Index" asp-controller="Checkout" class="btn !flex !text-gray-800 hover:!text-white">Comprar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mx-auto sm:px-4">
+    <div class="flex flex-wrap  items-center">
+        <div class="lg:w-2/3 px-4 md:w-1/2 w-full">
+            <div class="nav-inner">
+
+                <div class="mega-category-menu">
+                    <span class="cat-button"><i class="fa-light fa-list-tree"></i>Todas as Categorias</span>
+                    <ul class="sub-category">
+                        @foreach (var Item in Model.Categorias)
+                        {
+                            if (Item.SubCategoria.Count > 0)
+                            {
+                                <li>
+                                    <a>@Item.Categoria <i class="fa-light fa-angle-right"></i></a>
+                                    <ul class="inner-sub-category">
+                                        @foreach (var SubCategoria in Item.SubCategoria)
+                                        {
+                                            <li><a asp-action="Index" asp-controller="Shop" asp-route-categoria="@SubCategoria">@SubCategoria</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li><a asp-action="Index" asp-controller="Shop" asp-route-categoria="@Item.Categoria">@Item.Categoria</a></li>
+                            }
+                        }
+                    </ul>
+                </div>
+
+
+                <nav class="relative flex flex-wrap items-center content-between py-3 px-4">
+                    <button class="block md:hidden py-1 px-2 text-md leading-normal bg-transparent border border-transparent rounded mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="toggler-icon"></span>
+                        <span class="toggler-icon"></span>
+                        <span class="toggler-icon"></span>
+                    </button>
+                    <div class="hidden md:flex flex-grow items-center sub-menu-bar" id="navbarSupportedContent">
+                        <ul id="nav" class="flex flex-wrap list-reset pl-0 mb-0 ms-auto navbar-nav">
+                            <li class="nav-item">
+                                <a asp-action="Index" asp-controller="Home" class="active">Início</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+                                   data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
+                                   aria-expanded="false" aria-label="Toggle navigation">Protudos</a>
+                                <ul class="sub-menu collapse" id="submenu-1-3">
+                                    <li class=""><a asp-action="Index" asp-controller="Shop">Protudos</a></li>
+                                    <li class=""><a asp-action="Index" asp-controller="Cart">Meu Carrinho</a></li>
+                                    <li class=""><a asp-action="Index" asp-controller="Checkout">Finalizar Compra</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+        <div class="lg:w-1/3 px-4 md:w-1/2 w-full">
+
+            <div class="nav-social">
+                <h5 class="title">Siga-nos:</h5>
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa-brands fa-facebook-f"></i></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa-brands fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa-brands fa-instagram"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

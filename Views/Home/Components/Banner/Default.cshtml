@@ -1,0 +1,22 @@
+@model List<ViewBanner>
+
+<section class="banner section">
+    <div class="container mx-auto sm:px-4">
+        <div class="flex flex-wrap">
+            @foreach (var Item in Model)
+            {
+                <div class="lg:w-1/2 px-4 md:w-1/2 w-full">
+                    <div class="single-banner" style="background-image:url('/img/images/banner/@Item.Imagem')">
+                        <div class="content">
+                            <h2>@Item.NomeProduto</h2>
+                            <p>@Item.Texto</p>
+                            <div class="button">
+                                <a asp-action="Index" asp-controller="ShopSingle" asp-route-id="@Item.Id" class="btn !w-fit !flex !text-gray-800 hover:!text-white">Compre agora</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

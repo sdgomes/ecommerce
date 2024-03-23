@@ -1,0 +1,32 @@
+@model List<ViewProdutosFavorites>
+
+@foreach (var Item in Model)
+{
+    <div class="cart-single-list">
+        <div class="flex flex-wrap  items-center">
+            <div class="lg:w-1/12 md:w-1/12 px-4 w-full">
+                <a asp-action="Index" asp-controller="ShopSingle" asp-route-id="@Item.Id"><img src="~/img/images/cart/@Item.Imagem" alt="..."></a>
+            </div>
+            <div class="lg:w-4/12 md:w-3/12 px-4 w-full">
+                <h5 class="product-name">
+                    <a asp-action="Index" asp-controller="ShopSingle" asp-route-id="@Item.Id">
+                        @Item.DescricaoProduto
+                    </a>
+                </h5>
+                <p class="product-des">
+                    <span><em>Cor:</em> @Item.Cor</span>
+                </p>
+            </div>
+            <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
+                <p>@Item.PrecoOriginal</p>
+            </div>
+            <div class="ml-auto lg:w-1/12 md:w-2/12 px-4 w-full">
+                <a class="remove-item" href="javascript:void(0)"><i class="fa-light fa-xmark"></i></a>
+            </div>
+            <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
+                <a asp-action="Index" asp-controller="Cart" asp-route-id="@Item.Id" class="button-qnt !w-[2.25rem] !h-[2.25rem] !text-[17px] hover:!bg-[#ffcc00] hover:!text-gray-800 !rounded-[5px]"><i class="fa-light fa-cart-plus"></i></a>
+            </div>
+        </div>
+    </div>
+
+}

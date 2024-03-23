@@ -1,0 +1,220 @@
+@{
+ViewBreadcrumbs breadcrumbs = new();
+breadcrumbs.Title = "Produtos";
+breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+new BreadcrumbsDTO("Produtos")
+};
+
+ViewData["Title"] = breadcrumbs.Title;
+}
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+    <section class="product-grids section">
+        <div class="container mx-auto sm:px-4">
+            <div class="flex flex-wrap ">
+
+                <div class="lg:w-1/4 px-4 w-full">
+
+                    <div class="product-sidebar">
+
+                        <div class="single-widget search">
+                            <h3>Pesquisar produto</h3>
+                            <form action="#">
+                                <input type="text" placeholder="Procure aqui...">
+                                <button type="submit"><i class="fa-light fa-magnifying-glass"></i></button>
+                            </form>
+                        </div>
+
+                        <div class="single-widget">
+                            <h3>Categorias</h3>
+                            <ul class="list">
+                                <li>
+                                    <a asp-action="Index" asp-controller="Shop">Importados</a><span>(1138)</span>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Shop">Seriado</a><span>(2356)</span>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Shop">POP</a><span>(420)</span>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Shop">Clássica</a><span>(874)</span>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Shop">Country</a><span>(1239)</span>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Shop">Break</a><span>(340)</span>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Shop">Pagode</a><span>(512)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="single-widget condition">
+                            <h3>Filtrar por preço</h3>
+                            <div class="relative block mb-2">
+                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                    id="flexCheckDefault1">
+                                <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault1">
+                                    R$ 50 - R$ 100 (208)
+                                </label>
+                            </div>
+                            <div class="relative block mb-2">
+                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                    id="flexCheckDefault2">
+                                <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault2">
+                                    R$ 100 - R$ 500 (311)
+                                </label>
+                            </div>
+                            <div class="relative block mb-2">
+                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                    id="flexCheckDefault3">
+                                <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault3">
+                                    R$ 500 - R$ 1.000 (485)
+                                </label>
+                            </div>
+                            <div class="relative block mb-2">
+                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                    id="flexCheckDefault4">
+                                <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault4">
+                                    R$ 1.000 - R$ 5.000 (213)
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="single-widget condition">
+                            <h3>Filtrar por gravadora</h3>
+                            <div class="relative block mb-2">
+                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                    id="flexCheckDefault11">
+                                <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault11">
+                                    MK Music (254)
+                                </label>
+                            </div>
+                            <div class="relative block mb-2">
+                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                    id="flexCheckDefault22">
+                                <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault22">
+                                    Music Brokers (39)
+                                </label>
+                            </div>
+                            <div class="relative block mb-2">
+                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                    id="flexCheckDefault33">
+                                <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault33">
+                                    Som Livre (128)
+                                </label>
+                            </div>
+                            <div class="relative block mb-2">
+                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                    id="flexCheckDefault44">
+                                <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault44">
+                                    Sony Music (310)
+                                </label>
+                            </div>
+                            <div class="relative block mb-2">
+                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                    id="flexCheckDefault55">
+                                <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault55">
+                                    Universal Music (42)
+                                </label>
+                            </div>
+                            <div class="relative block mb-2">
+                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                    id="flexCheckDefault66">
+                                <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault66">
+                                    Warner Music Brasil (217)
+                                </label>
+                            </div>
+                            <div class="relative block mb-2">
+                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                    id="flexCheckDefault77">
+                                <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault77">
+                                    Elenko Music (310)
+                                </label>
+                            </div>
+                            <div class="relative block mb-2">
+                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                    id="flexCheckDefault88">
+                                <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault88">
+                                    Young Money Entertainment (74)
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lg:w-3/4 px-4 w-full">
+                    <div class="product-grids-head">
+                        <div class="product-grid-topbar">
+                            <div class="flex flex-wrap  items-center">
+                                <div class="lg:w-3/5 px-4 md:w-2/3 w-full">
+                                    <div class="product-sorting flex items-center">
+                                        <label for="sorting">Ordenar por:</label>
+                                        <select class="select-option focus:!outline-none" id="sorting">
+                                            <option>Popularidade</option>
+                                            <option>Baixo - Preço Alto</option>
+                                            <option>Alto - Preço Baixo</option>
+                                            <option>Classificação Alta</option>
+                                            <option>Ordem A - Z</option>
+                                            <option>Ordem Z - A</option>
+                                        </select>
+                                        <!-- <h3 class="total-show-product">Showing: <span>1 - 12 items</span></h3> -->
+                                    </div>
+                                </div>
+                                <div class="lg:w-2/5 px-4 md:w-1/3 w-full">
+                                    <nav>
+                                        <div class="flex flex-wrap list-none pl-0 mb-0 gap-[6px] justify-end">
+                                            <button data-tg="view" data-tipo="Grid" data-active="true"
+                                                class="flex items-center transition-all justify-center h-[42px] w-[42px] no-underline text-lg border rounded-[3px] text-white bg-[#130235] hover:bg-[#ffcc00] hover:text-gray-800"
+                                                type="button"><i class="fa-regular fa-grid-2"></i></button>
+                                            <button data-tg="view" data-tipo="List" data-active="false"
+                                                class="flex items-center transition-all justify-center h-[42px] w-[42px] no-underline text-lg border rounded-[3px]"
+                                                type="button"><i class="fa-regular fa-list"></i></button>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="shop-content">
+                            @(await Component.InvokeAsync<GridViewComponent>())
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $(document).on('click', '[data-tg="view"]', function () {
+                const ActiveClass = "text-white bg-[#130235] hover:bg-[#ffcc00] hover:text-gray-800";
+                $button = $(this);
+
+                if ($button.attr("data-active") == "false") {
+                    $('[data-tg="view"]').removeClass(ActiveClass).attr("data-active", "false");
+                    $button.addClass(ActiveClass).attr("data-active", "true");
+
+                    $.ajax({
+                        type: "GET",
+                        url: `/Retorna/Produtos/${$button.attr("data-tipo")}`,
+                        success: function (response) {
+                            $("#shop-content").html(response)
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        }
+                    });
+                }
+            })
+        });
+    </script>
+    }

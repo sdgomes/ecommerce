@@ -1,0 +1,81 @@
+@{
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Meu Carrinho";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+        new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Produtos", "./shop"),
+        new BreadcrumbsDTO("Meu Carrinho")
+    };
+
+    ViewData["Title"] = breadcrumbs.Title;
+}
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+<div class="shopping-cart section">
+    <div class="container mx-auto px-4">
+        <div class="cart-list-head mx-4">
+
+            <div class="cart-list-title">
+                <div class="flex flex-wrap ">
+                    <div class="lg:w-1/12 md:w-1/12 px-4 w-full"></div>
+                    <div class="lg:w-4/12 md:w-3/12 px-4 w-full">
+                        <strong>Nome do Produto</strong>
+                    </div>
+                    <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
+                        <strong>Quantidade</strong>
+                    </div>
+                    <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
+                        <strong>Subtotal</strong>
+                    </div>
+                    <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
+                        <strong>Desconto</strong>
+                    </div>
+                    <div class="lg:w-1/12 md:w-2/12 px-4 w-full">
+                        <strong>Remover</strong>
+                    </div>
+                </div>
+            </div>
+
+            @(await Component.InvokeAsync<ProdutosCartViewComponent>())
+
+        </div>
+
+        <div class="flex flex-wrap ">
+            <div class="w-full">
+
+                <div class="total-amount">
+                    <div class="flex flex-wrap ">
+                        <div class="lg:w-8/12 md:w-6/12 px-4 w-full">
+                            <div class="left">
+                                <div class="coupon">
+                                    <form action="#" target="_blank">
+                                        <input name="Coupon" placeholder="Insira seu cupom">
+                                        <div class="button">
+                                            <button class="btn !flex !text-gray-800 hover:!text-white !w-fit !min-h-0">Aplicar desconto</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:w-4/12 md:w-6/12 px-4 w-full">
+                            <div class="right">
+                                <ul>
+                                    <li>Subtotal do carrinho<span>R$ 2.389,60</span></li>
+                                    <li>Frete<span>Grátis</span></li>
+                                    <li>Descontos<span>R$ R$ 259,00</span></li>
+                                    <li class="last">Total a pagar<span>R$ 2.130,60</span></li>
+                                </ul>
+                                <div class="button">
+                                    <a asp-action="Index" asp-controller="Checkout" class="btn btn-alt !flex hover:!text-gray-800 !min-h-0">Finalizar</a>
+                                    <a asp-action="Index" asp-controller="Shop" class="btn !bg-transparent !border-[#ffcc00] !border !border-solid !flex !text-[#ffcc00] hover:!text-gray-800 hover:!bg-[#ffcc00] !min-h-0">Continue comprando</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+{
+  "Categorias": [
+    {
+      "categoria": "Coloridos",
+      "subCategoria": []
+    },
+    {
+      "categoria": "Picture Disc",
+      "subCategoria": []
+    },
+    {
+      "categoria": "Shows",
+      "subCategoria": []
+    },
+    {
+      "categoria": "Importados",
+      "subCategoria": []
+    },
+    {
+      "categoria": "Tema",
+      "subCategoria": [
+        "Carnaval",
+        "Infantil",
+        "Filmes",
+        "Novelas",
+        "Romântico",
+        "Seriado",
+        "Religioso"
+      ]
+    },
+    {
+      "categoria": "POP",
+      "subCategoria": []
+    },
+    {
+      "categoria": "Black Music",
+      "subCategoria": ["Blues", "Funk", "Hip Hop", "Hits", "Jazz"]
+    },
+    {
+      "categoria": "Clássica",
+      "subCategoria": []
+    },
+    {
+      "categoria": "Country",
+      "subCategoria": ["Country", "Folk"]
+    },
+    {
+      "categoria": "Eletrônica",
+      "subCategoria": [
+        "Break",
+        "Dance",
+        "Disco Music",
+        "Drum n’ Bass",
+        "Dub",
+        "Garage",
+        "Electro",
+        "Gabber",
+        "Hardcore",
+        "House",
+        "Jungle",
+        "Techno",
+        "Trance"
+      ]
+    },
+    {
+      "categoria": "MPB",
+      "subCategoria": [
+        "Forró",
+        "Jovem Guarda",
+        "Lambada",
+        "Latin",
+        "MPB",
+        "Pagode"
+      ]
+    },
+    {
+      "categoria": "Reggae",
+      "subCategoria": []
+    },
+    {
+      "categoria": "Rock",
+      "subCategoria": [
+        "Heavy Metal",
+        "Hard Rock",
+        "New Wave",
+        "Punk",
+        "Punk Rock",
+        "Rock",
+        "Rock Alternativo",
+        "Rock Nacional"
+      ]
+    },
+    {
+      "categoria": "RAP",
+      "subCategoria": []
+    },
+    {
+      "categoria": "Sertanejo",
+      "subCategoria": []
+    },
+    {
+      "categoria": "Samba",
+      "subCategoria": []
+    }
+  ],
+  "Favoritos": 5,
+  "Carrinho": [
+    {
+      "Imagem": "product-3.jpg",
+      "Cor": "Azul",
+      "DescricaoProduto": "Nicki Minaj - Pink Friday 2 [Blue Vinyl]",
+      "Quantidade": 2,
+      "PrecoDesconto": "-",
+      "PrecoOriginal": "R$ 1.099,80",
+      "Id": "HINIRH5ije0aJF9xgFevSD",
+      "CupomDesconto": 0
+    },
+    {
+      "Imagem": "product-4.jpg",
+      "Cor": "Preto",
+      "DescricaoProduto": "Vinil Louis Tomlinson – Faith in the Future – LP Preto",
+      "Quantidade": 1,
+      "PrecoDesconto": "-",
+      "PrecoOriginal": "R$ 449,90",
+      "Id": "HINIRH5ije0aJF9xgFevSD",
+      "CupomDesconto": 0
+    },
+    {
+      "Imagem": "product-5.jpg",
+      "Cor": "Colorido",
+      "DescricaoProduto": "Bring Me The Horizon - Post Human : Nex Gen",
+      "Quantidade": 1,
+      "PrecoDesconto": "R$ 259,00",
+      "PrecoOriginal": "R$ 839,90",
+      "Id": "HINIRH5ije0aJF9xgFevSD",
+      "CupomDesconto": 0
+    }
+  ]
+}

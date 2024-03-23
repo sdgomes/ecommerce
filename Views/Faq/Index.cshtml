@@ -1,0 +1,113 @@
+@{
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "FAQ";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+        new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+        new BreadcrumbsDTO("FAQ")
+    };
+
+    ViewData["Title"] = breadcrumbs.Title;
+}
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+<section class="faq section">
+    <div class="container mx-auto sm:px-4">
+        <div class="flex flex-wrap justify-center">
+            <div class="w-full">
+                <div class="section-title">
+                    <h2>Não encontrou a resposta?<br> Faça-nos a sua pergunta.</h2>
+                    <p>Normalmente respondemos dentro de 2 dias úteis. As perguntas mais populares aparecerão nesta página.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-wrap justify-center">
+            <div class="lg:w-4/5 px-4 lg:mx-1/6 md:w-full w-full">
+                <div class="join join-vertical w-full space-y-5">
+                    <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px] !bg-[#271155]">
+                        <input type="radio" name="my-accordion-4" checked="checked" />
+                        <div class="collapse-title font-medium">
+                            Que tipos de pagamentos você aceita?
+                        </div>
+                        <div class="collapse-content bg-white">
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur sit
+                                    amet ante nec vulputate. Nulla aliquam, justo auctor consequat tincidunt, arcu
+                                    erat mattis lorem, lacinia lacinia dui enim at eros. Pellentesque ut gravida
+                                    augue. Duis ac dictum tellus</p>
+                                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor
+                                    brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                    sunt alqua put a bird on it squid single-origin coffee nulla assumenda
+                                    shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson
+                                    cred nesciunt sapiente ea proident.</p>
+                        </div>
+                    </div>
+
+                    <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px] !bg-[#271155]">
+                        <input type="radio" name="my-accordion-4" />
+                        <div class="collapse-title font-medium">
+                            Em quanto tempo a encomenda chega?
+                        </div>
+                        <div class="collapse-content bg-white">
+                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor
+                                    brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                    sunt alqua put a bird on it squid single-origin coffee nulla assumenda
+                                    shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson
+                                    cred nesciunt sapiente ea proident.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur sit
+                                    amet ante nec vulputate. Nulla aliquam, justo auctor consequat tincidunt, arcu
+                                    erat mattis lorem, lacinia lacinia dui enim at eros. Pellentesque ut gravida
+                                    augue. Duis ac dictum tellus</p>
+                        </div>
+                    </div>
+
+                    <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px] !bg-[#271155]">
+                        <input type="radio" name="my-accordion-4" />
+                        <div class="collapse-title font-medium">
+                            Preciso de uma conta para fazer um pedido?
+                        </div>
+                        <div class="collapse-content bg-white">
+                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas expedita,
+                                    repellendus est nemo cum quibusdam optio, voluptate hic a tempora facere, nihil
+                                    non itaque alias similique quas quam odit consequatur.</p>
+                        </div>
+                    </div>
+
+                    <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px] !bg-[#271155]">
+                        <input type="radio" name="my-accordion-4" />
+                        <div class="collapse-title font-medium">
+                            Você tem descontos para clientes recorrentes?
+                        </div>
+                        <div class="collapse-content bg-white">
+                           <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor
+                                    brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                    sunt alqua put a bird on it squid single-origin coffee nulla assumenda
+                                    shoreditch et.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident iure ab nisi,
+                                    magnam vitae. Laboriosam laborum suscipit recusandae officia laudantium,
+                                    consectetur adipisci voluptates doloremque quisquam. Id rerum iusto
+                                    reprehenderit assumenda!</p>
+                        </div>
+                    </div>
+
+                    <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px] !bg-[#271155]">
+                        <input type="radio" name="my-accordion-4" />
+                        <div class="collapse-title font-medium">
+                            Quais são as condições de reembolso do produto?
+                        </div>
+                        <div class="collapse-content bg-white">
+                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                    richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor
+                                    brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                    sunt alqua put a bird on it squid single-origin coffee nulla assumenda
+                                    shoreditch et. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

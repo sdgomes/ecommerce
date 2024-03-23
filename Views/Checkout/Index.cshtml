@@ -1,0 +1,404 @@
+@{
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Checkout";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+        new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Produtos", "./shop"),
+        new BreadcrumbsDTO("Checkout")
+    };
+
+    ViewData["Title"] = breadcrumbs.Title;
+}
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+<section class="checkout-wrapper section">
+    <div class="container mx-auto sm:px-4">
+        <div class="flex flex-wrap  justify-center">
+            <div class="lg:w-2/3 px-4">
+                <div class="checkout-steps-form-style-1">
+                    <div class="join join-vertical w-full space-y-5">
+                    <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px]">
+                        <input type="radio" name="my-accordion-1" checked />
+                        <div class="collapse-title font-bold !bg-white !text-gray-800 border-b">
+                            Seus dados pessoais
+                        </div>
+                        <div class="collapse-content bg-white">
+                        <div class="flex flex-wrap ">
+                                    <div class="md:w-1/2 px-4">
+                                      <div class="single-form form-default">
+                                            <label>Nome</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Primeiro nome">
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="md:w-1/2 px-4 flex items-end">
+                                        <div class="single-form form-default w-full">
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Sobrenome">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 px-4">
+                                        <div class="single-form form-default">
+                                            <label>E-mail</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Endereço de email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 px-4">
+                                        <div class="single-form form-default">
+                                            <label>Telefone</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Número de telefone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-full px-4">
+                                        <div class="single-form form-default">
+                                            <label>Endereço</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Endereço para correspondência">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 px-4">
+                                        <div class="single-form form-default">
+                                            <label>Cidade</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Cidade">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 px-4">
+                                        <div class="single-form form-default">
+                                            <label>CEP</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Código postal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 px-4">
+                                        <div class="single-form form-default">
+                                            <label>País</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="País">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 px-4">
+                                        <div class="single-form form-default">
+                                            <label>Região / Estado</label>
+                                            <div class="select-items">
+                                                <select class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                                                    <option value="0">Selecione</option>
+                                                    <option value="AC">AC</option>
+                                                    <option value="AL">AL</option>
+                                                    <option value="AP">AP</option>
+                                                    <option value="AM">AM</option>
+                                                    <option value="BA">BA</option>
+                                                    <option value="CE">CE</option>
+                                                    <option value="DF">DF</option>
+                                                    <option value="ES">ES</option>
+                                                    <option value="GO">GO</option>
+                                                    <option value="MA">MA</option>
+                                                    <option value="MT">MT</option>
+                                                    <option value="MS">MS</option>
+                                                    <option value="MG">MG</option>
+                                                    <option value="PA">PA</option>
+                                                    <option value="PB">PB</option>
+                                                    <option value="PR">PR</option>
+                                                    <option value="PE">PE</option>
+                                                    <option value="PI">PI</option>
+                                                    <option value="RJ">RJ</option>
+                                                    <option value="RN">RN</option>
+                                                    <option value="RS">RS</option>
+                                                    <option value="RO">RO</option>
+                                                    <option value="RR">RR</option>
+                                                    <option value="SC">SC</option>
+                                                    <option value="SP">SP</option>
+                                                    <option value="SE">SE</option>
+                                                    <option value="TO">TO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-full px-4">
+                                        <div class="single-checkbox checkbox-style-3">
+                                            <input type="checkbox" id="checkbox-3">
+                                            <label for="checkbox-3"><span></span></label>
+                                            <p>Meus endereços de entrega e correspondência são os mesmos.</p>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-full px-4">
+                                        <div class="single-form button">
+                                            <button class="btn !w-fit !flex !text-gray-800 hover:!text-white">Próxima Etapa</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px]">
+                        <input type="radio" name="my-accordion-2" />
+                        <div class="collapse-title font-bold !bg-white !text-gray-800 border-b">
+                            Endereço para envio
+                        </div>
+                        <div class="collapse-content bg-white">
+                            <div class="flex flex-wrap ">
+                                  <div class="md:w-1/2 px-4">
+                                      <div class="single-form form-default">
+                                            <label>Nome</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Primeiro nome">
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="md:w-1/2 px-4 flex items-end">
+                                        <div class="single-form form-default w-full">
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Sobrenome">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 px-4">
+                                        <div class="single-form form-default">
+                                            <label>E-mail</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Endereço de email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 px-4">
+                                        <div class="single-form form-default">
+                                            <label>Telefone</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Número de telefone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-full px-4">
+                                        <div class="single-form form-default">
+                                            <label>Endereço</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Endereço para correspondência">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 px-4">
+                                        <div class="single-form form-default">
+                                            <label>Cidade</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Cidade">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 px-4">
+                                        <div class="single-form form-default">
+                                            <label>CEP</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="Código postal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 px-4">
+                                        <div class="single-form form-default">
+                                            <label>País</label>
+                                            <div class="form-input form">
+                                                <input type="text" placeholder="País">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-1/2 px-4">
+                                        <div class="single-form form-default">
+                                            <label>Região / Estado</label>
+                                            <div class="select-items">
+                                                <select class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                                                    <option value="0">Selecione</option>
+                                                    <option value="AC">AC</option>
+                                                    <option value="AL">AL</option>
+                                                    <option value="AP">AP</option>
+                                                    <option value="AM">AM</option>
+                                                    <option value="BA">BA</option>
+                                                    <option value="CE">CE</option>
+                                                    <option value="DF">DF</option>
+                                                    <option value="ES">ES</option>
+                                                    <option value="GO">GO</option>
+                                                    <option value="MA">MA</option>
+                                                    <option value="MT">MT</option>
+                                                    <option value="MS">MS</option>
+                                                    <option value="MG">MG</option>
+                                                    <option value="PA">PA</option>
+                                                    <option value="PB">PB</option>
+                                                    <option value="PR">PR</option>
+                                                    <option value="PE">PE</option>
+                                                    <option value="PI">PI</option>
+                                                    <option value="RJ">RJ</option>
+                                                    <option value="RN">RN</option>
+                                                    <option value="RS">RS</option>
+                                                    <option value="RO">RO</option>
+                                                    <option value="RR">RR</option>
+                                                    <option value="SC">SC</option>
+                                                    <option value="SP">SP</option>
+                                                    <option value="SE">SE</option>
+                                                    <option value="TO">TO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-full px-4">
+                                        <div class="checkout-payment-option">
+                                            <h6 class="heading-6 font-weight-400 payment-title">Selecione Entrega Opção</h6>
+                                            <div class="payment-option-wrapper">
+                                                <div class="single-payment-option">
+                                                    <input type="radio" name="shipping" checked="" id="shipping-1">
+                                                    <label for="shipping-1">
+                                                        <img src="~/img/images/shipping/shipping-1.png" alt="Sipping">
+                                                        <p>Envio padrão</p>
+                                                        <span class="price">R$ 10,50</span>
+                                                    </label>
+                                                </div>
+                                                <div class="single-payment-option">
+                                                    <input type="radio" name="shipping" id="shipping-2">
+                                                    <label for="shipping-2">
+                                                        <img src="~/img/images/shipping/shipping-2.png" alt="Sipping">
+                                                        <p>Envio padrão</p>
+                                                        <span class="price">R$ 10,50</span>
+                                                    </label>
+                                                </div>
+                                                <div class="single-payment-option">
+                                                    <input type="radio" name="shipping" id="shipping-3">
+                                                    <label for="shipping-3">
+                                                        <img src="~/img/images/shipping/shipping-3.png" alt="Sipping">
+                                                        <p>Envio padrão</p>
+                                                        <span class="price">R$ 10,50</span>
+                                                    </label>
+                                                </div>
+                                                <div class="single-payment-option">
+                                                    <input type="radio" name="shipping" id="shipping-4">
+                                                    <label for="shipping-4">
+                                                        <img src="~/img/images/shipping/shipping-4.png" alt="Sipping">
+                                                        <p>Envio padrão</p>
+                                                        <span class="price">R$ 10,50</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:w-full px-4">
+                                        <div class="steps-form-btn button flex gap-1">
+                                            <button class="inline-block align-middle text-center select-none font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline btn !bg-transparent !text-gray-800 !border !border-solid !border-gray-300" >Anterior</button>
+                                            <a href="javascript:void(0)" class="btn !w-fit !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853] btn-alt">Salvar &amp; Continuar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px]">
+                        <input type="radio" name="my-accordion-3" />
+                        <div class="collapse-title font-bold !bg-white !text-gray-800 border-b">
+                            Informação de pagamento
+                        </div>
+                        <div class="collapse-content bg-white">
+                             <div class="flex flex-wrap ">
+                                    <div class="w-full">
+                                        <div class="checkout-payment-form">
+                                            <div class="single-form form-default">
+                                                <label>Nome do Titular</label>
+                                                <div class="form-input form">
+                                                    <input type="text" placeholder="Nome do Titular">
+                                                </div>
+                                            </div>
+                                            <div class="single-form form-default">
+                                                <label>Número do cartão</label>
+                                                <div class="form-input form">
+                                                    <input id="credit-input" type="text" placeholder="0000 0000 0000 0000">
+                                                    <img src="~/img/images/payment/card.png" alt="card">
+                                                </div>
+                                            </div>
+                                            <div class="payment-card-info">
+                                                <div class="single-form form-default mm-yy">
+                                                    <label>Validade</label>
+                                                    <div class="expiration flex">
+                                                        <div class="form-input form">
+                                                            <input type="text" placeholder="MM">
+                                                        </div>
+                                                        <div class="form-input form">
+                                                            <input type="text" placeholder="YYYY">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="single-form form-default">
+                                                    <label>CVC/CVV <span><i class="mdi mdi-alert-circle"></i></span></label>
+                                                    <div class="form-input form">
+                                                        <input type="text" placeholder="***">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="single-form form-default button">
+                                                <button class="btn !w-fit !flex !text-gray-800 hover:!text-white">Pagar Agora</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="lg:w-1/3 px-4">
+                <div class="checkout-sidebar">
+                    <div class="checkout-sidebar-coupon">
+                        <p>Aplique o cupom para obter desconto!</p>
+                        <form action="#">
+                            <div class="single-form form-default">
+                                <div class="form-input form">
+                                    <input type="text" placeholder="Código do cupom">
+                                </div>
+                                <div class="button">
+                                    <button class="btn !w-fit !flex !text-gray-800 hover:!text-white min-h-0">Aplicar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="checkout-sidebar-price-table mt-30">
+                        <h5 class="title">Tabela de preços</h5>
+
+                        <div class="sub-total-price">
+                            <div class="total-price">
+                                <p class="value">Subtotal do carrinho:</p>
+                                <p class="price">R$ 2.389,60</p>
+                            </div>
+                            <div class="total-price shipping">
+                                <p class="value">Frete:</p>
+                                <p class="price">R$ 10,50</p>
+                            </div>
+                            <div class="total-price discount">
+                                <p class="value">Descontos:</p>
+                                <p class="price">R$ R$ 259,00</p>
+                            </div>
+                        </div>
+
+                        <div class="total-payable">
+                            <div class="payable-price">
+                                <p class="value">Total a pagar:</p>
+                                <p class="price">R$ 2.130,60</p>
+                            </div>
+                        </div>
+                        <div class="price-table-btn button">
+                            <a href="javascript:void(0)" class="btn !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853] hover:!text-gray-800 btn-alt">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="checkout-sidebar-banner mt-30">
+                        <a asp-action="Index" asp-controller="Shop">
+                            <img src="~/img/images/banner/banner.jpg" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

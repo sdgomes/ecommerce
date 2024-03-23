@@ -1,0 +1,70 @@
+@{
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Sobre nós";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+        new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Sobre nós")
+    };
+
+    ViewData["Title"] = breadcrumbs.Title;
+}
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+<section class="about-us section">
+        <div class="container mx-auto sm:px-4">
+            <div class="flex flex-wrap  items-center">
+              
+                <div class="lg:w-1/2 md:w-full px-4 w-full">
+
+                    <div class="content-right">
+                        <h2>purple RAY - Seu parceiro confiável</h2>
+                        <p>Bem-vindo à purple RAY, o seu destino definitivo para tudo relacionado a CDs e discos! Aqui, celebramos a paixão pela música em sua forma mais tangível - os clássicos CDs e os nostálgicos discos de vinil.</p>
+                        <p>Na purple RAY, somos mais do que apenas um e-commerce; somos uma comunidade de melômanos, colecionadores e entusiastas da música, unidos por nossa devoção compartilhada aos sons que definem nossas vidas. Desde os lendários álbuns que moldaram gerações até as mais recentes descobertas musicais, cada peça em nosso acervo foi cuidadosamente selecionada para inspirar e encantar.</p>
+                        <p>Nossa missão é proporcionar uma experiência de compra que vai além do simples ato de adquirir música. Com uma interface intuitiva e uma ampla variedade de gêneros musicais, estamos empenhados em oferecer a você uma jornada envolvente e personalizada. Navegue por nossas categorias meticulosamente organizadas, explore lançamentos exclusivos e redescubra os tesouros esquecidos em nossa seção de raridades.</p>
+                        <p>Além disso, na purple RAY, acreditamos firmemente em promover a diversidade e a inclusão no mundo da música. Estamos empenhados em destacar artistas emergentes e apoiar talentos independentes, oferecendo-lhes uma plataforma para compartilhar suas criações com o mundo.</p>
+                        <p>Nossa equipe dedicada está sempre à disposição para auxiliá-lo em sua jornada musical, seja para encontrar aquela raridade há muito procurada ou para recomendar as últimas novidades. Estamos aqui para tornar sua experiência na purple RAY memorável e gratificante.</p>
+                        <p>Então, junte-se a nós na purple RAY e mergulhe em um universo vibrante de ritmos e melodias. Descubra a magia da música em sua forma mais pura - através dos CDs e discos - e faça da sua jornada musical uma experiência verdadeiramente inesquecível.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section class="team section">
+    <div class="container mx-auto sm:px-4">
+        <div class="flex flex-wrap ">
+            <div class="w-full">
+                <div class="section-title">
+                    <h2 class="wow fadeInUp" data-wow-delay=".4s">Nosso CEO</h2>
+                    <p class="wow fadeInUp" data-wow-delay=".6s">Conheça Oséias Gomes, a mente brilhante por trás da purple RAY. Com uma paixão pela música e uma visão inspiradora, Oséias Gomes lidera nossa equipe para proporcionar a melhor experiência musical. Venha se juntar a nós nesta jornada!</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-wrap justify-center">
+            <div class="lg:w-1/4 md:w-1/2 px-4 w-full">
+
+                <div class="single-team">
+                    <div class="image">
+                        <img src="~/img/images/team/02.jpg" alt="...">
+                    </div>
+                    <div class="content">
+                        <div class="info">
+                            <h3>Oséias Gomes</h3>
+                            <h5>CEO</h5>
+                            <ul class="social">
+                                <li><a href="javascript:void(0)"><i class="fa-brands fa-facebook-f"></i></a>
+                                </li>
+                                <li><a href="javascript:void(0)"><i class="fa-brands fa-twitter"></i></a>
+                                </li>
+                                <li><a href="javascript:void(0)"><i class="fa-brands fa-skype"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

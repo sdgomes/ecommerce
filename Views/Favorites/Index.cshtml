@@ -1,0 +1,40 @@
+@{
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Favoritos";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+        new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Shop", "./shop"),
+        new BreadcrumbsDTO("Favoritos")
+    };
+
+    ViewData["Title"] = breadcrumbs.Title;
+}
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+<div class="shopping-cart section">
+    <div class="container mx-auto px-4">
+        <div class="cart-list-head mx-4">
+
+            <div class="cart-list-title">
+                <div class="flex flex-wrap ">
+                    <div class="lg:w-1/12 md:w-1/12 px-4 w-full"></div>
+                    <div class="lg:w-4/12 md:w-3/12 px-4 w-full">
+                        <strong>Nome do Produto</strong>
+                    </div>
+                    <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
+                        <strong>Subtotal</strong>
+                    </div>
+                    <div class="ml-auto lg:w-1/12 md:w-2/12 px-4 w-full">
+                        <strong>Remover</strong>
+                    </div>
+                    <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
+                        <strong>Adicionar ao Carrinho</strong>
+                    </div>
+                </div>
+            </div>
+
+            @(await Component.InvokeAsync<ProdutosFavoritesViewComponent>())
+        </div>
+    </div>
+</div>

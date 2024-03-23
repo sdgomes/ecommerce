@@ -1,0 +1,56 @@
+{
+  "Produtos": [
+    {
+      "Imagem": "product-1.jpg",
+      "PreInfo": "CD, Lançamentos, Pronta Entrega",
+      "NomeProduto": "CD Troye Sivan – Something To Give Each Other",
+      "Nota": 5,
+      "PrecoDesconto": "",
+      "PrecoOriginal": "R$ 199,00",
+      "Id": "RQcHofRqTCNmmDdK3XCy5v",
+      "Desconto": 0,
+      "Tipo": ""
+    },
+    {
+      "Imagem": "product-2.jpg",
+      "PreInfo": "Vinil, Lançamentos",
+      "NomeProduto": "Vinil Taylor Swift – 1989 (Taylor’s Version) – Rose Garden Pink",
+      "Nota": 4,
+      "PrecoDesconto": "R$ 449,92",
+      "PrecoOriginal": "R$ 599,90",
+      "Id": "A4LEkPWdVQaBlgSAGHMp99",
+      "Desconto": 25,
+      "Tipo": ""
+    },
+    {
+      "Imagem": "product-3.jpg",
+      "PreInfo": "Vinil, Lançamentos, Pronta Entrega",
+      "NomeProduto": "Nicki Minaj - Pink Friday 2 [Blue Vinyl]",
+      "Nota": 5,
+      "PrecoDesconto": "",
+      "PrecoOriginal": "R$ 549,90",
+      "Id": "HINIRH5ije0aJF9xgFevSD",
+      "Desconto": 0,
+      "Tipo": ""
+    }
+  ],
+  "Banner": {
+    "Imagem": "banner-3-bg.jpg",
+    "Titulo": "Endless Summer Vacation",
+    "Texto": "Endless Summer Vacation é o novo álbum ansiosamente aguardado da artista, compositora e pioneira Miley Cyrus.",
+    "PrecoOriginal": "R$ 590,90",
+    "Id": "Htpb8yFncCBUTcFpICIGZk"
+  },
+  "OfertaPrincipal": {
+    "Imagem": "offer-image.jpg",
+    "Texto": "O \"Act 2\" será o oitavo álbum de estúdio de Beyoncé. O Renaissance terá, ao todo, três álbuns.",
+    "NomeProduto": "Beyoncé - Act II: Cowboy Carter",
+    "Nota": 5,
+    "Dias": 65,
+    "PrecoDesconto": "R$ 424,95",
+    "PrecoOriginal": "R$ 849,90",
+    "Id": "HINIRH5ije0aJF9xgFevSD",
+    "Desconto": 50,
+    "Tipo": "Novo"
+  }
+}

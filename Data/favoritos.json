@@ -1,0 +1,37 @@
+[
+  {
+    "Imagem": "product-3.jpg",
+    "Cor": "Azul",
+    "DescricaoProduto": "Nicki Minaj - Pink Friday 2 [Blue Vinyl]",
+    "PrecoOriginal": "R$ 1.099,80",
+    "Id": "HINIRH5ije0aJF9xgFevSD"
+  },
+  {
+    "Imagem": "product-4.jpg",
+    "Cor": "Preto",
+    "DescricaoProduto": "Vinil Louis Tomlinson – Faith in the Future – LP Preto",
+    "PrecoOriginal": "R$ 449,90",
+    "Id": "HINIRH5ije0aJF9xgFevSD"
+  },
+  {
+    "Imagem": "product-5.jpg",
+    "Cor": "Colorido",
+    "DescricaoProduto": "Bring Me The Horizon - Post Human : Nex Gen",
+    "PrecoOriginal": "R$ 839,90",
+    "Id": "HINIRH5ije0aJF9xgFevSD"
+  },
+  {
+    "Imagem": "product-7.jpg",
+    "Cor": "Preto",
+    "DescricaoProduto": "Blossoms - Blossoms",
+    "PrecoOriginal": "R$ 389,90",
+    "Id": "Q2gafGK8OfWTOwzN0HWy0S"
+  },
+  {
+    "Imagem": "product-8.jpg",
+    "Cor": "Preto",
+    "DescricaoProduto": "Allie X - Girl With No Face",
+    "PrecoOriginal": "R$ 379,90",
+    "Id": "PKGmUsNXkEjuwoFgGiigZA"
+  }
+]

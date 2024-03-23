@@ -1,0 +1,32 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
+
+namespace ecommerce.Views.Home.Components.HomeProductList
+{
+    public class HomeProductListViewComponent : ViewComponent
+    {
+        public IViewComponentResult Invoke()
+        {
+            string json = File.ReadAllText(@"C:\ecommerce\data\homeproductlist.json");
+            var Model = JsonConvert.DeserializeObject<List<ViewHomeProductList>>(json);
+            return View(Model);
+        }
+    }
+
+    public class ViewHomeProductList
+    {
+        public string Titulo { get; set; }
+        public List<ProdutoDTO> Produtos { get; set; }
+    }
+
+    public class ProdutoDTO
+    {
+        public string Imagem { get; set; }
+        public string NomeProduto { get; set; }
+        public string PrecoOriginal { get; set; }
+        public string Id { get; set; }
+    }
+
+}

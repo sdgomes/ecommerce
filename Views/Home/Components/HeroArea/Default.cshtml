@@ -1,0 +1,86 @@
+@model ViewHeroArea
+
+<section class="hero-area">
+    <div class="container mx-auto sm:px-4">
+        <div class="flex flex-wrap ">
+            <div class="lg:w-2/3 px-4 w-full custom-padding-right">
+                <div class="slider-head">
+
+                    <div class="tns-outer" id="tns1-ow">
+                        <div class="tns-controls" aria-label="Carousel Navigation" tabindex="0">
+                            <button type="button" data-controls="prev" tabindex="-1" aria-controls="tns1">
+                                <i class="fa-light fa-angle-left"></i>
+                            </button>
+
+                            <button type="button" data-controls="next" tabindex="-1" aria-controls="tns1">
+                                <i class="fa-light fa-angle-right"></i>
+                            </button>
+                        </div>
+
+
+                        <div id="tns1-mw" class="tns-ovh">
+                            <div class="tns-inner" id="tns1-iw">
+                                <div class="hero-slider tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns1">
+                                    @foreach (var (Slide, Index) in Model.Slider.Select((Slide, Index) => (Slide, Index)))
+                                    {
+                                        <div class="single-slider tns-item" style="background-image: url(/img/images/hero/@Slide.Imagem);" id="tns1-item@(Index)" tabindex="-1">
+                                            <div class="content">
+                                                <h2>
+                                                    <span>@Slide.PreTitulo</span>
+                                                    @Slide.Titulo
+                                                </h2>
+                                                <p>@Slide.SubTitulo</p>
+                                                <h3><span>@Slide.InformativoPreco[0]</span> @Slide.InformativoPreco[1]</h3>
+                                                <div class="button">
+                                                    <a asp-action="Index" asp-controller="ShopSingle"
+                                                       asp-route-produto="@Slide.Id"
+                                                       class="btn !flex !w-fit justify-center items-center !text-gray-800 hover:!text-white">
+                                                        Comprar
+                                                        Agora
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="lg:w-1/3 px-4 w-full">
+                <div class="flex flex-wrap ">
+                    <div class="lg:w-full px-4 md:w-1/2 w-full md-custom-padding">
+
+                        <div class="hero-small-banner" style="background-image: url('/img/images/hero/@Model.Oferta.Imagem');">
+                            <div class="content">
+                                <h2>
+                                    <span>@Model.Oferta.PreTitulo</span>
+                                    <p class="leading-none font-bold text-xl text-[#1f1238] w-[140px]">@Model.Oferta.Titulo</p>
+                                </h2>
+                                <h3>@Model.Oferta.Preco</h3>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="lg:w-full md:w-1/2 px-4 w-full">
+
+                        <div class="hero-small-banner style2">
+                            <div class="content">
+                                <h2>@Model.Anuncio.Titulo</h2>
+                                <p>@Model.Anuncio.Texto</p>
+                                <div class="button">
+                                    <a class="btn !w-fit !flex !text-gray-800" asp-action="Index"
+                                       asp-controller="Shop">Compre agora</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

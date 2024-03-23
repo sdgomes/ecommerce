@@ -1,0 +1,13 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .input-qnt {
+        @apply text-center font-[inherit] leading-[inherit] w-[80px] h-[45px] border bg-white text-black transition-all duration-[0.3s] ease-linear text-sm m-0 px-[15px] py-0 rounded-[3px] border-solid border-[#e2e2e2];
+    }
+
+    .button-qnt {
+        @apply text-white bg-[#130235] text-[10px] h-5 w-5 leading-5 text-center flex items-center justify-center m-auto rounded-[50%];
+    }
+}
