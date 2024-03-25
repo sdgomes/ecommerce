@@ -1,0 +1,125 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3735B6A6-FB45-6018-F816-9572EAA16AB1" name="ECM_CARTOES">
+<createdBy>oseia</createdBy>
+<createdTime>2024-03-25 04:49:42 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_CARTAO" id="55F90110-80F6-D293-26E7-CE0C54166EFA">
+<createdBy>oseia</createdBy>
+<createdTime>2024-03-25 04:54:30 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_CLIENTE" id="19A7B2D5-CB2B-4246-222D-C5D088676A18">
+<createdBy>oseia</createdBy>
+<createdTime>2024-03-25 04:59:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="148004BC-F571-2624-98D8-AE9A5FE9CD97" referredColumn="60875BF3-D9BA-5484-A98E-AEB45074FBA3"/>
+</associations>
+</Column>
+<Column name="NOME_TITULAR" id="BBFB0EAC-8DD6-BFEE-2BDD-B381117FC5FC">
+<createdBy>oseia</createdBy>
+<createdTime>2024-03-25 04:54:30 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TIPO" id="E1055A61-E9CA-D5FD-59D1-B84619F268BA">
+<createdBy>oseia</createdBy>
+<createdTime>2024-03-25 04:54:30 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CPF_TITULAR" id="E1CDCE3F-4E8E-0F49-99B6-F127074E59B0">
+<createdBy>oseia</createdBy>
+<createdTime>2024-03-25 04:59:33 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>11 CHAR</dataTypeSize>
+<ownDataTypeParameters>11 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NUMERO" id="69E46263-7455-01B9-85C1-280AE3B1E7A0">
+<createdBy>oseia</createdBy>
+<createdTime>2024-03-25 04:59:33 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA_VALIDADE" id="A3A9EB72-6B05-544D-C360-DF235B69525C">
+<createdBy>oseia</createdBy>
+<createdTime>2024-03-25 04:59:33 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CODIGO_SEGURANCA" id="CCB4CA92-24F3-932B-8EE1-89E43811DC10">
+<createdBy>oseia</createdBy>
+<createdTime>2024-03-25 04:59:33 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DCA3A63C-6BE6-A4DF-47FC-91052F9E8AA2" name="ECM_CARTOES_PK">
+<createdBy>oseia</createdBy>
+<createdTime>2024-03-25 04:59:33 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="55F90110-80F6-D293-26E7-CE0C54166EFA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AD69AF80-7ACB-EF87-5308-873181E73D0C" name="FK_CARTAO_TO_CLIENTE_ECM">
+<createdBy>oseia</createdBy>
+<createdTime>2024-03-25 04:59:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="19A7B2D5-CB2B-4246-222D-C5D088676A18"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
