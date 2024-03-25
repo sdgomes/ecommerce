@@ -1,0 +1,142 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5748AF46-01F6-54B5-B676-E3477674998E" name="ECM_HISTORICOS_MOVIMENTACOES">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 19:18:57 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<ordsAlias>table_30</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_HISTORICO_MOVIMENTACAO" id="A4DA3F60-F1C6-730C-CBB8-DFB1EABA4D16">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 19:21:11 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_ESTOQUE" id="DBBA0BA6-87F4-74E7-792D-41A11F474AE8">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 19:21:37 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C8835649-19F8-6F0A-4D18-7E39E93C018D" referredColumn="31FFFF20-A21C-E315-48E1-E6F73AC664BB"/>
+</associations>
+</Column>
+<Column name="ID_USUARIOS" id="B0B02400-7660-43DF-5459-DBCF3A19FC08">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 19:22:46 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9263374C-4A75-1841-88E7-77BE10CE73AB" referredColumn="1CAC9266-298C-A480-A3F1-8556D1C8875E"/>
+</associations>
+</Column>
+<Column name="TIPO_MOVIMENTO" id="8DB494B8-D3E1-38D2-3165-9ED61E13DAFB">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 19:21:11 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>125</dataTypeSize>
+<ownDataTypeParameters>125,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="QNT_MOVIMENTADA" id="E56FF3E3-74E9-EE2B-3F95-DB52AF02D670">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 19:21:11 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESCRICAO" id="5CBA47EB-5983-E4F5-95A9-20B1E892ABFB">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 19:21:11 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>520</dataTypeSize>
+<ownDataTypeParameters>520,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRIACAO" id="A964F6A5-367C-80F2-1B2C-9EA82C95F85E">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 19:21:11 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="D_E_L_E_T_" id="68B5D8AD-B7B0-720A-79BC-90F428FBAFA5">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 19:21:11 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT034</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="54007C5F-6D73-EE0E-CA24-FD20DB1FEE01" name="ECM_HISTORICOS_MOVIMENTACOES_PK">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 19:21:11 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A4DA3F60-F1C6-730C-CBB8-DFB1EABA4D16"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ECA9736E-30DD-F3E3-96F1-29972FF1A161" name="FK_HISTORICOS_MOVIMENTACOES_TO_ESTOQUES_ECM">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 19:21:37 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DBBA0BA6-87F4-74E7-792D-41A11F474AE8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7C3D6D27-BC9D-0AB4-44AF-EDECBDFDDC71" name="FK_HISTORICOS_MOVIMENTACOES_TO_USUARIOS_ECM">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 19:22:46 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B0B02400-7660-43DF-5459-DBCF3A19FC08"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

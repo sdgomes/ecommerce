@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="885C1BCA-6431-46C0-76B6-10D3DD939B65" name="ECM_USUARIOS">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:03:38 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<ordsAlias>table_23</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_USUARIOS" id="1CAC9266-298C-A480-A3F1-8556D1C8875E">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:05:02 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EMAIL" id="3075D9EC-5AD9-68C2-CDB2-28D1666047E9">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:05:02 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>520 CHAR</dataTypeSize>
+<ownDataTypeParameters>520 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SENHA" id="B51A549E-E25D-D2F4-CBF4-4AA43E222A4B">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:05:02 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TIPO" id="7E119551-8EF5-1572-F3F2-40780FA7CEF7">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:05:02 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25 CHAR</dataTypeSize>
+<ownDataTypeParameters>25 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRIACAO" id="68C6969C-FD66-159E-F4F9-762AED761BEC">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 18:17:00 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="D_E_L_E_T_" id="0C0BDB74-39D8-F68A-4134-C4CA856EB9B9">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 18:17:00 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT034</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E1290CF4-3732-861C-8D65-62AEE59CEB15" name="ECM_USUARIOS_PK">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:05:02 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1CAC9266-298C-A480-A3F1-8556D1C8875E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

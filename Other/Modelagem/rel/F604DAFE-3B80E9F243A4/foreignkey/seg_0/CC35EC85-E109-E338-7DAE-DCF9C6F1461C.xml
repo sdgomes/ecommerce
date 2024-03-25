@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="CC35EC85-E109-E338-7DAE-DCF9C6F1461C" containerWithKeyObject="C6162A4B-BE76-C997-F712-506C1BA5873B" localFKIndex="F9233466-587B-1022-C5DE-22420F95D685" name="FK_RANKINGS_TO_CLIENTES_ECM">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 17:00:47 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<referredTableLongName>ECM_CLIENTES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>560868D6-B8BA-DA13-9604-D7CA12DDD81E</referredTableID>
+<keyObject>E83C575C-A4F7-57E2-BD34-8EA87F669FF1</keyObject>
+<referredKeyID>E83C575C-A4F7-57E2-BD34-8EA87F669FF1</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_CLIENTE</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

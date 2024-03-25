@@ -9,7 +9,9 @@ namespace ecommerce.Views.Home.Components.HeroArea
     {
         public IViewComponentResult Invoke()
         {
-            string json = File.ReadAllText(@"C:\ecommerce\data\herobanner.json");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Mock\\herobanner.json");
+            string json = File.ReadAllText(path);
+
             var Model = JsonConvert.DeserializeObject<ViewHeroArea>(json);
             return View(Model);
         }

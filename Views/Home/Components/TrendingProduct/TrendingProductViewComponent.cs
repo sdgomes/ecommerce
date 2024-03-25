@@ -9,7 +9,9 @@ namespace ecommerce.Views.Home.Components.TrendingProduct
     {
         public IViewComponentResult Invoke()
         {
-            string json = File.ReadAllText(@"C:\ecommerce\data\emalta.json");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Mock\\emalta.json");
+            string json = File.ReadAllText(path);
+
             var Model = JsonConvert.DeserializeObject<List<ViewTrendingProduct>>(json);
             return View(Model);
         }

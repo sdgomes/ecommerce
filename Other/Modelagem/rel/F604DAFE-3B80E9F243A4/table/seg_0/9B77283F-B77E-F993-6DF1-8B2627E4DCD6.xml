@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9B77283F-B77E-F993-6DF1-8B2627E4DCD6" name="ECM_DESCONTOS">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:26:35 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<ordsAlias>table_29</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_DESCONTO" id="C07066BC-5E3F-FFC1-C5B7-E2E328F0415D">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:27:09 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_CLIENTE" id="7F567AC2-5ECC-4A57-5570-837402DD5A35">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 16:43:49 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9FCFFDB5-FFD5-531A-5B02-E499A452C59E" referredColumn="60875BF3-D9BA-5484-A98E-AEB45074FBA3"/>
+</associations>
+</Column>
+<Column name="CODIGO" id="7225DAA0-E143-A303-350B-712666328729">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 16:42:10 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>64 CHAR</dataTypeSize>
+<ownDataTypeParameters>64 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESCONTO" id="B17EB9C7-6CDA-5C92-2D92-E7C9FFDE207C">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 16:42:10 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RESGATADO" id="275FBA83-6A8E-FE2C-1FB3-8B2C513A1486">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 16:46:38 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT034</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TIPO" id="DCF57BC0-315B-84BF-4BAF-71A90C5712F4">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 16:46:38 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25 CHAR</dataTypeSize>
+<ownDataTypeParameters>25 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ATIVO" id="E68CD363-DF0C-5EEF-6D5A-73892CA6E60B">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 16:46:38 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT034</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRIACAO" id="9B6165D8-0C96-E964-6C12-4AD342350776">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 16:42:10 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="D_E_L_E_T_" id="082EF3A5-6961-0E76-5B00-BD959577A1E7">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 16:42:10 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT034</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2F70680C-3D3D-C9D5-DCEB-FDB8BCDE04D6" name="ECM_DESCONTOS_PK">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:27:09 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C07066BC-5E3F-FFC1-C5B7-E2E328F0415D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8FA69C6D-D77B-7267-1D01-16BC6D20F0E7" name="FK_DESCONTOS_TO_CLIENTES_ECM">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 16:43:49 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7F567AC2-5ECC-4A57-5570-837402DD5A35"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

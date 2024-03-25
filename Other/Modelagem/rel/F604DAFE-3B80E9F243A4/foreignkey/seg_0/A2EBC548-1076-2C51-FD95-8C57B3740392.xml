@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A2EBC548-1076-2C51-FD95-8C57B3740392" containerWithKeyObject="4B9B3C8F-C248-EFA2-763D-4AB18B85DFBD" localFKIndex="411DCF16-2876-ACC7-A994-FE92EB9D99CD" name="FK_TRA_CAR_TO_CARTOES_ECM">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:30:53 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<referredTableLongName>ECM_CARTOES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>3735B6A6-FB45-6018-F816-9572EAA16AB1</referredTableID>
+<keyObject>DCA3A63C-6BE6-A4DF-47FC-91052F9E8AA2</keyObject>
+<referredKeyID>DCA3A63C-6BE6-A4DF-47FC-91052F9E8AA2</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_CARTAO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

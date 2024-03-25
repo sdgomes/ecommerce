@@ -9,7 +9,9 @@ namespace ecommerce.Views.Home.Components.HomeProductList
     {
         public IViewComponentResult Invoke()
         {
-            string json = File.ReadAllText(@"C:\ecommerce\data\homeproductlist.json");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Mock\\homeproductlist.json");
+            string json = File.ReadAllText(path);
+
             var Model = JsonConvert.DeserializeObject<List<ViewHomeProductList>>(json);
             return View(Model);
         }

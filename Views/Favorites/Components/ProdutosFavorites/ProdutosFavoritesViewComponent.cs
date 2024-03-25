@@ -9,7 +9,9 @@ namespace ecommerce.Views.Favorites.Components.ProdutosFavorites
     {
         public IViewComponentResult Invoke()
         {
-            string json = File.ReadAllText(@"C:\ecommerce\data\favoritos.json");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Mock\\favoritos.json");
+            string json = File.ReadAllText(path);
+
             var Model = JsonConvert.DeserializeObject<List<ViewProdutosFavorites>>(json);
             return View(Model);
         }

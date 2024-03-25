@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="0ED857DC-00B9-568F-A09F-79EF865D8CBA" containerWithKeyObject="40A2421B-1F06-CE83-B3E7-AC4DB1C22E04" localFKIndex="5A1BCDE4-5B17-B0F5-1AF7-FFF4C212585D" name="FK_DESATIVADOS_TO_PRODUTOS_ECM">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:16:53 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<referredTableLongName>ECM_PRODUTOS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>7CBDFD98-4F83-7B25-155E-B8DE5A6633FF</referredTableID>
+<keyObject>0C041F48-73C2-D6D2-1DBB-F510DFC93AE5</keyObject>
+<referredKeyID>0C041F48-73C2-D6D2-1DBB-F510DFC93AE5</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_PRODUTO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

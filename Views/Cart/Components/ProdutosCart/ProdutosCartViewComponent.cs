@@ -9,7 +9,9 @@ namespace ecommerce.Views.Cart.Components.ProdutosCart
     {
         public IViewComponentResult Invoke()
         {
-            string json = File.ReadAllText(@"C:\ecommerce\data\carrinho.json");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Mock\\carrinho.json");
+            string json = File.ReadAllText(path);
+
             var Model = JsonConvert.DeserializeObject<List<ViewProdutosCart>>(json);
             return View(Model);
         }

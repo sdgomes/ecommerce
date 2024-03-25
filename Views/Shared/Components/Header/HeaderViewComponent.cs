@@ -9,7 +9,9 @@ namespace ecommerce.Views.Shared.Components.Header
     {
         public IViewComponentResult Invoke()
         {
-            string json = File.ReadAllText(@"C:\ecommerce\data\categorias.json");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Mock\\categorias.json");
+            string json = File.ReadAllText(path);
+
             var Model = JsonConvert.DeserializeObject<ViewHeader>(json);
             return View(Model);
         }

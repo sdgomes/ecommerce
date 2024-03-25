@@ -1,0 +1,10 @@
+[
+  {
+    "name": "PROGRAMAS",
+    "connectionString": "Data Source=DESKTOP-8N2IJGM\\SQL001; Database=PROGRAMAS; Uid=ti; Pwd=ti_123456; Encrypt=False;"
+  },
+  {
+    "name": "PROGRAMAS_HOM",
+    "connectionString": "Data Source=OSEIAS_TI\\OSEIAS_TI; Database=PROGRAMAS_HOM; Uid=ti; Pwd=ti_123456; Encrypt=False;"
+  }
+]

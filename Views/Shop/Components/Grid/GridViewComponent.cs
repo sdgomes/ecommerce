@@ -10,7 +10,9 @@ namespace ecommerce.Views.Home.Components.Grid
     {
         public IViewComponentResult Invoke()
         {
-            string json = File.ReadAllText(@"C:\ecommerce\data\produtos.json");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Mock\\produtos.json");
+            string json = File.ReadAllText(path);
+            
             var Model = JsonConvert.DeserializeObject<List<ViewGrid>>(json);
             return View(Model);
         }

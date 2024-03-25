@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="D0F10CCB-B165-46C6-2C8F-730B4649729D" containerWithKeyObject="9533A86E-7E64-6A4A-D370-5058F2AF24D4" localFKIndex="13CC3C21-273C-1746-9A3F-91DF7518BE2B" name="FK_PRO_TRA_TO_TRANSACOES_ECM">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 13:31:06 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<referredTableLongName>ECM_TRANSACOES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>6C782D2D-E586-E122-DA46-43D779BD79DE</referredTableID>
+<keyObject>178A9FCD-927D-31BB-4186-6BA11AC691E3</keyObject>
+<referredKeyID>178A9FCD-927D-31BB-4186-6BA11AC691E3</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_TRANSACAO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -12,7 +12,9 @@ namespace ecommerce.BLL
     {
         public static ProdutoView RetornaProduto(string Id)
         {
-            string json = File.ReadAllText(@"C:\ecommerce\data\produtoindividual.json");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Mock\\produtoindividual.json");
+            string json = File.ReadAllText(path);
+
             List<ProdutoView> Produtos = JsonConvert.DeserializeObject<List<ProdutoView>>(json);
 
             return Produtos.Where((Item) => Item.Id == Id).FirstOrDefault();

@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FBB73E83-9454-6407-E287-C6215217D370" name="ECM_NOTIFICACOES">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:33:30 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<ordsAlias>table_32</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_NOTIFICACAO" id="8545D6AD-0572-C95D-7F70-ADFFE25241A7">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:33:50 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TITULO" id="E06C8D1C-AAA4-5933-7E0F-E95BEB35F993">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 17:31:18 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MENSAGEM" id="BFA606B6-CA62-9869-114E-07DC0EC21088">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 17:31:18 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>520 CHAR</dataTypeSize>
+<ownDataTypeParameters>520 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENVIADO" id="0A4904E4-8ABD-113E-393D-695DE61FFAC5">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 17:31:18 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>125 CHAR</dataTypeSize>
+<ownDataTypeParameters>125 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRIACAO" id="E2480D76-C1D2-6FF9-96B6-4C5DC143D62D">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 17:31:18 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="D_E_L_E_T_" id="1BE7AE8A-E1FE-C819-CD2F-63D88510EE6E">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 17:31:18 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT034</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="76264EF2-67A3-7422-A9B5-609FE2EB7072" name="ECM_NOTIFICACOES_PK">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:33:50 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8545D6AD-0572-C95D-7F70-ADFFE25241A7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

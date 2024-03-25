@@ -1,9 +1,10 @@
-using ecommerce.DAL;
+using ecommerce.Connection;
 
 namespace ecommerce.Interfaces
 {
     public interface IDatabaseProgramas
     {
         Operations Programas();
+        Operations ProgramasHomologacao();
     }
 }

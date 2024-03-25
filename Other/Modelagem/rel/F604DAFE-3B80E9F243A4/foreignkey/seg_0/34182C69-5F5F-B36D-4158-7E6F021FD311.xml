@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="34182C69-5F5F-B36D-4158-7E6F021FD311" containerWithKeyObject="A399020B-2BF0-8B47-D1A2-67F667B31E19" localFKIndex="0FA1DCD3-5F35-0799-00B3-A03A0DA28180" name="FK_USU_NOT_TO_NOTIFICACOES_ECM">
+<createdBy>oseias.gomes</createdBy>
+<createdTime>2024-03-25 14:35:19 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<referredTableLongName>ECM_NOTIFICACOES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>FBB73E83-9454-6407-E287-C6215217D370</referredTableID>
+<keyObject>76264EF2-67A3-7422-A9B5-609FE2EB7072</keyObject>
+<referredKeyID>76264EF2-67A3-7422-A9B5-609FE2EB7072</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_NOTIFICACAO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
