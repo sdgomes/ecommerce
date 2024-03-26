@@ -18,7 +18,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ID_USUARIOS" id="2D468173-A93A-82F3-67A5-EAEC0862F5B6">
+<Column name="ID_USUARIO" id="2D468173-A93A-82F3-67A5-EAEC0862F5B6">
 <createdBy>oseias.gomes</createdBy>
 <createdTime>2024-03-25 14:06:24 UTC</createdTime>
 <ownerDesignName>Modelagem</ownerDesignName>

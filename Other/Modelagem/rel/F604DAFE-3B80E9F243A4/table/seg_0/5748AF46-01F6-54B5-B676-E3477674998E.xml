@@ -32,7 +32,7 @@
 <colAssociation fkAssociation="C8835649-19F8-6F0A-4D18-7E39E93C018D" referredColumn="31FFFF20-A21C-E315-48E1-E6F73AC664BB"/>
 </associations>
 </Column>
-<Column name="ID_USUARIOS" id="B0B02400-7660-43DF-5459-DBCF3A19FC08">
+<Column name="ID_USUARIO" id="B0B02400-7660-43DF-5459-DBCF3A19FC08">
 <createdBy>oseias.gomes</createdBy>
 <createdTime>2024-03-25 19:22:46 UTC</createdTime>
 <ownerDesignName>Modelagem</ownerDesignName>

@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace ecommerce.Models
 {
-    public class Client
+    public class Client : User
     {
         [Column("ID_CLIENTE")]
         public long IdCliente { get; set; }
+
+        [Column("CODIGO")]
+        public string Codigo { get; set; }
 
         [Column("NOME")]
         public string Nome { get; set; }
@@ -23,22 +26,20 @@ namespace ecommerce.Models
         [Column("DATA_NASCIMENTO")]
         public DateTime DataNascimento { get; set; }
 
-        [Column("EMAIL")]
-        public string Email { get; set; }
-
         [Column("RG")]
         public string RG { get; set; }
+
+        [Column("TELEFONE")]
+        public string Telefone { get; set; }
+
+        [Column("CELULAR")]
+        public string Celular { get; set; }
 
         [Column("SITUACAO")]
         public bool Situacao { get; set; }
 
         [Column("GENERO")]
         public string Genero { get; set; }
-
-        [Column("DATA_CRIACAO")]
-        public DateTime DataCriacao { get; set; }
-
-        [Column("DATA_EDICAO")]
-        public DateTime? DataEdicao { get; set; }
     }
+
 }
