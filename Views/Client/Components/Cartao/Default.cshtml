@@ -1,0 +1,63 @@
+<div class="checkout-payment-form">
+    <div class="md:w-1/2">
+        <div class="single-form form-default">
+            <label>Bandeira</label>
+            <div class="select-items">
+                <select name="idBandeira"
+                    class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                    <option value="">Selecione</option>
+                    <option value="0">Visa</option>
+                    <option value="1">Mastercard</option>
+                    <option value="2">Elo</option>
+                    <option value="3">Aura</option>
+                    <option value="4">Amex</option>
+                    <option value="5">Diners</option>
+                    <option value="6">Jcb</option>
+                    <option value="7">Discover</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="single-form form-default">
+        <label>Nome do Titular</label>
+        <div class="form-input form">
+            <input name="nomeTitular" type="text" placeholder="Nome do Titular">
+        </div>
+    </div>
+    <div class="single-form form-default">
+        <label>Número do cartão</label>
+        <div class="form-input form">
+            <input name="numero" id="credit-input" type="text" placeholder="0000 0000 0000 0000">
+            <img src="/img/images/payment/card.png" alt="card">
+        </div>
+    </div>
+    <div class="payment-card-info">
+        <div class="single-form form-default mm-yy">
+            <input type="hidden" name="dataValidade" value="">
+            <label>Validade</label>
+            <div class="expiration flex">
+                <div class="form-input form">
+                    <input name="mes" type="text" placeholder="MM">
+                </div>
+                <div class="form-input form">
+                    <input name="ano" type="text" placeholder="YYYY">
+                </div>
+            </div>
+        </div>
+        <div class="single-form form-default">
+            <label>CVC/CVV <span><i class="mdi mdi-alert-circle"></i></span></label>
+            <div class="form-input form">
+                <input name="codigoSeguranca" type="text" placeholder="***">
+            </div>
+        </div>
+    </div>
+
+    <div class="single-form form-default">
+        <div class="single-checkbox checkbox-style-3">
+            <input type="checkbox" id="checkbox-3">
+            <label for="checkbox-3"><span></span></label>
+            <p>Definir esse cartão como principal.</p>
+        </div>
+    </div>
+</div>

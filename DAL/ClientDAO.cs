@@ -42,7 +42,7 @@ namespace ecommerce.DAL
                     new SqlParameter("@GENERO", client.Genero),
                     new SqlParameter("@EMAIL", client.Email),
                     new SqlParameter("@SENHA", Crypt.HashPassword(client.Senha)),
-                    new SqlParameter("@TIPO",  client.Tipo),
+                    new SqlParameter("@TIPO",  "CLIENTE"),
                 };
 
                 return DatabaseProgramas().ChoosePrimitiveType<long>(query, parameters);

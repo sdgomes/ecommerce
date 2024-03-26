@@ -1,4 +1,5 @@
 ﻿using ecommerce.BLL;
+using ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,19 @@ namespace ecommerce.Controllers
         public IActionResult Index(string Document)
         {
             return View();
+        }
+
+        [HttpGet("/cadastro/usuario")]
+        public IActionResult Cadastro()
+        {
+            return View();
+        }
+
+        [HttpPost("/cadastrar/usuario")]
+        public IActionResult Cadastrar(Client client)
+        {
+            var t = client;
+            return RedirectToAction("Cadastro");
         }
     }
 }

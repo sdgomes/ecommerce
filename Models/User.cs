@@ -22,6 +22,5 @@ namespace ecommerce.Models
 
         [Column("CRIACAO")]
         public DateTime Criacao { get; set; }
-
     }
 }

@@ -26,7 +26,7 @@ namespace ecommerce.DAL
                     new SqlParameter("@ID_CLIENTE", IdCliente),
                     new SqlParameter("@ID_BANDEIRA", card.IdBandeira),
                     new SqlParameter("@NOME_TITULAR", card.NomeTitular.ToUpper()),
-                    new SqlParameter("@TIPO", card.Tipo),
+                    new SqlParameter("@TIPO", "CREDITO"),
                     new SqlParameter("@CPF_TITULAR", card.CPFTitular),
                     new SqlParameter("@NUMERO", card.Numero),
                     new SqlParameter("@DATA_VALIDADE", card.DataValidade),
