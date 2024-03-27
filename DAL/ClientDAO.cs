@@ -32,16 +32,16 @@ namespace ecommerce.DAL
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@CODIGO", Util.Codigo(5)),
-                    new SqlParameter("@NOME", client.Nome.ToUpper()),
-                    new SqlParameter("@SOBRENOME", client.Sobrenome.ToUpper()),
-                    new SqlParameter("@CPF", client.CPF),
-                    new SqlParameter("@DATA_NASCIMENTO", client.DataNascimento.ToString("yyyy-MM-dd")),
-                    new SqlParameter("@RG", client.RG),
-                    new SqlParameter("@TELEFONE", client.Telefone),
-                    new SqlParameter("@CELULAR", client.Celular),
-                    new SqlParameter("@GENERO", client.Genero),
-                    new SqlParameter("@EMAIL", client.Email),
-                    new SqlParameter("@SENHA", Crypt.HashPassword(client.Senha)),
+                    new SqlParameter("@NOME", I(client.Nome.ToUpper())),
+                    new SqlParameter("@SOBRENOME", I(client.Sobrenome.ToUpper())),
+                    new SqlParameter("@CPF", I(client.CPF)),
+                    new SqlParameter("@DATA_NASCIMENTO", I(client.DataNascimento.ToString("yyyy-MM-dd"))),
+                    new SqlParameter("@RG", I(client.RG)),
+                    new SqlParameter("@TELEFONE", I(client.Telefone)),
+                    new SqlParameter("@CELULAR", I(client.Celular)),
+                    new SqlParameter("@GENERO", I(client.Genero)),
+                    new SqlParameter("@EMAIL", I(client.Email)),
+                    new SqlParameter("@SENHA", I(Crypt.HashPassword(client.Senha))),
                     new SqlParameter("@TIPO",  "CLIENTE"),
                 };
 
@@ -130,6 +130,60 @@ namespace ecommerce.DAL
                 };
 
                 DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static Client SearchForClientByCodigo(string Codigo)
+        {
+            try
+            {
+                string query = $@"SELECT
+	                                USU.EMAIL, CLI.CODIGO,
+	                                CLI.ID_CLIENTE, CLI.NOME, CLI.SOBRENOME, CLI.CPF,
+	                                CLI.DATA_NASCIMENTO, CLI.RG, CLI.GENERO,
+	                                CLI.CRIACAO, CLI.TELEFONE, CLI.CELULAR
+                                FROM ECM_CLIENTES CLI
+	                                INNER JOIN ECM_USUARIOS USU ON USU.ID_USUARIO = CLI.ID_USUARIO
+		                                AND USU.D_E_L_E_T_ <> '*'
+                                WHERE CLI.D_E_L_E_T_ <> '*' AND CODIGO = @CODIGO;";
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@CODIGO", Codigo),
+                };
+
+                return DatabaseProgramas().Choose<Client>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static Client SearchForClientById(long IdCliente)
+        {
+            try
+            {
+                string query = $@"SELECT
+	                                USU.EMAIL, CLI.CODIGO,
+	                                CLI.ID_CLIENTE, CLI.NOME, CLI.SOBRENOME, CLI.CPF,
+	                                CLI.DATA_NASCIMENTO, CLI.RG, CLI.GENERO,
+	                                CLI.CRIACAO, CLI.TELEFONE, CLI.CELULAR
+                                FROM ECM_CLIENTES CLI
+	                                INNER JOIN ECM_USUARIOS USU ON USU.ID_USUARIO = CLI.ID_USUARIO
+		                                AND USU.D_E_L_E_T_ <> '*'
+                                WHERE CLI.D_E_L_E_T_ <> '*' AND ID_CLIENTE = @ID_CLIENTE;";
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@ID_CLIENTE", IdCliente),
+                };
+
+                return DatabaseProgramas().Choose<Client>(query, parameters);
             }
             catch (Exception)
             {

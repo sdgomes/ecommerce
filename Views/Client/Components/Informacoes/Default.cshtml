@@ -1,0 +1,107 @@
+<div class="flex flex-wrap ">
+    <div class="md:w-1/2 px-4">
+        <div class="single-form form-default">
+            <label>Nome</label>
+            <div class="!w-full tooltip-error before:!text-red-200" data-tip="Informe seu nome!">
+                <div class="form-input form">
+                    <input required autocomplete="off" name="client.nome" type="text" placeholder="Primeiro nome">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md:w-1/2 px-4 flex items-end">
+        <div class="single-form form-default w-full">
+            <div class="!w-full tooltip-error before:!text-red-200" data-tip="Informe seu sobrenome!">
+                <div class="form-input form">
+                    <input required autocomplete="off" name="client.sobrenome" type="text" placeholder="Sobrenome">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md:w-1/2 px-4">
+        <div class="single-form form-default">
+            <label>CPF</label>
+            <div class="!w-full tooltip-error before:!text-red-200" data-tip="O campo CPF é obrigatório.">
+                <div class="form-input form">
+                    <input required name="client.cpf" type="text" placeholder="Ex.: 000.000.000-00" data-mask="000.000.000-00">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md:w-1/2 px-4">
+        <div class="single-form form-default">
+            <label>Telefone (Celular)</label>
+            <div class="!w-full tooltip-error before:!text-red-200"
+                data-tip="É obrigatório informar um número para contato.">
+                <div class="form-input form">
+                    <input required name="client.celular" type="text" placeholder="Ex.: (00) 00000-0000" data-mask="(00) 00000-0000">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md:w-1/2 px-4">
+        <div class="single-form form-default">
+            <div class="!w-full tooltip-error before:!text-red-200"
+                data-tip="É obrigatório informar um número secundário.">
+                <label>Telefone (Fixo)</label>
+                <div class="form-input form">
+                    <input required name="client.telefone" type="text" placeholder="Ex.: (00) 0000-0000" data-mask="(00) 0000-0000">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md:w-1/2 px-4">
+        <div class="single-form form-default">
+            <label>RG</label>
+            <div class="!w-full tooltip-error before:!text-red-200" data-tip="Informe seu RG!">
+                <div class="form-input form">
+                    <input required name="client.rg" type="text" placeholder="Ex.: 00.000.000-0" data-mask="00.000.000-0">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md:w-1/2 px-4">
+        <div class="single-form form-default">
+            <label>Data Nascimento</label>
+            <div class="!w-full tooltip-error before:!text-red-200"
+                data-tip="É obrigatório informar sua data de nascimento.">
+                <div class="form-input form">
+                    <input required name="client.dataNascimento" type="date">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md:w-1/2 px-4">
+        <div class="single-form form-default">
+            <label>Gênero</label>
+            <div class="!w-full tooltip-error before:!text-red-200" data-tip="Por favor escolha uma das opções.">
+                <div class="select-items">
+                    <select required name="client.genero"
+                        class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                        <option value="">Selecione</option>
+                        <option value="MASCULINO">Masculino</option>
+                        <option value="FEMININO">Feminino</option>
+                        <option value="GENERO_NEUTRO">Gênero Neutro</option>
+                        <option value="NAO_BINARIO">Não-binário</option>
+                        <option value="PREFIRO_NAO_DIZER">Prefiro Não Dizer</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md:w-full px-4">
+        <div class="single-form button">
+            <button type="button" data-action="next" data-function="dadosPessoais" data-index="1"
+                class="btn !w-fit !flex !text-gray-800 hover:!text-white">Próxima
+                Etapa</button>
+        </div>
+    </div>
+</div>

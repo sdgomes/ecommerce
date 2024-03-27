@@ -1,4 +1,5 @@
 ﻿using ecommerce.BLL;
+using ecommerce.DTO;
 using ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,11 +23,27 @@ namespace ecommerce.Controllers
             return View();
         }
 
-        [HttpPost("/cadastrar/usuario")]
-        public IActionResult Cadastrar(Client client)
+        [HttpGet("/cliente/cadastrado/{Codigo}")]
+        public IActionResult Cliente(string Codigo)
         {
-            var t = client;
-            return RedirectToAction("Cadastro");
+            ClientDTO Model = ClientBLL.SelectClientByCodigo(Codigo);
+            return View(Model);
+        }
+
+        [HttpPost("/cadastrar/usuario")]
+        public IActionResult Cadastrar(ClientDTO newClient)
+        {
+            try
+            {
+                string codigoCliente = ClientBLL.CreateClient(newClient);
+                return RedirectToAction("Cliente", new { Codigo = codigoCliente });
+            }
+            catch (Exception)
+            {
+                throw;
+                //return RedirectToAction("Cadastro");
+            }
+
         }
     }
 }

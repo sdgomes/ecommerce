@@ -1,255 +1,278 @@
 ﻿@{
-    ViewBreadcrumbs breadcrumbs = new();
-    breadcrumbs.Title = "Cadastro";
-    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-        new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
-        new BreadcrumbsDTO("Cadastro de cliente")
-    };
+ViewBreadcrumbs breadcrumbs = new();
+breadcrumbs.Title = "Cadastro";
+breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+new BreadcrumbsDTO("Cadastro de cliente")
+};
 
-    ViewData["Title"] = breadcrumbs.Title;
+ViewData["Title"] = breadcrumbs.Title;
 }
 
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-<div class="my-10 px-5 checkout-steps-form-style-1">
-    <form method="post" asp-controller="Client" asp-action="Cadastrar" class="container mx-auto space-y-5">
-        <div class="collapse bg-white border border-gra-300 !rounded-[5px]">
-            <input type="radio" name="accordion" checked="checked" />
-            <div class="collapse-title text-xl font-medium bg-[#130235]">
-                Seus dados pessoais
-            </div>
-            <div class="collapse-content">
-                <div>
-                    <div class="flex flex-wrap ">
-                        <div class="md:w-1/2 px-4">
-                            <div class="single-form form-default">
-                                <label>Nome</label>
-                                <div class="form-input form">
-                                    <input name="nome" type="text" placeholder="Primeiro nome">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="md:w-1/2 px-4 flex items-end">
-                            <div class="single-form form-default w-full">
-                                <div class="form-input form">
-                                    <input name="sobrenome" type="text" placeholder="Sobrenome">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="md:w-1/2 px-4">
-                            <div class="single-form form-default">
-                                <label>CPF</label>
-                                <div class="form-input form">
-                                    <input name="cpf" type="text" placeholder="Ex.: 000.000.000-00">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="md:w-1/2 px-4">
-                            <div class="single-form form-default">
-                                <label>Telefone (Celular)</label>
-                                <div class="form-input form">
-                                    <input name="celular" type="text" placeholder="Ex.: (00) 00000-0000">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="md:w-1/2 px-4">
-                            <div class="single-form form-default">
-                                <label>Telefone (Fixo)</label>
-                                <div class="form-input form">
-                                    <input name="telefone" type="text" placeholder="Ex.: (00) 0000-0000">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="md:w-1/2 px-4">
-                            <div class="single-form form-default">
-                                <label>RG</label>
-                                <div class="form-input form">
-                                    <input name="rg" type="text" placeholder="Ex.: 00.000.000-0">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="md:w-1/2 px-4">
-                            <div class="single-form form-default">
-                                <label>Data Nascimento</label>
-                                <div class="form-input form">
-                                    <input name="dataNascimento" type="date">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="md:w-1/2 px-4">
-                            <div class="single-form form-default">
-                                <label>Gênero</label>
-                                <div class="select-items">
-                                    <select name="genero" class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
-                                        <option value="0">Selecione</option>
-                                        <option value="MASCULINO">Masculino</option>
-                                        <option value="FEMININO">Feminino</option>
-                                        <option value="GENERO_NEUTRO">Gênero Neutro</option>
-                                        <option value="NAO_BINARIO">Não-binário</option>
-                                        <option value="PREFIRO_NAO_DIZER">Prefiro Não Dizer</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="md:w-full px-4">
-                            <div class="single-form button">
-                                <button type="button" class="btn !w-fit !flex !text-gray-800 hover:!text-white">Próxima Etapa</button>
-                            </div>
-                        </div>
-                    </div>
+    <div class="my-10 px-5 checkout-steps-form-style-1">
+        <form method="post" asp-controller="Client" asp-action="Cadastrar" class="container mx-auto space-y-5">
+            <div id="informacoes-pessoais" class="collapse bg-white border border-gra-300 !rounded-[5px]">
+                <input type="radio" name="accordion" />
+                <div class="collapse-title text-xl font-medium bg-[#130235]">
+                    Seus dados pessoais
+                </div>
+                <div class="collapse-content">
+                    @(await Component.InvokeAsync<InformacoesViewComponent>())
                 </div>
             </div>
-        </div>
 
-        <div class="collapse bg-white border border-gra-300 !rounded-[5px]">
-            <input type="radio" name="accordion" />
-            <div class="collapse-title text-xl font-medium bg-[#130235]">
-                Endereço Principal
-            </div>
-            <div class="collapse-content">
-                <div>
-                    <input type="hidden" name="principal" value="true">
-                    <input type="hidden" name="cobranca" value="true">
-                    <input type="hidden" name="tipoEndereco" value="COBRANCA">
-
-                    @(await Component.InvokeAsync<EnderecoViewComponent>())
-
-                    <div class="flex flex-wrap ">
-                        <div class="md:w-full px-4">
-                            <div class="single-checkbox checkbox-style-3">
-                                <input type="checkbox" id="checkbox-3">
-                                <label for="checkbox-3"><span></span></label>
-                                <p>Definir esse endereço como endereço de entrega.</p>
-                            </div>
-                        </div>
-
-                        <div class="md:w-full px-4">
-                            <div class="flex gap-3">
-                                <div class="single-form button">
-                                    <button type="button" class="btn btn-alt !w-fit !flex !text-gray-800 hover:!text-white">Adicionar outro endereço</button>
-                                </div>
-
-                                <div class="single-form button">
-                                    <button type="button" class="btn !w-fit !flex !text-gray-800 hover:!text-white">Próxima Etapa</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div id="endereco-principal" class="collapse bg-white border border-gra-300 !rounded-[5px]">
+                <input type="radio" name="accordion" checked="checked" />
+                <div class="collapse-title text-xl font-medium bg-[#130235]">
+                    Endereço Principal
                 </div>
-            </div>
-        </div>
+                <div class="collapse-content">
+                    <div>
+                        <input type="hidden" name="address[0].principal" value="true">
+                        <input type="hidden" name="address[0].cobranca" value="false">
+                        <input type="hidden" name="address[0].tipoEndereco" value="-">
 
-        <div id="endereco-entrega" class="collapse bg-white border border-gra-300 !rounded-[5px]">
-            <input type="radio" name="accordion" />
-            <div class="collapse-title text-xl font-medium bg-[#130235]">
-                Endereço de Entrega
-            </div>
-            <div class="collapse-content">
-                <div>
-                    <input type="hidden" name="principal" value="false">
-                    <input type="hidden" name="cobranca" value="false">
-                    <input type="hidden" name="tipoEndereco" value="ENTREGA">
+                        @(await Component.InvokeAsync<EnderecoViewComponent>(new ViewEndereco(0)))
 
-                    @(await Component.InvokeAsync<EnderecoViewComponent>())
-
-                    <div class="flex flex-wrap ">
-                        <div class="md:w-full px-4">
-                            <div class="flex gap-3">
-                                <div class="single-form button">
-                                    <button type="button" class="btn !w-fit !flex !text-gray-800 hover:!text-white">Próxima Etapa</button>
+                            <div class="flex flex-wrap ">
+                                <div class="md:w-full px-4">
+                                    <label class="flex gap-2 items-center mt-4">
+                                        <input type="checkbox" class="accent-yellow-400 w-[17px] h-[17px]" id="endereco-cobranca">
+                                        <p class="leading-none">Definir esse endereço como endereço de cobrança.</p>
+                                    </label>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="collapse bg-white border border-gra-300 !rounded-[5px]">
-            <input type="radio" name="accordion" />
-            <div class="collapse-title text-xl font-medium bg-[#130235]">
-                Informações de pagamento
-            </div>
-            <div class="collapse-content">
-                <div>
-                    <div class="flex flex-wrap ">
-                        <div class="px-2">
-                            @(await Component.InvokeAsync<CartaoViewComponent>())
-                        </div>
-                    </div>
-
-                    <div class="flex flex-wrap ">
-                        <div class="md:w-full">
-                            <div class="flex gap-3">
-                                <div class="single-form button">
-                                    <button type="button" class="btn btn-alt !w-fit !flex !text-gray-800 hover:!text-white">Adicionar Cartão</button>
-                                </div>
-
-                                <div class="single-form button">
-                                    <button type="button" class="btn !w-fit !flex !text-gray-800 hover:!text-white">Próxima Etapa</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="collapse bg-white border border-gra-300 !rounded-[5px]">
-            <input type="radio" name="accordion" />
-            <div class="collapse-title text-xl font-medium bg-[#130235]">
-                Usuário
-            </div>
-            <div class="collapse-content">
-                <div>
-                    <div class="flex flex-wrap ">
-                        <div class="md:w-full px-4">
-                            <div class="single-form form-default">
-                                <label>E-mail</label>
-                                <div class="form-input form">
-                                    <input name="email" type="text" placeholder="Endereço de email">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="md:w-1/2 px-4">
-                            <div class="single-form form-default">
-                                <label>Senha</label>
-                                <div class="form-input form">
-                                    <input name="senha" type="password" placeholder="Ex.: ******">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="md:w-1/2 px-4">
-                            <div class="single-form form-default">
-                                <label>Confirmar Senha</label>
-                                <div class="form-input form">
-                                    <input senha="confirmaSenha" type="password" placeholder="Ex.: ******">
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="flex flex-wrap ">
                         <div class="md:w-full px-4">
                             <div class="flex gap-3">
                                 <div class="single-form button">
-                                    <button type="submit" class="btn btn-alt !w-fit !flex !text-gray-800 hover:!text-white">Cadastrar</button>
+                                    <button type="button"
+                                        class="btn btn-alt !w-fit !flex !text-gray-800 hover:!text-white">Adicionar
+                                        outro endereço</button>
+                                </div>
+
+                                <div class="single-form button">
+                                    <button type="button" data-action="next" data-function="enderecoPrincipal"
+                                        data-index="2" class="btn !w-fit !flex !text-gray-800 hover:!text-white">Próxima
+                                        Etapa</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
-</div>
+
+            <div class="collapse bg-white border border-gra-300 !rounded-[5px]">
+                <input type="radio" name="accordion" />
+                <div class="collapse-title text-xl font-medium bg-[#130235]">
+                    Informações de pagamento
+                </div>
+                <div class="collapse-content">
+                    <div>
+                        <div class="flex flex-wrap ">
+                            <div class="px-2">
+                                @(await Component.InvokeAsync<CartaoViewComponent>(new ViewCartao(0)))
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap ">
+                            <div class="md:w-full">
+                                <div class="flex gap-3">
+                                    <div class="single-form button">
+                                        <button type="button"
+                                            class="btn btn-alt !w-fit !flex !text-gray-800 hover:!text-white">Adicionar
+                                            Cartão</button>
+                                    </div>
+
+                                    <div class="single-form button">
+                                        <button type="button" data-action="next" data-function="formasPagamento"
+                                            data-index="4"
+                                            class="btn !w-fit !flex !text-gray-800 hover:!text-white">Próxima
+                                            Etapa</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="cobranca" class="collapse bg-white border border-gra-300 !rounded-[5px]">
+                <input type="radio" name="accordion" />
+                <div class="collapse-title text-xl font-medium bg-[#130235]">
+                    Endereço de Cobrança
+                </div>
+                <div class="collapse-content">
+                    <div>
+                        <input type="hidden" name="address[1].principal" value="false">
+                        <input type="hidden" name="address[1].cobranca" value="true">
+                        <input type="hidden" name="address[1].tipoEndereco" value="-">
+
+                        @(await Component.InvokeAsync<EnderecoViewComponent>(new ViewEndereco(1)))
+
+                            <div class="flex flex-wrap ">
+                                <div class="md:w-full px-4">
+                                    <div class="flex gap-3">
+                                        <div class="single-form button">
+                                            <button type="button" data-action="next" data-function="enderecoCobranca"
+                                                data-index="3"
+                                                class="btn !w-fit !flex !text-gray-800 hover:!text-white">Próxima
+                                                Etapa</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse bg-white border border-gra-300 !rounded-[5px]">
+                <input type="radio" name="accordion" />
+                <div class="collapse-title text-xl font-medium bg-[#130235]">
+                    Informações de acesso
+                </div>
+                <div class="collapse-content">
+                    <div>
+                        <div class="flex flex-wrap ">
+                            <div class="md:w-full px-4">
+                                <div class="single-form form-default">
+                                    <label>E-mail</label>
+                                    <div class="form-input form">
+                                        <input name="client.email" type="text" placeholder="Endereço de email">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="md:w-1/2 px-4">
+                                <div class="single-form form-default">
+                                    <label>Senha</label>
+                                    <div class="form-input form">
+                                        <input name="client.senha" type="password" placeholder="Ex.: ******">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="md:w-1/2 px-4">
+                                <div class="single-form form-default">
+                                    <label>Confirmar Senha</label>
+                                    <div class="form-input form">
+                                        <input senha="client.confirmaSenha" type="password" placeholder="Ex.: ******">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap ">
+                            <div class="md:w-full px-4">
+                                <div class="flex gap-3">
+                                    <div class="single-form button">
+                                        <button type="submit" id="submit"
+                                            class="btn btn-alt !w-fit !flex !text-gray-800 hover:!text-white">Cadastrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    @section Scripts {
+    <script type="text/javascript">
+
+        document.querySelector('#submit').addEventListener('click', function (event) {
+            if (false) {
+                console.log("Submit allowed.");
+                return true;
+            }
+
+            console.log("Submit prevented.");
+
+            event.preventDefault();
+            return false;
+        });
+
+        $(document).on('blur', '[required]', function () {
+            if (this.value.trim() != "") {
+                $(this).removeClass("!border-red-600")
+                $(this).parents('[data-tip]').removeClass("tooltip tooltip-open")
+            }
+        })
+
+        const dadosPessoais = () => {
+            var valid = true;
+            $('#informacoes-pessoais [required]').each(function (index, element) {
+                if (element.value.trim() == "") {
+                    valid = false;
+                    $(element).addClass("!border-red-600")
+                    $(element).parents('[data-tip]').addClass("tooltip tooltip-open")
+                }
+            });
+            return valid;
+        }
+
+        const enderecoPrincipal = () => {
+            var valid = true;
+            $('#endereco-principal [required]').each(function (index, element) {
+                if (element.value.trim() == "") {
+                    valid = false;
+                    $(element).addClass("!border-red-600")
+                    $(element).parents('[data-tip]').addClass("tooltip tooltip-open")
+                }
+            });
+            return valid;
+        }
+
+        const formasPagamento = () => {
+            return true;
+        }
+
+        const enderecoCobranca = () => {
+            return true;
+        }
+
+        const informacoesUsuario = () => {
+            return true;
+        }
+
+        $(document).on('click', '[data-action="next"]', function () {
+            const data = $(this).data();
+
+            if (eval(`${data.function}()`))
+                $('[name="accordion"]').eq(data.index).check();
+        });
+
+        $(document).on('click', '.viacep', function () {
+            $button = $(this);
+            $button.disabled().html('<span class="loading loading-spinner loading-sm"></span>');
+
+            fetch(`https://viacep.com.br/ws/${$button.parent('.form-input').find('input').val()}/json/`)
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    const conteudo = {
+                        cep: data.cep,
+                        logradouro: data.logradouro,
+                        complemento: data.complemento,
+                        bairro: data.bairro,
+                        cidade: data.localidade,
+                        estado: data.uf,
+                        pais: "Brasil",
+                    }
+
+                    populate($button.parents(".address-capsule"), conteudo);
+                }).catch(error => {
+                    console.error(error);
+                })
+                .finally(function () {
+                    $button.enabled().html('<i class="fa-regular fa-magnifying-glass"></i>');
+                });
+        })
+    </script>
+    }
