@@ -1,9 +1,11 @@
+@model ViewEndereco
+
 <div class="flex flex-wrap w-1/2">
     <div class="md:w-2/3 px-4">
         <div class="single-form form-default">
             <label>CEP</label>
             <div class="form-input form">
-                <input name="cep" type="text" placeholder="Ex.: 00000-000">
+                <input name="address[@Model.Index].cep" type="text" placeholder="Ex.: 00000-000">
             </div>
         </div>
     </div>
@@ -14,7 +16,7 @@
         <div class="single-form form-default">
             <label>Tipo Logradouro</label>
             <div class="select-items">
-                <select name="tipoLogradouro" class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                <select name="address[@Model.Index].tipoLogradouro" class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
                     <option value="0">Selecione</option>
                     <option value="AEROPORTO">Aeroporto</option>
                     <option value="ALAMEDA">Alameda</option>
@@ -67,9 +69,9 @@
 
     <div class="md:w-1/2 px-4">
         <div class="single-form form-default">
-            <label>Tipo Logradouro</label>
+            <label>Tipo Residencia</label>
             <div class="select-items">
-                <select name="tipoResidencia" class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                <select name="address[@Model.Index].tipoResidencia" class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
                     <option value="0">Selecione</option>
                     <option value="CASA">Casa</option>
                     <option value="APARTAMENTO">Apartamento</option>
@@ -84,7 +86,7 @@
         <div class="single-form form-default">
             <label>Logradouro</label>
             <div class="form-input form">
-                <input name="logradouro" type="text" placeholder="Ex.: Prefeito Sebatião Cascardo">
+                <input name="address[@Model.Index].logradouro" type="text" placeholder="Ex.: Prefeito Sebatião Cascardo">
             </div>
         </div>
     </div>
@@ -93,7 +95,7 @@
         <div class="single-form form-default">
             <label>Número</label>
             <div class="form-input form">
-                <input name="numero" type="text" placeholder="Ex.: S/N">
+                <input name="address[@Model.Index].numero" type="text" placeholder="Ex.: S/N">
             </div>
         </div>
     </div>
@@ -102,7 +104,7 @@
         <div class="single-form form-default">
             <label>Complemento (opcional)</label>
             <div class="form-input form">
-                <input name="complemento" type="text" placeholder="Ex.: Bloco 2 Apartamento 5">
+                <input name="address[@Model.Index].complemento" type="text" placeholder="Ex.: Bloco 2 Apartamento 5">
             </div>
         </div>
     </div>
@@ -111,7 +113,7 @@
         <div class="single-form form-default">
             <label>Bairro</label>
             <div class="form-input form">
-                <input name="bairro" type="text" placeholder="Ex.: Jardim Universo">
+                <input name="address[@Model.Index].bairro" type="text" placeholder="Ex.: Jardim Universo">
             </div>
         </div>
     </div>
@@ -120,7 +122,7 @@
         <div class="single-form form-default">
             <label>Cidade</label>
             <div class="form-input form">
-                <input name="cidade" type="text" placeholder="Ex: Mogi das Cruzes">
+                <input name="address[@Model.Index].cidade" type="text" placeholder="Ex: Mogi das Cruzes">
             </div>
         </div>
     </div>
@@ -129,7 +131,7 @@
         <div class="single-form form-default">
             <label>Região / Estado</label>
             <div class="select-items">
-                <select name="estado" class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                <select name="address[@Model.Index].estado" class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
                     <option value="0">Selecione</option>
                     <option value="AC">AC</option>
                     <option value="AL">AL</option>
@@ -165,9 +167,18 @@
 
     <div class="md:w-1/2 px-4">
         <div class="single-form form-default">
+            <label>País</label>
+            <div class="form-input form">
+                <input name="address[@Model.Index].pais" type="text" placeholder="Ex.: Brasil">
+            </div>
+        </div>
+    </div>
+
+    <div class="md:w-1/2 px-4">
+        <div class="single-form form-default">
             <label>Apelido Para o Endereco</label>
             <div class="form-input form">
-                <input name="nomeEndereco" type="text" placeholder="Ex.: Casa">
+                <input name="address[@Model.Index].nomeEndereco" type="text" placeholder="Ex.: Casa">
             </div>
         </div>
     </div>
@@ -176,25 +187,7 @@
         <div class="single-form form-default">
             <label>Observação (opcional)</label>
             <div class="form-input form">
-                <input name="frase" type="text" placeholder="Ex.: Caso não tenha ninguém pode deixar no vizinho">
-            </div>
-        </div>
-    </div>
-
-    <div class="md:w-1/2 px-4">
-        <div class="single-form form-default">
-            <label>Cidade</label>
-            <div class="form-input form">
-                <input type="text" placeholder="Cidade">
-            </div>
-        </div>
-    </div>
-
-    <div class="md:w-1/2 px-4">
-        <div class="single-form form-default">
-            <label>País</label>
-            <div class="form-input form">
-                <input name="pais" type="text" placeholder="Ex.: Brasil">
+                <input name="address[@Model.Index].frase" type="text" placeholder="Ex.: Caso não tenha ninguém pode deixar no vizinho">
             </div>
         </div>
     </div>

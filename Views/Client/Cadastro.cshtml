@@ -25,7 +25,7 @@
                             <div class="single-form form-default">
                                 <label>Nome</label>
                                 <div class="form-input form">
-                                    <input name="nome" type="text" placeholder="Primeiro nome">
+                                    <input  name="client.nome" type="text" placeholder="Primeiro nome">
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="md:w-1/2 px-4 flex items-end">
                             <div class="single-form form-default w-full">
                                 <div class="form-input form">
-                                    <input name="sobrenome" type="text" placeholder="Sobrenome">
+                                    <input  name="client.sobrenome" type="text" placeholder="Sobrenome">
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                             <div class="single-form form-default">
                                 <label>CPF</label>
                                 <div class="form-input form">
-                                    <input name="cpf" type="text" placeholder="Ex.: 000.000.000-00">
+                                    <input  name="client.cpf" type="text" placeholder="Ex.: 000.000.000-00">
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                             <div class="single-form form-default">
                                 <label>Telefone (Celular)</label>
                                 <div class="form-input form">
-                                    <input name="celular" type="text" placeholder="Ex.: (00) 00000-0000">
+                                    <input  name="client.celular" type="text" placeholder="Ex.: (00) 00000-0000">
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                             <div class="single-form form-default">
                                 <label>Telefone (Fixo)</label>
                                 <div class="form-input form">
-                                    <input name="telefone" type="text" placeholder="Ex.: (00) 0000-0000">
+                                    <input  name="client.telefone" type="text" placeholder="Ex.: (00) 0000-0000">
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                             <div class="single-form form-default">
                                 <label>RG</label>
                                 <div class="form-input form">
-                                    <input name="rg" type="text" placeholder="Ex.: 00.000.000-0">
+                                    <input  name="client.rg" type="text" placeholder="Ex.: 00.000.000-0">
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                             <div class="single-form form-default">
                                 <label>Data Nascimento</label>
                                 <div class="form-input form">
-                                    <input name="dataNascimento" type="date">
+                                    <input  name="client.dataNascimento" type="date">
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                             <div class="single-form form-default">
                                 <label>Gênero</label>
                                 <div class="select-items">
-                                    <select name="genero" class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                                    <select  name="client.genero" class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
                                         <option value="0">Selecione</option>
                                         <option value="MASCULINO">Masculino</option>
                                         <option value="FEMININO">Feminino</option>
@@ -116,11 +116,11 @@
             </div>
             <div class="collapse-content">
                 <div>
-                    <input type="hidden" name="principal" value="true">
-                    <input type="hidden" name="cobranca" value="true">
-                    <input type="hidden" name="tipoEndereco" value="COBRANCA">
+                    <input type="hidden" name="address[0].principal" value="true">
+                    <input type="hidden" name="address[0].cobranca" value="true">
+                    <input type="hidden" name="address[0].tipoEndereco" value="COBRANCA">
 
-                    @(await Component.InvokeAsync<EnderecoViewComponent>())
+                    @(await Component.InvokeAsync<EnderecoViewComponent>(new ViewEndereco(0)))
 
                     <div class="flex flex-wrap ">
                         <div class="md:w-full px-4">
@@ -154,11 +154,11 @@
             </div>
             <div class="collapse-content">
                 <div>
-                    <input type="hidden" name="principal" value="false">
-                    <input type="hidden" name="cobranca" value="false">
-                    <input type="hidden" name="tipoEndereco" value="ENTREGA">
+                    <input type="hidden" name="address[1].principal" value="false">
+                    <input type="hidden" name="address[1].cobranca" value="false">
+                    <input type="hidden" name="address[1].tipoEndereco" value="ENTREGA">
 
-                    @(await Component.InvokeAsync<EnderecoViewComponent>())
+                    @(await Component.InvokeAsync<EnderecoViewComponent>(new ViewEndereco(1)))
 
                     <div class="flex flex-wrap ">
                         <div class="md:w-full px-4">
@@ -182,7 +182,7 @@
                 <div>
                     <div class="flex flex-wrap ">
                         <div class="px-2">
-                            @(await Component.InvokeAsync<CartaoViewComponent>())
+                            @(await Component.InvokeAsync<CartaoViewComponent>(new ViewCartao(0)))
                         </div>
                     </div>
 
@@ -215,7 +215,7 @@
                             <div class="single-form form-default">
                                 <label>E-mail</label>
                                 <div class="form-input form">
-                                    <input name="email" type="text" placeholder="Endereço de email">
+                                    <input name="client.email" type="text" placeholder="Endereço de email">
                                 </div>
                             </div>
                         </div>
@@ -224,7 +224,7 @@
                             <div class="single-form form-default">
                                 <label>Senha</label>
                                 <div class="form-input form">
-                                    <input name="senha" type="password" placeholder="Ex.: ******">
+                                    <input name="client.senha" type="password" placeholder="Ex.: ******">
                                 </div>
                             </div>
                         </div>
@@ -233,7 +233,7 @@
                             <div class="single-form form-default">
                                 <label>Confirmar Senha</label>
                                 <div class="form-input form">
-                                    <input senha="confirmaSenha" type="password" placeholder="Ex.: ******">
+                                    <input senha="client.confirmaSenha" type="password" placeholder="Ex.: ******">
                                 </div>
                             </div>
                         </div>

@@ -1,0 +1,228 @@
+﻿@model ClientDTO
+
+@{
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Cliente";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+        new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Cliente atual")
+    };
+
+    ViewData["Title"] = breadcrumbs.Title;
+}
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+<div>
+    <div class="collapse-title text-xl font-medium bg-[#130235]">
+        Seus dados pessoais
+    </div>
+    <div class="">
+        <div>
+            <div class="flex flex-wrap ">
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Nome</label>
+                        <div class="form-input form">
+                            <input readonly value="@Model.client.Nome" type="text" placeholder="Primeiro nome">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4 flex items-end">
+                    <div class="single-form form-default w-full">
+                        <div class="form-input form">
+                            <input readonly value="@Model.client.Sobrenome" type="text" placeholder="Sobrenome">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>CPF</label>
+                        <div class="form-input form">
+                            <input readonly value="@Model.client.CPF" type="text" placeholder="Ex.: 000.000.000-00">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Telefone (Celular)</label>
+                        <div class="form-input form">
+                            <input readonly value="@Model.client.Celular" type="text" placeholder="Ex.: (00) 00000-0000">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Telefone (Fixo)</label>
+                        <div class="form-input form">
+                            <input readonly value="@Model.client.Telefone" type="text" placeholder="Ex.: (00) 0000-0000">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>RG</label>
+                        <div class="form-input form">
+                            <input readonly value="@Model.client.RG" type="text" placeholder="Ex.: 00.000.000-0">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Data Nascimento</label>
+                        <div class="form-input form">
+                            <input readonly value="@Model.client.DataNascimento" type="date">
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Gênero</label>
+                        <div class="form-input form">
+                            <input readonly value="@Model.client.Genero" type="date">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="collapse-title text-xl font-medium bg-[#130235]">
+        Endereços Cadastrados
+    </div>
+
+    <div class="">
+        @foreach (var address in Model.address)
+        {
+        <div>
+            <h1>Endereço principal: @(address.Principal ? "SIM" : "NÃO")</h1>
+            <h1>Endereço de Cobrança: @(address.Cobranca ? "SIM" : "NÃO")</h1>
+            <h1>Tipo de endereço: @address.TipoEndereco</h1>
+
+            <input type="hidden" name="address[0].tipoEndereco" value="COBRANCA">
+
+            <div class="flex flex-wrap w-1/2">
+                <div class="md:w-2/3 px-4">
+                    <div class="single-form form-default">
+                        <label>CEP</label>
+                        <div class="form-input form">
+                            <input readonly value="@address.CEP" type="text" placeholder="Ex.: 00000-000">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap ">
+                <div class="md:w-2/3 px-4">
+                    <div class="single-form form-default">
+                        <label>Tipo Logradouro</label>
+                        <div class="form-input form">
+                            <input readonly value="@address.TipoLogradouro" type="text" placeholder="Ex.: 00000-000">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-2/3 px-4">
+                    <div class="single-form form-default">
+                        <label>Tipo Residencia</label>
+                        <div class="form-input form">
+                            <input readonly value="@address.TipoResidencia" type="text" placeholder="Ex.: 00000-000">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Logradouro</label>
+                        <div class="form-input form">
+                            <input readonly value="@address.Logradouro" type="text" placeholder="Ex.: Prefeito Sebatião Cascardo">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Número</label>
+                        <div class="form-input form">
+                            <input readonly value="@address.Numero" type="text" placeholder="Ex.: S/N">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Complemento (opcional)</label>
+                        <div class="form-input form">
+                            <input readonly value="@address.Complemento" type="text" placeholder="Ex.: Bloco 2 Apartamento 5">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Bairro</label>
+                        <div class="form-input form">
+                            <input readonly value="@address.Bairro" type="text" placeholder="Ex.: Jardim Universo">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Cidade</label>
+                        <div class="form-input form">
+                            <input readonly value="@address.Cidade" type="text" placeholder="Ex: Mogi das Cruzes">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Região / Estado</label>
+                        <div class="form-input form">
+                            <input readonly value="@address.Estado" type="text" placeholder="Ex: Mogi das Cruzes">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>País</label>
+                        <div class="form-input form">
+                            <input readonly value="@address.Pais" type="text" placeholder="Ex.: Brasil">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Apelido Para o Endereco</label>
+                        <div class="form-input form">
+                            <input readonly value="@address.NomeEndereco" type="text" placeholder="Ex.: Casa">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-full px-4">
+                    <div class="single-form form-default">
+                        <label>Observação (opcional)</label>
+                        <div class="form-input form">
+                            <input readonly value="@address.Frase" type="text" placeholder="Ex.: Caso não tenha ninguém pode deixar no vizinho">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        }
+    </div>
+</div>

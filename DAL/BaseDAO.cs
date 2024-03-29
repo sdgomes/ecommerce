@@ -16,5 +16,13 @@ namespace ecommerce.DAL
             return Programas();
 #endif
         }
+
+        protected static dynamic I(dynamic Item)
+        {
+            if (Item == null)
+                return DBNull.Value;
+
+            return Item;
+        }
     }
 }

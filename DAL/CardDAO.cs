@@ -24,13 +24,13 @@ namespace ecommerce.DAL
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@ID_CLIENTE", IdCliente),
-                    new SqlParameter("@ID_BANDEIRA", card.IdBandeira),
-                    new SqlParameter("@NOME_TITULAR", card.NomeTitular.ToUpper()),
-                    new SqlParameter("@TIPO", "CREDITO"),
-                    new SqlParameter("@CPF_TITULAR", card.CPFTitular),
-                    new SqlParameter("@NUMERO", card.Numero),
-                    new SqlParameter("@DATA_VALIDADE", card.DataValidade),
-                    new SqlParameter("@CODIGO_SEGURANCA", card.CodigoSeguranca),
+                    new SqlParameter("@ID_BANDEIRA", I(card.IdBandeira)),
+                    new SqlParameter("@NOME_TITULAR", I(card.NomeTitular.ToUpper())),
+                    new SqlParameter("@TIPO", I("CREDITO")),
+                    new SqlParameter("@CPF_TITULAR", I(card.CPFTitular)),
+                    new SqlParameter("@NUMERO", I(card.Numero)),
+                    new SqlParameter("@DATA_VALIDADE", I(card.DataValidade)),
+                    new SqlParameter("@CODIGO_SEGURANCA", I(card.CodigoSeguranca)),
                 };
 
                 return DatabaseProgramas().ChoosePrimitiveType<long>(query, parameters);
