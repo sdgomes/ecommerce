@@ -1,4 +1,5 @@
 ﻿using ecommerce.BLL;
+using ecommerce.Controllers.Attributes;
 using ecommerce.DTO;
 using ecommerce.Models;
 using ecommerce.Views.Client.Components.AlteraSenha;
@@ -21,6 +22,7 @@ namespace ecommerce.Controllers
             return View();
         }
 
+        [ClienteExiste]
         [HttpGet("/cliente/perfil/{Codigo}")]
         public IActionResult Perfil(string Codigo)
         {
@@ -30,7 +32,8 @@ namespace ecommerce.Controllers
             return View(client);
         }
 
-        [HttpGet("/cliente/cadastrado/{Codigo}")]
+        [ClienteExiste]
+        [HttpGet("/cliente/perfil/{Codigo}/dados/cadastrais")]
         public IActionResult Cliente(string Codigo)
         {
             ClientDTO Model = ClientBLL.SelectClientByCodigo(Codigo);
@@ -39,6 +42,20 @@ namespace ecommerce.Controllers
         #endregion
 
         #region Actions
+        [HttpGet("/excluir/minha/conta/{Codigo}")]
+        public IActionResult ExcluirConta(string Codigo)
+        {
+            try
+            {
+                ClientBLL.ExcluiConta(Codigo);
+                return Redirect(Request.Headers["Referer"].ToString());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpPost("/cadastrar/cliente")]
         public IActionResult CadastrarCliente(ClientDTO newClient)
         {

@@ -12,6 +12,11 @@ namespace ecommerce.BLL
 {
     public class ClientBLL
     {
+        public static void ExcluiConta(string Codigo)
+        {
+            ClientDAO.DeleteClientByCodigo(Codigo);
+        }
+
         public static void AlteraDadosCliente(Client client)
         {
             ClientDAO.UpdateClient(client.IdCliente, client);

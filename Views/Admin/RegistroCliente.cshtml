@@ -1,81 +1,103 @@
 ﻿@model List<Client>
 
-@{
+    @{
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Registro clientes";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-        new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
-        new BreadcrumbsDTO("Registro clientes")
+    new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+    new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
+    new BreadcrumbsDTO("Registro clientes")
     };
 
     ViewData["Title"] = breadcrumbs.Title;
-}
+    }
 
-@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+    @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-<div class="my-10">
-    <div class="container mx-auto px-5">
-        <table id="myTable" class="display">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>CPF</th>
-                    <th>RG</th>
-                    <th>Nascimento</th>
-                    <th>Celular</th>
-                    <th>Telefone</th>
-                    <th>Gênero</th>
-                    <th>Criação</th>
-                    <th>Status</th>
-                    <th>Inativar</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var Item in Model)
-                {
-                    <tr>
-                        <th>@Item.Codigo</th>
-                        <th>@Item.Nome.Capitalize() @Item.Sobrenome.Capitalize()</th>
-                        <th>@Item.Email</th>
-                        <th>@Item.CPF</th>
-                        <th>@Item.RG</th>
-                        <th>@Item.DataNascimento.ToString("dd/MM/yyyy")</th>
-                        <th>@Item.Celular</th>
-                        <th>@Item.Telefone</th>
-                        <th>@Item.Genero</th>
-                        <th>@Item.Criacao.ToString("dd/MM/yyyy") às @Item.Criacao.ToString("HH:mm")</th>
-                        <th>@(Item.Situacao ? "Ativo" : "Inativo")</th>
-                        <th>
-                            @if (Item.Situacao)
-                            {
-                                <div class="tooltip" data-tip="Inativar">
-                                    <button class="btn btn-sm btn-error btn-square"><i class="fa-solid fa-ban"></i></button>
+        <div class="my-10">
+            <div class="container mx-auto">
+                <table id="myTable" class="table table-sm mx-auto">
+                    <thead>
+                        <tr class="bg-gray-200 text-sm font-bold text-gray-800">
+                            <th class="relative min-w-[95px]">Código</th>
+                            <th class="relative min-w-[115px]">Nome</th>
+                            <th class="relative min-w-[205px]">Email</th>
+                            <th class="relative min-w-[125px]">CPF</th>
+                            <th class="relative min-w-[110px]">RG</th>
+                            <th class="relative min-w-[95px]">Nascimento</th>
+                            <th class="relative min-w-[130px]">Celular</th>
+                            <th class="relative min-w-[130px]">Telefone</th>
+                            <th class="relative min-w-[85px]">Gênero</th>
+                            <th class="relative min-w-[155px]">Criação</th>
+                            <th class="relative min-w-[65px]">Status</th>
+                            <th class="relative min-w-[60px]">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Item in Model)
+                        {
+                        <tr class="text-gray-600">
+                            <th>@Item.Codigo</th>
+                            <td>@Item.Nome.Capitalize() @Item.Sobrenome.Capitalize()</td>
+                            <td>@Item.Email</td>
+                            <td>@Item.CPF</td>
+                            <td>@Item.RG</td>
+                            <td>@Item.DataNascimento.ToString("dd/MM/yyyy")</td>
+                            <td>@Item.Celular</td>
+                            <td>@Item.Telefone</td>
+                            <td>@Item.Genero.Capitalize()</td>
+                            <td>@Item.Criacao.ToString("dd/MM/yyyy") às @Item.Criacao.ToString("HH:mm")</td>
+                            <td>@(Item.Situacao ? "Ativo" : "Inativo")</td>
+                            <td>
+                                @if (Item.Situacao)
+                                {
+                                <div class="tooltip tooltip-left" data-tip="Inativar">
+                                    <a asp-controller="Admin" asp-action="CadastrarCliente"
+                                        asp-route-situacao="inativar" asp-route-codigo="@Item.Codigo"
+                                        class="btn btn-sm btn-error btn-square">
+                                        <i class="fa-solid fa-ban"></i>
+                                    </a>
                                 </div>
-                            }
-                            else
-                            {
-                                <div class="tooltip" data-tip="Ativar">
-                                    <button class="btn btn-sm btn-success btn-square"><i class="fa-solid fa-check"></i></button>
+                                }
+                                else
+                                {
+                                <div class="tooltip tooltip-left" data-tip="Ativar">
+                                    <a asp-controller="Admin" asp-action="CadastrarCliente" asp-route-situacao="ativar"
+                                        asp-route-codigo="@Item.Codigo" class="btn btn-sm btn-success btn-square">
+                                        <i class="fa-solid fa-check"></i>
+                                    </a>
                                 </div>
-                            }
-                        </th>
-                    </tr>
+                                }
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        @section Scripts {
+        <script>
+            $(document).ready(function () {
+
+                const clientes = {
+                    tabela: new DataTable('#myTable', {
+                        "dom": 'Bfrtip',
+                        "scrollX": true,
+                        "ordering": true,
+                        "paging": true,
+                        "language": {
+                            "url": '/json/pt-BR.json',
+                        },
+                        "columnDefs": [{
+                            "targets": 11,
+                            "orderable": false
+                        }
+                        ]
+                    }),
                 }
-            </tbody>
-        </table>
-    </div>
-</div>
 
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-
-            let table = new DataTable('#myTable', {
-                // config options...
             });
-        });
-    </script>
-}
+
+        </script>
+        }

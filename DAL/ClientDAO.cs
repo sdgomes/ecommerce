@@ -104,7 +104,45 @@ namespace ecommerce.DAL
             }
         }
 
-        public static void DeleteClient(long IdCliente)
+        public static void UpdateClientSituacao(string Codigo, bool Situacao)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_CLIENTES SET SITUACAO = @SITUACAO WHERE CODIGO = @CODIGO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo),
+                    new SqlParameter("@SITUACAO", Situacao),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void DeleteClientByCodigo(string Codigo)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_CLIENTES SET D_E_L_E_T_ = '*' WHERE CODIGO = @CODIGO;
+                                UPDATE ECM_USUARIOS SET D_E_L_E_T_ = '*' WHERE ID_USUARIO = SELECT ID_USUARIO FROM ECM_CLIENTES WHERE CODIGO = @CODIGO";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void DeleteClientById(long IdCliente)
         {
             try
             {
@@ -152,7 +190,7 @@ namespace ecommerce.DAL
                                 FROM ECM_CLIENTES CLI
 	                                INNER JOIN ECM_USUARIOS USU ON USU.ID_USUARIO = CLI.ID_USUARIO
 		                                AND USU.D_E_L_E_T_ <> '*'
-                                WHERE CLI.D_E_L_E_T_ <> '*' AND CODIGO = @CODIGO;";
+                                WHERE CLI.D_E_L_E_T_ <> '*' AND CLI.CODIGO = @CODIGO;";
 
                 SqlParameter[] parameters = new SqlParameter[]
                 {
