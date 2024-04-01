@@ -10,11 +10,7 @@ namespace ecommerce.DAL
     {
         protected static Operations DatabaseProgramas()
         {
-#if DEBUG
-            return ProgramasHomologacao();
-#else
             return Programas();
-#endif
         }
 
         protected static dynamic I(dynamic Item)

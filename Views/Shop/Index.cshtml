@@ -2,7 +2,7 @@
 ViewBreadcrumbs breadcrumbs = new();
 breadcrumbs.Title = "Produtos";
 breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
 new BreadcrumbsDTO("Produtos")
 };
 
@@ -22,7 +22,7 @@ ViewData["Title"] = breadcrumbs.Title;
                         <div class="single-widget search">
                             <h3>Pesquisar produto</h3>
                             <form action="#">
-                                <input type="text" placeholder="Procure aqui...">
+                                <input autocomplete="off" type="text" placeholder="Procure aqui...">
                                 <button type="submit"><i class="fa-light fa-magnifying-glass"></i></button>
                             </form>
                         </div>
@@ -57,28 +57,28 @@ ViewData["Title"] = breadcrumbs.Title;
                         <div class="single-widget condition">
                             <h3>Filtrar por preço</h3>
                             <div class="relative block mb-2">
-                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                <input autocomplete="off" class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
                                     id="flexCheckDefault1">
                                 <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault1">
                                     R$ 50 - R$ 100 (208)
                                 </label>
                             </div>
                             <div class="relative block mb-2">
-                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                <input autocomplete="off" class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
                                     id="flexCheckDefault2">
                                 <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault2">
                                     R$ 100 - R$ 500 (311)
                                 </label>
                             </div>
                             <div class="relative block mb-2">
-                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                <input autocomplete="off" class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
                                     id="flexCheckDefault3">
                                 <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault3">
                                     R$ 500 - R$ 1.000 (485)
                                 </label>
                             </div>
                             <div class="relative block mb-2">
-                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                <input autocomplete="off" class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
                                     id="flexCheckDefault4">
                                 <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault4">
                                     R$ 1.000 - R$ 5.000 (213)
@@ -89,56 +89,56 @@ ViewData["Title"] = breadcrumbs.Title;
                         <div class="single-widget condition">
                             <h3>Filtrar por gravadora</h3>
                             <div class="relative block mb-2">
-                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                <input autocomplete="off" class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
                                     id="flexCheckDefault11">
                                 <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault11">
                                     MK Music (254)
                                 </label>
                             </div>
                             <div class="relative block mb-2">
-                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                <input autocomplete="off" class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
                                     id="flexCheckDefault22">
                                 <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault22">
                                     Music Brokers (39)
                                 </label>
                             </div>
                             <div class="relative block mb-2">
-                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                <input autocomplete="off" class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
                                     id="flexCheckDefault33">
                                 <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault33">
                                     Som Livre (128)
                                 </label>
                             </div>
                             <div class="relative block mb-2">
-                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                <input autocomplete="off" class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
                                     id="flexCheckDefault44">
                                 <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault44">
                                     Sony Music (310)
                                 </label>
                             </div>
                             <div class="relative block mb-2">
-                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                <input autocomplete="off" class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
                                     id="flexCheckDefault55">
                                 <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault55">
                                     Universal Music (42)
                                 </label>
                             </div>
                             <div class="relative block mb-2">
-                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                <input autocomplete="off" class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
                                     id="flexCheckDefault66">
                                 <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault66">
                                     Warner Music Brasil (217)
                                 </label>
                             </div>
                             <div class="relative block mb-2">
-                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                <input autocomplete="off" class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
                                     id="flexCheckDefault77">
                                 <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault77">
                                     Elenko Music (310)
                                 </label>
                             </div>
                             <div class="relative block mb-2">
-                                <input class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
+                                <input autocomplete="off" class="absolute mt-1 accent-[#ffcc00]" type="checkbox" value=""
                                     id="flexCheckDefault88">
                                 <label class="text-gray-700 pl-6 mb-0" for="flexCheckDefault88">
                                     Young Money Entertainment (74)

@@ -1,0 +1,46 @@
+﻿@model ViewAlteraSenha
+
+<form id="altera-senha">
+    <input name="idUsuario" type="hidden" value="@Model.IdUsuario">
+
+    <div class="flex flex-wrap">
+        <label class="form-control mb-3.5 px-3 w-full">
+            <span class="label pb-0">
+                <span class="label-text-alt">Senha Antiga</span>
+            </span>
+            <span class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="O campo de senha não pode estar vazio.">
+                <span class="form-input form relative w-full">
+                    <input autocomplete="off" required name="senha" type="password" placeholder="Ex.: ******"
+                           class="text-lg text-gray-800 input border border-gray-300 focus:outline-none w-full" />
+                    <button tabindex="-1" data-click="eye" type="button" class="my-auto absolute right-2 inset-y-0 btn btn-square btn-sm"><i class="fa-solid fa-eye"></i></button>
+                </span>
+            </span>
+        </label>
+
+        <label class="form-control mb-3.5 px-3 w-full">
+            <span class="label pb-0">
+                <span class="label-text-alt">Senha</span>
+            </span>
+            <span class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Sua senha precisa de pelo menos 8 caracteres, uma letra maiuscula e uma minúscula e conter pelo menos um caractere especial.">
+                <span class="form-input form relative w-full">
+                    <input autocomplete="off" required name="senhaNova" type="password" placeholder="Ex.: ******"
+                           class="text-lg text-gray-800 input border border-gray-300 focus:outline-none w-full" />
+                    <button tabindex="-1" data-click="eye" type="button" class="my-auto absolute right-2 inset-y-0 btn btn-square btn-sm"><i class="fa-solid fa-eye"></i></button>
+                </span>
+            </span>
+        </label>
+
+        <label class="form-control mb-3.5 px-3 w-full">
+            <span class="label pb-0">
+                <span class="label-text-alt">Confirmar Senha</span>
+            </span>
+            <span class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="As senhas não conferem.">
+                <span class="form-input form relative w-full">
+                    <input autocomplete="off" required name="confirmaSenha" type="password" placeholder="Ex.: ******"
+                           class="text-lg text-gray-800 input border border-gray-300 focus:outline-none w-full" />
+                    <button tabindex="-1" data-click="eye" type="button" class="my-auto absolute right-2 inset-y-0 btn btn-square btn-sm"><i class="fa-solid fa-eye"></i></button>
+                </span>
+            </span>
+        </label>
+    </div>
+</form>

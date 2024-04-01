@@ -4,7 +4,7 @@
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Cliente";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-        new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
         new BreadcrumbsDTO("Cliente atual")
     };
 
@@ -13,80 +13,259 @@
 
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-<div>
-    <div class="collapse-title text-xl font-medium bg-[#130235]">
-        Seus dados pessoais
+<div class="my-10 mx-auto px-5 container">
+    
+    <div class="my-5">
+        <div class="flex flex-wrap gap-5 button">
+            <button data-id-cliente="@Model.Client.IdCliente" id="acicionar-endereco" class="btn !text-gray-800 hover:!text-white">Adicionar endereço</button>
+            <button class="btn btn-alt">Aicionar cartão</button>
+        </div>
     </div>
-    <div class="">
-        <div>
-            <div class="flex flex-wrap ">
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>Nome</label>
-                        <div class="form-input form">
-                            <input readonly value="@Model.client.Nome" type="text" placeholder="Primeiro nome">
-                        </div>
-                    </div>
-                </div>
 
-                <div class="md:w-1/2 px-4 flex items-end">
-                    <div class="single-form form-default w-full">
-                        <div class="form-input form">
-                            <input readonly value="@Model.client.Sobrenome" type="text" placeholder="Sobrenome">
-                        </div>
-                    </div>
-                </div>
+    <div class="space-y-5">
+        <div class="collapse bg-base-200 border border-gray-300 !rounded-[5px]">
+            <input type="checkbox" checked />
+            <div class="collapse-title text-xl font-medium bg-[#130235]">
+                Informações Pessoais
+            </div>
+            <div class="collapse-content">
+                <div class="py-10">
+                    <button data-id-cliente="@Model.Client.IdCliente" data-action="altera-cliente" class="btn btn-sm btn-square btn-warning float-right text-base -mt-6"><i class="fa-regular fa-pen-to-square"></i></button>
 
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>CPF</label>
-                        <div class="form-input form">
-                            <input readonly value="@Model.client.CPF" type="text" placeholder="Ex.: 000.000.000-00">
-                        </div>
-                    </div>
-                </div>
+                    <div class="flex flex-wrap mt-4">
+                        <label class="form-control mb-3.5 px-3 w-2/3">
+                            <span class="label pb-0">
+                                <span class="label-text-alt">Nome completo</span>
+                            </span>
+                            <input readonly value="@((Model.Client.Nome + " " + Model.Client.Sobrenome).Capitalize())" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                        </label>
 
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>Telefone (Celular)</label>
-                        <div class="form-input form">
-                            <input readonly value="@Model.client.Celular" type="text" placeholder="Ex.: (00) 00000-0000">
-                        </div>
-                    </div>
-                </div>
+                        <label class="form-control mb-3.5 px-3 w-1/3">
+                            <span class="label pb-0">
+                                <span class="label-text-alt">Email</span>
+                            </span>
+                            <input readonly value="@Model.Client.Email" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                        </label>
 
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>Telefone (Fixo)</label>
-                        <div class="form-input form">
-                            <input readonly value="@Model.client.Telefone" type="text" placeholder="Ex.: (00) 0000-0000">
-                        </div>
-                    </div>
-                </div>
+                        <label class="form-control mb-3.5 px-3 w-1/4">
+                            <span class="label pb-0">
+                                <span class="label-text-alt">CPF (Cadastro de Pessoas Físicas)</span>
+                            </span>
+                            <input readonly value="@Model.Client.CPF" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                        </label>
 
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>RG</label>
-                        <div class="form-input form">
-                            <input readonly value="@Model.client.RG" type="text" placeholder="Ex.: 00.000.000-0">
-                        </div>
-                    </div>
-                </div>
+                        <label class="form-control mb-3.5 px-3 w-1/4">
+                            <span class="label pb-0">
+                                <span class="label-text-alt">RG (Registro Geral)</span>
+                            </span>
+                            <input readonly value="@Model.Client.RG" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                        </label>
 
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>Data Nascimento</label>
-                        <div class="form-input form">
-                            <input readonly value="@Model.client.DataNascimento" type="date">
+                        <label class="form-control mb-3.5 px-3 w-1/4">
+                            <span class="label pb-0">
+                                <span class="label-text-alt">Data nascimento</span>
+                            </span>
+                            <input readonly value='@Model.Client.DataNascimento.ToString("dd/MM/yyyyy")' type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                        </label>
+
+                        <label class="form-control mb-3.5 px-3 w-1/4">
+                            <span class="label pb-0">
+                                <span class="label-text-alt">Gênero</span>
+                            </span>
+                            <input readonly value='@Model.Client.Genero.Capitalize()' type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                        </label>
+
+                        <label class="form-control mb-3.5 px-3 w-1/3">
+                            <span class="label pb-0">
+                                <span class="label-text-alt">Celular</span>
+                            </span>
+                            <input readonly value="@Model.Client.Celular" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                        </label>
+
+                        <label class="form-control mb-3.5 px-3 w-1/3">
+                            <span class="label pb-0">
+                                <span class="label-text-alt">Telefone (fixo)</span>
+                            </span>
+                            <input readonly value="@Model.Client.Telefone" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                        </label>
+
+                        <div class="form-control mb-3.5 px-3 w-1/3 justify-end button">
+                            <button data-id-usuario="@Model.Client.IdUsuario" id="trocar-senha-cliente" class="btn !w-fit !flex !text-gray-800 hover:!text-white">Trocar Senha</button>
                         </div>
                     </div>
                 </div>
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>Gênero</label>
-                        <div class="form-input form">
-                            <input readonly value="@Model.client.Genero" type="date">
-                        </div>
+            </div>
+        </div>
+
+        <div class="collapse bg-base-200 border border-gray-300 !rounded-[5px]">
+            <input type="checkbox" checked />
+            <div class="collapse-title text-xl font-medium bg-[#130235]">
+                Endereços
+            </div>
+            <div class="collapse-content">
+                <div class="py-5">
+                    <div class="space-y-5 mt-5">
+                        @foreach (var address in Model.Adresses)
+                        {
+                            <div class="flex items-center gap-5 w-full">
+                                <div class="whitespace-nowrap font-bold text-gray-800 text-lg">@address.NomeEndereco</div> <hr class="w-full">
+                                <button data-id-endereco="@address.IdEndereco" class="btn btn-sm btn-square btn-warning text-base"><i class="fa-regular fa-pen-to-square"></i></button>
+                            </div>
+
+                            <div class="flex gap-5 px-3">
+                                <button class="btn bg-white pointer-events-none">
+                                    Principal
+                                    <div class="badge @(address.Principal ? "badge-secondary" : "badge-neutral")">@(address.Principal ? "Sim" : "Não")</div>
+                                </button>
+                                <button class="btn bg-white pointer-events-none">
+                                    Cobrança
+                                    <div class="badge @(address.Cobranca ? "badge-secondary" : "badge-neutral")">@(address.Cobranca ? "Sim" : "Não")</div>
+                                </button>
+                            </div>
+
+                            <div class="flex flex-wrap mt-4">
+                                <label class="form-control mb-3.5 px-3 w-1/6">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">CEP</span>
+                                    </span>
+                                    <input readonly value="@address.CEP" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-1/4">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Tipo Logradouro</span>
+                                    </span>
+                                    <input readonly value="@address.TipoLogradouro.Capitalize()" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-1/4">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Tipo Residência</span>
+                                    </span>
+                                    <input readonly value="@address.TipoResidencia.Capitalize()" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-1/6">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Número</span>
+                                    </span>
+                                    <input readonly value="@address.Numero" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-1/6">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Estado</span>
+                                    </span>
+                                    <input readonly value="@address.Estado" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-4/6">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Logradouro</span>
+                                    </span>
+                                    <input readonly value="@address.Logradouro" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-2/6">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Bairro</span>
+                                    </span>
+                                    <input readonly value="@address.Bairro" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-1/4">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Cidade</span>
+                                    </span>
+                                    <input readonly value="@address.Cidade" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-1/4">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Pais</span>
+                                    </span>
+                                    <input readonly value="@address.Pais" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-2/4">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Complemento</span>
+                                    </span>
+                                    <input readonly value="@address.Complemento" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-full">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Observação</span>
+                                    </span>
+                                    <input readonly value="@address.Frase" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none italic" />
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapse bg-base-200 border border-gray-300 !rounded-[5px]">
+            <input type="checkbox" checked />
+            <div class="collapse-title text-base font-medium bg-[#130235]">
+                Formas de pagamento
+            </div>
+            <div class="collapse-content">
+                <div class="py-5">
+                    <div class="space-y-5 mt-5">
+                        @foreach (var card in Model.Cards)
+                        {
+                            <div class="flex items-center gap-5 w-full">
+                                <div class="whitespace-nowrap font-bold text-gray-800 text-lg">@card.NomeCartao</div> <hr class="w-full">
+                                <button data-id-cartao="@card.IdCartao" class="btn btn-sm btn-square btn-error text-base text-white"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+
+                            <div class="flex gap-5 px-3">
+                                <button class="btn bg-white pointer-events-none">
+                                    Principal
+                                    <div class="badge @(card.Principal ? "badge-secondary" : "badge-neutral")">@(card.Principal ? "Sim" : "Não")</div>
+                                </button>
+                            </div>
+
+                            <div class="flex flex-wrap mt-4">
+                                <label class="form-control mb-3.5 px-3 w-1/6">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Bandeira do cartão</span>
+                                    </span>
+                                    <input readonly value="@card.NomeBandeira.Capitalize()" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-2/6">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Nome titular</span>
+                                    </span>
+                                    <input readonly value="@card.NomeTitular" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-1/6">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">CPF titular</span>
+                                    </span>
+                                    <input readonly value="@card.CPFTitular" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-1/6">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Número cartão</span>
+                                    </span>
+                                    <input readonly value="*** *** *** @card.Numero.Split(' ')[3]" type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+
+                                <label class="form-control mb-3.5 px-3 w-1/6">
+                                    <span class="label pb-0">
+                                        <span class="label-text-alt">Data validade</span>
+                                    </span>
+                                    <input readonly value='@card.DataValidade.Split("-")[1]/@card.DataValidade.Split("-")[0]' type="text" class="text-lg text-gray-800 input border border-gray-300 focus:outline-none" />
+                                </label>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -94,135 +273,6 @@
     </div>
 </div>
 
-<div>
-    <div class="collapse-title text-xl font-medium bg-[#130235]">
-        Endereços Cadastrados
-    </div>
-
-    <div class="">
-        @foreach (var address in Model.address)
-        {
-        <div>
-            <h1>Endereço principal: @(address.Principal ? "SIM" : "NÃO")</h1>
-            <h1>Endereço de Cobrança: @(address.Cobranca ? "SIM" : "NÃO")</h1>
-            <h1>Tipo de endereço: @address.TipoEndereco</h1>
-
-            <input type="hidden" name="address[0].tipoEndereco" value="COBRANCA">
-
-            <div class="flex flex-wrap w-1/2">
-                <div class="md:w-2/3 px-4">
-                    <div class="single-form form-default">
-                        <label>CEP</label>
-                        <div class="form-input form">
-                            <input readonly value="@address.CEP" type="text" placeholder="Ex.: 00000-000">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-wrap ">
-                <div class="md:w-2/3 px-4">
-                    <div class="single-form form-default">
-                        <label>Tipo Logradouro</label>
-                        <div class="form-input form">
-                            <input readonly value="@address.TipoLogradouro" type="text" placeholder="Ex.: 00000-000">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:w-2/3 px-4">
-                    <div class="single-form form-default">
-                        <label>Tipo Residencia</label>
-                        <div class="form-input form">
-                            <input readonly value="@address.TipoResidencia" type="text" placeholder="Ex.: 00000-000">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>Logradouro</label>
-                        <div class="form-input form">
-                            <input readonly value="@address.Logradouro" type="text" placeholder="Ex.: Prefeito Sebatião Cascardo">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>Número</label>
-                        <div class="form-input form">
-                            <input readonly value="@address.Numero" type="text" placeholder="Ex.: S/N">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>Complemento (opcional)</label>
-                        <div class="form-input form">
-                            <input readonly value="@address.Complemento" type="text" placeholder="Ex.: Bloco 2 Apartamento 5">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>Bairro</label>
-                        <div class="form-input form">
-                            <input readonly value="@address.Bairro" type="text" placeholder="Ex.: Jardim Universo">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>Cidade</label>
-                        <div class="form-input form">
-                            <input readonly value="@address.Cidade" type="text" placeholder="Ex: Mogi das Cruzes">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>Região / Estado</label>
-                        <div class="form-input form">
-                            <input readonly value="@address.Estado" type="text" placeholder="Ex: Mogi das Cruzes">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>País</label>
-                        <div class="form-input form">
-                            <input readonly value="@address.Pais" type="text" placeholder="Ex.: Brasil">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:w-1/2 px-4">
-                    <div class="single-form form-default">
-                        <label>Apelido Para o Endereco</label>
-                        <div class="form-input form">
-                            <input readonly value="@address.NomeEndereco" type="text" placeholder="Ex.: Casa">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:w-full px-4">
-                    <div class="single-form form-default">
-                        <label>Observação (opcional)</label>
-                        <div class="form-input form">
-                            <input readonly value="@address.Frase" type="text" placeholder="Ex.: Caso não tenha ninguém pode deixar no vizinho">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-        }
-    </div>
-</div>
+@section Scripts {
+    <script src="~/js/Client/Cliente.js" asp-append-version="true"></script>
+}

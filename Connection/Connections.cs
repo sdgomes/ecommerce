@@ -18,15 +18,5 @@ namespace ecommerce.Connection
         {
             return Programas();
         }
-
-        protected static Operations ProgramasHomologacao()
-        {
-            return new Operations(Enums.ConnectionStringNames.PROGRAMAS_HOM);
-        }
-
-        Operations IDatabaseProgramas.ProgramasHomologacao()
-        {
-            return ProgramasHomologacao();
-        }
     }
 }

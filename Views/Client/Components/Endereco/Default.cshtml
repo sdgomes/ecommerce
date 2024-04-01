@@ -1,193 +1,168 @@
 @model ViewEndereco
 
-<div class="flex flex-wrap w-1/2">
-    <div class="md:w-2/3 px-4">
-        <div class="single-form form-default">
-            <label>CEP</label>
-            <div class="form-input form">
-                <input name="address[@Model.Index].cep" type="text" placeholder="Ex.: 00000-000">
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="flex flex-wrap ">
-    <div class="md:w-1/2 px-4">
-        <div class="single-form form-default">
-            <label>Tipo Logradouro</label>
-            <div class="select-items">
-                <select name="address[@Model.Index].tipoLogradouro" class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
-                    <option value="0">Selecione</option>
-                    <option value="AEROPORTO">Aeroporto</option>
-                    <option value="ALAMEDA">Alameda</option>
-                    <option value="ÁREA">Área</option>
-                    <option value="AVENIDA">Avenida</option>
-                    <option value="CAMPO">Campo</option>
-                    <option value="CHÁCARA">Chácara</option>
-                    <option value="COLÔNIA">Colônia</option>
-                    <option value="CONDOMÍNIO">Condomínio</option>
-                    <option value="CONJUNTO">Conjunto</option>
-                    <option value="DISTRITO">Distrito</option>
-                    <option value="ESPLANADA">Esplanada</option>
-                    <option value="ESTAÇÃO">Estação</option>
-                    <option value="ESTRADA">Estrada</option>
-                    <option value="FAVELA">Favela</option>
-                    <option value="FAZENDA">Fazenda</option>
-                    <option value="FEIRA">Feira</option>
-                    <option value="JARDIM">Jardim</option>
-                    <option value="LADEIRA">Ladeira</option>
-                    <option value="LAGO">Lago</option>
-                    <option value="LAGOA">Lagoa</option>
-                    <option value="LARGO">Largo</option>
-                    <option value="LOTEAMENTO">Loteamento</option>
-                    <option value="MORRO">Morro</option>
-                    <option value="NÚCLEO">Núcleo</option>
-                    <option value="PARQUE">Parque</option>
-                    <option value="PASSARELA">Passarela</option>
-                    <option value="PÁTIO">Pátio</option>
-                    <option value="PRAÇA">Praça</option>
-                    <option value="QUADRA">Quadra</option>
-                    <option value="RECANTO">Recanto</option>
-                    <option value="RESIDENCIAL">Residencial</option>
-                    <option value="RODOVIA">Rodovia</option>
-                    <option value="RUA">Rua</option>
-                    <option value="SETOR">Setor</option>
-                    <option value="SÍTIO">Sítio</option>
-                    <option value="TRAVESSA">Travessa</option>
-                    <option value="TRECHO">Trecho</option>
-                    <option value="TREVO">Trevo</option>
-                    <option value="VALE">Vale</option>
-                    <option value="VEREDA">Vereda</option>
-                    <option value="VIA">Via</option>
-                    <option value="VIADUTO">Viaduto</option>
-                    <option value="VIELA">Viela</option>
-                    <option value="VILA">Vila</option>
-                </select>
+<div class="address-capsule">
+    <div class="flex flex-wrap w-1/2">
+        <div class="md:w-2/3 px-4">
+            <div class="single-form form-default">
+                <label>CEP</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe um CEP.">
+                    <div class="form-input form">
+                        <input required autocomplete="off" name="adresses[@Model.Index].cep" type="text" placeholder="Ex.: 00000-000"
+                               data-mask="00000-000">
+                        <button type="button"
+                                class="viacep flex items-center justify-center h-[38px] cursor-pointer disabled:!saturate-100 active:scale-95 w-[2.5rem] rounded-[3px] bg-gray-200 my-auto absolute right-1 border border-gray-300 inset-y-0">
+                            <i class="fa-regular fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="md:w-1/2 px-4">
-        <div class="single-form form-default">
-            <label>Tipo Residencia</label>
-            <div class="select-items">
-                <select name="address[@Model.Index].tipoResidencia" class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
-                    <option value="0">Selecione</option>
-                    <option value="CASA">Casa</option>
-                    <option value="APARTAMENTO">Apartamento</option>
-                    <option value="STUDIO">Studio</option>
-                    <option value="EMPRESA">Empresa</option>
-                </select>
+    <div class="flex flex-wrap ">
+        <div class="md:w-1/2 px-4">
+            <div class="single-form form-default">
+                <label>Tipo Logradouro</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Qual o tipo de logradouro.">
+                    <div class="select-items">
+                        <select required name="adresses[@Model.Index].tipoLogradouro"
+                                class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                            <option value="">Selecione</option>
+                            @foreach (var Item in Model.AddressData.TypesOfAddresses)
+                            {
+                                <option value="@Item.Nome">@Item.Nome.Capitalize()</option>
+                            }
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="md:w-1/2 px-4">
-        <div class="single-form form-default">
-            <label>Logradouro</label>
-            <div class="form-input form">
-                <input name="address[@Model.Index].logradouro" type="text" placeholder="Ex.: Prefeito Sebatião Cascardo">
+        <div class="md:w-1/2 px-4">
+            <div class="single-form form-default">
+                <label>Tipo Residencia</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Qual o tipo de residencia.">
+                    <div class="select-items">
+                        <select required name="adresses[@Model.Index].tipoResidencia"
+                                class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                            <option value="">Selecione</option>
+                            @foreach (var Item in Model.AddressData.TypesOfResidences)
+                            {
+                                <option value="@Item.Nome">@Item.Nome.Capitalize()</option>
+                            }
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="md:w-1/2 px-4">
-        <div class="single-form form-default">
-            <label>Número</label>
-            <div class="form-input form">
-                <input name="address[@Model.Index].numero" type="text" placeholder="Ex.: S/N">
+        <div class="md:w-1/2 px-4">
+            <div class="single-form form-default">
+                <label>Logradouro</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe o logradouro do endereço.">
+                    <div class="form-input form">
+                        <input autocomplete="off" required name="adresses[@Model.Index].logradouro" type="text"
+                               placeholder="Ex.: Prefeito Sebatião Cascardo">
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="md:w-1/2 px-4">
-        <div class="single-form form-default">
-            <label>Complemento (opcional)</label>
-            <div class="form-input form">
-                <input name="address[@Model.Index].complemento" type="text" placeholder="Ex.: Bloco 2 Apartamento 5">
+        <div class="md:w-1/2 px-4">
+            <div class="single-form form-default">
+                <label>Número</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Se sem número informe 'S/N'.">
+                    <div class="form-input form">
+                        <input autocomplete="off" required name="adresses[@Model.Index].numero" type="text"
+                               placeholder="Ex.: S/N">
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="md:w-1/2 px-4">
-        <div class="single-form form-default">
-            <label>Bairro</label>
-            <div class="form-input form">
-                <input name="address[@Model.Index].bairro" type="text" placeholder="Ex.: Jardim Universo">
+        <div class="md:w-1/2 px-4">
+            <div class="single-form form-default">
+                <label>Complemento (opcional)</label>
+                <div class="form-input form">
+                    <input autocomplete="off" name="adresses[@Model.Index].complemento" type="text"
+                           placeholder="Ex.: Bloco 2 Apartamento 5">
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="md:w-1/2 px-4">
-        <div class="single-form form-default">
-            <label>Cidade</label>
-            <div class="form-input form">
-                <input name="address[@Model.Index].cidade" type="text" placeholder="Ex: Mogi das Cruzes">
+        <div class="md:w-1/2 px-4">
+            <div class="single-form form-default">
+                <label>Bairro</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe o bairro.">
+                    <div class="form-input form">
+                        <input autocomplete="off" required name="adresses[@Model.Index].bairro" type="text"
+                               placeholder="Ex.: Jardim Universo">
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="md:w-1/2 px-4">
-        <div class="single-form form-default">
-            <label>Região / Estado</label>
-            <div class="select-items">
-                <select name="address[@Model.Index].estado" class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
-                    <option value="0">Selecione</option>
-                    <option value="AC">AC</option>
-                    <option value="AL">AL</option>
-                    <option value="AP">AP</option>
-                    <option value="AM">AM</option>
-                    <option value="BA">BA</option>
-                    <option value="CE">CE</option>
-                    <option value="DF">DF</option>
-                    <option value="ES">ES</option>
-                    <option value="GO">GO</option>
-                    <option value="MA">MA</option>
-                    <option value="MT">MT</option>
-                    <option value="MS">MS</option>
-                    <option value="MG">MG</option>
-                    <option value="PA">PA</option>
-                    <option value="PB">PB</option>
-                    <option value="PR">PR</option>
-                    <option value="PE">PE</option>
-                    <option value="PI">PI</option>
-                    <option value="RJ">RJ</option>
-                    <option value="RN">RN</option>
-                    <option value="RS">RS</option>
-                    <option value="RO">RO</option>
-                    <option value="RR">RR</option>
-                    <option value="SC">SC</option>
-                    <option value="SP">SP</option>
-                    <option value="SE">SE</option>
-                    <option value="TO">TO</option>
-                </select>
+        <div class="md:w-1/2 px-4">
+            <div class="single-form form-default">
+                <label>Cidade</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe a cidade do endereço.">
+                    <div class="form-input form">
+                        <input autocomplete="off" required name="adresses[@Model.Index].cidade" type="text"
+                               placeholder="Ex: Mogi das Cruzes">
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="md:w-1/2 px-4">
-        <div class="single-form form-default">
-            <label>País</label>
-            <div class="form-input form">
-                <input name="address[@Model.Index].pais" type="text" placeholder="Ex.: Brasil">
+        <div class="md:w-1/2 px-4">
+            <div class="single-form form-default">
+                <label>Região / Estado</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Escolha um estado.">
+                    <div class="select-items">
+                        <select required name="adresses[@Model.Index].estado"
+                                class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                            <option value="">Selecione</option>
+                            @foreach (var Item in Model.AddressData.States)
+                            {
+                                <option value="@Item.Nome">@Item.Nome</option>
+                            }
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="md:w-1/2 px-4">
-        <div class="single-form form-default">
-            <label>Apelido Para o Endereco</label>
-            <div class="form-input form">
-                <input name="address[@Model.Index].nomeEndereco" type="text" placeholder="Ex.: Casa">
+        <div class="md:w-1/2 px-4">
+            <div class="single-form form-default">
+                <label>País</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe O nome do país.">
+                    <div class="form-input form">
+                        <input autocomplete="off" required name="adresses[@Model.Index].pais" type="text"
+                               placeholder="Ex.: Brasil">
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="md:w-full px-4">
-        <div class="single-form form-default">
-            <label>Observação (opcional)</label>
-            <div class="form-input form">
-                <input name="address[@Model.Index].frase" type="text" placeholder="Ex.: Caso não tenha ninguém pode deixar no vizinho">
+        <div class="md:w-1/2 px-4">
+            <div class="single-form form-default">
+                <label>Apelido Para o Endereco</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="De um apelido para o endereço, como 'Casa'.">
+                    <div class="form-input form">
+                        <input autocomplete="off" required name="adresses[@Model.Index].nomeEndereco" type="text"
+                               placeholder="Ex.: Casa">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:w-full px-4">
+            <div class="single-form form-default">
+                <label>Observação (opcional)</label>
+                <div class="form-input form">
+                    <input autocomplete="off" name="adresses[@Model.Index].frase" type="text"
+                           placeholder="Ex.: Caso não tenha ninguém pode deixar no vizinho">
+                </div>
             </div>
         </div>
     </div>

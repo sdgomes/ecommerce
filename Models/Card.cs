@@ -20,8 +20,11 @@ namespace ecommerce.Models
         [Column("NOME_TITULAR")]
         public string NomeTitular { get; set; }
 
-        [Column("TIPO")]
-        public string Tipo { get; set; }
+        [Column("NOME_CARTAO")]
+        public string NomeCartao { get; set; }
+        
+        [Column("PRINCIPAL")]
+        public bool Principal { get; set; }
 
         [Column("CPF_TITULAR")]
         public string CPFTitular { get; set; }

@@ -2,13 +2,17 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using ecommerce.Models;
+using ecommerce.DAL;
 
 namespace ecommerce.Views.Client.Components.Cartao
 {
+    [ViewComponent(Name = "Cartao")]
     public class CartaoViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke(ViewCartao Model)
         {
+            Model.Cards = CardDAO.SelectAllCardBrands();
             return View(Model);
         }
     }
@@ -16,6 +20,7 @@ namespace ecommerce.Views.Client.Components.Cartao
     public class ViewCartao
     {
         public int Index { get; set; }
+        public List<Card> Cards { get; set; }
 
         public ViewCartao() { }
         public ViewCartao(int _Index)

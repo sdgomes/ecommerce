@@ -4,7 +4,7 @@
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Produto";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-        new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
         new BreadcrumbsDTO("Produtos", "./shop"),
         new BreadcrumbsDTO("Produto")
     };
@@ -67,22 +67,22 @@
 
                                     <div class="flex gap-2">
                                         <label class="w-[17px] h-[17px] border rounded-[3px] border-slate-800 cursor-pointer flex items-center justify-center">
-                                            <input id="slate" class="hidden peer/slate" type="radio" name="cor">
+                                            <input autocomplete="off" id="slate" class="hidden peer/slate" type="radio" name="cor">
                                             <label for="slate" class="w-[13px] h-[13px] block rounded-[2px] cursor-pointer peer-checked/slate:bg-slate-800"></label>
                                         </label>
 
                                         <label class="w-[17px] h-[17px] border rounded-[3px] border-sky-500 cursor-pointer flex items-center justify-center">
-                                            <input id="sky" class="hidden peer/sky" type="radio" name="cor">
+                                            <input autocomplete="off" id="sky" class="hidden peer/sky" type="radio" name="cor">
                                             <label for="sky" class="w-[13px] h-[13px] block rounded-[2px] cursor-pointer peer-checked/sky:bg-sky-500"></label>
                                         </label>
 
                                         <label class="w-[17px] h-[17px] border rounded-[3px] border-red-500 cursor-pointer flex items-center justify-center">
-                                            <input id="red" class="hidden peer/red" type="radio" name="cor">
+                                            <input autocomplete="off" id="red" class="hidden peer/red" type="radio" name="cor">
                                             <label for="red" class="w-[13px] h-[13px] block rounded-[2px] cursor-pointer peer-checked/red:bg-red-500"></label>
                                         </label>
 
                                         <label class="w-[17px] h-[17px] border rounded-[3px] border-green-500 cursor-pointer flex items-center justify-center">
-                                            <input id="green" class="hidden peer/green" type="radio" name="cor">
+                                            <input autocomplete="off" id="green" class="hidden peer/green" type="radio" name="cor">
                                             <label for="green" class="w-[13px] h-[13px] block rounded-[2px] cursor-pointer peer-checked/green:bg-green-500"></label>
                                         </label>
                                     </div>
@@ -94,7 +94,7 @@
                                     <label for="color">Quantidade</label>
                                     <div class="count-input flex">
                                         <button class="button-qnt"><i class="fa-solid fa-minus"></i></button>
-                                        <input type="text" value="1" class="input-qnt" />
+                                        <input autocomplete="off" type="text" value="1" class="input-qnt" />
                                         <button class="button-qnt"><i class="fa-solid fa-plus"></i></button>
                                     </div>
                                 </div>

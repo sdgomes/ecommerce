@@ -1,0 +1,81 @@
+﻿@model List<Client>
+
+@{
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Registro clientes";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
+        new BreadcrumbsDTO("Registro clientes")
+    };
+
+    ViewData["Title"] = breadcrumbs.Title;
+}
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+<div class="my-10">
+    <div class="container mx-auto px-5">
+        <table id="myTable" class="display">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>CPF</th>
+                    <th>RG</th>
+                    <th>Nascimento</th>
+                    <th>Celular</th>
+                    <th>Telefone</th>
+                    <th>Gênero</th>
+                    <th>Criação</th>
+                    <th>Status</th>
+                    <th>Inativar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Item in Model)
+                {
+                    <tr>
+                        <th>@Item.Codigo</th>
+                        <th>@Item.Nome.Capitalize() @Item.Sobrenome.Capitalize()</th>
+                        <th>@Item.Email</th>
+                        <th>@Item.CPF</th>
+                        <th>@Item.RG</th>
+                        <th>@Item.DataNascimento.ToString("dd/MM/yyyy")</th>
+                        <th>@Item.Celular</th>
+                        <th>@Item.Telefone</th>
+                        <th>@Item.Genero</th>
+                        <th>@Item.Criacao.ToString("dd/MM/yyyy") às @Item.Criacao.ToString("HH:mm")</th>
+                        <th>@(Item.Situacao ? "Ativo" : "Inativo")</th>
+                        <th>
+                            @if (Item.Situacao)
+                            {
+                                <div class="tooltip" data-tip="Inativar">
+                                    <button class="btn btn-sm btn-error btn-square"><i class="fa-solid fa-ban"></i></button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="tooltip" data-tip="Ativar">
+                                    <button class="btn btn-sm btn-success btn-square"><i class="fa-solid fa-check"></i></button>
+                                </div>
+                            }
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            let table = new DataTable('#myTable', {
+                // config options...
+            });
+        });
+    </script>
+}

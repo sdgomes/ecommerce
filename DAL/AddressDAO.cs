@@ -14,7 +14,7 @@ namespace ecommerce.DAL
             try
             {
                 string query = @$"BEGIN
-	                                IF NOT EXISTS (SELECT ID_ENDERECO FROM ECM_ENDERECOS WHERE CEP = @CEP OR (LOGRADOURO = @LOGRADOURO AND NUMERO = @NUMERO)) 
+	                                IF NOT EXISTS (SELECT ID_ENDERECO FROM ECM_ENDERECOS WHERE ID_CLIENTE = @ID_CLIENTE AND CEP = @CEP AND LOGRADOURO = @LOGRADOURO AND NUMERO = @NUMERO) 
 	                                BEGIN
 		                                INSERT INTO ECM_ENDERECOS (ID_CLIENTE, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, TIPO_RESIDENCIA,
 		                                LOGRADOURO, BAIRRO, CIDADE, ESTADO, NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, COMPLEMENTO,
@@ -57,28 +57,27 @@ namespace ecommerce.DAL
         {
             try
             {
-                string query = @$"UPDATE ECM_ENDERECOS SET CEP = @CEP, TIPO_LOGRADOURO = @TIPO_LOGRADOURO, TIPO_ENDERECO = @TIPO_ENDERECO, TIPO_RESIDENCIA = @TIPO_RESIDENCIA,
+                string query = @$"UPDATE ECM_ENDERECOS SET CEP = @CEP, TIPO_LOGRADOURO = @TIPO_LOGRADOURO, TIPO_RESIDENCIA = @TIPO_RESIDENCIA,
                 LOGRADOURO = @LOGRADOURO, BAIRRO = @BAIRRO, CIDADE = @CIDADE, ESTADO = @ESTADO, NOME_ENDERECO = @NOME_ENDERECO,
                 FRASE = @FRASE, PRINCIPAL = @PRINCIPAL, COBRANCA = @COBRANCA, COMPLEMENTO = @COMPLEMENTO, NUMERO = @NUMERO, PAIS = @PAIS
                 WHERE ID_ENDERECO = @ID_ENDERECO;";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@ID_ENDERECO", IdEndereco),
-                    new SqlParameter("@CEP", address.CEP),
-                    new SqlParameter("@TIPO_LOGRADOURO", address.TipoLogradouro),
-                    new SqlParameter("@TIPO_ENDERECO", address.TipoEndereco),
-                    new SqlParameter("@TIPO_RESIDENCIA ", address.TipoResidencia),
-                    new SqlParameter("@LOGRADOURO", address.Logradouro),
-                    new SqlParameter("@BAIRRO", address.Bairro),
-                    new SqlParameter("@CIDADE", address.Cidade),
-                    new SqlParameter("@ESTADO", address.Estado),
-                    new SqlParameter("@NOME_ENDERECO", address.NomeEndereco),
-                    new SqlParameter("@FRASE", address.Frase),
-                    new SqlParameter("@PRINCIPAL", address.Principal),
-                    new SqlParameter("@COBRANCA", address.Cobranca),
-                    new SqlParameter("@COMPLEMENTO ", address.Complemento),
-                    new SqlParameter("@NUMERO", address.Numero),
-                    new SqlParameter("@PAIS", address.Pais),
+                    new SqlParameter("@CEP", I(address.CEP)),
+                    new SqlParameter("@TIPO_LOGRADOURO", I(address.TipoLogradouro)),
+                    new SqlParameter("@TIPO_RESIDENCIA ", I(address.TipoResidencia)),
+                    new SqlParameter("@LOGRADOURO", I(address.Logradouro)),
+                    new SqlParameter("@BAIRRO", I(address.Bairro)),
+                    new SqlParameter("@CIDADE", I(address.Cidade)),
+                    new SqlParameter("@ESTADO", I(address.Estado)),
+                    new SqlParameter("@NOME_ENDERECO", I(address.NomeEndereco)),
+                    new SqlParameter("@FRASE", I(address.Frase)),
+                    new SqlParameter("@PRINCIPAL", I(address.Principal)),
+                    new SqlParameter("@COBRANCA", I(address.Cobranca)),
+                    new SqlParameter("@COMPLEMENTO ", I(address.Complemento)),
+                    new SqlParameter("@NUMERO", I(address.Numero)),
+                    new SqlParameter("@PAIS", I(address.Pais)),
                 };
 
                 DatabaseProgramas().Execute(query, parameters);
@@ -97,6 +96,42 @@ namespace ecommerce.DAL
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@ID_ENDERECO", IdEndereco)
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void LimpaPrincipal(long IdCiente)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_ENDERECOS SET PRINCIPAL = 0 WHERE ID_CLIENTE = @ID_CLIENTE;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_CLIENTE", IdCiente)
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void LimpaCobranca(long IdCiente)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_ENDERECOS SET COBRANCA = 0 WHERE ID_CLIENTE = @ID_CLIENTE;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_CLIENTE", IdCiente)
                 };
 
                 DatabaseProgramas().Execute(query, parameters);
@@ -129,7 +164,7 @@ namespace ecommerce.DAL
         {
             try
             {
-                string query = $@"SELECT ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
+                string query = $@"SELECT ID_CLIENTE, ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
                                 TIPO_RESIDENCIA, LOGRADOURO, BAIRRO, CIDADE, ESTADO,
                                 NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, 
                                 COMPLEMENTO, NUMERO, PAIS, CRIACAO FROM ECM_ENDERECOS
@@ -149,11 +184,34 @@ namespace ecommerce.DAL
             }
         }
 
+        public static Address SearchAddressByIdEndereco(long IdEndereco)
+        {
+            try
+            {
+                string query = $@"SELECT ID_CLIENTE, ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
+                                TIPO_RESIDENCIA, LOGRADOURO, BAIRRO, CIDADE, ESTADO,
+                                NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, 
+                                COMPLEMENTO, NUMERO, PAIS, CRIACAO FROM ECM_ENDERECOS
+                                WHERE ID_ENDERECO = @ID_ENDERECO AND D_E_L_E_T_ <> '*';";
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@ID_ENDERECO", IdEndereco),
+                };
+
+                return DatabaseProgramas().Choose<Address>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static Address SearchClientAddressByEndereco(long IdCliente, string Endereco)
         {
             try
             {
-                string query = $@"SELECT ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
+                string query = $@"SELECT ID_CLIENTE, ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
                                 TIPO_RESIDENCIA, LOGRADOURO, BAIRRO, CIDADE, ESTADO,
                                 NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, 
                                 COMPLEMENTO, NUMERO, PAIS, CRIACAO FROM ECM_ENDERECOS
@@ -178,7 +236,7 @@ namespace ecommerce.DAL
         {
             try
             {
-                string query = $@"SELECT ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
+                string query = $@"SELECT ID_CLIENTE, ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
                                 TIPO_RESIDENCIA, LOGRADOURO, BAIRRO, CIDADE, ESTADO,
                                 NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, 
                                 COMPLEMENTO, NUMERO, PAIS, CRIACAO FROM ECM_ENDERECOS
@@ -202,7 +260,7 @@ namespace ecommerce.DAL
         {
             try
             {
-                string query = $@"SELECT ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
+                string query = $@"SELECT ID_CLIENTE, ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
                                 TIPO_RESIDENCIA, LOGRADOURO, BAIRRO, CIDADE, ESTADO,
                                 NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, 
                                 COMPLEMENTO, NUMERO, PAIS, CRIACAO FROM ECM_ENDERECOS
@@ -227,7 +285,7 @@ namespace ecommerce.DAL
         {
             try
             {
-                string query = $@"SELECT ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
+                string query = $@"SELECT ID_CLIENTE, ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
                                 TIPO_RESIDENCIA, LOGRADOURO, BAIRRO, CIDADE, ESTADO,
                                 NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, 
                                 COMPLEMENTO, NUMERO, PAIS, CRIACAO FROM ECM_ENDERECOS
@@ -245,7 +303,7 @@ namespace ecommerce.DAL
         {
             try
             {
-                string query = $@"SELECT ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
+                string query = $@"SELECT ID_CLIENTE, ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
                                 TIPO_RESIDENCIA, LOGRADOURO, BAIRRO, CIDADE, ESTADO,
                                 NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, 
                                 COMPLEMENTO, NUMERO, PAIS, CRIACAO FROM ECM_ENDERECOS
@@ -257,6 +315,51 @@ namespace ecommerce.DAL
                 };
 
                 return DatabaseProgramas().Select<Address>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<TypeOfAddress> SelectAllTypeOfAddress()
+        {
+            try
+            {
+                string query = $@"SELECT ID_TIPO_LOGRADOURO, NOME FROM ECM_TIPOS_LOGRADOURO
+                                WHERE D_E_L_E_T_ <> '*';";
+
+                return DatabaseProgramas().Select<TypeOfAddress>(query);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<TypeOfResidence> SelectAllTypeOfResidence()
+        {
+            try
+            {
+                string query = $@"SELECT ID_TIPO_RESIDENCIA, NOME FROM ECM_TIPOS_RESIDENCIA
+                                WHERE D_E_L_E_T_ <> '*';";
+
+                return DatabaseProgramas().Select<TypeOfResidence>(query);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<State> SelectAllState()
+        {
+            try
+            {
+                string query = $@"SELECT ID_ESTADO, NOME FROM ECM_ESTADOS
+                                WHERE D_E_L_E_T_ <> '*';";
+
+                return DatabaseProgramas().Select<State>(query);
             }
             catch (Exception)
             {

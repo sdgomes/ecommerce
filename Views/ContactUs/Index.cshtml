@@ -2,7 +2,7 @@
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Contate-nos";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-        new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
         new BreadcrumbsDTO("Contate-nos")
     };
 
@@ -63,22 +63,22 @@
                                     <div class="flex flex-wrap ">
                                         <div class="lg:w-1/2 px-4 md:w-1/2 w-full">
                                             <div class="mb-4 form-group">
-                                                <input name="name" type="text" placeholder="Your Name" required="required">
+                                                <input autocomplete="off" name="name" type="text" placeholder="Your Name" required="required">
                                             </div>
                                         </div>
                                         <div class="lg:w-1/2 md:w-1/2 px-4 w-full">
                                             <div class="mb-4 form-group">
-                                                <input name="subject" type="text" placeholder="Assunto" required="required">
+                                                <input autocomplete="off" name="subject" type="text" placeholder="Assunto" required="required">
                                             </div>
                                         </div>
                                         <div class="lg:w-1/2 px-4 md:w-1/2 w-full">
                                             <div class="mb-4 form-group">
-                                                <input name="email" type="email" placeholder="Email" required="required">
+                                                <input autocomplete="off" name="email" type="email" placeholder="Email" required="required">
                                             </div>
                                         </div>
                                         <div class="lg:w-1/2 md:w-1/2 px-4 w-full">
                                             <div class="mb-4 form-group">
-                                                <input name="phone" type="text" placeholder="Telefone" required="required">
+                                                <input autocomplete="off" name="phone" type="text" placeholder="Telefone" required="required">
                                             </div>
                                         </div>
                                         <div class="w-full px-4">

@@ -2,7 +2,7 @@
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Meu Carrinho";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-        new BreadcrumbsDTO("Início", "./", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
         new BreadcrumbsDTO("Produtos", "./shop"),
         new BreadcrumbsDTO("Meu Carrinho")
     };
@@ -50,7 +50,7 @@
                             <div class="left">
                                 <div class="coupon">
                                     <form action="#" target="_blank">
-                                        <input name="Coupon" placeholder="Insira seu cupom">
+                                        <input autocomplete="off" type="text" name="Coupon" placeholder="Insira seu cupom">
                                         <div class="button">
                                             <button class="btn !flex !text-gray-800 hover:!text-white !w-fit !min-h-0">Aplicar desconto</button>
                                         </div>

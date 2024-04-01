@@ -1,0 +1,108 @@
+﻿@model Client
+
+@{
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Sua conta";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Sua conta")
+    };
+
+    ViewData["Title"] = breadcrumbs.Title;
+}
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+<div class="my-10">
+    <div class="container mx-auto px-5">
+        <div class="w-5/6 mx-auto">
+            <div class="flex flex-wrap">
+
+                <div class="w-3/12 px-5 mb-10">
+                    <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                        <figure class="px-3 pt-3">
+                            <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="" class="rounded-xl" />
+                        </figure>
+                        <div class="card-body items-start text-start px-3 py-3">
+                            <div>
+                                <h2 class="card-title !text-base">Seus pedidos</h2>
+                                <p>Organização, consultas, gestão de interações.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="w-3/12 px-5 mb-10">
+                    <a asp-action="Cliente" asp-controller="Client" asp-route-codigo="@Model.Codigo" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                        <figure class="px-3 pt-3">
+                            <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="" class="rounded-xl" />
+                        </figure>
+                        <div class="card-body items-start text-start px-3 py-3">
+                            <div>
+                                <h2 class="card-title !text-base">Dados cadastrais</h2>
+                                <p>Listar e gerenciar solicitações de troca.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="w-3/12 px-5 mb-10">
+                    <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                        <figure class="px-3 pt-3">
+                            <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="" class="rounded-xl" />
+                        </figure>
+                        <div class="card-body items-start text-start px-3 py-3">
+                            <div>
+                                <h2 class="card-title !text-base">Trocas</h2>
+                                <p>Reembolso, resgate de cupons de desconto.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="w-3/12 px-5 mb-10">
+                    <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                        <figure class="px-3 pt-3">
+                            <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="" class="rounded-xl" />
+                        </figure>
+                        <div class="card-body items-start text-start px-3 py-3">
+                            <div>
+                                <h2 class="card-title !text-base">Devoluções</h2>
+                                <p>Gestão de produtos em exibição, promoções e tabelas de preços.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="w-3/12 px-5 mb-10">
+                    <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                        <figure class="px-3 pt-3">
+                            <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="" class="rounded-xl" />
+                        </figure>
+                        <div class="card-body items-start text-start px-3 py-3">
+                            <div>
+                                <h2 class="card-title !text-base">Cupom de Desconto</h2>
+                                <p>Entrada e saida, consultas, gestão de estoque.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="w-3/12 px-5 mb-10">
+                    <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                        <figure class="px-3 pt-3">
+                            <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="" class="rounded-xl" />
+                        </figure>
+                        <div class="card-body items-start text-start px-3 py-3">
+                            <div>
+                                <h2 class="card-title !text-base">Lista de desejos</h2>
+                                <p>Gestão de cupons de desconto e troca.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

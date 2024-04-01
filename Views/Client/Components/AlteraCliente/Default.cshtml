@@ -1,0 +1,128 @@
+@model ViewAlteraCliente
+
+<div class="checkout-steps-form-style-1">
+    <form id="form-altera-cliente" class="text-start">
+        <input type="hidden" name="idCliente" value="@Model.Client.IdCliente">
+
+        <div class="">
+            <div class="flex flex-wrap ">
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Nome</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe seu nome!">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="nome" value="@Model.Client.Nome.Capitalize()" type="text"
+                                       placeholder="Primeiro nome">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Sobrenome</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe seu sobrenome!">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="sobrenome" value="@Model.Client.Sobrenome.Capitalize()" type="text"
+                                       placeholder="Sobrenome">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>E-mail</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe um email para acesso a conta.">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="email" value="@Model.Client.Email" type="text"
+                                       placeholder="Endereço de email">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>CPF</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="O campo CPF é obrigatório.">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="cpf" value="@Model.Client.CPF" type="text" placeholder="Ex.: 000.000.000-00" data-mask="000.000.000-00">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>RG</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe seu RG!">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="rg" value="@Model.Client.RG" type="text" placeholder="Ex.: 00.000.000-0" data-mask="00.000.000-0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Data Nascimento</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="É obrigatório informar sua data de nascimento.">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="dataNascimento" value='@Model.Client.DataNascimento.ToString("yyyy-MM-dd")' type="date">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Gênero</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Por favor escolha uma das opções.">
+                            <div class="select-items">
+                                <select required name="genero"
+                                        class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                                    <option value="">Selecione</option>
+                                    @foreach (var Item in Model.Genres)
+                                    {
+                                        if (Item.Chave == Model.Client.Genero)
+                                        {
+                                            <option selected value="@Item.Chave">@Item.Nome</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@Item.Chave">@Item.Nome</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Celular</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="É obrigatório informar um número para contato.">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="celular" value="@Model.Client.Celular" type="text" placeholder="Ex.: (00) 00000-0000" data-mask="(00) 00000-0000">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Telefone (fixo)</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="É obrigatório informar um número secundário.">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="telefone" value="@Model.Client.Telefone" type="text" placeholder="Ex.: (00) 0000-0000" data-mask="(00) 0000-0000">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

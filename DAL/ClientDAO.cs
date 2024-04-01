@@ -78,18 +78,21 @@ namespace ecommerce.DAL
             {
                 string query = @$"UPDATE ECM_CLIENTES SET NOME = @NOME, SOBRENOME = @SOBRENOME, CPF = @CPF, DATA_NASCIMENTO = @DATA_NASCIMENTO,
                                 RG = @RG, TELEFONE = @TELEFONE, CELULAR = @CELULAR, SITUACAO = @SITUACAO, GENERO = @GENERO
-                                WHERE ID_CLIENTE = @ID_CLIENTE;";
+                                WHERE ID_CLIENTE = @ID_CLIENTE;
+
+                                UPDATE ECM_USUARIOS SET EMAIL = @EMAIL WHERE ID_USUARIO = (SELECT ID_USUARIO FROM ECM_CLIENTES WHERE ID_CLIENTE = @ID_CLIENTE);";
 
                 SqlParameter[] parameters = new SqlParameter[] {
-                    new SqlParameter("@NOME", client.Nome.ToUpper()),
-                    new SqlParameter("@SOBRENOME", client.Sobrenome.ToUpper()),
-                    new SqlParameter("@CPF", client.CPF),
-                    new SqlParameter("@DATA_NASCIMENTO", client.DataNascimento),
-                    new SqlParameter("@RG", client.RG),
-                    new SqlParameter("@TELEFONE", client.Telefone),
-                    new SqlParameter("@CELULAR", client.Celular),
-                    new SqlParameter("@SITUACAO", client.Situacao),
-                    new SqlParameter("@GENERO", client.Genero),
+                    new SqlParameter("@NOME", I(client.Nome.ToUpper())),
+                    new SqlParameter("@SOBRENOME", I(client.Sobrenome.ToUpper())),
+                    new SqlParameter("@CPF", I(client.CPF)),
+                    new SqlParameter("@DATA_NASCIMENTO", I(client.DataNascimento)),
+                    new SqlParameter("@RG", I(client.RG)),
+                    new SqlParameter("@TELEFONE", I(client.Telefone)),
+                    new SqlParameter("@CELULAR", I(client.Celular)),
+                    new SqlParameter("@SITUACAO", I(client.Situacao)),
+                    new SqlParameter("@GENERO", I(client.Genero)),
+                    new SqlParameter("@EMAIL", I(client.Email)),
                     new SqlParameter("@ID_CLIENTE", IdCliente),
                 };
 
@@ -142,7 +145,7 @@ namespace ecommerce.DAL
             try
             {
                 string query = $@"SELECT
-	                                USU.EMAIL, CLI.CODIGO,
+	                                USU.EMAIL, CLI.CODIGO, USU.ID_USUARIO,
 	                                CLI.ID_CLIENTE, CLI.NOME, CLI.SOBRENOME, CLI.CPF,
 	                                CLI.DATA_NASCIMENTO, CLI.RG, CLI.GENERO,
 	                                CLI.CRIACAO, CLI.TELEFONE, CLI.CELULAR
@@ -169,7 +172,7 @@ namespace ecommerce.DAL
             try
             {
                 string query = $@"SELECT
-	                                USU.EMAIL, CLI.CODIGO,
+	                                USU.EMAIL, CLI.CODIGO, USU.SENHA,
 	                                CLI.ID_CLIENTE, CLI.NOME, CLI.SOBRENOME, CLI.CPF,
 	                                CLI.DATA_NASCIMENTO, CLI.RG, CLI.GENERO,
 	                                CLI.CRIACAO, CLI.TELEFONE, CLI.CELULAR
@@ -274,7 +277,7 @@ namespace ecommerce.DAL
             try
             {
                 string query = $@"SELECT
-	                                USU.EMAIL, CLI.CODIGO,
+	                                USU.EMAIL, CLI.CODIGO, SITUACAO,
 	                                CLI.ID_CLIENTE, CLI.NOME, CLI.SOBRENOME, CLI.CPF,
 	                                CLI.DATA_NASCIMENTO, CLI.RG, CLI.GENERO,
 	                                CLI.CRIACAO, CLI.TELEFONE, CLI.CELULAR

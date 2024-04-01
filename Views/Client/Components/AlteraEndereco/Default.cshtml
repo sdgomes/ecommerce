@@ -1,0 +1,218 @@
+@model ViewAlteraEndereco
+
+<div class="checkout-steps-form-style-1">
+    <form id="form-altera-endereco" class="text-start">
+        <input type="hidden" name="idCliente" value="@Model.Address.IdCliente">
+        <input type="hidden" name="idEndereco" value="@Model.Address.IdEndereco">
+
+        <div class="flex flex-wrap">
+            <div class="px-3">
+                <div class="form-control">
+                    <label class="cursor-pointer label gap-3">
+                        <input type="checkbox" class="toggle toggle-secondary" name="principal" value="true" @(Model.Address.Principal ? "checked" : "") />
+                        <span class="label-text !text-sm">Endereço principal</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="px-3">
+                <div class="form-control">
+                    <label class="cursor-pointer label gap-3">
+                        <input type="checkbox" class="toggle toggle-secondary" name="cobranca" value="true" @(Model.Address.Cobranca ? "checked" : "") />
+                        <span class="label-text !text-sm">Endereço de cobrança</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="address-capsule">
+            <div class="flex flex-wrap w-1/2">
+                <div class="md:w-2/3 px-4">
+                    <div class="single-form form-default">
+                        <label>CEP</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe um CEP.">
+                            <div class="form-input form">
+                                <input required autocomplete="off" name="cep" value="@Model.Address.CEP" type="text" placeholder="Ex.: 00000-000"
+                                       data-mask="00000-000">
+                                <button type="button"
+                                        class="viacep flex items-center justify-center h-[38px] cursor-pointer disabled:!saturate-100 active:scale-95 w-[2.5rem] rounded-[3px] bg-gray-200 my-auto absolute right-1 border border-gray-300 inset-y-0">
+                                    <i class="fa-regular fa-magnifying-glass"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap ">
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Tipo Logradouro</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Qual o tipo de logradouro.">
+                            <div class="select-items">
+                                <select required name="tipoLogradouro"
+                                        class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                                    <option value="">Selecione</option>
+                                    @foreach (var Item in Model.AddressData.TypesOfAddresses)
+                                    {
+                                        if (Item.Nome == Model.Address.TipoLogradouro)
+                                        {
+                                            <option selected value="@Item.Nome">@Item.Nome.Capitalize()</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@Item.Nome">@Item.Nome.Capitalize()</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Tipo Residencia</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Qual o tipo de residencia.">
+                            <div class="select-items">
+                                <select required name="tipoResidencia"
+                                        class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                                    @foreach (var Item in Model.AddressData.TypesOfResidences)
+                                    {
+                                        if (Item.Nome == Model.Address.TipoResidencia)
+                                        {
+                                            <option selected="" value="@Item.Nome">@Item.Nome.Capitalize()</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@Item.Nome">@Item.Nome.Capitalize()</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Logradouro</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe o logradouro do endereço.">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="logradouro" value="@Model.Address.Logradouro" type="text"
+                                       placeholder="Ex.: Prefeito Sebatião Cascardo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Número</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Se sem número informe 'S/N'.">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="numero" value="@Model.Address.Numero" type="text"
+                                       placeholder="Ex.: S/N">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Complemento (opcional)</label>
+                        <div class="form-input form">
+                            <input autocomplete="off" name="complemento" value="@Model.Address.Complemento" type="text"
+                                   placeholder="Ex.: Bloco 2 Apartamento 5">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Bairro</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe o bairro.">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="bairro" value="@Model.Address.Bairro" type="text"
+                                       placeholder="Ex.: Jardim Universo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Cidade</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe a cidade do endereço.">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="cidade" value="@Model.Address.Cidade" type="text"
+                                       placeholder="Ex: Mogi das Cruzes">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Região / Estado</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Escolha um estado.">
+                            <div class="select-items">
+                                <select required name="estado"
+                                        class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                                    <option value="">Selecione</option>
+                                    @foreach (var Item in Model.AddressData.States)
+                                    {
+                                        if (Item.Nome == Model.Address.Estado)
+                                        {
+                                            <option selected value="@Item.Nome">@Item.Nome</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@Item.Nome">@Item.Nome</option>
+                                        }
+
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>País</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe O nome do país.">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="pais" value="@Model.Address.Pais" type="text"
+                                       placeholder="Ex.: Brasil">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 px-4">
+                    <div class="single-form form-default">
+                        <label>Apelido Para o Endereco</label>
+                        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="De um apelido para o endereço, como 'Casa'.">
+                            <div class="form-input form">
+                                <input autocomplete="off" required name="nomeEndereco" value="@Model.Address.NomeEndereco" type="text"
+                                       placeholder="Ex.: Casa">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-full px-4">
+                    <div class="single-form form-default">
+                        <label>Observação (opcional)</label>
+                        <div class="form-input form">
+                            <input autocomplete="off" name="frase" value="@Model.Address.Frase" type="text"
+                                   placeholder="Ex.: Caso não tenha ninguém pode deixar no vizinho">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

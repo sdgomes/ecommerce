@@ -1,73 +1,108 @@
 @model ViewCartao
 
 <div class="checkout-payment-form">
-    <div class="md:w-1/2">
-        <div class="single-form form-default">
-            <label>Bandeira</label>
-            <div class="select-items">
-                <select name="card[@Model.Index].idBandeira"
-                        class="form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
-                    <option value="0">Selecione</option>
-                    <option value="1">Visa</option>
-                    <option value="2">Mastercard</option>
-                    <option value="3">Elo</option>
-                    <option value="4">Aura</option>
-                    <option value="5">Amex</option>
-                    <option value="6">Diners</option>
-                    <option value="7">Jcb</option>
-                    <option value="8">Discover</option>
-                </select>
+    <div class="flex flex-wrap ">
+        <div class="md:w-1/2">
+            <div class="single-form form-default">
+                <label>Bandeira</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Qual a bandeira do cartão.">
+                    <div class="select-items">
+                        <select required name="cards[@Model.Index].idBandeira"
+                                class="card-flags form-control block appearance-none w-full py-1 px-2 text-base leading-[2.2] bg-white text-gray-800 border border-gray-200 rounded">
+                            <option value="">Selecione</option>
+                            @foreach (var Card in Model.Cards)
+                            {
+                                <option value="@Card.IdBandeira">@Card.NomeBandeira.Capitalize()</option>
+                            }
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
+
+        @if (Model.Index != 0)
+        {
+            <div class="md:w-1/2 relative text-end">
+                <button type="button" data-click="remove-card" class="btn btn-circle btn-error btn-sm"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        }
     </div>
 
-    <div class="single-form form-default">
-        <label>Nome do Titular</label>
-        <div class="form-input form">
-            <input name="card[@Model.Index].nomeTitular" type="text" placeholder="Nome do Titular">
+    <div class="flex flex-wrap -mx-4">
+        <div class="md:w-1/2 px-4">
+            <div class="single-form form-default">
+                <label>Nome do Titular</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Qual o nome impresso no cartão.">
+                    <div class="form-input form">
+                        <input autocomplete="off" required name="cards[@Model.Index].nomeTitular" type="text" placeholder="Nome do Titular">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:w-1/2 px-4">
+            <div class="single-form form-default">
+                <label>Apelido do cartão</label>
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Qual o aplido do cartão.">
+                    <div class="form-input form">
+                        <input autocomplete="off" required name="cards[@Model.Index].nomeCartao" type="text" placeholder="Aplido do cartão">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="single-form form-default">
         <label>CPF do Titular</label>
-        <div class="form-input form">
-            <input name="card[@Model.Index].CPFTitular" type="text" placeholder="CPF do Titular">
+        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Qual o CPF do titular do cartão.">
+            <div class="form-input form">
+                <input autocomplete="off" required name="cards[@Model.Index].CPFTitular" type="text" placeholder="CPF do Titular" data-mask="000.000.000-00">
+            </div>
         </div>
     </div>
 
     <div class="single-form form-default">
         <label>Número do cartão</label>
-        <div class="form-input form">
-            <input name="card[@Model.Index].numero" id="credit-input" type="text" placeholder="0000 0000 0000 0000">
-            <img src="/img/images/payment/card.png" alt="card">
+        <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Informe o número do cartão.">
+            <div class="form-input form">
+                <input autocomplete="off" required name="cards[@Model.Index].numero" id="credit-input" type="text" placeholder="0000 0000 0000 0000" data-mask="0000 0000 0000 0000">
+                <img class="image-flags" src="/img/images/payment/" alt="">
+            </div>
         </div>
     </div>
-    <div class="payment-card-info">
+    <div class="payment-card-info flex">
         <div class="single-form form-default mm-yy">
-            <input type="hidden" name="card[@Model.Index].dataValidade" value="">
+            <input autocomplete="off" type="hidden" name="cards[@Model.Index].dataValidade" value="0000-00">
             <label>Validade</label>
             <div class="expiration flex">
-                <div class="form-input form">
-                    <input name="mes" type="text" placeholder="MM">
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Qual o mês de validade.">
+                    <div class="form-input form">
+                        <input autocomplete="off" required name="mes" type="text" placeholder="MM" data-mask="00">
+                    </div>
                 </div>
-                <div class="form-input form">
-                    <input name="ano" type="text" placeholder="YYYY">
+
+                <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Qual o ano de validade.">
+                    <div class="form-input form">
+                        <input autocomplete="off" required name="ano" type="text" placeholder="YYYY" data-mask="0000">
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="single-form form-default">
             <label>CVC/CVV <span><i class="mdi mdi-alert-circle"></i></span></label>
-            <div class="form-input form">
-                <input name="card[@Model.Index].codigoSeguranca" type="text" placeholder="***">
+            <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Infrome o código de segurança.">
+                <div class="form-input form !w-full">
+                    <input autocomplete="off" required name="cards[@Model.Index].codigoSeguranca" type="text" placeholder="***" data-mask="0000">
+                </div>
             </div>
         </div>
     </div>
 
     <div class="single-form form-default">
-        <div class="single-checkbox checkbox-style-3">
-            <input type="checkbox" id="checkbox-3">
-            <label for="checkbox-3"><span></span></label>
-            <p>Definir esse cartão como principal.</p>
-        </div>
+        <label class="flex gap-2 items-center mt-4">
+            <input autocomplete="off" class="accent-yellow-400 w-[17px] h-[17px]" @(Model.Index == 0 ? "checked" : "") type="radio" value="@Model.Index" name="mainCard">
+            <span>Definir esse cartão como principal.</span>
+        </label>
     </div>
 </div>
