@@ -1,4 +1,5 @@
-﻿using ecommerce.Models.ModelView;
+﻿using ecommerce.DAL;
+using ecommerce.Models.ModelView;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,13 @@ namespace ecommerce.BLL
 {
     public class Produto
     {
-        public static ProdutoView RetornaProduto(string Id)
+        public static ProdutoView RetornaProduto(long IdProduto)
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "Mock\\produtoindividual.json");
-            string json = File.ReadAllText(path);
+            ProdutoView Model = new();
+            Model.Produto = ProductDAO.SearchProductById(IdProduto);
+            Model.Imagens = ProductDAO.SelectImagesFromProduct(IdProduto);
 
-            List<ProdutoView> Produtos = JsonConvert.DeserializeObject<List<ProdutoView>>(json);
-
-            return Produtos.Where((Item) => Item.Id == Id).FirstOrDefault();
+            return Model;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace ecommerce.Controllers
 {
     public class ShopController : Controller
     {
+        [HttpGet("produtos/{Categoria?}/{Subcategoria?}")]
         public IActionResult Index()
         {
             return View();

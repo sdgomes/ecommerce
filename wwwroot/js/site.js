@@ -1,4 +1,43 @@
-﻿const Toast = Swal.mixin({
+﻿const Favoritos = {
+    getItems: function () {
+        var items = localStorage.getItem("produtos-favoritos");
+        return items == null ? [] : JSON.parse(items);
+    },
+
+    Carrega: function () {
+        var items = this.getItems();
+
+        items.forEach(favorito => {
+            $(`[data-id-produto=${favorito.idProduto}]`).attr('data-favorito', true)
+        });
+
+        $("#favoritos").html(items.length)
+    },
+
+    Adicona: function (idProduto) {
+        var items = this.getItems();
+
+        var tempFavoritos = [...items, { idProduto: idProduto }]
+
+        localStorage.setItem("produtos-favoritos", JSON.stringify(tempFavoritos));
+
+        $("#favoritos").html(tempFavoritos.length)
+    },
+
+    Remove: function (idProduto) {
+        var items = JSON.parse(localStorage.getItem("produtos-favoritos"))
+
+        var tempFavoritos = items.filter((item) => item.idProduto != idProduto)
+
+        localStorage.setItem("produtos-favoritos", JSON.stringify(tempFavoritos));
+
+        $("#favoritos").html(tempFavoritos.length)
+    }
+}
+
+Favoritos.Carrega();
+
+const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
     showConfirmButton: false,
@@ -185,3 +224,30 @@ $(document).ready(function () {
     // expose
     window.onDomChange = onDomChange;
 })(window);
+
+$(document).on('click', '[data-action="favoritos"]', function () {
+    $button = $(this);
+
+    const idProduto = $button.attr('data-id-produto')
+    const toggleFavorito = $button.attr('data-favorito').parseBool();
+    $button.attr('data-favorito', !toggleFavorito);
+
+    if (!toggleFavorito)
+        Favoritos.Adicona(idProduto);
+    else
+        Favoritos.Remove(idProduto);
+})
+
+$(document).on("click", ".button-qnt", function () {
+    $button = $(this);
+    $input = $button.parents('.count-input').find(".input-qnt");
+
+    var operador = $button.attr("data-operador");
+    var qnt = parseInt($input.val());
+
+    if (operador == "menos" && qnt > 1)
+        $input.val(qnt - 1)
+
+    if (operador == "mais")
+        $input.val(qnt + 1)
+});

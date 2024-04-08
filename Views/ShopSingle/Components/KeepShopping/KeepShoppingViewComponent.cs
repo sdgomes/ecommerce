@@ -1,25 +1,25 @@
 ﻿using ecommerce.DAL;
 using ecommerce.DTO;
+using ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace ecommerce.Views.Shop.Components.Grid
+namespace ecommerce.Views.ShopSingle.Components.KeepShopping
 {
-    [ViewComponent(Name = "Grid")]
-    public class GridViewComponent : ViewComponent
+    public class KeepShoppingViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
-            ViewGrid Model = new();
-            Model.Products = ProductDAO.SelectAllProducts();
+            ViewKeepShopping Model = new();
+            Model.Products = ProductDAO.SelectAllTrendingProducts();
 
             return View(Model);
         }
     }
 
-    public class ViewGrid
+    public class ViewKeepShopping
     {
         public List<ProductDTO> Products { get; set; }
     }

@@ -5,11 +5,11 @@
     <div class="cart-single-list">
         <div class="flex flex-wrap  items-center">
             <div class="lg:w-1/12 md:w-1/12 px-4 w-full">
-                <a asp-action="Index" asp-controller="ShopSingle" asp-route-id="@Item.Id"><img src="~/img/images/cart/@Item.Imagem" alt="..."></a>
+                <a asp-action="Index" asp-controller="ShopSingle" asp-route-id-produto="@Item.Id"><img src="~/img/images/cart/@Item.Imagem" alt="..."></a>
             </div>
             <div class="lg:w-4/12 md:w-3/12 px-4 w-full">
                 <h5 class="product-name">
-                    <a asp-action="Index" asp-controller="ShopSingle" asp-route-id="@Item.Id">
+                    <a asp-action="Index" asp-controller="ShopSingle" asp-route-id-produto="@Item.Id">
                         @Item.DescricaoProduto
                     </a>
                 </h5>

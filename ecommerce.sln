@@ -7,10 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ecommerce", "ecommerce.cspr
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_Work|Any CPU = Debug_Work|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1843720B-9CA5-4993-8ED0-B325CBBC3CBC}.Debug_Work|Any CPU.ActiveCfg = Debug_Work|Any CPU
+		{1843720B-9CA5-4993-8ED0-B325CBBC3CBC}.Debug_Work|Any CPU.Build.0 = Debug_Work|Any CPU
 		{1843720B-9CA5-4993-8ED0-B325CBBC3CBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1843720B-9CA5-4993-8ED0-B325CBBC3CBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1843720B-9CA5-4993-8ED0-B325CBBC3CBC}.Release|Any CPU.ActiveCfg = Release|Any CPU

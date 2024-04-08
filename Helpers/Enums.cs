@@ -4,7 +4,8 @@ namespace ecommerce.Helpers
     {
         public enum ConnectionStringNames
         {
-            PROGRAMAS
+            PROGRAMAS,
+            PROGRAMAS_WORK
         }
     }
 }

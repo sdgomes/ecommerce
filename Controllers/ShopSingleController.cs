@@ -12,9 +12,10 @@ namespace ecommerce.Controllers
 {
     public class ShopSingleController : Controller
     {
-        public IActionResult Index(string Id)
+        [HttpGet("produtos/{Categoria}/{Subcategoria}/detalhes/{IdProduto}")]
+        public IActionResult Index(long IdProduto)
         {
-            var Model = Produto.RetornaProduto(Id);
+            var Model = Produto.RetornaProduto(IdProduto);
             return View(Model);
         }
     }

@@ -1,40 +1,50 @@
 @{
-    ViewBreadcrumbs breadcrumbs = new();
-    breadcrumbs.Title = "Favoritos";
-    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-        new BreadcrumbsDTO("Shop", "./shop"),
-        new BreadcrumbsDTO("Favoritos")
-    };
+ViewBreadcrumbs breadcrumbs = new();
+breadcrumbs.Title = "Favoritos";
+breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+new BreadcrumbsDTO("Favoritos")
+};
 
-    ViewData["Title"] = breadcrumbs.Title;
+ViewData["Title"] = breadcrumbs.Title;
 }
 
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-<div class="shopping-cart section">
-    <div class="container mx-auto px-4">
-        <div class="cart-list-head mx-4">
+    <div class="shopping-cart section">
+        <div class="container mx-auto px-4">
 
-            <div class="cart-list-title">
-                <div class="flex flex-wrap ">
-                    <div class="lg:w-1/12 md:w-1/12 px-4 w-full"></div>
-                    <div class="lg:w-4/12 md:w-3/12 px-4 w-full">
-                        <strong>Nome do Produto</strong>
-                    </div>
-                    <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
-                        <strong>Subtotal</strong>
-                    </div>
-                    <div class="ml-auto lg:w-1/12 md:w-2/12 px-4 w-full">
-                        <strong>Remover</strong>
-                    </div>
-                    <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
-                        <strong>Adicionar ao Carrinho</strong>
-                    </div>
+            <div id="container-favorites">
+                <div id="loader-favorites" class="text-center">
+                    <span class="loading loading-spinner loading-lg text-primary"></span>
+                    <h3>Carregando</h3>
                 </div>
             </div>
-
-            @(await Component.InvokeAsync<ProdutosFavoritesViewComponent>())
         </div>
     </div>
-</div>
+
+    @section Scripts {
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function (event) {
+            $(document).on("click", ".remove-item", function () {
+                $(this).parents('.cart-single-list').remove();
+
+                if ($('.cart-single-list').length == 0) {
+                    $('.cart-list-head').append(`<div role="alert" class="rounded-none alert"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span>Nenhum item foi adicionado a lista de favoritos.</span></div>`)
+                }
+            })
+
+            $.ajax({
+                type: "POST",
+                data: { Produtos: Favoritos.getItems() },
+                url: "/componente/favorites",
+                success: function (response) {
+                    $("#container-favorites").html(response);
+                },
+                error: function (response) {
+                    console.log(response);
+                },
+            });
+        });
+    </script>
+    }
