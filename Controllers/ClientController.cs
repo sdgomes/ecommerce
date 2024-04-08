@@ -70,6 +70,20 @@ namespace ecommerce.Controllers
             }
         }
 
+        [HttpPost("/cadastrar/novo/cartao")]
+        public IActionResult CadastrarNovoCartao(Card card)
+        {
+            try
+            {
+                ClientBLL.CreateNewCard(card);
+                return Json(new { confirm = true });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpPost("/cadastrar/novo/endereco")]
         public IActionResult CadastrarNovoEndereco(Address address)
         {
@@ -125,6 +139,35 @@ namespace ecommerce.Controllers
                 throw;
             }
         }
+
+        [HttpPost("/remove/cartao")]
+        public IActionResult RemoveCartao(long IdCartao)
+        {
+            try
+            {
+                ClientBLL.RemoveCartao(IdCartao);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost("/remove/endereco")]
+        public IActionResult RemoveEndereco(long IdEndereco)
+        {
+            try
+            {
+                ClientBLL.RemoveEndereco(IdEndereco);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
 
         #region Queries 

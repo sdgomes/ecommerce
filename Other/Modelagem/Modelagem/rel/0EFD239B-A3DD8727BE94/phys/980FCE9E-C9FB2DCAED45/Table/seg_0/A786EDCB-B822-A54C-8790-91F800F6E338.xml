@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="ECM_FAVORITOS" directorySegmentName="seg_0" id="A786EDCB-B822-A54C-8790-91F800F6E338">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<database>DB_NULLELEMENT</database>
+<schema>B8A1A758-3994-4C19-394D-4E74C7EEEBCE</schema>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="ID_CLIENTE" id="4A77655B-C699-ED8D-3035-5316D5F6D0B9">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="ID_PRODUTO" id="4B954502-271D-FB51-3FB4-354141120D25">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="REMOVIDO" id="6DDEF4F7-33FC-CB9B-3FAD-6DCB0ABE89E8">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<defaultValue>0</defaultValue>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="CRIACAO" id="8121F24A-0A32-89F1-574B-E694FF56E1FF">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<defaultValue>GETDATE()</defaultValue>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="ID_FAVORITO" id="B3E8B03E-513D-B6C7-EE0B-487E4355A37A">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<asIdentity>true</asIdentity>
+<identityForReplication>YES</identityForReplication>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="D_E_L_E_T_" id="B9CD1A1F-F3CD-D223-2959-45C3EC9FB62E">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<defaultValue>&apos;&apos;</defaultValue>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="FK_FAVORITOS_TO_PRODUTOS_ECM" id="1FDCC3BB-387F-BAEA-12EE-C70E3CB0F8BD">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="FK_FAVORITOS_TO_CLIENTES_ECM" id="341BBACE-9E2E-F28C-FDB0-A265A7A7230C">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="ECM_FAVORITOS_PK" id="98070C2F-6055-23C3-88C7-8D921770F934">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<clustered>true</clustered>
+</PrimaryKey>
+</primaryKeys>
+</TableProxySqlServerv2k5>

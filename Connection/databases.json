@@ -1,6 +1,9 @@
-[
+[ {
+  "name": "PROGRAMAS",
+  "connectionString": "Data Source=DESKTOP-8N2IJGM\\SQL001; Database=PROGRAMAS; Uid=ti; Pwd=ti_123456; Encrypt=False;"
+},
   {
-    "name": "PROGRAMAS",
+    "name": "PROGRAMAS_z",
     "connectionString": "Data Source=OSEIAS_TI\\OSEIAS_TI; Database=PROGRAMAS; Uid=ti; Pwd=ti_123456; Encrypt=False;"
   }
 ]

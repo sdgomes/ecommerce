@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D7E8B7D1-39CD-BB84-8524-2FA94D87B1C1" name="ECM_ETAPAS">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>5E0FDF8F-BD5C-D9DD-1095-426D6C419F26</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_ETAPA" id="15A309D9-877B-E14B-4719-21832399EB73">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>00FEBA9C-A0D9-9F43-046A-3BBC68881069</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<domain>9D60CEE3-F777-37B9-CE68-C7DB25509B80</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ETAPA" id="19A71167-2076-3AA8-2900-4A8A26595885">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>52601BA7-EF96-C9A3-ADBF-97B25D5F6899</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>1DE3AC9C-9200-01B7-6F82-1CFB976C00EB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRIACAO" id="A5A905FF-AAE0-138F-A840-F95B69928CC7">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>7D595F04-6718-55D3-1BDE-7B1528E6E843</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<domain>1EB13BAC-0212-4158-2E5E-561BD1613E0D</domain>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>GETDATE()</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="D_E_L_E_T_" id="B87D09E0-EEE1-02EB-34E7-85995AE49C89">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>4B14DF58-D435-8DE1-434A-A395C24FEE5E</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>5ADF1B85-A715-5120-5B9C-1563ECEC1D49</domain>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>&apos;&apos;</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FF7EDD00-94F3-4E56-4C96-11A8F50B3950" name="ECM_ETAPAS_PK">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>6FBE2CC7-FBD6-C702-02FE-CFD279E5C1C3</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="15A309D9-877B-E14B-4719-21832399EB73"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

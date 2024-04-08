@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="253CF91C-F009-F080-F0D2-F45BEFC26A96" containerWithKeyObject="F76B9ABD-03AC-F41A-7E2F-542A53497BAC" localFKIndex="F3C0F40A-91AC-E5DC-737E-A4DBB3006822" name="FK_USU_NOT_TO_NOTIFICACOES_ECM">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>6A97D56F-ED6F-4E8D-2272-C28E1F361070</importedID>
+<referredTableLongName>ECM_NOTIFICACOES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>AD04080B-7D36-EBA6-F4FB-6109E4014884</referredTableID>
+<keyObject>2C8B35A3-5F95-531E-13E3-47A952F595CC</keyObject>
+<referredKeyID>2C8B35A3-5F95-531E-13E3-47A952F595CC</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_NOTIFICACAO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

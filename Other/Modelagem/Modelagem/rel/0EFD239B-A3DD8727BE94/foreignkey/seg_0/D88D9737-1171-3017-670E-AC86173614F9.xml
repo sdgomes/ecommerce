@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="D88D9737-1171-3017-670E-AC86173614F9" containerWithKeyObject="CA52C41C-658C-ACE6-D727-FF92BFC7B3BA" localFKIndex="1BDFF679-32B6-176C-2C91-4EEDCDBFBB98" name="FK_DEVOLUCOES_TO_FUNCIONARIOS_ECM">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>4473D49D-C1E3-3914-63AC-B2D04186F327</importedID>
+<referredTableLongName>ECM_FUNCIONARIOS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>6093E0CE-74B2-EE09-4090-B98DE6DE0C11</referredTableID>
+<keyObject>B6D78B14-3001-C65E-9868-53B972BD162B</keyObject>
+<referredKeyID>B6D78B14-3001-C65E-9868-53B972BD162B</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_FUNCIONARIO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

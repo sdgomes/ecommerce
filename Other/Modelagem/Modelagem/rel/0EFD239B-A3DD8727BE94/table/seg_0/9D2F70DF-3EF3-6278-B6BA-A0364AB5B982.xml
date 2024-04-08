@@ -1,0 +1,219 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9D2F70DF-3EF3-6278-B6BA-A0364AB5B982" name="ECM_CLIENTES">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>32D653C4-8921-B448-35EA-675378109E97</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_CLIENTE" id="FCFB18AC-1613-7E7C-26E9-F94FF02AEE02">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>6002DDE8-3951-C111-788A-FFB56E59B506</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<domain>9D60CEE3-F777-37B9-CE68-C7DB25509B80</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_USUARIO" id="75B877E7-A880-7D49-7BF6-011A9644E3CB">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>76C39F72-54ED-05A2-797C-89D35AC1E67B</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<domain>9D60CEE3-F777-37B9-CE68-C7DB25509B80</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5BE871B2-56B7-AB12-4DDC-F49B75556B98" referredColumn="85699035-9D41-FDE3-C3A8-ED89127663FE"/>
+</associations>
+</Column>
+<Column name="CODIGO" id="9746C0D9-2329-4350-D2D8-51715119200F">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>DB71314B-B8A9-DB07-E4AA-CBAF1DDAE673</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>E1054FE8-2CA8-E147-A223-60F276D5CF93</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOME" id="43FA1074-45BB-D43B-421D-DCF9D96ABBBD">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>95F689DF-F436-8DCD-87C2-29E6A1D3961B</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>1DE3AC9C-9200-01B7-6F82-1CFB976C00EB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SOBRENOME" id="25B80C59-9E01-32C6-54B2-552ADE400773">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>14D3242C-6118-7DB1-EF05-8DADDD8EE2AC</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>1DE3AC9C-9200-01B7-6F82-1CFB976C00EB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CPF" id="18CBE1D6-2E27-2B51-95CB-E3E31217BABA">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>DA179A92-C06D-4C56-C8F8-D8EC8ECA9204</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F151E68A-C450-F2CE-1280-A3547161E0EA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA_NASCIMENTO" id="722BC453-1A3A-B2AB-A270-451C38340F96">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>18AE140C-5C0C-6F31-6F66-E6AA2DE9748C</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>E9248C1F-F2B0-C57C-15D7-ABDC8F8C8CC3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RG" id="EA046316-0226-0636-D01B-50FA9B9A4AA7">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>1260DE83-DAA3-A3CB-A5A3-97926DA153BD</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C8F10D60-9C3E-D374-FFD7-FDC4D6788BC4</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TELEFONE" id="E4ACDA89-0AA2-55EF-57CF-7960091CD08D">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>00678B5E-7A2D-2B55-41D1-D845FF692C3A</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F151E68A-C450-F2CE-1280-A3547161E0EA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CELULAR" id="B0E1823E-566A-81F9-AC60-F012F8F912FF">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>AD4D936E-4855-4376-7AB0-17C85177D91A</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>40A21A0F-26CB-F3FF-33B5-52D8896E50C8</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SITUACAO" id="A5372449-C5CF-F50D-BA41-AA9FAFCB28F0">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>1F58478C-FDA6-C90C-FA44-67119625291E</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT034</logicalDatatype>
+<domain>B3C7109A-DDC7-405C-6EDA-BDADAC4F419E</domain>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GENERO" id="CCF6B86E-79BC-74DE-4774-2E7F76ADF487">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>9A967E8E-4F7D-A78C-5E73-F741EF272573</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>1DE3AC9C-9200-01B7-6F82-1CFB976C00EB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRIACAO" id="9A74A1C8-049D-467A-7C5A-AE0CC85F3206">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>9B85832B-591B-3C00-6A13-BE9B7FE2A1FD</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<domain>1EB13BAC-0212-4158-2E5E-561BD1613E0D</domain>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>GETDATE()</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="D_E_L_E_T_" id="737DCA77-8B9B-75E8-E3A7-A8DBA0999156">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>92600E4B-A69D-B3E2-22CC-FC9A1ABA9EBF</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>5ADF1B85-A715-5120-5B9C-1563ECEC1D49</domain>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>&apos;&apos;</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8B6993EF-40A1-AC36-F40B-B007D2E0A7F0" name="ECM_CLIENTE_PK">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>20C950CB-ACA8-8103-7D10-A400FCE5D877</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FCFB18AC-1613-7E7C-26E9-F94FF02AEE02"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2798F9D4-0ED9-4345-BD5F-071BBD8D5F51" name="FK_CLIENTES_TO_USUARIOS_ECM">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="75B877E7-A880-7D49-7BF6-011A9644E3CB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

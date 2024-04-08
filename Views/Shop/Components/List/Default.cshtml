@@ -1,7 +1,7 @@
-@model List<ViewList>
+@model ViewList
 <div>
     <div class="flex flex-wrap -mx-4">
-        @foreach (var Item in Model)
+        @foreach (var Item in Model.Products)
         {
             <div class="lg:w-full px-4 md:w-full w-full">
 
@@ -9,30 +9,33 @@
                     <div class="flex flex-wrap  items-center">
                         <div class="w-fit">
                             <div class="product-image w-[205px]">
-                                <img src="~/img/images/products/@Item.Imagem" alt="...">
+                                <img src="@Item.ImageSource" alt="...">
+                                <span class="holder">
                                 @if (Item.Tipo != "")
                                 {
-                                    <span class="new-tag">@Item.Tipo</span>
+                                    <span class="new-tag">@Item.Tipo.Capitalize()</span>
                                 }
 
-                                @if (Item.Desconto > 0)
+                                @if (Item.Desconto)
                                 {
-                                    <span class="sale-tag">-@Item.Desconto%</span>
+                                    <span class="sale-tag">-@Item.QntDesconto%</span>
                                 }
+                                </span>
+                                
                                 <div class="button flex gap-1">
-                                    <a asp-action="Index" asp-controller="Cart" asp-route-id="@Item.Id" class="btn !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853]">
+                                    <a asp-action="Index" asp-controller="Cart" asp-route-id="@Item.IdProduto" class="btn !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853]">
                                         <i class="fa-light fa-cart-circle-plus text-sm"></i>
                                         Carrinho
                                     </a>
-                                    <a asp-action="Index" asp-controller="Favorites" asp-route-id="@Item.Id" class="btn !w-fit !flex !itens-center"><i class="fa-solid fa-heart text-sm"></i></a>
+                                    <a asp-action="Index" asp-controller="Favorites" asp-route-id="@Item.IdProduto" class="btn !w-fit !flex !itens-center"><i class="fa-solid fa-heart text-sm"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="lg:w-2/3 px-4 md:w-2/3 w-full">
                             <div class="product-info">
-                                <span class="category">@Item.PreInfo</span>
+                                <span class="category">@Item.Subcategoria.Capitalize(), @Item.TipoProduto.Capitalize(), @Item.Cor.Capitalize(), @Item.Marca.Capitalize()</span>
                                 <h4 class="title">
-                                    <a asp-action="Index" asp-controller="ShopSingle" asp-route-id="@Item.Id">@Item.NomeProduto</a>
+                                    <a asp-action="Index" asp-controller="ShopSingle" asp-route-id="@Item.IdProduto">@Item.Nome.Capitalize()</a>
                                 </h4>
                                 <ul class="review">
                                     @for (var i = 1; i < 5; i++)
@@ -46,17 +49,17 @@
                                             <li><i class="fa-light fa-star"></i></li>
                                         }
                                     }
-                                    <li><span>@Item.Nota Review(s)</span></li>
+                                    <li><span>@Item.QntAvaliacoes Review(s)</span></li>
                                 </ul>
                                 <div class="price">
-                                    @if (Item.Desconto > 0)
+                                    @if (Item.Desconto)
                                     {
-                                        <span>@Item.PrecoDesconto</span>
-                                        <span class="discount-price">@Item.PrecoOriginal</span>
+                                        <span>@Item.CalculoDesconto.ToString("C")</span>
+                                        <span class="discount-price">@Item.Preco.ToString("C")</span>
                                     }
                                     else
                                     {
-                                        <span>@Item.PrecoOriginal</span>
+                                        <span>@Item.Preco.ToString("C")</span>
                                     }
                                 </div>
                             </div>

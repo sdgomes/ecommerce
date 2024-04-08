@@ -1,0 +1,122 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="235734E5-70DE-9790-BC1C-88E153E01479" name="ECM_TRA_CAR">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>AA775050-A602-16BD-F8FD-39FEC69145E4</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_TRANSACAO_CARTAO" id="EF3A88D1-F01F-FAFB-A99D-150804E7B00D">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>73E650C4-C1A3-5152-77DE-ED17A470D7C8</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<domain>9D60CEE3-F777-37B9-CE68-C7DB25509B80</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_TRANSACAO" id="9EE595F8-7634-ABD7-7A84-102CDDBD0445">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>3055F8AE-9968-8346-2E02-B33A87CCA401</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<domain>9D60CEE3-F777-37B9-CE68-C7DB25509B80</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E804CDCC-62D4-BB34-18BF-CA963AE332B1" referredColumn="7AD80648-FBAB-3A05-9D30-48B05366FD27"/>
+</associations>
+</Column>
+<Column name="ID_CARTAO" id="E3F47683-1DE6-5747-3F92-BC9BA2513313">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>B565B865-12C8-F568-89D0-489F9F2BE1FA</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<domain>9D60CEE3-F777-37B9-CE68-C7DB25509B80</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="628A7162-0254-B9DC-2A14-6EA01ED82F78" referredColumn="48A0362C-90A2-7438-C9CC-BAF984BDA3F8"/>
+</associations>
+</Column>
+<Column name="CRIACAO" id="AB44B292-5B27-635B-7563-34AE7097D77D">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>2DCE1511-FF99-5179-19DC-BD1ED583396C</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<domain>1EB13BAC-0212-4158-2E5E-561BD1613E0D</domain>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>GETDATE()</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="D_E_L_E_T_" id="BE8925A6-2D2B-A0C3-8CD2-63A49B172EA7">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>C5D0A814-7227-F47F-B9A1-D17BFF719AA9</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>5ADF1B85-A715-5120-5B9C-1563ECEC1D49</domain>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>&apos;&apos;</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D9BDBF23-4446-374E-D79E-695E3BF45FBA" name="ECM_TRA_CAR_PK">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:44 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>A38A2E91-1109-961E-18CD-321D637FD7A2</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EF3A88D1-F01F-FAFB-A99D-150804E7B00D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B064671E-F3CA-1A4E-9AC3-C2957112DF0C" name="FK_TRA_CAR_TO_CARTOES_ECM">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E3F47683-1DE6-5747-3F92-BC9BA2513313"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="95AAC772-2EAF-7272-D198-81EC2EDA506B" name="FK_TRA_CAR_TO_TRANSACOES_ECM">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9EE595F8-7634-ABD7-7A84-102CDDBD0445"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

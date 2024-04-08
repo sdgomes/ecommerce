@@ -3367,17 +3367,22 @@ ol {
   position: relative;
 }
 
+.single-product .product-image .holder {
+  left: 0;
+  top: 0;
+  z-index: 22;
+  position: absolute;
+  display: flex;
+  gap: 1rem;
+}
+
 .single-product .product-image .sale-tag {
   background: #f73232;
   border-radius: 2px;
   font-size: 12px;
   color: #fff;
-  font-weight: bold;
-  position: absolute;
-  top: 0;
-  padding: 5px 10px;
-  left: 0;
-  z-index: 22;
+  font-weight: bold; 
+  padding: 5px 10px; 
 }
 
 .single-product .product-image .new-tag {
@@ -3386,11 +3391,7 @@ ol {
   font-size: 12px;
   color: #fff;
   font-weight: bold;
-  position: absolute;
-  top: 0;
   padding: 5px 10px;
-  left: 0;
-  z-index: 22;
 }
 
 .single-product .product-image .button {
@@ -8405,4 +8406,8 @@ div.dt-scroll-body tfoot tr td div.dt-scroll-sizing {
 .dt-scroll-headInner {
   margin-left: auto;
   margin-right: auto;
+}
+
+#form-adiciona-cartao [data-click="remove-card"]{
+  display: none;
 }

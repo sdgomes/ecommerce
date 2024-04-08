@@ -18,7 +18,7 @@ namespace ecommerce.Models
         public bool Subcategoria { get; set; }
 
         [Column("NOME")]
-        string Nome { get; set; }
+        public string Nome { get; set; }
 
         [Column("CRIACAO")]
         public DateTime Criacao { get; set; }

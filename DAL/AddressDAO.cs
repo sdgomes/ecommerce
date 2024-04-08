@@ -20,9 +20,9 @@ namespace ecommerce.DAL
 		                                LOGRADOURO, BAIRRO, CIDADE, ESTADO, NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, COMPLEMENTO,
 		                                NUMERO, PAIS)
 		                                OUTPUT Inserted.ID_ENDERECO
-		                                VALUES (@ID_CLIENTE, @CEP, @TIPO_LOGRADOURO, @TIPO_ENDERECO, @TIPO_RESIDENCIA,
-		                                @LOGRADOURO, @BAIRRO, @CIDADE, @ESTADO, @NOME_ENDERECO, @FRASE, @PRINCIPAL, @COBRANCA, @COMPLEMENTO,
-		                                @NUMERO, @PAIS)
+		                                VALUES (@ID_CLIENTE, @CEP, UPPER(@TIPO_LOGRADOURO), UPPER(@TIPO_ENDERECO), UPPER(@TIPO_RESIDENCIA),
+		                                UPPER(@LOGRADOURO), UPPER(@BAIRRO), UPPER(@CIDADE), UPPER(@ESTADO), UPPER(@NOME_ENDERECO), UPPER(@FRASE), @PRINCIPAL, @COBRANCA, UPPER(@COMPLEMENTO),
+		                                UPPER(@NUMERO), UPPER(@PAIS))
 	                                END
                                 END;";
 
@@ -57,9 +57,9 @@ namespace ecommerce.DAL
         {
             try
             {
-                string query = @$"UPDATE ECM_ENDERECOS SET CEP = @CEP, TIPO_LOGRADOURO = @TIPO_LOGRADOURO, TIPO_RESIDENCIA = @TIPO_RESIDENCIA,
-                LOGRADOURO = @LOGRADOURO, BAIRRO = @BAIRRO, CIDADE = @CIDADE, ESTADO = @ESTADO, NOME_ENDERECO = @NOME_ENDERECO,
-                FRASE = @FRASE, PRINCIPAL = @PRINCIPAL, COBRANCA = @COBRANCA, COMPLEMENTO = @COMPLEMENTO, NUMERO = @NUMERO, PAIS = @PAIS
+                string query = @$"UPDATE ECM_ENDERECOS SET CEP = @CEP, TIPO_LOGRADOURO = UPPER(@TIPO_LOGRADOURO), TIPO_RESIDENCIA = UPPER(@TIPO_RESIDENCIA),
+                LOGRADOURO = UPPER(@LOGRADOURO), BAIRRO = UPPER(@BAIRRO), CIDADE = UPPER(@CIDADE), ESTADO = UPPER(@ESTADO), NOME_ENDERECO = UPPER(@NOME_ENDERECO),
+                FRASE = UPPER(@FRASE), PRINCIPAL = @PRINCIPAL, COBRANCA = @COBRANCA, COMPLEMENTO = UPPER(@COMPLEMENTO), NUMERO = UPPER(@NUMERO), PAIS = UPPER(@PAIS)
                 WHERE ID_ENDERECO = @ID_ENDERECO;";
 
                 SqlParameter[] parameters = new SqlParameter[] {

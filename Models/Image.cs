@@ -6,22 +6,15 @@ using System.Threading.Tasks;
 
 namespace ecommerce.Models
 {
-    public class Images
+    public class Image
     {
-    [Column("ID_IMAGEM")]
-    public long IdImagem {get; set;}
+        [Column("ID_IMAGEM")]
+        public long IdImagem { get; set; }
 
-    [Column("ID_PRODUTO")]
-    public long IdProduto {get; set;}
+        [Column("IMAGEM")]
+        public byte[] Imagem { get; set; }
 
-    [Column("IMAGEM")]
-    public byte[] Imagem {get; set;}
-
-    [Column("NOME")]
-    public string Nome {get; set;}
-
-    [Column("CRIACAO")]
-    public DateTime Criacao  {get; set;}
-
+        [Column("NOME_IMAGEM")]
+        public string NomeImagem { get; set; }
     }
 }

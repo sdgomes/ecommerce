@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="C57A15E8-E30B-A035-8B3E-F8921A56E99A" containerWithKeyObject="D9AE3E74-5E8A-BE6F-6979-56126AE93AC6" localFKIndex="70310814-16F7-2D29-F608-339C9EEAB775" name="FK_TRANSACOES_TO_ETAPAS_ECM">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>DA7137AE-296E-8AAF-D2B7-3446942144FC</importedID>
+<referredTableLongName>ECM_ETAPAS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>D7E8B7D1-39CD-BB84-8524-2FA94D87B1C1</referredTableID>
+<keyObject>FF7EDD00-94F3-4E56-4C96-11A8F50B3950</keyObject>
+<referredKeyID>FF7EDD00-94F3-4E56-4C96-11A8F50B3950</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_ETAPA</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="Modelagem" id="CEB828E3-B278-49D2-E3B3-D86CB2359255" version="3.5">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:14:26 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>CEB828E3-B278-49D2-E3B3-D86CB2359255</designId>
+<usedDesignStorageDescriptors>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="480FFAB8-7A0A-E394-F18B-35CEA057EA45">
+<designStoragePath>C:\Modelagem</designStoragePath>
+</designDescr>
+</usedDesignStorageDescriptors>
+</OSDM_Design>

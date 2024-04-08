@@ -1,4 +1,10 @@
-﻿const validation = () => {
+﻿onDomChange(function () {
+    setTimeout(() => {
+        $.applyDataMask('[data-mask');
+    }, 125);
+});
+
+const validation = () => {
     var valid = true;
     $(".swal2-html-container form").find('[required]').each(function (index, element) {
         if (element.value.trim() == "") {
@@ -6,6 +12,14 @@
             $(element).addClass("!border-red-600")
             $(element).parents('[data-tip]').addClass("tooltip-open").removeClass('before:!hidden after:!hidden');
         }
+
+        if ($(element).attr("data-mask"))
+            if (element.value.trim().length < $(element).attr("data-mask").length)
+                if ($(element).attr("data-mask").length != 4) {
+                    valid = false;
+                    $(element).addClass("!border-red-600")
+                    $(element).parents('[data-tip]').addClass("tooltip-open").removeClass('before:!hidden after:!hidden');
+                }
     });
 
     return valid;
@@ -68,6 +82,17 @@ const validateSenhaConfirma = () => {
 
     return true;
 }
+
+
+$(document).on('blur', '[name="mes"], [name="ano"]', function () {
+    $item = $(this);
+    $input = $item.parents('.mm-yy').find('[type="hidden"]');
+
+    var vencimento = $input.val().split('-');
+    vencimento[$item.attr('name') == 'mes' ? 1 : 0] = $item.val();
+
+    $input.val(vencimento.join('-'));
+});
 
 $(document).on('click', '.viacep', function () {
     $button = $(this);
@@ -215,7 +240,7 @@ $(document).on('click', "#trocar-senha-cliente", function () {
     });
 });
 
-$(document).on('click', '[data-id-endereco]', function () {
+$(document).on('click', '[data-action="edita-endereco"]', function () {
     $button = $(this);
 
     Swal.fire({
@@ -269,6 +294,94 @@ $(document).on('click', '[data-id-endereco]', function () {
                     Swal.fire({
                         icon: 'success',
                         title: "Endereço alterado",
+                        showConfirmButton: false,
+                        customClass: {
+                            confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                        },
+                        timer: 1500,
+                        didOpen: () => {
+                            Swal.hideLoading();
+                        }
+                    }).then(() => location.reload(true))
+                }
+            })
+        },
+        error: function (response) {
+            console.log(response);
+        },
+    });
+})
+
+$(document).on('click', '#acicionar-cartao', function () {
+    $button = $(this);
+
+    Swal.fire({
+        title: "Aguarde",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        data: { Index: 1 },
+        url: "/componente/client/adiciona/cartao",
+        success: function (response) {
+            Swal.fire({
+                html: `<div class="checkout-steps-form-style-1" style="width: 500px; margin: auto;">
+                        <form id="form-adiciona-cartao" class="text-start">
+                            <input type="hidden" name="card[1].idCliente" value="${$button.data("id-cliente")}">
+                            ${response}
+                        </form>
+                       </div>`,
+                width: 575,
+                showCancelButton: true,
+                reverseButtons: true,
+                title: "Adiciona novo cartão.",
+                customClass: {
+                    htmlContainer: '!overflow-hidden',
+                    confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                },
+                confirmButtonText: 'Cadastrar',
+                cancelButtonText: 'Cancelar',
+                allowEnterKey: false,
+                didOpen: () => {
+                    Swal.hideLoading();
+                },
+                showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    if (!validation())
+                        return Swal.showValidationMessage(`Todos os campos em vermelho precisam ser preenchidos.`);
+
+                    const form = $(".swal2-html-container").find('form').serializeJson();
+                    var Cartao = {};
+
+                    for (const key in form) {
+                        if (Object.hasOwnProperty.call(form, key)) {
+                            const value = form[key];
+                            var chaves = key.split('.');
+                            Cartao[chaves[1]] = value;
+                        }
+                    }
+
+                    Cartao.Principal = form.mainCard == undefined ? false : true;
+
+                    const response = await $.ajax({
+                        url: '/cadastrar/novo/cartao',
+                        type: 'POST',
+                        data: { card: Cartao }
+                    });
+
+                    return response;
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: "Cartão adicionado",
                         showConfirmButton: false,
                         customClass: {
                             confirmButton: "!bg-[#ffcc00] !text-gray-800",
@@ -456,6 +569,80 @@ $(document).on('click', '[data-action="altera-cliente"]', function () {
                     }).then(() => location.reload(true))
                 }
             })
+        },
+        error: function (response) {
+            console.log(response);
+        },
+    });
+})
+
+$(document).on('click', '[data-id-cartao]', function () {
+    $button = $(this);
+
+    Swal.fire({
+        title: "Aguarde",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        data: $button.data(),
+        url: "/remove/cartao",
+        success: function (response) {
+            Swal.fire({
+                icon: 'success',
+                title: "Cartão Removido",
+                showConfirmButton: false,
+                customClass: {
+                    confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                },
+                timer: 1500,
+                didOpen: () => {
+                    Swal.hideLoading();
+                }
+            }).then(() => location.reload(true))
+        },
+        error: function (response) {
+            console.log(response);
+        },
+    });
+})
+
+$(document).on('click', '[data-action="remove-endereco"]', function () {
+    $button = $(this);
+
+    Swal.fire({
+        title: "Aguarde",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        data: $button.data(),
+        url: "/remove/endereco",
+        success: function (response) {
+            Swal.fire({
+                icon: 'success',
+                title: "Endereço Removido",
+                showConfirmButton: false,
+                customClass: {
+                    confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                },
+                timer: 1500,
+                didOpen: () => {
+                    Swal.hideLoading();
+                }
+            }).then(() => location.reload(true))
         },
         error: function (response) {
             console.log(response);

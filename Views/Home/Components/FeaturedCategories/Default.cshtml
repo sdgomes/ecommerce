@@ -1,4 +1,4 @@
-@model List<ViewFeaturedCategories>
+@model ViewFeaturedCategories
 
 <section class="featured-categories section">
     <div class="container mx-auto sm:px-4">
@@ -14,24 +14,24 @@
 
         <div class="flex flex-wrap">
 
-            @foreach (var Item in Model)
+            @foreach (var (Item, Index) in Model.Categorias.Select((Item, Index) => (Item, Index)))
             {
                 <div class="lg:w-1/3 px-4 md:w-1/2 w-full">
 
                     <div class="single-category">
-                        <h3 class="heading">@Item.Categoria</h3>
+                        <h3 class="heading">@Item.Categoria.Nome.Capitalize()</h3>
                         <ul>
-                            @foreach (var SubCategoria in Item.SubCategoria)
+                            @foreach (var SubCategoria in Item.SubCategoria.Where((Item, Index) => Index < 4))
                             {
-                                <li><a asp-action="Index" asp-controller="Shop" asp-route-categoria="@SubCategoria">@SubCategoria</a></li>
+                                <li><a asp-action="Index" asp-controller="Shop" asp-route-categoria="@SubCategoria.Nome.Capitalize()">@SubCategoria.Nome.Capitalize()</a></li>
                             }
-                            <li><a asp-action="Index" asp-controller="Shop" class="italic">Ver tudo</a></li>
+                            <li><a asp-action="Index" asp-controller="Shop" asp-route-categoria="@Item.Categoria.Nome.Capitalize()" class="italic">Ver tudo</a></li>
                         </ul>
+
                         <div class="images">
-                            <img src="/img/images/featured-categories/@Item.Image" alt="...">
+                            <img src="/img/images/featured-categories/fetured-item-@(Index + 1).jpg" alt="...">
                         </div>
                     </div>
-
                 </div>
             }
         </div>

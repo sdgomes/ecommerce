@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2184A72D-AC02-B8AB-ACFD-0FB32648801E" containerWithKeyObject="7F1BCA55-6B76-2857-A098-308379B09FDA" localFKIndex="E705016F-9FDC-0406-A130-B2C7A315ABEB" name="FK_HISTORICOS_TO_TRANSACOES_ECM">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>6ECDD5FA-3A8E-749F-168B-4D5D961B37B8</importedID>
+<referredTableLongName>ECM_TRANSACOES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>D9AE3E74-5E8A-BE6F-6979-56126AE93AC6</referredTableID>
+<keyObject>9A6510E2-3B85-BFE9-DB50-5DCF12ED4C90</keyObject>
+<referredKeyID>9A6510E2-3B85-BFE9-DB50-5DCF12ED4C90</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_TRANSACAO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

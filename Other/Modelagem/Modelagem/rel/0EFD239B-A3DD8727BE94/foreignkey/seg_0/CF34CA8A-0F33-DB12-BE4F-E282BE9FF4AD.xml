@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="CF34CA8A-0F33-DB12-BE4F-E282BE9FF4AD" containerWithKeyObject="47914C23-8A69-6FC1-AE49-524FE915E1D3" localFKIndex="8E5D4119-68AF-8035-3171-DB83A6AD1CA0" name="FK_ENTREGAS_TO_ENDERECOS_ECM">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>DB5E4562-06C7-823D-2F33-1DE23D9B02B1</importedID>
+<referredTableLongName>ECM_ENDERECOS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>B4FD9FB5-2F6F-2536-5CD9-588E1247C545</referredTableID>
+<keyObject>1498CBD4-C082-8A33-6593-7E9B6A7791A3</keyObject>
+<referredKeyID>1498CBD4-C082-8A33-6593-7E9B6A7791A3</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_ENDERECO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

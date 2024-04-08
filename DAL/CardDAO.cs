@@ -18,15 +18,15 @@ namespace ecommerce.DAL
 	                                BEGIN
 		                                INSERT INTO ECM_CARTOES (ID_CLIENTE, ID_BANDEIRA, NOME_TITULAR, NOME_CARTAO, PRINCIPAL, CPF_TITULAR, NUMERO, DATA_VALIDADE, CODIGO_SEGURANCA)
 		                                OUTPUT Inserted.ID_CARTAO
-		                                VALUES (@ID_CLIENTE, @ID_BANDEIRA, @NOME_TITULAR, @NOME_CARTAO, @PRINCIPAL, @CPF_TITULAR, @NUMERO, @DATA_VALIDADE, @CODIGO_SEGURANCA)
+		                                VALUES (@ID_CLIENTE, @ID_BANDEIRA, UPPER(@NOME_TITULAR), UPPER(@NOME_CARTAO), @PRINCIPAL, @CPF_TITULAR, @NUMERO, @DATA_VALIDADE, @CODIGO_SEGURANCA)
 	                                END
                                 END;";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@ID_CLIENTE", IdCliente),
                     new SqlParameter("@ID_BANDEIRA", I(card.IdBandeira)),
-                    new SqlParameter("@NOME_TITULAR", I(card.NomeTitular.ToUpper())),
-                    new SqlParameter("@NOME_CARTAO", I(card.NomeCartao.ToUpper())),
+                    new SqlParameter("@NOME_TITULAR", I(card.NomeTitular)),
+                    new SqlParameter("@NOME_CARTAO", I(card.NomeCartao)),
                     new SqlParameter("@PRINCIPAL", I(card.Principal)),
                     new SqlParameter("@CPF_TITULAR", I(card.CPFTitular)),
                     new SqlParameter("@NUMERO", I(card.Numero)),
@@ -46,15 +46,15 @@ namespace ecommerce.DAL
         {
             try
             {
-                string query = @$"UPDATE ECM_CARTOES SET ID_BANDEIRA = @ID_BANDEIRA, NOME_TITULAR = @NOME_TITULAR, NOME_CARTAO = @NOME_CARTAO,
+                string query = @$"UPDATE ECM_CARTOES SET ID_BANDEIRA = @ID_BANDEIRA, NOME_TITULAR = UPPER(@NOME_TITULAR), NOME_CARTAO = UPPER(@NOME_CARTAO),
                 PRINCIPAL = @PRINCIPAL, CPF_TITULAR = @CPF_TITULAR, NUMERO = @NUMERO,
                 DATA_VALIDADE = @DATA_VALIDADE, CODIGO_SEGURANCA = @CODIGO_SEGURANCA WHERE ID_CARTAO = @ID_CARTAO;";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@ID_CARTAO", IdCartao),
                     new SqlParameter("@ID_BANDEIRA", card.IdBandeira),
-                    new SqlParameter("@NOME_TITULAR", card.NomeTitular.ToUpper()),
-                    new SqlParameter("@NOME_CARTAO", card.NomeCartao.ToUpper()),
+                    new SqlParameter("@NOME_TITULAR", card.NomeTitular),
+                    new SqlParameter("@NOME_CARTAO", card.NomeCartao),
                     new SqlParameter("@PRINCIPAL", card.Principal),
                     new SqlParameter("@CPF_TITULAR", card.CPFTitular),
                     new SqlParameter("@NUMERO", card.Numero),

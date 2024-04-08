@@ -25,15 +25,15 @@ namespace ecommerce.DAL
 
 			                                INSERT INTO ECM_CLIENTES (ID_USUARIO, CODIGO, NOME, SOBRENOME, CPF, DATA_NASCIMENTO, RG, TELEFONE, CELULAR, GENERO)
 			                                OUTPUT Inserted.ID_CLIENTE
-			                                VALUES ((SELECT SCOPE_IDENTITY() AS ID_USUARIO), @CODIGO, @NOME, @SOBRENOME, @CPF, @DATA_NASCIMENTO, @RG, @TELEFONE, @CELULAR, @GENERO);
+			                                VALUES ((SELECT SCOPE_IDENTITY() AS ID_USUARIO), @CODIGO, UPPER(@NOME), UPPER(@SOBRENOME), @CPF, @DATA_NASCIMENTO, @RG, @TELEFONE, @CELULAR, @GENERO);
 		                                END
 	                                END
                                 END;";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@CODIGO", Util.Codigo(5)),
-                    new SqlParameter("@NOME", I(client.Nome.ToUpper())),
-                    new SqlParameter("@SOBRENOME", I(client.Sobrenome.ToUpper())),
+                    new SqlParameter("@NOME", I(client.Nome)),
+                    new SqlParameter("@SOBRENOME", I(client.Sobrenome)),
                     new SqlParameter("@CPF", I(client.CPF)),
                     new SqlParameter("@DATA_NASCIMENTO", I(client.DataNascimento.ToString("yyyy-MM-dd"))),
                     new SqlParameter("@RG", I(client.RG)),
@@ -76,15 +76,15 @@ namespace ecommerce.DAL
         {
             try
             {
-                string query = @$"UPDATE ECM_CLIENTES SET NOME = @NOME, SOBRENOME = @SOBRENOME, CPF = @CPF, DATA_NASCIMENTO = @DATA_NASCIMENTO,
+                string query = @$"UPDATE ECM_CLIENTES SET NOME = UPPER(@NOME), SOBRENOME = UPPER(@SOBRENOME), CPF = @CPF, DATA_NASCIMENTO = @DATA_NASCIMENTO,
                                 RG = @RG, TELEFONE = @TELEFONE, CELULAR = @CELULAR, SITUACAO = @SITUACAO, GENERO = @GENERO
                                 WHERE ID_CLIENTE = @ID_CLIENTE;
 
                                 UPDATE ECM_USUARIOS SET EMAIL = @EMAIL WHERE ID_USUARIO = (SELECT ID_USUARIO FROM ECM_CLIENTES WHERE ID_CLIENTE = @ID_CLIENTE);";
 
                 SqlParameter[] parameters = new SqlParameter[] {
-                    new SqlParameter("@NOME", I(client.Nome.ToUpper())),
-                    new SqlParameter("@SOBRENOME", I(client.Sobrenome.ToUpper())),
+                    new SqlParameter("@NOME", I(client.Nome)),
+                    new SqlParameter("@SOBRENOME", I(client.Sobrenome)),
                     new SqlParameter("@CPF", I(client.CPF)),
                     new SqlParameter("@DATA_NASCIMENTO", I(client.DataNascimento)),
                     new SqlParameter("@RG", I(client.RG)),
@@ -254,7 +254,7 @@ namespace ecommerce.DAL
                     new SqlParameter("@CPF", CPF),
                     new SqlParameter("@RG", RG),
                     new SqlParameter("@EMAIL", Email),
-                    new SqlParameter("@NAME", Name.ToUpper()),
+                    new SqlParameter("@NAME", Name),
                     new SqlParameter("@DATA_NASCIMENTO", DataNascimento.ToString("yyyy-MM-dd")),
                 };
 

@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ecommerce.DAL;
+using ecommerce.DTO;
+using ecommerce.Models;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
@@ -9,24 +12,15 @@ namespace ecommerce.Views.Home.Components.TrendingProduct
     {
         public IViewComponentResult Invoke()
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "Mock\\emalta.json");
-            string json = File.ReadAllText(path);
+            ViewTrendingProduct Model = new();
+            Model.Products = ProductDAO.SelectAllTrendingProducts();
 
-            var Model = JsonConvert.DeserializeObject<List<ViewTrendingProduct>>(json);
             return View(Model);
         }
     }
 
     public class ViewTrendingProduct
     {
-        public string Imagem { get; set; }
-        public string PreInfo { get; set; }
-        public string NomeProduto { get; set; }
-        public int Nota { get; set; }
-        public string PrecoOriginal { get; set; }
-        public string PrecoDesconto { get; set; }
-        public string Id { get; set; }
-        public int Desconto { get; set; }
-        public string Tipo { get; set; }
+        public List<ProductDTO> Products { get; set; }
     }
 }

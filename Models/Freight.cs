@@ -15,7 +15,7 @@ namespace ecommerce.Models
     public string Estado {get; set;}
 
     [Column("PRECO")]
-    public float Preco {get; set;}
+    public double Preco {get; set;}
 
     [Column("CRIACAO")]
     public DateTime Criacao  {get; set;}

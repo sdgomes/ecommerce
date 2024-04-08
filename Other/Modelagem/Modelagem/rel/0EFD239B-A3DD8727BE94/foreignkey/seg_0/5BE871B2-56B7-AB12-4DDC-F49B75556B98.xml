@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="5BE871B2-56B7-AB12-4DDC-F49B75556B98" containerWithKeyObject="9D2F70DF-3EF3-6278-B6BA-A0364AB5B982" localFKIndex="2798F9D4-0ED9-4345-BD5F-071BBD8D5F51" name="FK_CLIENTES_TO_USUARIOS_ECM">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>56A83F19-E05C-ABFE-8AE3-81C626E90D54</importedID>
+<referredTableLongName>ECM_USUARIOS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>C3318C05-AE80-5C49-5C93-68CA5E138884</referredTableID>
+<keyObject>BAD2F59C-CDBA-37CD-65A3-479671A9AEFA</keyObject>
+<referredKeyID>BAD2F59C-CDBA-37CD-65A3-479671A9AEFA</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_USUARIO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -19,15 +19,17 @@
                             <div class="single-product">
                                 <div class="product-image">
                                     <img src="/img/images/products/@Item.Imagem" alt="...">
+                                    <span class="holder">
                                     @if (Item.Tipo != "")
                                     {
-                                        <span class="new-tag">@Item.Tipo</span>
+                                        <span class="new-tag">@Item.Tipo.Capitalize()</span>
                                     }
 
                                     @if (Item.Desconto > 0)
                                     {
                                         <span class="sale-tag">-@Item.Desconto%</span>
                                     }
+                                    </span>
 
                                     <div class="button flex gap-1">
                                         <a asp-action="Index" asp-controller="Cart" asp-route-id="@Item.Id" class="btn !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853]"><i class="fa-light fa-cart-circle-plus text-sm"></i> Carrinho</a>

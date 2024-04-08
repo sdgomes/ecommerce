@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="ED7E896B-8602-1653-B3E9-69D027F21ABB" containerWithKeyObject="E01748FB-B9C2-4616-D992-4100F1C07A46" localFKIndex="18A24BD1-93BD-8456-0B64-A2A960F0A7B5" name="FK_DESCONTOS_TO_CLIENTES_ECM">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>50F43530-7F84-A97D-F1E7-D396C2AB00CF</importedID>
+<referredTableLongName>ECM_CLIENTES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>9D2F70DF-3EF3-6278-B6BA-A0364AB5B982</referredTableID>
+<keyObject>8B6993EF-40A1-AC36-F40B-B007D2E0A7F0</keyObject>
+<referredKeyID>8B6993EF-40A1-AC36-F40B-B007D2E0A7F0</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_CLIENTE</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

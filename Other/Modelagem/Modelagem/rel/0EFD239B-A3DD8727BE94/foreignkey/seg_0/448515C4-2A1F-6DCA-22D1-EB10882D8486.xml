@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="448515C4-2A1F-6DCA-22D1-EB10882D8486" containerWithKeyObject="F42F026E-59D3-3A37-F196-EF0FF0B9088B" localFKIndex="FB226221-228F-EC30-3844-E99FE489E71E" name="FK_HISTORICOS_MOVIMENTACOES_TO_ESTOQUES_ECM">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>831EE616-7860-2152-3380-131B9D173B68</importedID>
+<referredTableLongName>ECM_ESTOQUES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>4ED0EE75-28D2-CA27-2DF5-F639008EE4F4</referredTableID>
+<keyObject>AD7B225A-373C-1664-24D9-99AC1DDE6594</keyObject>
+<referredKeyID>AD7B225A-373C-1664-24D9-99AC1DDE6594</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_ESTOQUE</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

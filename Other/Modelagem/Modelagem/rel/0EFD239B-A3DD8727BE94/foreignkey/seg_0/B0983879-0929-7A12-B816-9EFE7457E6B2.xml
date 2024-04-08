@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="B0983879-0929-7A12-B816-9EFE7457E6B2" containerWithKeyObject="C9C58D70-1BE4-D95D-AB7F-DD41B707CFBD" localFKIndex="3C4E6501-D264-0F18-3EF0-13CEBFB9ED50" name="FK_CAT_PRO_TO_CATEGORIAS_ECM">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>16FE5030-495D-DE57-930D-70B0D668EC59</importedID>
+<referredTableLongName>ECM_CATEGORIAS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>D118230C-880A-EA87-7182-5395F26B1DF5</referredTableID>
+<keyObject>755A4BB0-1EDF-A46A-A21D-07E6C0C757F3</keyObject>
+<referredKeyID>755A4BB0-1EDF-A46A-A21D-07E6C0C757F3</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_CATEGORIA</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

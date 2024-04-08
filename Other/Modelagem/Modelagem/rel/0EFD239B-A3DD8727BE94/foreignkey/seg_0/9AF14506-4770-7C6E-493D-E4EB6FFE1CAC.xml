@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="9AF14506-4770-7C6E-493D-E4EB6FFE1CAC" containerWithKeyObject="24CC2566-0C76-6E0B-1D73-296D6D30002C" localFKIndex="F0964F40-5BEE-C9B4-F8CD-D843B73E19E2" name="FK_PRODUTOS_TO_PRECIFICACOES_ECM">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>F2557D1C-3A7F-32BF-668A-498D3E0E00AE</importedID>
+<referredTableLongName>ECM_PRECIFICACOES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>C6A8A31B-6D77-BB12-7AB7-0566AB999F14</referredTableID>
+<keyObject>1069459B-36E7-61BB-5BDA-CB10FFB1077B</keyObject>
+<referredKeyID>1069459B-36E7-61BB-5BDA-CB10FFB1077B</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_PRECIFICACAO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

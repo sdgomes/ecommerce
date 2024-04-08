@@ -1481,6 +1481,33 @@ html {
   height: auto;
 }
 
+.stack {
+  display: inline-grid;
+  place-items: center;
+  align-items: flex-end;
+}
+
+.stack > * {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  transform: translateY(10%) scale(0.9);
+  z-index: 1;
+  width: 100%;
+  opacity: 0.6;
+}
+
+.stack > *:nth-child(2) {
+  transform: translateY(5%) scale(0.95);
+  z-index: 2;
+  opacity: 0.8;
+}
+
+.stack > *:nth-child(1) {
+  transform: translateY(0) scale(1);
+  z-index: 3;
+  opacity: 1;
+}
+
 .table {
   position: relative;
   width: 100%;
@@ -3375,12 +3402,12 @@ details.collapse summary::-webkit-details-marker {
   align-items: flex-end;
 }
 
-.items-center {
-  align-items: center;
-}
-
 .\!items-center {
   align-items: center !important;
+}
+
+.items-center {
+  align-items: center;
 }
 
 .justify-end {
@@ -3419,6 +3446,14 @@ details.collapse summary::-webkit-details-marker {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.\!overflow-hidden {
+  overflow: hidden !important;
 }
 
 .whitespace-nowrap {
@@ -3534,9 +3569,9 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(255 204 0 / var(--tw-bg-opacity)) !important;
 }
 
-.\!bg-red-500 {
+.\!bg-red-600 {
   --tw-bg-opacity: 1 !important;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity)) !important;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity)) !important;
 }
 
 .\!bg-transparent {
@@ -3575,11 +3610,6 @@ details.collapse summary::-webkit-details-marker {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.\!bg-red-600 {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(220 38 38 / var(--tw-bg-opacity)) !important;
 }
 
 .px-2 {
@@ -3895,9 +3925,9 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(255 204 0 / var(--tw-bg-opacity)) !important;
 }
 
-.hover\:\!bg-red-700:hover {
+.hover\:\!bg-red-900:hover {
   --tw-bg-opacity: 1 !important;
-  background-color: rgb(185 28 28 / var(--tw-bg-opacity)) !important;
+  background-color: rgb(127 29 29 / var(--tw-bg-opacity)) !important;
 }
 
 .hover\:bg-\[\#ffcc00\]:hover {
@@ -3908,11 +3938,6 @@ details.collapse summary::-webkit-details-marker {
 .hover\:bg-gray-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-
-.hover\:\!bg-red-900:hover {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(127 29 29 / var(--tw-bg-opacity)) !important;
 }
 
 .hover\:\!text-gray-800:hover {

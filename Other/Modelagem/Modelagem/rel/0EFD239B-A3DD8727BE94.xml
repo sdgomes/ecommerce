@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="Relational_1" id="0EFD239B-81C0-2D83-8EC7-A3DD8727BE94" mainViewID="C9EF4C7F-B9C2-1F7D-6368-AB014E5DAFB1">
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:14:31 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+<selectedRDBMSSite>980FCE9E-D688-BDF0-C89A-C9FB2DCAED45</selectedRDBMSSite>
+<importDDLFileStamps>
+<importDDLFileStamp class="oracle.dbtools.crest.imports.DDLFileStamp">
+<fileName>Modelagem.sql</fileName>
+<pathName>C:\Users\oseia\OneDrive\Documentos\les_fatec\ecommerce\Other</pathName>
+<dbType>13</dbType>
+</importDDLFileStamp>
+</importDDLFileStamps>
+</relationalModel>

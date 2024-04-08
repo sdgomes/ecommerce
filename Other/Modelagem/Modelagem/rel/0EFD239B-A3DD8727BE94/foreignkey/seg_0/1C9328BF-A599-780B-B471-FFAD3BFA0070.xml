@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="1C9328BF-A599-780B-B471-FFAD3BFA0070" containerWithKeyObject="E6DAED5C-B45C-700E-CE55-8A30B39297F0" localFKIndex="BAD9777A-43C4-256C-26BA-C08AEBE937A4" name="PK_TROCAS_TO_DESCONTOS_ECM">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>F5778357-CBFA-3EC1-0A69-7AD930E767FF</importedID>
+<referredTableLongName>ECM_DESCONTOS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>E01748FB-B9C2-4616-D992-4100F1C07A46</referredTableID>
+<keyObject>14FAEDDC-3384-6630-971F-46FA9E72A55E</keyObject>
+<referredKeyID>14FAEDDC-3384-6630-971F-46FA9E72A55E</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>ID_DESCONTO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

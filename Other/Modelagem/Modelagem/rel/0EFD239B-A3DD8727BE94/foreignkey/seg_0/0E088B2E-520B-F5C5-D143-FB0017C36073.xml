@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="0E088B2E-520B-F5C5-D143-FB0017C36073" containerWithKeyObject="9E48A99E-CDF4-1E25-8C1E-6CBD57F18C55" localFKIndex="8B63298E-540C-7746-8010-747E34241A39" name="FK_CARTOES_TO_BANDEIRAS_ECM">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:45 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<importedID>A282BFE7-CE00-D640-6653-C6ACBB117904</importedID>
+<referredTableLongName>ECM_BANDEIRAS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>FEF2D816-58C9-AB91-9674-0CBD1F0DFE88</referredTableID>
+<keyObject>EBCF4C5C-0060-C5F5-8FA7-A3687A23CE9C</keyObject>
+<referredKeyID>EBCF4C5C-0060-C5F5-8FA7-A3687A23CE9C</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_BANDEIRA</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

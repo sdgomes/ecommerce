@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaSqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.SchemaSqlServerv2k5" name="SCHEMA7" directorySegmentName="seg_0" id="17952D3A-E1E6-F6F5-4C5C-18DDBBC5AA1D">
+<sourceDDLFile>Modelagem.sql</sourceDDLFile>
+<createdBy>oseia</createdBy>
+<createdTime>2024-04-07 18:16:12 UTC</createdTime>
+<ownerDesignName>Modelagem</ownerDesignName>
+<database>DB_NULLELEMENT</database>
+</SchemaSqlServerv2k5>

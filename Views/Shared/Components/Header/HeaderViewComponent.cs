@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ecommerce.DAL;
+using ecommerce.Models;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace ecommerce.Views.Shared.Components.Header
 {
@@ -16,12 +19,35 @@ namespace ecommerce.Views.Shared.Components.Header
             return View(Model);
         }
     }
+
     public class ViewHeader
     {
         public List<CategoriaDTO> Categorias { get; set; }
         public int Favoritos { get; set; }
         public List<CarrinhoDTO> Carrinho { get; set; }
+
+        public ViewHeader()
+        {
+            List<Category> categories = CategoriaDAO.SelectAllCategories();
+            var FatherCategories = categories.Where((category) => category.Subcategoria == false);
+            var NodeCategories = categories.Where((category) => category.Subcategoria == true);
+
+            Categorias = new List<CategoriaDTO>();
+
+            foreach (var Item in FatherCategories)
+            {
+                var SubCategorias = NodeCategories.Where((category) => category.IdCategoriaPai == Item.IdCategoria);
+
+                Categorias.Add(new CategoriaDTO()
+                {
+                    Categoria = Item,
+                    SubCategoria = SubCategorias.ToList()
+                });
+            }
+        }
+
     }
+
     public class CarrinhoDTO
     {
         public string Imagem { get; set; }
@@ -36,7 +62,8 @@ namespace ecommerce.Views.Shared.Components.Header
 
     public class CategoriaDTO
     {
-        public string Categoria { get; set; }
-        public List<string> SubCategoria { get; set; }
+        public Category Categoria { get; set; }
+
+        public List<Category> SubCategoria { get; set; }
     }
 }

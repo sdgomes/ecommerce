@@ -12,7 +12,7 @@ new BreadcrumbsDTO("Cadastro de cliente")
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
 <div class="my-10 px-5 checkout-steps-form-style-1">
-    <form method="post" asp-controller="Client" asp-action="Cadastrar" class="container mx-auto space-y-5">
+    <form method="post" asp-controller="Client" asp-action="CadastrarCliente" class="container mx-auto space-y-5">
         <div class="collapse bg-white border border-gray-300 !rounded-[5px]">
             <input autocomplete="off" type="radio" name="accordion" checked />
             <div class="collapse-title text-xl font-medium bg-[#130235]">

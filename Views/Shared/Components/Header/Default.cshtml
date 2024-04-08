@@ -174,18 +174,18 @@
                             if (Item.SubCategoria.Count > 0)
                             {
                                 <li>
-                                    <a>@Item.Categoria <i class="fa-light fa-angle-right"></i></a>
+                                    <a>@Item.Categoria.Nome.Capitalize() <i class="fa-light fa-angle-right"></i></a>
                                     <ul class="inner-sub-category">
                                         @foreach (var SubCategoria in Item.SubCategoria)
                                         {
-                                            <li><a asp-action="Index" asp-controller="Shop" asp-route-categoria="@SubCategoria">@SubCategoria</a></li>
+                                            <li><a asp-action="Index" asp-controller="Shop" asp-route-categoria="@SubCategoria.Nome.Capitalize()">@SubCategoria.Nome.Capitalize()</a></li>
                                         }
                                     </ul>
                                 </li>
                             }
                             else
                             {
-                                <li><a asp-action="Index" asp-controller="Shop" asp-route-categoria="@Item.Categoria">@Item.Categoria</a></li>
+                                <li><a asp-action="Index" asp-controller="Shop" asp-route-categoria="@Item.Categoria.Nome.ToLower()">@Item.Categoria.Nome.Capitalize()</a></li>
                             }
                         }
                     </ul>

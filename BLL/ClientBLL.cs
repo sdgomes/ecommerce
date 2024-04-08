@@ -12,6 +12,16 @@ namespace ecommerce.BLL
 {
     public class ClientBLL
     {
+        public static void RemoveEndereco(long IdEndereco)
+        {
+            AddressDAO.RemoveAddress(IdEndereco);
+        }
+
+        public static void RemoveCartao(long IdCartao)
+        {
+            CardDAO.RemoveCard(IdCartao);
+        }
+
         public static void ExcluiConta(string Codigo)
         {
             ClientDAO.DeleteClientByCodigo(Codigo);
@@ -77,6 +87,11 @@ namespace ecommerce.BLL
             }
 
             return client.Codigo;
+        }
+
+        public static void CreateNewCard(Card card)
+        {
+            CardDAO.CreateCard(card.IdCliente, card);
         }
 
         public static void CreateNewAddress(Address address)
