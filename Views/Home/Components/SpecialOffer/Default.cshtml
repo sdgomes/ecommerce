@@ -32,7 +32,15 @@
                                     </span>
 
                                     <div class="button flex gap-1">
-                                        <a asp-action="Index" asp-controller="Cart" asp-route-id-produto="@Item.Id" class="btn !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853]"><i class="fa-light fa-cart-circle-plus text-sm"></i> Carrinho</a>
+                                        <a data-action="carrinho"
+                                        data-tipo-produto="Item.TipoProduto.Capitalize()"
+                                        data-subcategoria="Item.Subcategoria.Capitalize()"
+                                        data-imagem="Item.ImageSource"
+                                        data-preco="Item.Preco"
+                                        data-desconto="(Item.Desconto ? Item.CalculoDesconto : 0)"
+                                        data-nome="Item.Nome.Capitalize()"
+                                        data-qnt-compra="1"
+                                        data-id-produto="Item.IdProduto"  class="btn !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853]"><i class="fa-light fa-cart-circle-plus text-sm"></i> Carrinho</a>
                                         <a data-action="favoritos" data-favorito="false" data-id-produto="@Item.Id" class="btn !w-fit !flex !itens-center"><i class="fa-solid fa-heart text-sm"></i></a>
                                     </div>
                                 </div>

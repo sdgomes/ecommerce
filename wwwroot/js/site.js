@@ -1,4 +1,119 @@
-﻿const Favoritos = {
+﻿const toFloat = (palavra) => {
+    return parseFloat(palavra.toString().replace(/\./g, '').replace(/\,/g, '.'));
+}
+
+const currency = (number) => {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(number)
+}
+
+const Carrinho = {
+    getItems: function () {
+        var items = localStorage.getItem("produtos-carrinho")
+        return items == null ? [] : JSON.parse(items);
+    },
+
+    AtualizaFreCalculos: function () {
+        var items = this.getItems();
+
+        var frete = localStorage.getItem("frete");
+        frete = frete == null ? 0 : frete;
+
+        const subtotal = items.length == 0 ? 0 : items.map((item) => (item.qntCompra * toFloat(item.preco))).reduce((prev, current) => prev + current);
+        $("[menu-total-amount]").html(currency(subtotal))
+
+        $('[valor-frete]').html(currency(frete))
+
+        var descontos = items.length == 0 ? 0 : items.map((item) => toFloat(item.desconto)).reduce((prev, current) => prev + current);
+        
+        $('[total-descontos]').html(currency(descontos))
+
+        $('[total-compra]').html(currency((subtotal + parseFloat(frete)) - descontos))
+
+        localStorage.removeItem("frete")
+    },
+
+    AtualizaQuantidade: function (idProduto, qntCompra) {
+        var items = this.getItems();
+        var tempCarrinho = items.map((item) => {
+            if (item.idProduto == idProduto)
+                item.qntCompra = qntCompra
+
+            return item
+        })
+
+        localStorage.setItem("produtos-carrinho", JSON.stringify(tempCarrinho));
+
+        this.Carrega()
+    },
+
+    Carrega: function () {
+        var items = this.getItems();
+
+        $("#carrinho, #carrinho-items-count").html(items.length)
+
+        $("#carrinho-items").empty();
+
+        items.map((item, index) => {
+            $(`[preco-unitario="${item.idProduto}"]`).html(currency(parseInt(item.qntCompra) * parseFloat(item.preco)))
+
+            if (index < 3) {
+                $("#carrinho-items").append(`<li class="relative">
+                            <button class="!text-white right-0 btn btn-xs btn-error btn-circle absolute remove-carrinho" data-id-produto="${item.idProduto}">
+                                <i class="fa-light fa-xmark"></i>
+                            </button>
+                            
+                            <div class="cart-img-head">
+                                <a class="cart-img" href="https://localhost:44388/produtos/${item.tipoProduto}/${item.subcategoria}/detalhes/${item.idProduto}">
+                                    <img src="${item.imagem}" alt="...">
+                                </a>
+                            </div>
+
+                            <div class="content">
+                                <h4>
+                                    <a class="line-clamp-2" href="https://localhost:44388/produtos/${item.tipoProduto}/${item.subcategoria}/detalhes/${item.idProduto}">
+                                        ${item.nome}
+                                    </a>
+                                </h4>
+                                <p class="quantity">${item.qntCompra}x - <span class="amount">${currency(parseInt(item.qntCompra) * parseFloat(item.preco))}</span></p>
+                            </div>
+                        </li>`)
+            }
+        });
+
+        this.AtualizaFreCalculos()
+    },
+
+    Adicona: function ({ idProduto, qntCompra, imagem, preco, nome, tipoProduto, subcategoria, desconto }) {
+        var items = this.getItems();
+
+        if (items.length == 0 || !items.some((item) => item.idProduto == idProduto)) {
+
+            var tempCarrinho = [...items, { idProduto, qntCompra, imagem, preco, nome, tipoProduto, subcategoria, desconto }]
+
+            localStorage.setItem("produtos-carrinho", JSON.stringify(tempCarrinho));
+
+            $("#carrinho, #carrinho-items-count").html(tempCarrinho.length)
+
+            this.Carrega()
+        }
+    },
+
+    Remove: function (idProduto) {
+        var items = JSON.parse(localStorage.getItem("produtos-carrinho"))
+
+        var tempCarrinho = items.filter((item) => item.idProduto != idProduto)
+
+        localStorage.setItem("produtos-carrinho", JSON.stringify(tempCarrinho));
+
+        $("#carrinho, #carrinho-items-count").html(tempCarrinho.length)
+
+        this.Carrega()
+    }
+}
+
+Carrinho.Carrega();
+
+const Favoritos = {
     getItems: function () {
         var items = localStorage.getItem("produtos-favoritos");
         return items == null ? [] : JSON.parse(items);
@@ -244,10 +359,47 @@ $(document).on("click", ".button-qnt", function () {
 
     var operador = $button.attr("data-operador");
     var qnt = parseInt($input.val());
+    var current = 0;
 
-    if (operador == "menos" && qnt > 1)
-        $input.val(qnt - 1)
+    if (operador == "menos")
+        current = (qnt - 1)
 
     if (operador == "mais")
-        $input.val(qnt + 1)
+        current = (qnt + 1)
+
+    if (current >= 1) {
+        $input.val(current)
+
+        var data = $button.data();
+        if (data.idProduto)
+            Carrinho.AtualizaQuantidade(data.idProduto, current)
+
+        if (data.single)
+            $button.parents('.top-area').find('[data-action="carrinho"]').attr('data-qnt-compra', current)
+    }
 });
+
+$(document).on("click", '[data-action="carrinho"]', function () {
+    $button = $(this);
+
+    const data = $button.data();
+    Carrinho.Adicona(data);
+
+    $button.html(`<span class="loading loading-spinner loading-sm"></span> Carregando`)
+    setTimeout(() => {
+        $button.html(`<i class="fa-solid fa-check"></i> Adicionado`);
+        setTimeout(() => {
+            $button.html(`<i class="fa-light fa-cart-circle-plus text-sm"></i> Carrinho`)
+        }, 325);
+    }, 325);
+})
+
+$(document).on("click", ".remove-carrinho", function () {
+    $(this).parent().remove();
+    Carrinho.Remove($(this).attr("data-id-produto"));
+});
+
+$(document).on("click", ".remove-item-carrinho", function () {
+    $(this).parents(".cart-single-list").remove();
+    Carrinho.Remove($(this).attr("data-id-produto"));
+})

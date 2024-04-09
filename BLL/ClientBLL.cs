@@ -63,6 +63,12 @@ namespace ecommerce.BLL
             return Model;
         }
 
+        public static bool IsClientByCodigo(string Codigo)
+        {
+            Client cliente = ClientDAO.SearchForClientByCodigo(Codigo);
+            return cliente == null ? false : true;
+        }
+
         public static Client SelectClientById(long IdCliente)
         {
             return ClientDAO.SearchForClientById(IdCliente);

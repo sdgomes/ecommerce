@@ -62,7 +62,15 @@
                         <a class="remove-item" data-action="favoritos" data-id-produto="@Item.IdProduto" data-favorito="true"><i class="fa-light fa-xmark"></i></a>
                     </div>
                     <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
-                        <a asp-action="Index" asp-controller="Cart" asp-route-idproduto="@Item.IdProduto" class="button-qnt !w-[2.25rem] !h-[2.25rem] !text-[17px] hover:!bg-[#ffcc00] hover:!text-gray-800 !rounded-[5px]"><i class="fa-light fa-cart-plus"></i></a>
+                        <a data-action="carrinho"
+                        data-tipo-produto="@Item.TipoProduto.Capitalize()"
+                        data-subcategoria="@Item.Subcategoria.Capitalize()"
+                        data-imagem="@Item.ImageSource"
+                        data-preco="@Item.Preco"
+                        data-desconto="@(Item.Desconto ? @Item.CalculoDesconto : 0)"
+                        data-nome="@Item.Nome.Capitalize()"
+                        data-qnt-compra="1"
+                        data-id-produto="@Item.IdProduto" class="btn btn-sm btn-square text-white bg-[#130235] !w-[2.25rem] !h-[2.25rem] hover:!bg-[#ffcc00] hover:!text-gray-800 !rounded-[5px]"><i class="fa-solid fa-cart-plus"></i></a>
                     </div>
                 </div>
             </div>

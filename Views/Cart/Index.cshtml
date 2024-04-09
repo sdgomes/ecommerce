@@ -1,81 +1,171 @@
 @{
-    ViewBreadcrumbs breadcrumbs = new();
-    breadcrumbs.Title = "Meu Carrinho";
-    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-        new BreadcrumbsDTO("Produtos", "./shop"),
-        new BreadcrumbsDTO("Meu Carrinho")
-    };
+ViewBreadcrumbs breadcrumbs = new();
+breadcrumbs.Title = "Meu Carrinho";
+breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+new BreadcrumbsDTO("Produtos", "./shop"),
+new BreadcrumbsDTO("Meu Carrinho")
+};
 
-    ViewData["Title"] = breadcrumbs.Title;
+ViewData["Title"] = breadcrumbs.Title;
 }
 
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-<div class="shopping-cart section">
-    <div class="container mx-auto px-4">
-        <div class="cart-list-head mx-4">
+    <div class="shopping-cart section">
+        <div class="container mx-auto px-4">
 
-            <div class="cart-list-title">
-                <div class="flex flex-wrap ">
-                    <div class="lg:w-1/12 md:w-1/12 px-4 w-full"></div>
-                    <div class="lg:w-4/12 md:w-3/12 px-4 w-full">
-                        <strong>Nome do Produto</strong>
-                    </div>
-                    <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
-                        <strong>Quantidade</strong>
-                    </div>
-                    <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
-                        <strong>Subtotal</strong>
-                    </div>
-                    <div class="lg:w-2/12 md:w-2/12 px-4 w-full">
-                        <strong>Desconto</strong>
-                    </div>
-                    <div class="lg:w-1/12 md:w-2/12 px-4 w-full">
-                        <strong>Remover</strong>
-                    </div>
+            <div id="container-carrinho">
+                <div class="text-center">
+                    <span class="loading loading-spinner loading-lg text-primary"></span>
+                    <h3>Carregando</h3>
                 </div>
             </div>
 
-            @(await Component.InvokeAsync<ProdutosCartViewComponent>())
-
-        </div>
-
-        <div class="flex flex-wrap ">
-            <div class="w-full">
-
-                <div class="total-amount">
-                    <div class="flex flex-wrap ">
-                        <div class="lg:w-8/12 md:w-6/12 px-4 w-full">
-                            <div class="left">
-                                <div class="coupon">
-                                    <form action="#" target="_blank">
-                                        <input autocomplete="off" type="text" name="Coupon" placeholder="Insira seu cupom">
-                                        <div class="button">
-                                            <button class="btn !flex !text-gray-800 hover:!text-white !w-fit !min-h-0">Aplicar desconto</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lg:w-4/12 md:w-6/12 px-4 w-full">
-                            <div class="right">
-                                <ul>
-                                    <li>Subtotal do carrinho<span>R$ 2.389,60</span></li>
-                                    <li>Frete<span>Grátis</span></li>
-                                    <li>Descontos<span>R$ R$ 259,00</span></li>
-                                    <li class="last">Total a pagar<span>R$ 2.130,60</span></li>
-                                </ul>
-                                <div class="button">
-                                    <a asp-action="Index" asp-controller="Checkout" class="btn btn-alt !flex hover:!text-gray-800 !min-h-0">Finalizar</a>
-                                    <a asp-action="Index" asp-controller="Shop" class="btn !bg-transparent !border-[#ffcc00] !border !border-solid !flex !text-[#ffcc00] hover:!text-gray-800 hover:!bg-[#ffcc00] !min-h-0">Continue comprando</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
-</div>
+
+
+    @section Scripts {
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function (event) {
+            onDomChange(function () {
+                setTimeout(() => {
+                    $.applyDataMask('[data-mask');
+                }, 125);
+            });
+
+            $.ajax({
+                type: "POST",
+                data: { Produtos: Carrinho.getItems() },
+                url: "/componente/carrinho",
+                success: function (response) {
+                    $("#container-carrinho").html(response);
+                },
+                error: function (response) {
+                    console.log(response);
+                },
+            });
+
+            $(document).on("click", ".remove-item-carrinho", function () {
+
+                if ($('.cart-single-list').length == 0) {
+                    $('.cart-list-head').append(`<div role="alert" class="rounded-none alert"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span>Nenhum item foi adicionado ao carrinho.</span></div>`)
+                }
+            })
+
+            $(document).on("click", '[data-action="frete"]', function () {
+                $button = $(this);
+                $input = $button.parents('form').find('input');
+
+                if ($input.val().trim() == "")
+                    Toast.fire({
+                        icon: "error",
+                        title: "O campo CEP precisa ser preenchido."
+                    });
+                else {
+                    $button.html(`<span class="loading loading-spinner loading-sm"></span> Calculando`)
+
+                    $.ajax({
+                        type: "GET",
+                        url: `/calcular/frete/${$input.val()}`,
+                        success: function (data) {
+                            $button.html(`Cálcular frete`)
+
+                            Toast.fire({
+                                icon: data.response.success ? "success" : "error",
+                                title: data.response.message
+                            });
+
+                            if (data.response.success) {
+                                $input.val("");
+                                localStorage.setItem("frete", data.response.preco)
+                                $('[valor-frete]').html(data.response.frete)
+                                Carrinho.AtualizaFreCalculos()
+                            }
+                        },
+                        error: function (response) {
+                            console.log(response);
+                        },
+                    });
+                }
+            })
+
+
+            $(document).on('click', '[data-action="finalizar-carrinho"]', function (e) {
+                e.preventDefault();
+                AlertFunalizar();
+            })
+
+            const AlertFunalizar = () => {
+                Swal.fire({
+                    title: "Caso você sejá cliente informe seu código!",
+                    input: "text",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    inputAttributes: {
+                        autocapitalize: "off",
+                        autocomplete: "off"
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: "Ir para compra",
+                    cancelButtonText: 'Cancelar',
+                    showLoaderOnConfirm: true,
+                    reverseButtons: true,
+                    customClass: {
+                        confirmButton: "!bg-[#130235] !twxt-white",
+                    },
+                    preConfirm: async (Codigo) => {
+                        try {
+                            if (Codigo == "" || Codigo == null) {
+                                Swal.showValidationMessage(`Informe um código de cliente`);
+                                return false;
+                            }
+
+                            const response = await $.ajax({
+                                url: `/buscar/cliente/${Codigo}`,
+                                type: 'POST'
+                            });
+
+                            return response;
+                        } catch (error) {
+                            console.log(error);
+                            Swal.showValidationMessage(`Request failed: ${error}`);
+                        }
+                    },
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        if (result.value.isCliente)
+                            location.href = `/finalizar?Codigo=${result.value.codigo}`
+
+                        if (!result.value.isCliente)
+                            Swal.fire({
+                                icon: 'warning',
+                                title: "Atenção!",
+                                text: 'Seu código não é válido ou foi digitado errado.',
+                                allowOutsideClick: false,
+                                allowEscapeKey: false,
+                                allowEnterKey: false,
+                                showCancelButton: true,
+                                showDenyButton: true,
+                                denyButtonText: "Ir assim mesmo",
+                                confirmButtonText: "Tentar novamente",
+                                cancelButtonText: 'Cancelar',
+                                reverseButtons: true,
+                                customClass: {
+                                    confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                                    denyButton: "!bg-[#130235] !twxt-white",
+                                },
+                            }).then((result) => {
+                                if (result.isConfirmed)
+                                    AlertFunalizar()
+                                else if (result.isDenied)
+                                    location.href = `/finalizar`
+                            })
+                    }
+                });
+            }
+        });
+    </script>
+    }

@@ -49,5 +49,8 @@ namespace ecommerce.Models
 
         [Column("QNT_DESCONTO")]
         public int QntDesconto { get; set; }
+
+        [Column("QNT_COMPRA")]
+        public int QntCompra { get; set; }
     }
 }

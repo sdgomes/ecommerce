@@ -1,31 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ecommerce.DAL;
+using ecommerce.DTO;
+using ecommerce.Models;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace ecommerce.Views.Cart.Components.ProdutosCart
 {
+    [ViewComponent(Name = "ProdutosCart")]
     public class ProdutosCartViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(List<Product> Produtos)
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "Mock\\carrinho.json");
-            string json = File.ReadAllText(path);
+            var IdsProdutos = String.Join(", ", Produtos.Select(x => x.IdProduto.ToString()).ToArray());
 
-            var Model = JsonConvert.DeserializeObject<List<ViewProdutosCart>>(json);
+            ViewProdutosCart Model = new();
+            if (IdsProdutos != "")
+            {
+                Model.Products = ProductDAO.SelectProductsByInId(IdsProdutos);
+                foreach (var Item in Model.Products)
+                {
+                    Product Produto = Produtos.Where(x => x.IdProduto == Item.IdProduto).FirstOrDefault();
+                    Item.QntCompra = Produto.QntCompra;
+                }
+            }
+
             return View(Model);
         }
     }
 
     public class ViewProdutosCart
     {
-        public string Imagem { get; set; }
-        public string Cor { get; set; }
-        public string DescricaoProduto { get; set; }
-        public int Quantidade { get; set; }
-        public object PrecoDesconto { get; set; }
-        public string PrecoOriginal { get; set; }
-        public string Id { get; set; }
-        public int CupomDesconto { get; set; }
+        public List<ProductDTO> Products { get; set; }
     }
 }

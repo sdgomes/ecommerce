@@ -56,6 +56,19 @@ namespace ecommerce.Controllers
             }
         }
 
+        [HttpPost("/buscar/cliente/{Codigo}")]
+        public IActionResult BuscarCliente(string Codigo)
+        {
+            try
+            {
+                return Json(new { Codigo, IsCliente = ClientBLL.IsClientByCodigo(Codigo) });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpPost("/cadastrar/cliente")]
         public IActionResult CadastrarCliente(ClientDTO newClient)
         {

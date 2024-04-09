@@ -1,4 +1,6 @@
-﻿using ecommerce.Models;
+﻿using ecommerce.BLL;
+using ecommerce.Extesions;
+using ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,11 +11,31 @@ using System.Threading.Tasks;
 
 namespace ecommerce.Controllers
 {
-     public class CheckoutController : Controller
+    public class CheckoutController : Controller
     {
-        public IActionResult Index()
+        [HttpGet("/finalizar")]
+        public IActionResult Index(string Codigo)
         {
-            return View();
+            if (Codigo == null)
+                return RedirectToAction("Cadastro", "Client");
+
+            if (ClientBLL.IsClientByCodigo(Codigo))
+                return View(ClientBLL.SelectClientByCodigo(Codigo));
+
+            return RedirectToAction("Cadastro", "Client", new { error = "Cliente não encontrado. Faça seu registro!".ToBase64Encode() });
+        }
+
+        [HttpGet("/buscar/desconto/{Codigo}")]
+        public IActionResult BuscarDesconto(string Codigo)
+        {
+            try
+            {
+                return Json(new { response = ProductBLL.BuscarDesconto(Codigo) });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

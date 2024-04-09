@@ -9,6 +9,23 @@ namespace ecommerce.DAL
 {
     public class AddressDAO : BaseDAO
     {
+        public static Freight SearchFreightByUF(string Estado) {
+            try
+            {
+                string query = @$"SELECT * FROM ECM_FRETES WHERE D_E_L_E_T_ <> '*' AND ESTADO = @ESTADO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ESTADO", Estado)
+                };
+
+                return DatabaseProgramas().Choose<Freight>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static long CreateAddress(long IdCliente, Address address)
         {
             try

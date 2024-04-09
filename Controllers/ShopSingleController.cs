@@ -15,7 +15,7 @@ namespace ecommerce.Controllers
         [HttpGet("produtos/{Categoria}/{Subcategoria}/detalhes/{IdProduto}")]
         public IActionResult Index(long IdProduto)
         {
-            var Model = Produto.RetornaProduto(IdProduto);
+            var Model = ProductBLL.RetornaProduto(IdProduto);
             return View(Model);
         }
     }

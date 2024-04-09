@@ -8,17 +8,17 @@ namespace ecommerce.Models
 {
     public class Freight
     {
-    [Column("ID_FRETE")]
-    public long IdFrete {get; set;}
+        [Column("ID_FRETE")]
+        public long IdFrete { get; set; }
 
-    [Column("ESTADO")]
-    public string Estado {get; set;}
+        [Column("ESTADO")]
+        public string Estado { get; set; }
 
-    [Column("PRECO")]
-    public double Preco {get; set;}
+        [Column("PRECO")]
+        public double Preco { get; set; }
 
-    [Column("CRIACAO")]
-    public DateTime Criacao  {get; set;}
+        [Column("CRIACAO")]
+        public DateTime Criacao { get; set; }
 
     }
 }

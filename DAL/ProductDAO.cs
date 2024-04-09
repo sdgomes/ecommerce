@@ -10,6 +10,24 @@ namespace ecommerce.DAL
 {
     public class ProductDAO : BaseDAO
     {
+        public static Discount SearchDiscountByCodigo(string Codigo)
+        {
+            try
+            {
+                string query = @$"SELECT * FROM ECM_DESCONTOS WHERE CODIGO = @CODIGO AND RESGATADO = 0 AND ATIVO = 1 AND D_E_L_E_T_ <> '*';";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo)
+                };
+
+                return DatabaseProgramas().Choose<Discount>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static List<ImageDTO> SelectImagesFromProduct(long IdProduto)
         {
             try
@@ -28,11 +46,11 @@ namespace ecommerce.DAL
             }
         }
 
-		public static List<ProductDTO> SelectProductsByInId(string IdsProdutos)
-		{
-			try
-			{
-				string query = $@"SELECT
+        public static List<ProductDTO> SelectProductsByInId(string IdsProdutos)
+        {
+            try
+            {
+                string query = $@"SELECT
 									(SELECT AVG(NOTA) FROM ECM_AVALIACOES AVA WHERE AVA.ID_PRODUTO = PRO.ID_PRODUTO) AS NOTA,
 									(SELECT COUNT(1) FROM ECM_AVALIACOES AVA WHERE AVA.ID_PRODUTO = PRO.ID_PRODUTO) AS QNT_AVALIACOES,
 									(SELECT		
@@ -57,16 +75,16 @@ namespace ecommerce.DAL
 										AND EST.D_E_L_E_T_ <> '*'
 								WHERE PRO.D_E_L_E_T_ <> '*' AND PRO.ID_PRODUTO IN ({IdsProdutos})";
 
-						return DatabaseProgramas().Select<ProductDTO>(query);
-			}
-			catch (Exception)
-			{
-				throw;
-			}
-		}
+                return DatabaseProgramas().Select<ProductDTO>(query);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
 
-		public static ProductDTO SearchProductById(long IdProduto)
+        public static ProductDTO SearchProductById(long IdProduto)
         {
             try
             {

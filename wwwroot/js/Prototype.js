@@ -14,6 +14,11 @@ Date.prototype.todayString = function () {
     return `${date}/${month}/${this.getFullYear()} às ${hours}:${minutes}`;
 }
 
+String.prototype.toFloat = function () {
+    const palavra = this.toString();
+    return parseFloat(palavra.replace(/\./g, '').replace(/\,/g, '.'));
+}
+
 String.prototype.parseBool = function () {
     const palavra = this.toString();
     const string = typeof palavra == "string" ? palavra.toLowerCase().trim() : palavra;
