@@ -39,6 +39,20 @@ namespace ecommerce.Controllers
             ClientDTO Model = ClientBLL.SelectClientByCodigo(Codigo);
             return View(Model);
         }
+
+        [ClienteExiste]
+        [HttpGet("/cliente/perfil/{Codigo}/pedidos")]
+        public IActionResult Pedidos(string Codigo)
+        {
+            return View();
+        }
+
+        [ClienteExiste]
+        [HttpGet("/cliente/perfil/{Codigo}/pedidos/{Pedido}")]
+        public IActionResult Pedido(string Codigo, string Pedido)
+        {
+            return View();
+        }
         #endregion
 
         #region Actions

@@ -1,4 +1,5 @@
 ﻿using ecommerce.BLL;
+using ecommerce.DTO;
 using ecommerce.Extesions;
 using ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,20 @@ namespace ecommerce.Controllers
                 return View(ClientBLL.SelectClientByCodigo(Codigo));
 
             return RedirectToAction("Cadastro", "Client", new { error = "Cliente não encontrado. Faça seu registro!".ToBase64Encode() });
+        }
+
+        [HttpPost("/registra/transacao")]
+        public IActionResult RegistraTransacao(TransactionDTO Transaction, string Codigo)
+        {
+            try
+            {
+                ProductBLL.RegistraTransacao(Transaction);
+                return Json(new { Url = Url.Action("Pedido", "Client", new { Codigo, Pedido = 152 }) });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpGet("/buscar/desconto/{Codigo}")]

@@ -1,0 +1,13 @@
+@{
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Meus Pedidos";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+    new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+    new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
+    new BreadcrumbsDTO("Meus Pedidos")
+    };
+    
+    ViewData["Title"] = breadcrumbs.Title;
+    }
+    
+    @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))

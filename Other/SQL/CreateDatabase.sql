@@ -460,9 +460,16 @@ AS
         (
             ID_TRANSACAO BIGINT IDENTITY(1, 1) NOT NULL,
             ID_CLIENTE BIGINT NOT NULL,
-            ID_ETAPA BIGINT NOT NULL,
+            ID_ETAPA BIGINT DEFAULT 1,
+            ID_ETAPA BIGINT DEFAULT 1,
             TIPO VARCHAR(255) NOT NULL,
             PAGAMENTO VARCHAR(125) NOT NULL,
+
+            Subtotal FLOAT,
+            Frete FLOAT,
+            Descontos FLOAT,
+            Total FLOAT,
+
             CRIACAO DATETIME DEFAULT GETDATE() NULL,
             D_E_L_E_T_ CHAR(1) DEFAULT '' NULL
         );

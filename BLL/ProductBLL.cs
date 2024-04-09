@@ -1,4 +1,5 @@
 ﻿using ecommerce.DAL;
+using ecommerce.DTO;
 using ecommerce.Models;
 using ecommerce.Models.ModelView;
 using Newtonsoft.Json;
@@ -66,6 +67,11 @@ namespace ecommerce.BLL
             {
                 return new { success = false, message = "O código informado é inválido, por favor tente novamente!" };
             }
+        }
+
+        public static void RegistraTransacao(TransactionDTO Transaction)
+        {
+
         }
     }
 }
