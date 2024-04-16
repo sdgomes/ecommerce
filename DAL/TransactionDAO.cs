@@ -1,4 +1,5 @@
 ﻿using ecommerce.DTO;
+using ecommerce.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -9,6 +10,29 @@ namespace ecommerce.DAL
 {
     public class TransactionDAO : BaseDAO
     {
+        public static TransactionDTO SearchById(long IdTransaction)
+        {
+            try
+            {
+                string query = @$"SELECT * FROM ECM_TRANSACOES TR
+                                    INNER JOIN ECM_ETAPAS ET ON ET.ID_ETAPA = TR.ID_ETAPA
+	                                    AND ET.D_E_L_E_T_ <> '*'
+                                    INNER JOIN ECM_ENDERECOS EN ON EN.ID_ENDERECO = TR.ID_ENDERECO
+	                                    AND EN.D_E_L_E_T_ <> '*'
+                                WHERE TR.D_E_L_E_T_ <> '*' AND TR.ID_TRANSACAO = @ID_TRANSACAO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_TRANSACAO", I(IdTransaction)),
+                };
+
+                return DatabaseProgramas().Choose<TransactionDTO>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static long Create(TransactionDTO transaction)
         {
             try
@@ -55,16 +79,17 @@ namespace ecommerce.DAL
             }
         }
 
-        public static void AssociateProducts(long IdTransaction, long IdProduto)
+        public static void AssociateProducts(long IdTransaction, Product Produto)
         {
             try
             {
-                string query = @$" INSERT INTO ECM_PRO_TRA (ID_TRANSACAO, ID_PRODUTO)
-		                                VALUES (@ID_TRANSACAO, @ID_PRODUTO)";
+                string query = @$" INSERT INTO ECM_PRO_TRA (ID_TRANSACAO, ID_PRODUTO, QUANTIDADE)
+		                                VALUES (@ID_TRANSACAO, @ID_PRODUTO, @QUANTIDADE)";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@ID_TRANSACAO", I(IdTransaction)),
-                    new SqlParameter("@ID_PRODUTO", I(IdProduto)),
+                    new SqlParameter("@ID_PRODUTO", I(Produto.IdProduto)),
+                    new SqlParameter("@QUANTIDADE", I(Produto.QntCompra)),
                 };
 
                 DatabaseProgramas().Execute(query, parameters);

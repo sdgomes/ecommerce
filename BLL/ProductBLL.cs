@@ -15,6 +15,17 @@ namespace ecommerce.BLL
 {
     public class ProductBLL
     {
+        public static TransactionDTO Transacao(long Pedido)
+        {
+            TransactionDTO transacao = TransactionDAO.SearchById(Pedido);
+            if (transacao == null)
+                throw new ArgumentException("Pedido não encontrado, entre em contato com o suporte.");
+
+            //transacao.Produtos =
+
+            return transacao;
+        }
+
         public static ProdutoView RetornaProduto(long IdProduto)
         {
             ProdutoView Model = new();
@@ -69,7 +80,7 @@ namespace ecommerce.BLL
             }
         }
 
-        public static void RegistraTransacao(TransactionDTO Transaction)
+        public static long RegistraTransacao(TransactionDTO Transaction)
         {
             long IdTransaction = TransactionDAO.Create(Transaction);
 
@@ -77,7 +88,7 @@ namespace ecommerce.BLL
             {
                 foreach (var Item in Transaction.Produtos)
                 {
-                    TransactionDAO.AssociateProducts(IdTransaction, Item.IdProduto);
+                    TransactionDAO.AssociateProducts(IdTransaction, Item);
                 }
 
                 foreach (var Item in Transaction.Cartoes)
@@ -85,6 +96,8 @@ namespace ecommerce.BLL
                     TransactionDAO.AssociateCards(IdTransaction, Item.IdCartao);
                 }
             }
+
+            return IdTransaction;
         }
     }
 }

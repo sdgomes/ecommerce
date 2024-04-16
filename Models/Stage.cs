@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace ecommerce.Models
 {
-    public class Stage
+    public class Stage : Address
     {
-    [Column("ID_ETAPA")]
-    public long IdEtapa {get; set;}
+        [Column("ID_ETAPA")]
+        public long IdEtapa { get; set; }
 
-    [Column("ETAPA")]
-    public string Etapa {get; set;}
+        [Column("ETAPA")]
+        public string Etapa { get; set; }
 
-    [Column("CRIACAO")]
-    public DateTime Criacao  {get; set;}
+        [Column("CRIACAO")]
+        public DateTime Criacao { get; set; }
 
     }
 }

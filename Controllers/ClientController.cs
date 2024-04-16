@@ -49,9 +49,17 @@ namespace ecommerce.Controllers
 
         [ClienteExiste]
         [HttpGet("/cliente/perfil/{Codigo}/pedidos/{Pedido}")]
-        public IActionResult Pedido(string Codigo, string Pedido)
+        public IActionResult Pedido(string Codigo, long Pedido)
         {
-            return View();
+            try
+            {
+                TransactionDTO Model = ProductBLL.Transacao(Pedido);
+                return View(Model);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, new { Message = ex.Message });
+            }
         }
         #endregion
 

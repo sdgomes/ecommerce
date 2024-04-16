@@ -31,8 +31,8 @@ namespace ecommerce.Controllers
         {
             try
             {
-                ProductBLL.RegistraTransacao(Transaction);
-                return Json(new { Url = Url.Action("Pedido", "Client", new { Codigo, Pedido = 152 }) });
+                long IdTransacao = ProductBLL.RegistraTransacao(Transaction);
+                return Json(new { Url = Url.Action("Pedido", "Client", new { Codigo, Pedido = IdTransacao }) });
             }
             catch (Exception)
             {
