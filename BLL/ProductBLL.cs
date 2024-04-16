@@ -71,7 +71,20 @@ namespace ecommerce.BLL
 
         public static void RegistraTransacao(TransactionDTO Transaction)
         {
+            long IdTransaction = TransactionDAO.Create(Transaction);
 
+            if (IdTransaction != 0)
+            {
+                foreach (var Item in Transaction.Produtos)
+                {
+                    TransactionDAO.AssociateProducts(IdTransaction, Item.IdProduto);
+                }
+
+                foreach (var Item in Transaction.Cartoes)
+                {
+                    TransactionDAO.AssociateCards(IdTransaction, Item.IdCartao);
+                }
+            }
         }
     }
 }

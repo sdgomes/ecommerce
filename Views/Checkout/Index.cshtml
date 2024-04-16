@@ -110,35 +110,37 @@ new BreadcrumbsDTO("Checkout")
                             </div>
                             <div class="collapse-content bg-white">
 
-                                <div class="flex flex-wrap gap-3">
+                                <div class="flex flex-wrap -mx-3">
                                     @foreach (var (address, index) in Model.Adresses.Select((address, index) =>
-                                  (address, index)))
+                           (address, index)))
                                     {
-                                        <label class="w-1/2 card bg-base-200 rounded">
-                                            <div class="card-body px-3 py-3.5">
-                                                <label class="flex items-center gap-2">
-                                                    <input class="accent-yellow-400 h-[25px] w-[25px]" type="radio"
-                                                           name="enderecoEntrega" value="@address.IdEndereco">
-                                                    @address.NomeEndereco
-                                                </label>
+                                        <div class="w-1/2 px-3">
+                                            <label class="w-full card bg-base-200 rounded">
+                                                <div class="card-body px-3 py-3.5">
+                                                    <label class="flex items-center gap-2">
+                                                        <input class="accent-yellow-400 h-[25px] w-[25px]" type="radio"
+                                                               name="enderecoEntrega" value="@address.IdEndereco">
+                                                        @address.NomeEndereco
+                                                    </label>
 
-                                                <div class="flex flex-wrap mt-4 px-3">
-                                                    <div class="text-base w-full">@address.CEP</div>
-                                                    <div class="w-full text-gray-800">
-                                                        @address.TipoLogradouro.Capitalize(),
-                                                        @address.TipoResidencia.Capitalize()
+                                                    <div class="flex flex-wrap mt-4 px-3">
+                                                        <div class="text-base w-full">@address.CEP</div>
+                                                        <div class="w-full text-gray-800">
+                                                            @address.TipoLogradouro.Capitalize(),
+                                                            @address.TipoResidencia.Capitalize()
+                                                        </div>
+                                                        <div class="text-base w-full text-gray-800">
+                                                            @address.Logradouro,
+                                                            @address.Numero - @address.Bairro, @address.Cidade -
+                                                            @address.Estado
+                                                        </div>
+                                                        <hr>
+                                                        <div>@address.Complemento</div>
+                                                        <div>@address.Frase</div>
                                                     </div>
-                                                    <div class="text-base w-full text-gray-800">
-                                                        @address.Logradouro,
-                                                        @address.Numero - @address.Bairro, @address.Cidade -
-                                                        @address.Estado
-                                                    </div>
-                                                    <hr>
-                                                    <div>@address.Complemento</div>
-                                                    <div>@address.Frase</div>
                                                 </div>
-                                            </div>
-                                        </label>
+                                            </label>
+                                        </div>
                                     }
                                 </div>
                             </div>
@@ -151,59 +153,45 @@ new BreadcrumbsDTO("Checkout")
                             </div>
                             <div class="collapse-content bg-white">
 
-                                <div class="flex flex-wrap gap-3">
+                                <div class="flex flex-wrap -mx-3">
                                     @foreach (var (card, index) in Model.Cards.Select((card, index) => (card,
-                                  index)))
+                            index)))
                                     {
-                                        <label class="w-96 h-56 m-auto bg-red-100 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
+                                        <div class="w-1/2 px-3">
+                                            <label class="w-full card bg-base-200 rounded">
+                                                <div class="card-body px-3 py-3.5">
+                                                    <label class="flex items-center gap-2">
+                                                        <input class="accent-yellow-400 h-[25px] w-[25px]" type="checkbox" name="cartaoPagamento" value="@card.IdCartao">
+                                                        Nome titular:  @card.NomeTitular.Capitalize()
+                                                    </label>
 
-                                            <img class="relative object-cover w-full h-full rounded-xl"
-                                                 src="https://i.imgur.com/kGkSg1v.png">
-
-                                            <div class="w-full px-8 absolute top-8">
-
-                                                <input class="accent-yellow-400 absolute right-[1.25rem] bottom-0 h-[25px] w-[25px]"
-                                                       type="checkbox" name="cartaoPagamento" value="@card.IdCartao">
-
-                                                <div class="flex justify-between">
-                                                    <div class="">
-                                                        <p class="font-light">
-                                                            Nome
-                                                        <p class="font-medium tracking-widest">
-                                                            @card.NomeTitular.Capitalize()
-                                                        </p>
-                                                    </div>
-                                                    <img class="w-14 h-14"
-                                                         src="~/img/images/payment/@(card.IdBandeira).webp" />
-                                                </div>
-                                                <div class="pt-1">
-                                                    <p class="font-light">
-                                                        Número Cartão
-                                                    <p class="font-medium tracking-more-wider">
-                                                        *** *** *** @card.Numero.Split(' ')[3]
-                                                    </p>
-                                                </div>
-                                                <div class="pt-6 pr-6">
-                                                    <div class="flex justify-between">
-                                                        <div class="">
-                                                            <p class="font-light text-xs">
-                                                                Válidade até
-                                                            <p class="font-medium tracking-wider text-sm">
-                                                                @card.DataValidade.Split("-")[1]/@card.DataValidade.Split("-")[0]
-                                                            </p>
+                                                    <div class="flex flex-wrap mt-4 px-3">
+                                                        <div class="w-1/2">
+                                                            <div class="text-sm w-full">Número Cartão</div>
+                                                            <div class="text-base w-full"> *** *** *** @card.Numero.Split(' ')[3]</div>
                                                         </div>
 
-                                                        <div class="">
-                                                            <p class="font-light text-xs">
-                                                                CVV
-                                                            <p class="font-bold tracking-more-wider text-sm">
-                                                                ···
-                                                            </p>
+                                                        <div class="w-1/2 text-gray-700">
+                                                            <div class="text-sm w-full">Válidade até</div>
+                                                            @card.DataValidade.Split("-")[1]/@card.DataValidade.Split("-")[0]
+                                                        </div>
+
+                                                        <div class="text-base w-1/2 text-gray-800">
+                                                            <div class="text-base w-full">CVV</div>
+                                                            ***
+                                                        </div>
+
+                                                        <div class="w-1/2">
+                                                            <div>@card.NomeBandeira.Capitalize()&ensp;</div>
+                                                            <div>
+                                                                <img class=""
+                                                                     src="~/img/images/payment/@(card.IdBandeira).webp" />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </label>
+                                            </label>
+                                        </div>
                                     }
                                 </div>
                             </div>

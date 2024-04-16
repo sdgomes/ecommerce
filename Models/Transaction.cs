@@ -14,6 +14,9 @@ namespace ecommerce.Models
     [Column("ID_CLIENTE")]
     public long IdCliente {get; set;}
 
+    [Column("ID_ENDERECO")]
+    public long IdEndereco {get; set;}
+
     [Column("ID_ETAPA")]
     public long IdEtapa {get; set;}
 
@@ -22,6 +25,18 @@ namespace ecommerce.Models
 
     [Column("PAGAMENTO")]
     public string Pagamento {get; set;}
+
+    [Column("SUBTOTAL")]
+    public double Subtotal {get; set;}
+
+    [Column("FRETE")]
+    public double Frete {get; set;}
+
+    [Column("DESCONTOS")]
+    public double Descontos {get; set;}
+
+    [Column("TOTAL")]
+    public double Total {get; set;}
 
     [Column("CRIACAO")]
     public DateTime Criacao  {get; set;}
