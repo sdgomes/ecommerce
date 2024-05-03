@@ -41,6 +41,7 @@ ViewData["Title"] = breadcrumbs.Title;
                 url: "/componente/carrinho",
                 success: function (response) {
                     $("#container-carrinho").html(response);
+                    Carrinho.Carrega();
                 },
                 error: function (response) {
                     console.log(response);
@@ -78,9 +79,7 @@ ViewData["Title"] = breadcrumbs.Title;
                             });
 
                             if (data.response.success) {
-                                $input.val("");
                                 localStorage.setItem("frete", data.response.preco)
-                                $('[valor-frete]').html(data.response.frete)
                                 Carrinho.AtualizaFreCalculos()
                             }
                         },

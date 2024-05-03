@@ -372,10 +372,8 @@ new BreadcrumbsDTO("Checkout")
                             title: data.response.message
                         });
 
-                        if (data.response.success) {
-                            $input.val("");
+                        if (data.response.success) {                            
                             localStorage.setItem("frete", data.response.preco)
-                            $('[valor-frete]').html(data.response.frete)
                             Carrinho.AtualizaFreCalculos()
                         }
                     },

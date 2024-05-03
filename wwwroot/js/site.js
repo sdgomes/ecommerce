@@ -13,27 +13,26 @@ const Carrinho = {
     },
 
     AtualizaFreCalculos: function () {
-        var items = this.getItems();
+        var lf = localStorage.getItem("frete");
+        var frete = parseFloat(lf ?? 0);
 
-        var frete = localStorage.getItem("frete");
-        frete = frete == null ? 0 : frete;
+        var items = this.getItems();
 
         const subtotal = items.length == 0 ? 0 : items.map((item) => (item.qntCompra * toFloat(item.preco))).reduce((prev, current) => prev + current);
         $("[menu-total-amount]").html(currency(subtotal))
 
-        $('[valor-frete]').html(currency(frete))
-
         var descontos = items.length == 0 ? 0 : items.map((item) => toFloat(item.desconto)).reduce((prev, current) => prev + current);
-        
+
         $('[total-descontos]').html(currency(descontos))
 
-        $('[total-compra]').html(currency((subtotal + parseFloat(frete)) - descontos))
+        $('[valor-frete]').html(currency(frete))
 
-        localStorage.removeItem("frete")
+        $('[total-compra]').html(currency((subtotal + parseFloat(frete)) - descontos))
     },
 
     AtualizaQuantidade: function (idProduto, qntCompra) {
         var items = this.getItems();
+
         var tempCarrinho = items.map((item) => {
             if (item.idProduto == idProduto)
                 item.qntCompra = qntCompra
@@ -452,7 +451,7 @@ const AlertFunalizar = () => {
     }).then((result) => {
         if (result.isConfirmed) {
             if (result.value.isCliente)
-                location.href = `/finalizar?Codigo=${result.value.codigo}`                    
+                location.href = `/finalizar?Codigo=${result.value.codigo}`
 
             else if (!result.value.isCliente)
                 Swal.fire({
