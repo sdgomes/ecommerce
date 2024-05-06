@@ -1,4 +1,4 @@
-namespace ecommerce.Connection
+namespace crm.Connection
 {
     public class StringConnection
     {

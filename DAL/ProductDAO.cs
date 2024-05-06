@@ -1,12 +1,12 @@
-﻿using ecommerce.DTO;
-using ecommerce.Models;
+﻿using crm.DTO;
+using crm.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ecommerce.DAL
+namespace crm.DAL
 {
     public class ProductDAO : BaseDAO
     {

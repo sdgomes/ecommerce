@@ -1,4 +1,4 @@
-namespace ecommerce.Helpers
+namespace crm.Helpers
 {
     public class Enums
     {

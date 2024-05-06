@@ -1,16 +1,21 @@
-﻿using ecommerce.Models;
+﻿using crm.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ecommerce.DTO
+namespace crm.DTO
 {
     public class ClientDTO
     {
+        public bool Retorno { get; set; }
+
         public int MainCard { get; set; }
-        public Client Client {get; set;}
-        public List<Address> Adresses { get; set;}
-        public List<Card> Cards { get; set;}
+
+        public Client Client { get; set; }
+
+        public List<Address> Adresses { get; set; }
+
+        public List<Card> Cards { get; set; }
     }
 }

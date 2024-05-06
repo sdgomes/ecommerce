@@ -4,15 +4,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ecommerce.Models
+namespace crm.Models
 {
     public class Transaction : Stage
     {
         [Column("ID_TRANSACAO")]
         public long IdTransacao { get; set; }
 
-        [Column("ID_ETAPA")]
-        public long IdEtapa { get; set; }
+        [Column("ID_PRODUTO")]
+        public long IdProduto { get; set; }
+
+        [Column("NOME")]
+        public string Nome { get; set; }
+
+        [Column("DESCRICAO")]
+        public string Descricao { get; set; }
 
         [Column("TIPO")]
         public string Tipo { get; set; }

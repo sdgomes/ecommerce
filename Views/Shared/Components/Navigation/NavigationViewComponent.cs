@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ecommerce.Views.Shared.Components.Navigation
+namespace crm.Views.Shared.Components.Navigation
 {
     public class NavigationViewComponent : ViewComponent
     {

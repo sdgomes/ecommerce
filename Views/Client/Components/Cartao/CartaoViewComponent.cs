@@ -2,10 +2,10 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
-using ecommerce.Models;
-using ecommerce.DAL;
+using crm.Models;
+using crm.DAL;
 
-namespace ecommerce.Views.Client.Components.Cartao
+namespace crm.Views.Client.Components.Cartao
 {
     [ViewComponent(Name = "Cartao")]
     public class CartaoViewComponent : ViewComponent

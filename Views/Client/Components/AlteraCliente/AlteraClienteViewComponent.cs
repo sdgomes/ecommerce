@@ -1,10 +1,10 @@
-﻿using ecommerce.DAL;
+﻿using crm.DAL;
 using Microsoft.AspNetCore.Mvc;
-using ecommerce.Models;
-using ClassClient = ecommerce.Models.Client;
+using crm.Models;
+using ClassClient = crm.Models.Client;
 using System.Collections.Generic;
 
-namespace ecommerce.Views.Client.Components.AlteraCliente
+namespace crm.Views.Client.Components.AlteraCliente
 {
     [ViewComponent(Name = "AlteraCliente")]
     public class AlteraClienteViewComponent : ViewComponent

@@ -1,11 +1,11 @@
-﻿using ecommerce.Helpers;
-using ecommerce.Interfaces;
+﻿using crm.Helpers;
+using crm.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ecommerce.Connection
+namespace crm.Connection
 {
     public class Connections : IDatabaseProgramas
     {

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace ecommerce.Views.Home.Components.HomeProductList
+namespace crm.Views.Home.Components.HomeProductList
 {
     public class HomeProductListViewComponent : ViewComponent
     {

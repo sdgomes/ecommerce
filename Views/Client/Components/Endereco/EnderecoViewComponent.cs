@@ -1,11 +1,11 @@
-﻿using ecommerce.DAL;
-using ecommerce.Models;
+﻿using crm.DAL;
+using crm.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace ecommerce.Views.Client.Components.Endereco
+namespace crm.Views.Client.Components.Endereco
 {
     [ViewComponent(Name = "Endereco")]
     public class EnderecoViewComponent : ViewComponent

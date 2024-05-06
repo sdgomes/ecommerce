@@ -1,10 +1,10 @@
-﻿using ecommerce.DTO;
+﻿using crm.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ecommerce.Models.ModelView
+namespace crm.Models.ModelView
 {
     public class ProdutoView
     {

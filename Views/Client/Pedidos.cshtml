@@ -1,11 +1,32 @@
+@model PedidosView
+
 @{
     ViewBreadcrumbs breadcrumbs = new();
-    breadcrumbs.Title = "Meus Pedidos";
+    breadcrumbs.Title = "Pedidos";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-    new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-    new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
-    new BreadcrumbsDTO("Meus Pedidos")
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
+        new BreadcrumbsDTO("Meus Pedidos")
     };
 
     ViewData["Title"] = breadcrumbs.Title;
 }
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+<div>
+    <ul class="menu bg-base-200 w-56 rounded-box">
+        @foreach (var Items in Model.Transactions)
+        {
+            <li>
+                <a class="capitalize">@Items.Criacao.ToString("dd MMMM yyyy")</a>
+                <ul>
+                    @foreach (var produto in Model.GetProdutos(Items.Criacao, Model.Cliente.IdCliente))
+                    {
+                        <li><a>@produto.Nome</a></li>
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+</div>

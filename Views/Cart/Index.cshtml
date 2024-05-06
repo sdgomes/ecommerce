@@ -78,9 +78,7 @@ ViewData["Title"] = breadcrumbs.Title;
                             });
 
                             if (data.response.success) {
-                                $input.val("");
                                 localStorage.setItem("frete", data.response.preco)
-                                $('[valor-frete]').html(data.response.frete)
                                 Carrinho.AtualizaFreCalculos()
                             }
                         },

@@ -1,10 +1,10 @@
-﻿using ecommerce.Models;
+﻿using crm.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ecommerce.DAL
+namespace crm.DAL
 {
     public class CategoriaDAO : BaseDAO
     {

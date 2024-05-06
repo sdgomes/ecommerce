@@ -1,10 +1,10 @@
-﻿using ecommerce.Models;
+﻿using crm.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ecommerce.DTO
+namespace crm.DTO
 {
     public class ProductDTO : Product
     {
@@ -21,7 +21,15 @@ namespace ecommerce.DTO
         {
             get
             {
-                return "data:image/webp;base64," + Convert.ToBase64String(Imagem);
+                try
+                {
+                    return "data:image/webp;base64," + Convert.ToBase64String(Imagem);
+                }
+                catch (Exception)
+                {
+                    return "data:image/webp;base64,";
+                }
+
             }
         }
     }

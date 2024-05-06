@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace ecommerce.Helpers
+namespace crm.Helpers
 {
     public class GenericConverter
     {

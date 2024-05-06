@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace ecommerce.Views.ShopSingle.Components.ProductList
+namespace crm.Views.ShopSingle.Components.ProductList
 {
     public class ProductListViewComponent : ViewComponent
     {

@@ -1,5 +1,5 @@
-﻿using ecommerce.BLL;
-using ecommerce.Models;
+﻿using crm.BLL;
+using crm.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ecommerce.Controllers
+namespace crm.Controllers
 {
     public class CartController : Controller
     {

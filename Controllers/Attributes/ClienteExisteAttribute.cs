@@ -1,11 +1,11 @@
-using ecommerce.DAL;
-using ecommerce.Extesions;
-using ecommerce.Models;
+using crm.DAL;
+using crm.Extesions;
+using crm.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 
-namespace ecommerce.Controllers.Attributes
+namespace crm.Controllers.Attributes
 {
     public class ClienteExisteAttribute : ActionFilterAttribute
     {
@@ -27,7 +27,7 @@ namespace ecommerce.Controllers.Attributes
                 if (cliente == null)
                 {
                     var controller = (Controller)context.Controller;
-                    context.Result = controller.RedirectToAction("Cadastro", "Client", new { error = "Atenção! Cliente não encontrado.".ToBase64Encode() });
+                    context.Result = controller.RedirectToAction("Cadastro", "Client", new { error = "Atenï¿½ï¿½o! Cliente nï¿½o encontrado.".ToBase64Encode() });
                 }
             }
             catch (Exception)

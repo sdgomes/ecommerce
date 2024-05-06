@@ -1,6 +1,6 @@
-﻿using ecommerce.DAL;
-using ecommerce.DTO;
-using ecommerce.Models;
+﻿using crm.DAL;
+using crm.DTO;
+using crm.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace ecommerce.Views.Cart.Components.ProdutosCart
+namespace crm.Views.Cart.Components.ProdutosCart
 {
     [ViewComponent(Name = "ProdutosCart")]
     public class ProdutosCartViewComponent : ViewComponent

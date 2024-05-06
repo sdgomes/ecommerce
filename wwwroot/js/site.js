@@ -1,10 +1,50 @@
-﻿const toFloat = (palavra) => {
+﻿/** ==========================  */
+//#region Cookie
+/** ==========================  */
+
+function Cookie() { }
+
+Cookie.prototype.Set = function (name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+Cookie.prototype.Get = function (name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+Cookie.prototype.Erase = function (name) {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+const cookie = new Cookie();
+
+/** ==========================  */
+//#endregion
+/** ==========================  */
+
+
+const toFloat = (palavra) => {
     return parseFloat(palavra.toString().replace(/\./g, '').replace(/\,/g, '.'));
 }
 
 const currency = (number) => {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(number)
 }
+
+var DescontosMias = 0;
 
 const Carrinho = {
     getItems: function () {
@@ -24,12 +64,15 @@ const Carrinho = {
         $('[valor-frete]').html(currency(frete))
 
         var descontos = items.length == 0 ? 0 : items.map((item) => toFloat(item.desconto)).reduce((prev, current) => prev + current);
-        
+
         $('[total-descontos]').html(currency(descontos))
+        var total = (subtotal + parseFloat(frete)) - descontos;
+        if (DescontosMias != 0) {
+            var valDesconto = (DescontosMias * total) / 100;
+            total = total - valDesconto;
+        }
 
-        $('[total-compra]').html(currency((subtotal + parseFloat(frete)) - descontos))
-
-        localStorage.removeItem("frete")
+        $('[total-compra]').html(currency(total))
     },
 
     AtualizaQuantidade: function (idProduto, qntCompra) {
@@ -406,12 +449,82 @@ $(document).on("click", ".remove-item-carrinho", function () {
 
 $(document).on('click', '[data-action="finalizar-carrinho"]', function (e) {
     e.preventDefault();
-    AlertFunalizar();
+
+    const codigo = cookie.Get("codigo");
+    if (codigo == null) {
+
+        Swal.fire({
+            title: "Informe seu código de cliente!",
+            input: "text",
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            inputAttributes: {
+                autocapitalize: "off",
+                autocomplete: "off"
+            },
+            showCancelButton: true,
+            showDenyButton: true,
+            confirmButtonText: "Entrar",
+            denyButtonText: "Criar Cadastro",
+            cancelButtonText: 'Cancelar',
+            showLoaderOnConfirm: true,
+            reverseButtons: true,
+            customClass: {
+                confirmButton: "!bg-[#130235] !twxt-white",
+                denyButton: "!bg-[#ffcc00] !text-gray-800",
+            },
+            preConfirm: async (Codigo) => {
+                try {
+                    if (Codigo == "" || Codigo == null) {
+                        Swal.showValidationMessage(`Informe um código de cliente`);
+                        return false;
+                    }
+
+                    const response = await $.ajax({
+                        url: `/buscar/cliente/${Codigo}`,
+                        type: 'POST'
+                    });
+
+                    return response;
+                } catch (error) {
+                    console.log(error);
+                    Swal.showValidationMessage(`Request failed: ${error}`);
+                }
+            },
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if (result.value.isCliente) {
+                    cookie.Set("codigo", result.value.codigo, 1)
+                    location.href = `/finalizar`;
+                }
+
+                else if (!result.value.isCliente)
+                    Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        title: "Atenção!",
+                        text: 'Seu código não é válido ou foi digitado errado.\nTente novamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+            }
+            else if (result.isDenied)
+                location.href = `/cadastro/cliente?finalizar=true`;
+        });
+    } else {
+        location.href = `/finalizar`;
+    }
 })
 
-const AlertFunalizar = () => {
+$(document).on('click', '#sair', function () {
+    cookie.Erase("codigo")
+    location.href = `/`;
+})
+
+$(document).on('click', '#entrar', function () {
     Swal.fire({
-        title: "Caso você sejá cliente informe seu código!",
+        title: "Informe seu código de cliente!",
         input: "text",
         allowOutsideClick: false,
         allowEscapeKey: false,
@@ -422,7 +535,7 @@ const AlertFunalizar = () => {
         },
         showCancelButton: true,
         showDenyButton: true,
-        confirmButtonText: "Ir para compra",
+        confirmButtonText: "Entrar",
         denyButtonText: "Criar Cadastro",
         cancelButtonText: 'Cancelar',
         showLoaderOnConfirm: true,
@@ -451,35 +564,22 @@ const AlertFunalizar = () => {
         },
     }).then((result) => {
         if (result.isConfirmed) {
-            if (result.value.isCliente)
-                location.href = `/finalizar?Codigo=${result.value.codigo}`                    
+            if (result.value.isCliente) {
+                cookie.Set("codigo", result.value.codigo, 1)
+                location.href = `/cliente/perfil/${result.value.codigo}`;
+            }
 
             else if (!result.value.isCliente)
                 Swal.fire({
-                    icon: 'warning',
+                    position: "center",
+                    icon: "warning",
                     title: "Atenção!",
-                    text: 'Seu código não é válido ou foi digitado errado.',
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    showCancelButton: true,
-                    showDenyButton: true,
-                    denyButtonText: "Ir assim mesmo",
-                    confirmButtonText: "Tentar novamente",
-                    cancelButtonText: 'Cancelar',
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                        denyButton: "!bg-[#130235] !twxt-white",
-                    },
-                }).then((result) => {
-                    if (result.isConfirmed)
-                        AlertFunalizar()
-                    else if (result.isDenied)
-                        location.href = `/finalizar`
-                })
+                    text: 'Seu código não é válido ou foi digitado errado.\nTente novamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
         }
         else if (result.isDenied)
-            location.href = `/finalizar`
+            location.href = `/cadastro/cliente`;
     });
-}
+})

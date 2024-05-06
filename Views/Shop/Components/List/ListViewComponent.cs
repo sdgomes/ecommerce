@@ -1,11 +1,11 @@
-﻿using ecommerce.DAL;
-using ecommerce.DTO;
+﻿using crm.DAL;
+using crm.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace ecommerce.Views.Shop.Components.List
+namespace crm.Views.Shop.Components.List
 {
     [ViewComponent(Name = "List")]
     public class ListViewComponent : ViewComponent

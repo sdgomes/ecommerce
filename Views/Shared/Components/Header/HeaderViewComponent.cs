@@ -1,29 +1,37 @@
-﻿using ecommerce.DAL;
-using ecommerce.Models;
+﻿using crm.DAL;
+using crm.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace ecommerce.Views.Shared.Components.Header
+namespace crm.Views.Shared.Components.Header
 {
     public class HeaderViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "Mock\\categorias.json");
-            string json = File.ReadAllText(path);
+            ViewHeader Model = new();
 
-            var Model = JsonConvert.DeserializeObject<ViewHeader>(json);
+            if (Request.Cookies["codigo"] != null)
+            {
+                var codigo = Request.Cookies["codigo"];
+                Model.Cliente = ClientDAO.SearchForClientByCodigo(codigo);
+            }
+
             return View(Model);
         }
     }
 
     public class ViewHeader
     {
+        public Models.Client Cliente { get; set; }
+
         public List<CategoriaDTO> Categorias { get; set; }
+
         public int Favoritos { get; set; }
+
         public List<CarrinhoDTO> Carrinho { get; set; }
 
         public ViewHeader()

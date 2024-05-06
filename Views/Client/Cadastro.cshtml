@@ -13,6 +13,7 @@ new BreadcrumbsDTO("Cadastro de cliente")
 
 <div class="my-10 px-5 checkout-steps-form-style-1">
     <form method="post" asp-controller="Client" asp-action="CadastrarCliente" class="container mx-auto space-y-5">
+        <input type="hidden" name="retorno" value="false">
         <div class="collapse bg-white border border-gray-300 !rounded-[5px]">
             <input autocomplete="off" type="radio" name="accordion" checked />
             <div class="collapse-title text-xl font-medium bg-[#130235]">
@@ -163,7 +164,7 @@ new BreadcrumbsDTO("Cadastro de cliente")
                                 <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="Sua senha precisa de pelo menos 8 caracteres, uma letra maiuscula e uma minúscula e conter pelo menos um caractere especial.">
                                     <div class="form-input form relative">
                                         <input autocomplete="off" required name="client.senha" type="password" placeholder="Ex.: ******">
-                                        <button data-click="eye" type="button" class="my-auto absolute right-2 inset-y-0 btn btn-square btn-sm"><i class="fa-solid fa-eye"></i></button>
+                                        <button tabindex="-1" data-click="eye" type="button" class="my-auto absolute right-2 inset-y-0 btn btn-square btn-sm"><i class="fa-solid fa-eye"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +176,7 @@ new BreadcrumbsDTO("Cadastro de cliente")
                                 <div class="before:!hidden after:!hidden tooltip !w-full tooltip-error before:!text-red-200" data-tip="As senhas não conferem.">
                                     <div class="form-input form relative">
                                         <input autocomplete="off" required name="client.confirmaSenha" type="password" placeholder="Ex.: ******">
-                                        <button data-click="eye" type="button" class="my-auto absolute right-2 inset-y-0 btn btn-square btn-sm"><i class="fa-solid fa-eye"></i></button>
+                                        <button tabindex="-1" data-click="eye" type="button" class="my-auto absolute right-2 inset-y-0 btn btn-square btn-sm"><i class="fa-solid fa-eye"></i></button>
                                     </div>
                                 </div>
                             </div>

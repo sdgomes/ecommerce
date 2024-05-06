@@ -1,17 +1,18 @@
-﻿using ecommerce.BLL;
-using ecommerce.Controllers.Attributes;
-using ecommerce.DTO;
-using ecommerce.Models;
-using ecommerce.Views.Client.Components.AlteraSenha;
-using ecommerce.Views.Client.Components.Cartao;
-using ecommerce.Views.Client.Components.Endereco;
+﻿using crm.BLL;
+using crm.Controllers.Attributes;
+using crm.DTO;
+using crm.Models;
+using crm.Models.ModelView;
+using crm.Views.Client.Components.AlteraSenha;
+using crm.Views.Client.Components.Cartao;
+using crm.Views.Client.Components.Endereco;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ecommerce.Controllers
+namespace crm.Controllers
 {
     public class ClientController : Controller
     {
@@ -19,10 +20,16 @@ namespace ecommerce.Controllers
         [HttpGet("/cadastro/cliente")]
         public IActionResult Cadastro()
         {
+            if (Request.Cookies["codigo"] != null)
+            {
+                return RedirectToAction("Perfil", new { Codigo = Request.Cookies["codigo"] });
+            }
+
             return View();
         }
 
         [ClienteExiste]
+        [ClienteLogado]
         [HttpGet("/cliente/perfil/{Codigo}")]
         public IActionResult Perfil(string Codigo)
         {
@@ -33,6 +40,7 @@ namespace ecommerce.Controllers
         }
 
         [ClienteExiste]
+        [ClienteLogado]
         [HttpGet("/cliente/perfil/{Codigo}/dados/cadastrais")]
         public IActionResult Cliente(string Codigo)
         {
@@ -41,13 +49,16 @@ namespace ecommerce.Controllers
         }
 
         [ClienteExiste]
+        [ClienteLogado]
         [HttpGet("/cliente/perfil/{Codigo}/pedidos")]
         public IActionResult Pedidos(string Codigo)
         {
-            return View();
+            PedidosView Model = TransactionBLL.Pedidos(Codigo);
+            return View(Model);
         }
 
         [ClienteExiste]
+        [ClienteLogado]
         [HttpGet("/cliente/perfil/{Codigo}/pedidos/{Pedido}")]
         public IActionResult Pedido(string Codigo, long Pedido)
         {
@@ -97,6 +108,12 @@ namespace ecommerce.Controllers
             try
             {
                 string codigoCliente = ClientBLL.CreateClient(newClient);
+
+                HttpContext.Response.Cookies.Append("codigo", codigoCliente, new Microsoft.AspNetCore.Http.CookieOptions { IsEssential = true });
+
+                if (newClient.Retorno)
+                    return RedirectToAction("Index", "Checkout");
+
                 return RedirectToAction("Cliente", new { Codigo = codigoCliente });
             }
             catch (Exception)

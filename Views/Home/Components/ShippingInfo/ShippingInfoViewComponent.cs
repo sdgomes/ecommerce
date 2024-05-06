@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ecommerce.Views.Home.Components.ShippingInfo
+namespace crm.Views.Home.Components.ShippingInfo
 {
     public class ShippingInfoViewComponent : ViewComponent
     {

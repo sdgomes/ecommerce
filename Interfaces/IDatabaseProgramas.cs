@@ -1,6 +1,6 @@
-using ecommerce.Connection;
+using crm.Connection;
 
-namespace ecommerce.Interfaces
+namespace crm.Interfaces
 {
     public interface IDatabaseProgramas
     {

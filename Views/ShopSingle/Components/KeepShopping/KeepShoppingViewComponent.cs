@@ -1,12 +1,12 @@
-﻿using ecommerce.DAL;
-using ecommerce.DTO;
-using ecommerce.Models;
+﻿using crm.DAL;
+using crm.DTO;
+using crm.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace ecommerce.Views.ShopSingle.Components.KeepShopping
+namespace crm.Views.ShopSingle.Components.KeepShopping
 {
     public class KeepShoppingViewComponent : ViewComponent
     {

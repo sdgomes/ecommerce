@@ -1,7 +1,8 @@
-﻿using ecommerce.BLL;
-using ecommerce.DTO;
-using ecommerce.Extesions;
-using ecommerce.Models;
+﻿using crm.BLL;
+using crm.Controllers.Attributes;
+using crm.DTO;
+using crm.Extesions;
+using crm.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,20 +11,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ecommerce.Controllers
+namespace crm.Controllers
 {
     public class CheckoutController : Controller
     {
+        [ValidaCompra]
         [HttpGet("/finalizar")]
-        public IActionResult Index(string Codigo)
+        public IActionResult Index()
         {
-            if (Codigo == null)
-                return RedirectToAction("Cadastro", "Client");
-
-            if (ClientBLL.IsClientByCodigo(Codigo))
-                return View(ClientBLL.SelectClientByCodigo(Codigo));
-
-            return RedirectToAction("Cadastro", "Client", new { error = "Cliente não encontrado. Faça seu registro!".ToBase64Encode() });
+            var codigo = Request.Cookies["codigo"];
+            return View(ClientBLL.SelectClientByCodigo(codigo));
         }
 
         [HttpPost("/registra/transacao")]
@@ -32,7 +29,7 @@ namespace ecommerce.Controllers
             try
             {
                 long IdTransacao = ProductBLL.RegistraTransacao(Transaction);
-                return Json(new { Url = Url.Action("Pedido", "Client", new { Codigo, Pedido = IdTransacao }) });
+                return Json(new { Transacoes = Transaction, Url = Url.Action("Pedido", "Client", new { Codigo, Pedido = IdTransacao }) });
             }
             catch (Exception)
             {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ecommerce.Views.ShopSingle.Components.KeepShoppingInfo
+namespace crm.Views.ShopSingle.Components.KeepShoppingInfo
 {
     public class KeepShoppingInfoViewComponent : ViewComponent
     {

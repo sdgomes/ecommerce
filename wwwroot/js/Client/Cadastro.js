@@ -104,6 +104,13 @@ $(document).on('change', '#endereco-cobranca', function () {
 });
 
 document.querySelector('#submit').addEventListener('click', function (event) {
+    const urlParams = new URLSearchParams(location.search);
+    const param = urlParams.get("finalizar");
+
+    if (param != null && param != "")
+        if (param.parseBool())
+            $('[name="retorno"]').val(true);
+
     if (validation($('form')) && validateSenha() && validateSenhaConfirma()) {
         return true;
     }
