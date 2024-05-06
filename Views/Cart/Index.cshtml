@@ -41,6 +41,7 @@ ViewData["Title"] = breadcrumbs.Title;
                 url: "/componente/carrinho",
                 success: function (response) {
                     $("#container-carrinho").html(response);
+                    Carrinho.Carrega();
                 },
                 error: function (response) {
                     console.log(response);

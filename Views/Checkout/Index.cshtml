@@ -377,7 +377,7 @@ ViewData["Title"] = breadcrumbs.Title;
                             title: data.response.message
                         });
 
-                        if (data.response.success) {
+                        if (data.response.success) {                            
                             localStorage.setItem("frete", data.response.preco)
                             Carrinho.AtualizaFreCalculos()
                         }

@@ -113,11 +113,11 @@
                                 </div> -->
 
                                 <div class="coupon">
-                                    <form>
+                                    <form class="flex">
                                         <input autocomplete="off" type="text" name="frete"
                                                placeholder="Insira seu CEP" data-mask="00000-000">
                                         <div class="button">
-                                            <button type="button" data-action='@(Model.Products == null ? "" : "frete")' class="btn !flex !text-gray-800 hover:!text-white !w-fit !min-h-0">
+                                            <button type="button" data-action='@(Model.Products == null ? "" : "frete")' class="!top-0 btn !flex !text-gray-800 hover:!text-white !w-fit !min-h-0">
                                                 Cálcular frete
                                             </button>
                                         </div>
