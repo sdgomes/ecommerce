@@ -93,7 +93,7 @@ namespace crm.BLL
 
                 foreach (var Item in Transaction.Cartoes)
                 {
-                    TransactionDAO.AssociateCards(IdTransaction, Item.IdCartao);
+                    TransactionDAO.AssociateCards(IdTransaction, Item);
                 }
             }
 

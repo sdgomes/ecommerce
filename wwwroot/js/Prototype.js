@@ -14,6 +14,11 @@ Date.prototype.todayString = function () {
     return `${date}/${month}/${this.getFullYear()} às ${hours}:${minutes}`;
 }
 
+Number.prototype.toMoney = function () {
+    const valor = this
+    return new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 }).format(valor)
+}
+
 String.prototype.toFloat = function () {
     const palavra = this.toString();
     return parseFloat(palavra.replace(/\./g, '').replace(/\,/g, '.'));

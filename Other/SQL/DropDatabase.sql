@@ -1,10 +1,10 @@
 USE [PROGRAMAS]
 GO
 
-DROP PROCEDURE IF EXISTS dbo.dropEcommerce
+DROP PROCEDURE IF EXISTS dbo.Elimination
 GO
 
-CREATE PROCEDURE dbo.dropEcommerce
+CREATE PROCEDURE dbo.Elimination
 AS
     BEGIN
         DECLARE @CONSTRAINTS VARCHAR(max);

@@ -1,10 +1,10 @@
 USE [PROGRAMAS]
 GO
 
-DROP PROCEDURE IF EXISTS dbo.truncateEcommerce
+DROP PROCEDURE IF EXISTS dbo.Cleaning
 GO
 
-CREATE PROCEDURE dbo.truncateEcommerce
+CREATE PROCEDURE dbo.Cleaning
 AS
     BEGIN
         DECLARE @TABLES_TO_DELETE VARCHAR(max);

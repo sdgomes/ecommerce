@@ -41,6 +41,9 @@ namespace crm.Models
         [Column("NOME")]
         public string NomeBandeira { get; set; }
 
+        [Column("TOTAL")]
+        public double Total { get; set; }        
+
         [Column("CRIACAO")]
         public DateTime Criacao { get; set; }
 

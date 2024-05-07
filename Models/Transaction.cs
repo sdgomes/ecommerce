@@ -14,6 +14,9 @@ namespace crm.Models
         [Column("ID_PRODUTO")]
         public long IdProduto { get; set; }
 
+        [Column("QUANTIDADE")]
+        public int Quantidade { get; set; }
+
         [Column("NOME")]
         public string Nome { get; set; }
 
@@ -37,6 +40,12 @@ namespace crm.Models
 
         [Column("TOTAL")]
         public double Total { get; set; }
+
+        [Column("IMAGEM")]
+        public byte[] Imagem { get; set; }
+
+        [Column("NOME_IMAGEM")]
+        public string NomeImagem { get; set; }
 
     }
 }

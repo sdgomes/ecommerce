@@ -4,29 +4,64 @@
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Pedidos";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-        new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
-        new BreadcrumbsDTO("Meus Pedidos")
-    };
+    new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+    new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
+    new BreadcrumbsDTO("Meus Pedidos")
+};
 
     ViewData["Title"] = breadcrumbs.Title;
 }
 
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-<div>
-    <ul class="menu bg-base-200 w-56 rounded-box">
-        @foreach (var Items in Model.Transactions)
-        {
-            <li>
-                <a class="capitalize">@Items.Criacao.ToString("dd MMMM yyyy")</a>
-                <ul>
-                    @foreach (var produto in Model.GetProdutos(Items.Criacao, Model.Cliente.IdCliente))
-                    {
-                        <li><a>@produto.Nome</a></li>
-                    }
-                </ul>
-            </li>
-        }
-    </ul>
+<div class="container px-5 mx-auto">
+    <div class="card bg-base-200 border shadow-sm my-10">
+        <div class="card-body">
+            <div class="leading-3 mb-5">
+                <h2 class="card-title">Seus pedidos!</h2>
+                <p>Lista com seus pedidos, já finalizados e em processamento.</p>
+            </div>
+
+            <div class="flex flex-wrap">
+                @foreach (var Items in Model.Transactions)
+                {
+                    <div>
+                        <h3 class="text-gra-900 text-2xl font-bold mb-3">@Items.Criacao.ToString("dd MMMM yyyy")</h3>
+
+                        <div class="flex flex-wrap -mx-3">
+                            @foreach (var produto in Model.GetProdutos(Items.Criacao, Model.Cliente.IdCliente))
+                            {
+                                <div class="px-3 w-1/3 mb-4">
+                                    <a asp-controller="Client" asp-action="Pedido" asp-route-codigo="@Model.Cliente.Codigo"
+                                       asp-route-pedido="@produto.IdTransacao"
+                                       class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100">
+                                        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+                                             src="@produto.ImageSource" alt="">
+
+                                        <div class="flex flex-col justify-between p-4 leading-normal">
+                                            <h3 class="mb-3 text-xl font-bold tracking-tight text-green-700">@produto.Etapa</h3>
+                                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 line-clamp-1">
+                                                @produto.Nome
+                                            </h5>
+                                            <p class="mb-3 font-normal text-gray-700 line-clamp-2 leading-none">
+                                                @produto.Descricao
+                                            </p>
+                                            <div class="flex gap-2 items-end">
+                                                <small class="mb-3 font-normal text-gray-700">
+                                                    Qnt. <div class="inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full">
+                                                        @produto.Quantidade
+                                                    </div>
+                                                </small>
+                                                <small class="mb-3 font-normal text-gray-700">@produto.Tipo</small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>

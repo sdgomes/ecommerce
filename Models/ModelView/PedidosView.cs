@@ -13,14 +13,14 @@ namespace crm.Models.ModelView
 
         public List<TransactionDTO> Transactions { get; set; }
 
-        public List<Transaction> GetProdutos(DateTime Data, long IdCliente)
+        public List<TransactionDTO> GetProdutos(DateTime Data, long IdCliente)
         {
-            List<Transaction> Items = new();
-            List<Transaction> transactions = TransactionDAO.SelectByCodigoData(Data, IdCliente);
+            List<TransactionDTO> Items = new();
+            List<TransactionDTO> transactions = TransactionDAO.SelectByCodigoData(Data, IdCliente);
 
             foreach (var i in transactions)
             {
-                List<Transaction> transacoes = TransactionDAO.SelectByIdTransaction(i.IdTransacao, i.Etapa, i.Tipo);
+                List<TransactionDTO> transacoes = TransactionDAO.SelectByIdTransaction(i.IdTransacao, i.Etapa, i.Tipo);
                 foreach (var x in transacoes)
                 {
                     Items.Add(x);

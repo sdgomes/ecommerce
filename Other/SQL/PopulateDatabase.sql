@@ -1,10 +1,10 @@
 USE [PROGRAMAS]
 GO
 
-DROP PROCEDURE IF EXISTS dbo.populateEcommerce
+DROP PROCEDURE IF EXISTS dbo.Populate
 GO
 
-CREATE PROCEDURE dbo.populateEcommerce
+CREATE PROCEDURE dbo.Populate
 AS
     BEGIN
         INSERT INTO ECM_BANDEIRAS (NOME)

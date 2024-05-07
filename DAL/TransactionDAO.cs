@@ -33,7 +33,7 @@ namespace crm.DAL
             }
         }
 
-        public static List<Transaction> SelectByIdTransaction(long IdTransacao, string Etapa, string Tipo)
+        public static List<TransactionDTO> SelectByIdTransaction(long IdTransacao, string Etapa, string Tipo)
         {
             try
             {
@@ -44,7 +44,8 @@ namespace crm.DAL
 	                                PR.DESCRICAO,
 	                                EPT.ID_TRANSACAO, 
 	                                @ETAPA AS ETAPA, 
-	                                @TIPO AS TIPO
+	                                @TIPO AS TIPO,
+                                    (SELECT IMAGEM FROM ECM_IMAGENS IMA WHERE IMA.NOME = 'COVER' AND IMA.ID_PRODUTO = PR.ID_PRODUTO) AS IMAGEM
                                 FROM ECM_PRO_TRA EPT
 	                                INNER JOIN ECM_PRODUTOS PR ON PR.ID_PRODUTO = EPT.ID_PRODUTO
                                 WHERE EPT.ID_TRANSACAO = @ID_TRANSACAO;";
@@ -55,7 +56,7 @@ namespace crm.DAL
                     new SqlParameter("@TIPO", I(Tipo)),
                 };
 
-                return DatabaseProgramas().Select<Transaction>(query, parameters);
+                return DatabaseProgramas().Select<TransactionDTO>(query, parameters);
             }
             catch (Exception)
             {
@@ -63,7 +64,7 @@ namespace crm.DAL
             }
         }
 
-        public static List<Transaction> SelectByCodigoData(DateTime Data, long IdCliente)
+        public static List<TransactionDTO> SelectByCodigoData(DateTime Data, long IdCliente)
         {
             try
             {
@@ -81,7 +82,7 @@ namespace crm.DAL
                     new SqlParameter("@ID_CLIENTE", I(IdCliente)),
                 };
 
-                return DatabaseProgramas().Select<Transaction>(query, parameters);
+                return DatabaseProgramas().Select<TransactionDTO>(query, parameters);
             }
             catch (Exception)
             {
@@ -141,16 +142,17 @@ namespace crm.DAL
             }
         }
 
-        public static void AssociateCards(long IdTransaction, long IdCard)
+        public static void AssociateCards(long IdTransaction, Card Cartao)
         {
             try
             {
-                string query = @$" INSERT INTO ECM_TRA_CAR (ID_TRANSACAO, ID_CARTAO)
-		                                VALUES (@ID_TRANSACAO, @ID_CARTAO)";
+                string query = @$" INSERT INTO ECM_TRA_CAR (ID_TRANSACAO, ID_CARTAO, TOTAL)
+		                                VALUES (@ID_TRANSACAO, @ID_CARTAO, @TOTAL)";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@ID_TRANSACAO", I(IdTransaction)),
-                    new SqlParameter("@ID_CARTAO", I(IdCard)),
+                    new SqlParameter("@ID_CARTAO", I(Cartao.IdCartao)),
+                    new SqlParameter("@TOTAL", I(Cartao.Total)),
                 };
 
                 DatabaseProgramas().Execute(query, parameters);

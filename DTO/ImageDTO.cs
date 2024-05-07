@@ -12,7 +12,15 @@ namespace crm.DTO
         {
             get
             {
-                return "data:image/webp;base64," + Convert.ToBase64String(Imagem);
+                try
+                {
+                    return "data:image/webp;base64," + Convert.ToBase64String(Imagem);
+                }
+                catch (Exception)
+                {
+                    return "data:image/webp;base64,";
+                }
+
             }
         }
     }
