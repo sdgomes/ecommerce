@@ -338,9 +338,6 @@ ViewData["Title"] = breadcrumbs.Title;
                     </div>
                 </div>`,
                 width: 645,
-                didOpen: () => {
-                    totalTravado = $('[total-sem-atribuicao]').text().toFloat();
-                },
                 allowOutsideClick: false,
                 allowEscapeKey: false,
                 allowEnterKey: false,
@@ -351,6 +348,31 @@ ViewData["Title"] = breadcrumbs.Title;
                 customClass: {
                     confirmButton: "!bg-[#ffcc00] !text-gray-800",
                 },
+                didOpen: () => {
+                    totalTravado = $('[total-sem-atribuicao]').text().toFloat();
+                },
+                preConfirm: () => {
+                    try {
+                        var validate = false;
+                        $(".por-cartao").each(function (index, element) {
+                            if ($(element).val() == "") {
+                                Swal.showValidationMessage(`${result.message}`);
+                                validate = true;
+                                return;
+                            }
+
+                            allInput += $(element).val().toFloat();
+                        });
+
+                        return false;
+                    } catch (error) {
+                        console.log(error);
+
+                        const result = error.responseJSON;
+                        Swal.showValidationMessage(`${result.message}`);
+                    }
+                }
+
             })
         }
 
