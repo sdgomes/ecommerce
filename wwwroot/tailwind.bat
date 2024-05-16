@@ -1,0 +1,1 @@
+call npx tailwindcss -i .\css\tailwind\input.css -o .\css\tailwind\output.css --watch

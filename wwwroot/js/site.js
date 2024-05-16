@@ -413,20 +413,27 @@ $(document).on("click", ".button-qnt", function () {
 
     if (current >= 1) {
         $input.val(current)
-
-        var data = $button.data();
+        
+        var data = $button.getData();
         if (data.idProduto)
             Carrinho.AtualizaQuantidade(data.idProduto, current)
 
-        if (data.single)
-            $button.parents('.top-area').find('[data-action="carrinho"]').attr('data-qnt-compra', current)
+        if (data.single.parseBool())
+            $button.parents('.top-area').find('[data-action="carrinho"], [data-compra-direta]').attr('data-qnt-compra', current)
     }
+});
+
+$(document).on("click", '[data-compra-direta]', function () {
+    $button = $(this);
+
+    const data = $button.getData();
+    Carrinho.Adicona(data);
 });
 
 $(document).on("click", '[data-action="carrinho"]', function () {
     $button = $(this);
 
-    const data = $button.data();
+    const data = $button.getData();
     Carrinho.Adicona(data);
 
     $button.html(`<span class="loading loading-spinner loading-sm"></span> Carregando`)

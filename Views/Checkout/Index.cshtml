@@ -151,7 +151,7 @@ ViewData["Title"] = breadcrumbs.Title;
                                 <div class="collapse-title font-bold !bg-white !text-gray-800 border-b">
                                     Forma de pagamento
                                 </div>
-                                <div class="collapse-content bg-white">
+                                <div id="pagamentos" class="collapse-content bg-white">
 
                                     <div class="flex flex-wrap -mx-3">
                                         @foreach (var (card, index) in Model.Cards.Select((card, index) => (card,
@@ -169,14 +169,15 @@ ViewData["Title"] = breadcrumbs.Title;
 
                                                     <div class="flex flex-wrap mt-4 px-3">
                                                         <div class="w-full mb-3">
-                                                            <div class="text-base !text-gray-800 font-bold w-full">
+                                                            <div data-name="nome-cartao"
+                                                                class="text-base !text-gray-800 font-bold w-full">
                                                                 @card.NomeCartao.Capitalize()
                                                             </div>
                                                         </div>
 
                                                         <div class="w-1/2">
                                                             <div class="text-sm w-full">Número Cartão</div>
-                                                            <div class="text-base w-full">
+                                                            <div class="text-base w-full" data-name="numero-cartao">
                                                                 *** *** ***
                                                                 @card.Numero.Split(' ')[3]
                                                             </div>
@@ -292,12 +293,35 @@ ViewData["Title"] = breadcrumbs.Title;
 
     @section Scripts {
     <script type="text/javascript">
-        function t() {
-            Swal.fire({
-                title: "Infromações de pagamento.",
-                html: `
+        function alerta(cards) {
+            return new Promise((resolve, reject) => {
+                var htmlCartoes = "";
+                cards.forEach(card => {
+                    htmlCartoes += `<div class="w-1/2 mb-3 px-3">
+                        <div class="border rounded-lg p-5 text-start">
+                            <div class="text-base !text-gray-800 font-bold w-full">
+                                ${$(`#pagamentos input[value="${card}"]`).parents('.card-body')
+                            .find('[data-name="nome-cartao"]').text()}</div>
+                            <div class="text-sm w-full">Número Cartão</div>
+                            <div class="text-base w-full">
+                                ${$(`#pagamentos input[value="${card}"]`).parents('.card-body')
+                            .find('[data-name="numero-cartao"]').text()}</div>
+
+                            <label class="form-control w-full mt-3">
+                                <div class="label">
+                                    <span class="label-text-alt">Quantia que será passada nessa cartção?</span>
+                                </div>
+                                <input name="${card}" type="text" class="por-cartao input input-bordered w-full" />
+                            </label>
+                        </div>
+                    </div>`
+                });
+
+                Swal.fire({
+                    title: "Infromações de pagamento.",
+                    html: `
                 <div>
-                    <h1 id="total-pagar-cartao" class="font-bold text-3xl text-gray-800">R$ <span total-sem-atribuicao>425,44</span></h1>
+                    <h1 id="total-pagar-cartao" class="font-bold text-3xl text-gray-800">R$ <span total-sem-atribuicao>${$('[total-compra]').text().replace(/R\$/g, '').toFloat()}</span></h1>
                     <p class="w-1/2 mx-auto mb-4 font-bold text-sm">Total da compra sem atribuição. Ao adicionar um valor no cartão selecionado ele será subitraido do valor tatal.</p>
                 </div>
 
@@ -306,74 +330,92 @@ ViewData["Title"] = breadcrumbs.Title;
                     <small>Lembre-se o valor minimo a ser paga em pelo menos um dos cartões é de R$ 10,00</small>
                 </div>
 
-                <div class="flex flex-wrap">
-                    <div class="w-1/2 mb-3 px-3">
-                        <div class="border rounded-lg p-5 text-start">
-                            <div class="text-base !text-gray-800 font-bold w-full">Xandra Chen</div>
-                            <div class="text-sm w-full">Número Cartão</div>
-                            <div class="text-base w-full"> *** *** *** 2301</div>
+                <form class="flex flex-wrap">
+                    ${htmlCartoes}
+                </form>`,
+                    width: 645,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    showCancelButton: true,
+                    confirmButtonText: "Confirmar",
+                    cancelButtonText: "Cancelar",
+                    reverseButtons: true,
+                    customClass: {
+                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                    },
+                    didOpen: () => {
+                        totalTravado = $('[total-compra]').text().replace(/R\$/g, '').toFloat()
+                    },
+                    preConfirm: () => {
+                        try {
+                            var validate = false;
+                            var allInput = 0;
 
-                            <label class="form-control w-full mt-3">
-                                <div class="label">
-                                    <span class="label-text-alt">Quantia que será passada nessa cartção?</span>
-                                </div>
-                                <input type="text" class="por-cartao input input-bordered w-full" />
-                            </label>
-                        </div>
-                    </div>
+                            $(".por-cartao").each(function (index, element) {
+                                if ($(element).val() == "") {
+                                    Swal.showValidationMessage('Todos os cartões devem ter um valor minimo de R$ 10,00');
+                                    validate = true;
+                                    return false;
+                                }
 
-                    <div class="w-1/2 mb-3 px-3">
-                        <div class="border rounded-lg p-5 text-start">
-                            <div class="text-base !text-gray-800 font-bold w-full">Xandra Chen</div>
-                            <div class="text-sm w-full">Número Cartão</div>
-                            <div class="text-base w-full"> *** *** *** 2301</div>
+                                if ($(element).val().toFloat() < 10) {
+                                    Swal.showValidationMessage('Todos os cartões devem ter um valor minimo de R$ 10,00');
+                                    validate = true;
+                                    return false;
+                                }
 
-                            <label class="form-control w-full mt-3">
-                                <div class="label">
-                                    <span class="label-text-alt">Quantia que será passada nessa cartção?</span>
-                                </div>
-                                <input type="text" class="por-cartao input input-bordered w-full" />
-                            </label>
-                        </div>
-                    </div>
-                </div>`,
-                width: 645,
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey: false,
-                showCancelButton: true,
-                confirmButtonText: "Confirmar",
-                cancelButtonText: "Cancelar",
-                reverseButtons: true,
-                customClass: {
-                    confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                },
-                didOpen: () => {
-                    totalTravado = $('[total-sem-atribuicao]').text().toFloat();
-                },
-                preConfirm: () => {
-                    try {
-                        var validate = false;
-                        $(".por-cartao").each(function (index, element) {
-                            if ($(element).val() == "") {
-                                Swal.showValidationMessage(`${result.message}`);
+                                allInput += $(element).val().toFloat();
+                            });
+
+                            if (validate)
+                                return false;
+
+                            allInput = allInput.toTwo()
+
+                            if (allInput > totalTravado) {
+                                Swal.showValidationMessage('Os valores informados do pagamento é maior que o valor da compra');
                                 validate = true;
                                 return;
                             }
 
-                            allInput += $(element).val().toFloat();
-                        });
+                            if (allInput < totalTravado) {
+                                Swal.showValidationMessage('Os valores informados do pagamento é menor que o valor da compra');
+                                validate = true;
+                                return;
+                            }
 
-                        return false;
-                    } catch (error) {
-                        console.log(error);
+                            if (validate)
+                                return false;
 
-                        const result = error.responseJSON;
-                        Swal.showValidationMessage(`${result.message}`);
+                            var retornoCards = []
+                            const cardsOBJ = $(".swal2-html-container").find('form').serializeJson();
+                            for (const key in cardsOBJ) {
+                                if (Object.hasOwnProperty.call(cardsOBJ, key)) {
+                                    const value = cardsOBJ[key];
+                                    retornoCards.push({
+                                        IdCartao: key,
+                                        Total: value.toFloat()
+                                    })
+                                }
+                            }
+
+                            return retornoCards;
+                        } catch (error) {
+                            console.log(error);
+
+                            const result = error.responseJSON;
+                            Swal.showValidationMessage(`${result.message}`);
+                        }
                     }
-                }
 
-            })
+                }).then((result) => {
+                    if (result.isConfirmed)
+                        resolve(result.value)
+                    else
+                        reject(false)
+                })
+            });
         }
 
         $(document).ready(function () {
@@ -399,10 +441,6 @@ ViewData["Title"] = breadcrumbs.Title;
 
         var totalTravado;
 
-        setTimeout(() => {
-            t()
-        }, 325);
-
         $(document).on("keyup", ".por-cartao", function (e) {
             const numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
             var total = $('[total-sem-atribuicao]').text().toFloat();
@@ -412,6 +450,8 @@ ViewData["Title"] = breadcrumbs.Title;
                 if ($(element).val() != "")
                     allInput += $(element).val().toFloat();
             });
+
+            allInput = allInput.toTwo()
 
             $('[total-sem-atribuicao]').html((totalTravado - allInput).toMoney());
 
@@ -423,9 +463,7 @@ ViewData["Title"] = breadcrumbs.Title;
                 $('#total-pagar-cartao').removeClass("text-green-500 text-red-500").addClass("text-gray-800")
         });
 
-
-
-        $(document).on("click", '[comprar]', function () {
+        $(document).on("click", '[comprar]', async function () {
             if ($('[name="enderecoEntrega"]:checked').length == 0) {
                 Swal.fire({
                     icon: 'warning',
@@ -479,6 +517,24 @@ ViewData["Title"] = breadcrumbs.Title;
                 return false;
             }
 
+            if ($('[valor-frete]').text().replace(/R\$/g, '').toFloat() == 0) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: "Atenção!",
+                    text: 'Por favor, clique em Calcular frete.',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    confirmButtonText: "Tentar novamente",
+                    reverseButtons: true,
+                    customClass: {
+                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                    },
+                });
+
+                return false;
+            }
+
             var CEPEndereco = $('[name="enderecoEntrega"]:checked').parents('.card-body').find('[data-type="CEP"]').text();
             var calculoCEP = $('[calculo-frete]').val();
 
@@ -500,81 +556,34 @@ ViewData["Title"] = breadcrumbs.Title;
                 return false;
             }
 
-
             var cartoes = [];
             $('[name="cartaoPagamento"]:checked').each(function (index, element) {
                 cartoes.push($(element).val())
             });
 
             var validation = false;
-            if (cartoes.length > 1)
-                Swal.fire({
-                    title: "Infromações de pagamento.",
-                    html: `
-                            <div>
-                                <h1 class="font-bold text-3xl text-gray-800">R$ <span total-sem-atribuicao>425,44</span></h1>
-                                <p class="w-1/2 mx-auto mb-4 font-bold text-sm">Total da compra sem atribuição, ao adicionar um valor no cartão ele será subitraido do tatal.</p>
-                            </div>
+            var EnviaCartoes = [];
 
-                            <div class="mb-3">
-                                <p>Escolha quais valores serão passados em cada cartão </p>
-                                <small>Lembre-se o valor minimo a ser paga em pelo menos um dos cartões é de R$ 10,00</small>
-                            </div>
+            if (cartoes.length > 1) {
+                EnviaCartoes = await alerta(cartoes)
 
-                            <div class="flex flex-wrap">
-                                <div class="w-1/2 mb-3 px-3">
-                                    <div class="border rounded-lg p-5 text-start">
-                                        <div class="text-base !text-gray-800 font-bold w-full">Xandra Chen</div>
-                                        <div class="text-sm w-full">Número Cartão</div>
-                                        <div class="text-base w-full"> *** *** *** 2301</div>
-
-                                        <label class="form-control w-full mt-3">
-                                            <div class="label">
-                                                <span class="label-text-alt">Quantia que será passada nessa cartção?</span>
-                                            </div>
-                                            <input type="text" class="por-cartao input input-bordered w-full" />
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="w-1/2 mb-3 px-3">
-                                    <div class="border rounded-lg p-5 text-start">
-                                        <div class="text-base !text-gray-800 font-bold w-full">Xandra Chen</div>
-                                        <div class="text-sm w-full">Número Cartão</div>
-                                        <div class="text-base w-full"> *** *** *** 2301</div>
-
-                                        <label class="form-control w-full mt-3">
-                                            <div class="label">
-                                                <span class="label-text-alt">Quantia que será passada nessa cartção?</span>
-                                            </div>
-                                            <input type="text" class="por-cartao input input-bordered w-full" />
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>`,
-                    width: 645,
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    confirmButtonText: "Confirmar",
-                    cancelButtonText: "Cancelar",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                    },
-                }).then((result) => {
-                    if (result.isDismissed)
-                        validation = true;
+                if (EnviaCartoes == false)
+                    return false;
+            }
+            else
+                EnviaCartoes.push({
+                    IdCartao: cartoes[0],
+                    Total: $('[total-compra]').text().replace(/R\$/g, '').toFloat()
                 })
 
             if (validation)
                 return false;
 
-            return false;
+            console.log(EnviaCartoes);
 
             var transaction = {
                 Produtos: Carrinho.getItems(),
-                Cartoes: cartoes,
+                Cartoes: EnviaCartoes,
                 IdEndereco: $('[name="enderecoEntrega"]:checked').val(),
                 IdCliente: $('[name="idCliente"]').val(),
                 Subtotal: toFloat($('[menu-total-amount]').text().replace("R$", "")),

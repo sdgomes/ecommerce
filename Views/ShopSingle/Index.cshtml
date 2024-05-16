@@ -117,7 +117,16 @@ new BreadcrumbsDTO("Detalhes")
                     <div class="bottom-content">
                         <div class="flex flex-wrap gap-3">
                             <div class="button cart-button">
-                                <a asp-action="Index" asp-controller="Checkout"
+                                <a data-compra-direta 
+                                   data-tipo-produto="@Model.Produto.TipoProduto.Capitalize()"
+                                   data-subcategoria="@Model.Produto.Subcategoria.Capitalize()"
+                                   data-imagem='@Model.Imagens.Where((Item) => (Item.NomeImagem == "COVER")).FirstOrDefault().ImageSource'
+                                   data-preco="@Model.Produto.Preco"
+                                   data-desconto="@(Model.Produto.Desconto ? @Model.Produto.CalculoDesconto : 0)"
+                                   data-nome="@Model.Produto.Nome.Capitalize()"
+                                   data-qnt-compra="1"
+                                   data-id-produto="@Model.Produto.IdProduto"
+                                   asp-action="Index" asp-controller="Checkout"
                                    asp-route-id-produto="@Model.Produto.IdProduto"
                                    class="btn !flex !text-gray-800 hover:!text-white !w-fit">Comprar</a>
                             </div>

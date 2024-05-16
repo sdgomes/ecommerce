@@ -156,7 +156,7 @@ $(document).on('click', "#trocar-senha-cliente", function () {
 
     $.ajax({
         type: "POST",
-        data: $button.data(),
+        data: $button.getData(),
         url: "/componente/client/alterasenha",
         success: function (response) {
             Swal.fire({
@@ -255,7 +255,7 @@ $(document).on('click', '[data-action="edita-endereco"]', function () {
 
     $.ajax({
         type: "POST",
-        data: $button.data(),
+        data: $button.getData(),
         url: "/componente/client/altera/endereco",
         success: function (response) {
             Swal.fire({
@@ -520,7 +520,7 @@ $(document).on('click', '[data-action="altera-cliente"]', function () {
 
     $.ajax({
         type: "POST",
-        data: $button.data(),
+        data: $button.getData(),
         url: "/componente/client/altera/cliente",
         success: function (response) {
             Swal.fire({
@@ -591,7 +591,7 @@ $(document).on('click', '[data-id-cartao]', function () {
 
     $.ajax({
         type: "POST",
-        data: $button.data(),
+        data: $button.getData(),
         url: "/remove/cartao",
         success: function (response) {
             Swal.fire({
@@ -628,7 +628,7 @@ $(document).on('click', '[data-action="remove-endereco"]', function () {
 
     $.ajax({
         type: "POST",
-        data: $button.data(),
+        data: $button.getData(),
         url: "/remove/endereco",
         success: function (response) {
             Swal.fire({
