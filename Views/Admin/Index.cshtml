@@ -1,4 +1,4 @@
-@model Employee
+@model AdminDTO
 
 @{
     ViewBreadcrumbs breadcrumbs = new();
@@ -19,10 +19,12 @@
             <div class="flex flex-wrap">
 
                 <div class="w-3/12 px-5 mb-10">
-                    <a asp-action="RegistroCliente" asp-controller="Admin" asp-route-codigo="@Model.Codigo" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
-                        <div class="px-3 pt-3 h-[155px]"><figure class="rounded-xl bg-white h-full">
-                            <img src="~/img/images/perfil/administrador/cliente.png" alt="" class="h-full rounded-xl" />
-                        </figure></div>
+                    <a asp-action="RegistroCliente" asp-controller="Admin" asp-route-codigo="@Model.Funcionario.Codigo" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                        <div class="px-3 pt-3 h-[155px]">
+                            <figure class="rounded-xl bg-white h-full">
+                                <img src="~/img/images/perfil/administrador/cliente.png" alt="" class="h-full rounded-xl" />
+                            </figure>
+                        </div>
                         <div class="card-body items-start text-start px-3 py-3">
                             <div>
                                 <h2 class="card-title !text-base">Registro de Clientes</h2>
@@ -34,9 +36,11 @@
 
                 <div class="w-3/12 px-5 mb-10">
                     <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
-                        <div class="px-3 pt-3 h-[155px]"><figure class="rounded-xl bg-white h-full">
-                            <img src="~/img/images/perfil/administrador/troca.png" alt="" class="h-full rounded-xl" />
-                        </figure></div>
+                        <div class="px-3 pt-3 h-[155px]">
+                            <figure class="rounded-xl bg-white h-full">
+                                <img src="~/img/images/perfil/administrador/troca.png" alt="" class="h-full rounded-xl" />
+                            </figure>
+                        </div>
                         <div class="card-body items-start text-start px-3 py-3">
                             <div>
                                 <h2 class="card-title !text-base">Solicitações de Troca</h2>
@@ -48,9 +52,11 @@
 
                 <div class="w-3/12 px-5 mb-10">
                     <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
-                        <div class="px-3 pt-3 h-[155px]"><figure class="rounded-xl bg-white h-full">
-                            <img src="~/img/images/perfil/administrador/devolucao.png" alt="" class="h-full rounded-xl" />
-                        </figure></div>
+                        <div class="px-3 pt-3 h-[155px]">
+                            <figure class="rounded-xl bg-white h-full">
+                                <img src="~/img/images/perfil/administrador/devolucao.png" alt="" class="h-full rounded-xl" />
+                            </figure>
+                        </div>
                         <div class="card-body items-start text-start px-3 py-3">
                             <div>
                                 <h2 class="card-title !text-base">Devoluções de Mercadorias</h2>
@@ -62,9 +68,11 @@
 
                 <div class="w-3/12 px-5 mb-10">
                     <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
-                        <div class="px-3 pt-3 h-[155px]"><figure class="rounded-xl bg-white h-full">
-                            <img src="~/img/images/perfil/administrador/produto.png" alt="" class="h-full rounded-xl" />
-                        </figure></div>
+                        <div class="px-3 pt-3 h-[155px]">
+                            <figure class="rounded-xl bg-white h-full">
+                                <img src="~/img/images/perfil/administrador/produto.png" alt="" class="h-full rounded-xl" />
+                            </figure>
+                        </div>
                         <div class="card-body items-start text-start px-3 py-3">
                             <div>
                                 <h2 class="card-title !text-base">Produtos</h2>
@@ -76,9 +84,11 @@
 
                 <div class="w-3/12 px-5 mb-10">
                     <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
-                        <div class="px-3 pt-3 h-[155px]"><figure class="rounded-xl bg-white h-full">
-                            <img src="~/img/images/perfil/administrador/estoque.png" alt="" class="h-full rounded-xl" />
-                        </figure></div>
+                        <div class="px-3 pt-3 h-[155px]">
+                            <figure class="rounded-xl bg-white h-full">
+                                <img src="~/img/images/perfil/administrador/estoque.png" alt="" class="h-full rounded-xl" />
+                            </figure>
+                        </div>
                         <div class="card-body items-start text-start px-3 py-3">
                             <div>
                                 <h2 class="card-title !text-base">Gestão de Estoque</h2>
@@ -90,9 +100,11 @@
 
                 <div class="w-3/12 px-5 mb-10">
                     <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
-                        <div class="px-3 pt-3 h-[155px]"><figure class="rounded-xl bg-white h-full">
-                            <img src="~/img/images/perfil/administrador/cupom.png" alt="" class="h-full rounded-xl" />
-                        </figure></div>
+                        <div class="px-3 pt-3 h-[155px]">
+                            <figure class="rounded-xl bg-white h-full">
+                                <img src="~/img/images/perfil/administrador/cupom.png" alt="" class="h-full rounded-xl" />
+                            </figure>
+                        </div>
                         <div class="card-body items-start text-start px-3 py-3">
                             <div>
                                 <h2 class="card-title !text-base">Emissão de Cupons</h2>
@@ -104,13 +116,36 @@
 
                 <div class="w-3/12 px-5 mb-10">
                     <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
-                        <div class="px-3 pt-3 h-[155px]"><figure class="rounded-xl bg-white h-full">
-                            <img src="~/img/images/perfil/administrador/vendas.png" alt="" class="h-full rounded-xl" />
-                        </figure></div>
+                        <div class="px-3 pt-3 h-[155px]">
+                            <figure class="rounded-xl bg-white h-full">
+                                <img src="~/img/images/perfil/administrador/vendas.png" alt="" class="h-full rounded-xl" />
+                            </figure>
+                        </div>
                         <div class="card-body items-start text-start px-3 py-3">
                             <div>
                                 <h2 class="card-title !text-base">Relatório de vendas</h2>
                                 <p>Consulta dos resultados e de vendas, lucros e outros indicadores.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="w-3/12 px-5 mb-10">
+                    <a asp-controller="Admin" asp-action="Pedidos" asp-route-codigo="@Model.Funcionario.Codigo" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                        <div class="px-3 pt-3 h-[155px] relative">
+                            @if (Model.QntProcessandoPagamento > 0)
+                            {
+                                <span class="text-center font-bold text-white min-w-[20px] block absolute bg-red-600 rounded-full">@Model.QntProcessandoPagamento</span>
+                            }
+
+                            <figure class="rounded-xl bg-white h-full">
+                                <img src="~/img/images/perfil/administrador/aprovacao.png" alt="" class="h-full rounded-xl" />
+                            </figure>
+                        </div>
+                        <div class="card-body items-start text-start px-3 py-3">
+                            <div>
+                                <h2 class="card-title !text-base">Controle de Pedidos</h2>
+                                <p>Aprova ou recusa as vendas, acompanhe o status dos pedidos.</p>
                             </div>
                         </div>
                     </a>

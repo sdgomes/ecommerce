@@ -1,4 +1,5 @@
-﻿using crm.Models;
+﻿using crm.BLL;
+using crm.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -28,6 +29,36 @@ namespace crm.Controllers
             catch (Exception ex)
             {
                 return Json(new { Response = "", Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        [Route("cancela/pedido")]
+        public IActionResult CancelaPedido(long IdTransacao, string Descricao, string Acao)
+        {
+            try
+            {
+                TransactionBLL.CancelaPedido(IdTransacao, Descricao, Acao);
+                return Json(new { success = true, href = Url.Action("Pedidos", "Client", new { Codigo = Request.Cookies["codigo"] }) });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, new { Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        [Route("altera/etapa/pedido")]
+        public IActionResult EtapaPedido(long IdTransacao, string Etapa)
+        {
+            try
+            {
+                TransactionBLL.Etapa(IdTransacao, Etapa);
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, new { Message = ex.Message });
             }
         }
     }

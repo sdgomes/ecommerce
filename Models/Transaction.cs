@@ -47,5 +47,10 @@ namespace crm.Models
         [Column("NOME_IMAGEM")]
         public string NomeImagem { get; set; }
 
+        [Column("DATA_COMPRA")]
+        public DateTime DataCompra { get; set; }
+
+        [Column("QNT_CARTOES")]
+        public int QntCartoes { get; set; }
     }
 }

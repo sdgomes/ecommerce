@@ -1,0 +1,264 @@
+﻿@model List<PedidoDTO>
+
+@{
+
+    string[] podeCancelar = { "PROCESSANDO PAGAMENTO", "EM PREPARAÇÃO", "A CAMINHO", "PAGAMENTO APROVADO" };
+    string[] podeSolicitar = { "ENTREGUE" };
+
+
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Controle de Pedidos";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+    new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+    new BreadcrumbsDTO("Perfil", "./", "fa-solid fa-user"),
+    new BreadcrumbsDTO("Controle de Pedidos")
+    };
+
+    ViewData["Title"] = breadcrumbs.Title;
+}
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+<div class="p-8">
+
+    <div class="bg-white border border-gray-200 p-6 rounded-lg shadow mb-8">
+        <h1 class="text-3xl font-bold">Andamento Pedidos</h1>
+        <p class="text-lg">Produtos para aprovação, envio e controle de transações</p>
+    </div>
+
+
+    <div class="bg-white border border-gray-200 p-6 rounded-lg shadow">
+        <h2 class="text-2xl font-bold mb-4">Transações</h2>
+        <div class="overflow-x-autos">
+            <table id="registros" style="width:100%" class="display table table-sm table-zebra text-gray-700 w-full">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="relative">Código</th>
+                        <th class="relative">Qnt. Produtos</th>
+                        <th class="relative">Preço</th>
+                        <th class="relative">Cliente</th>
+                        <th class="relative">Endereço</th>
+                        <th class="relative">Status</th>
+                        <th class="relative">Pagamento</th>
+                        <th class="relative">Dt. Compra</th>
+                        <th class="relative">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var transaction in Model)
+                    {
+                        <tr>
+                            <td>@transaction.IdTransacao</td>
+                            <td>@transaction.Quantidade</td>
+                            <td>@transaction.Total.ToString("C")</td>
+                            <td>
+                                <div class="truncate max-w-[260px]">
+                                    @transaction.Nome.Capitalize()
+                                </div>
+                            </td>
+                            <td>
+                                <div class="truncate max-w-[260px]">
+                                    @transaction.NomeEndereco
+                                </div>
+                            </td>
+                            <td>
+                                <span style='background-color: @transaction.Cor' class="text-sm px-2 py-1 rounded block w-fit">@transaction.Etapa.Capitalize()</span>
+                            </td>
+                            <td>
+                                <span class="text-sm px-2 py-1 rounded block w-fit @(transaction.Pagamento == "APROVADO" ? "bg-green-400" : "bg-red-400")">@transaction.Pagamento.Capitalize()</span>
+                            </td>
+                            <td>@transaction.Criacao.ToString("d")</td>
+                            <td>
+                                @if (transaction.Etapa == "PROCESSANDO PAGAMENTO" && transaction.Pagamento == "APROVADO")
+                                {
+                                    <div class="tooltip" data-tip="Aprovar venda">
+                                        <button data-id-transacao="@transaction.IdTransacao" id="admin-aprova-venda" class="btn btn-sm btn-success btn-square">
+                                            <i class="fa-solid fa-money-bill-trend-up"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="tooltip" data-tip="Recusar venda">
+                                        <button class="btn btn-sm bg-orange-500 hover:bg-orange-600 btn-square">
+                                            <i class="fa-solid fa-do-not-enter"></i>
+                                        </button>
+                                    </div>
+                                }
+
+                                @if (transaction.Etapa == "PAGAMENTO APROVADO")
+                                {
+                                    <div class="tooltip" data-tip="Pedido em preparação">
+                                        <button class="btn btn-sm btn-warning btn-square">
+                                            <i class="fa-solid fa-conveyor-belt"></i>
+                                        </button>
+                                    </div>
+                                }
+
+                                @if (transaction.Etapa == "EM PREPARAÇÃO")
+                                {
+                                    <div class="tooltip" data-tip="Pedido a caminho">
+                                        <button class="btn btn-sm btn-primary btn-square">
+                                            <i class="fa-solid fa-truck-fast"></i>
+                                        </button>
+                                    </div>
+                                }
+
+                                @if (podeCancelar.Contains(transaction.Etapa))
+                                {
+                                    <div class="tooltip" data-tip="Cancalar venda">
+                                        <button data-id-transacao="@transaction.IdTransacao" id="admin-cancela-venda" class="btn btn-sm btn-error btn-square">
+                                            <i class="fa-solid fa-ban"></i>
+                                        </button>
+                                    </div>
+                                }
+
+                                @if (transaction.Etapa == "A CAMINHO")
+                                {
+                                    <div class="tooltip" data-tip="Marcar como entregue">
+                                        <button class="btn btn-sm btn-info btn-square">
+                                            <i class="fa-solid fa-truck"></i>
+                                        </button>
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let tabela = new DataTable('#registros', {
+            dom: 'Bfrtip',
+            order: [[0, 'desc']],
+            ordering: true,
+            order: [[0, 'desc']],
+            language: {
+                url: '/json/pt-BR.json',
+            },
+        })
+
+        $(document).on("click", "#admin-aprova-venda", function () {
+            let data = $(this).getData();
+            data.Etapa = "PAGAMENTO RECUSADO";
+
+            Swal.fire({
+                title: "Atenção!",
+                text: "Confirma a recusa dessa venda?",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showCancelButton: true,
+                confirmButtonText: "Sim, Confirmar",
+                cancelButtonText: 'Não',
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: "!bg-[#130235] !twxt-white",
+                    denyButton: "!bg-[#ffcc00] !text-gray-800",
+                }
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const response = await $.ajax({
+                        url: `/altera/etapa/pedido`,
+                        type: 'POST',
+                        data: data
+                    });
+
+                    if (response.success) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Feito!",
+                            text: 'Pedido reprovado pelo funcionário.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => location.reload())
+                    }
+                }
+            });
+        })
+
+        $(document).on("click", "#admin-aprova-venda", function () {
+            let data = $(this).getData();
+            data.Etapa = "PAGAMENTO APROVADO";
+
+            Swal.fire({
+                title: "Atenção!",
+                text: "Confirma a aprovação dessa venda?",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showCancelButton: true,
+                confirmButtonText: "Sim, Confirmar",
+                cancelButtonText: 'Não',
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: "!bg-[#130235] !twxt-white",
+                    denyButton: "!bg-[#ffcc00] !text-gray-800",
+                }
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const response = await $.ajax({
+                        url: `/altera/etapa/pedido`,
+                        type: 'POST',
+                        data: data
+                    });
+
+                    if (response.success) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Feito!",
+                            text: 'Pedido foi aprovado com sucesso.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => location.reload())
+                    }
+                }
+            });
+        })
+
+        $(document).on("click", "#admin-cancela-venda", function () {
+            let data = $(this).getData();
+            data.Descricao = "O funcionário cancelou esse pedido sem mais detalhes.";
+            data.Acao = "CANCELADO POR FUNCIONARIO";
+
+            Swal.fire({
+                title: "Atenção!",
+                text: "Deseja realmente cancelar essa compra?",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showCancelButton: true,
+                confirmButtonText: "Sim, Cancelar",
+                cancelButtonText: 'Não',
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: "!bg-[#130235] !twxt-white",
+                    denyButton: "!bg-[#ffcc00] !text-gray-800",
+                }
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const response = await $.ajax({
+                        url: `/cancela/pedido`,
+                        type: 'POST',
+                        data: data
+                    });
+
+                    if (response.success) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Feito!",
+                            text: 'Pedido foi cancelado com sucesso.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => location.reload())
+                    }
+                }
+            });
+        })
+    </script>
+}

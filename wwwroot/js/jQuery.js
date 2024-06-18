@@ -1,5 +1,9 @@
 jQuery.fn.extend({
 
+    toFloat: function () {
+        return $(this).text().replace(/R\$/g, '').toFloat().toString().replace(/\./g, ',')
+    },
+
     id: function () {
         return $(this).attr("id")
     },

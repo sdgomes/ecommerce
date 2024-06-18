@@ -573,25 +573,24 @@ ViewData["Title"] = breadcrumbs.Title;
             else
                 EnviaCartoes.push({
                     IdCartao: cartoes[0],
-                    Total: $('[total-compra]').text().replace(/R\$/g, '').toFloat()
+                    Total: $('[total-compra]').toFloat()
                 })
 
             if (validation)
                 return false;
-
-            console.log(EnviaCartoes);
 
             var transaction = {
                 Produtos: Carrinho.getItems(),
                 Cartoes: EnviaCartoes,
                 IdEndereco: $('[name="enderecoEntrega"]:checked').val(),
                 IdCliente: $('[name="idCliente"]').val(),
-                Subtotal: toFloat($('[menu-total-amount]').text().replace("R$", "")),
-                Frete: toFloat($('[valor-frete]').text().replace("R$", "")),
-                Descontos: toFloat($('[total-descontos]').text().replace("R$", "")),
-                Total: toFloat($('[total-compra]').text().replace("R$", "")),
+                Subtotal: $('[menu-total-amount]').toFloat(),
+                Frete: $('[valor-frete]').toFloat(),
+                Descontos: $('[total-descontos]').toFloat(),
+                Total: $('[total-compra]').toFloat(),
             }
 
+            console.log(transaction)
             $.ajax({
                 type: "POST",
                 url: `/registra/transacao`,

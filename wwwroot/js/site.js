@@ -413,7 +413,7 @@ $(document).on("click", ".button-qnt", function () {
 
     if (current >= 1) {
         $input.val(current)
-        
+
         var data = $button.getData();
         if (data.idProduto)
             Carrinho.AtualizaQuantidade(data.idProduto, current)
@@ -588,4 +588,31 @@ $(document).on('click', '#entrar', function () {
         else if (result.isDenied)
             location.href = `/cadastro/cliente`;
     });
+})
+
+$(document).on('click', '#acessar', function () {
+    let acesso = $('[name="acesso-restrito"]').val()
+    if (acesso.trim() == "")
+        Swal.fire({
+            position: "center",
+            icon: "warning",
+            title: "Atenção!",
+            text: 'Seu código não é válido ou foi digitado errado.\nTente novamente',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    else
+        window.location.href = `/admin/perfil/${acesso.trim()}`
+})
+
+$(document).on('click', '#close-acesso', function () {
+    $('[name="acesso-restrito"]').val("")
+    $('#form-acesso').hide()
+    $('#acesso').show()
+})
+
+
+$(document).on('click', '#acesso', function () {
+    $(this).hide()
+    $('#form-acesso').show()
 })

@@ -83,7 +83,6 @@ namespace crm.DAL
             }
         }
 
-
         public static ProductDTO SearchProductById(long IdProduto)
         {
             try
@@ -114,6 +113,38 @@ namespace crm.DAL
                 };
 
                 return DatabaseProgramas().Choose<ProductDTO>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<ProductDTO> SelectAllProductsTransactions(long IdTransacao)
+        {
+            try
+            {
+                string query = $@"SELECT 
+									EPT.QUANTIDADE AS QNT_COMPRA,
+									EPT.ID_PRODUTO_TRANSACAO,
+									EP.CODIGO,
+									EP.NOME,
+									EP.PRECO,
+									EI.IMAGEM,
+									EP.QNT_DESCONTO,
+									EP.DESCONTO
+								FROM ECM_PRO_TRA EPT
+									INNER JOIN ECM_PRODUTOS EP ON EP.ID_PRODUTO = EPT.ID_PRODUTO
+									INNER JOIN ECM_IMAGENS EI ON EI.ID_PRODUTO = EPT.ID_PRODUTO
+										AND EI.NOME = 'COVER'
+								WHERE
+									ID_TRANSACAO = @ID_TRANSACAO";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_TRANSACAO", IdTransacao)
+                };
+
+                return DatabaseProgramas().Select<ProductDTO>(query, parameters);
             }
             catch (Exception)
             {
@@ -190,6 +221,27 @@ namespace crm.DAL
 								ORDER BY NEWID();";
 
                 return DatabaseProgramas().Select<ProductDTO>(query);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static int QuantidadeProcessandoPagamento()
+        {
+            try
+            {
+                string query = $@"SELECT 
+									COUNT(1) AS QUANTIDADE
+								FROM
+									ECM_TRANSACOES 
+								WHERE ID_ETAPA = 
+									(SELECT ID_ETAPA FROM 
+										ECM_ETAPAS WHERE ETAPA = 'PROCESSANDO PAGAMENTO')
+									AND D_E_L_E_T_ <> '*'";
+
+                return DatabaseProgramas().ChoosePrimitiveType<int>(query);
             }
             catch (Exception)
             {

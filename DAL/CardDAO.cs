@@ -207,6 +207,35 @@ namespace crm.DAL
             }
         }
 
+        public static List<Card> SelectAllCardSTransactions(long IdTransacao)
+        {
+            try
+            {
+                string query = $@"SELECT 
+	                                ETC.TOTAL,
+	                                EC.NOME_TITULAR,
+	                                EC.NOME_CARTAO,
+	                                EB.NOME,
+	                                EC.CRIACAO
+                                FROM ECM_TRA_CAR ETC
+	                                INNER JOIN ECM_CARTOES EC ON EC.ID_CARTAO = ETC.ID_CARTAO
+	                                INNER JOIN ECM_BANDEIRAS EB ON EB.ID_BANDEIRA = EC.ID_BANDEIRA
+                                WHERE 
+	                                ID_TRANSACAO = @ID_TRANSACAO";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_TRANSACAO", IdTransacao)
+                };
+
+                return DatabaseProgramas().Select<Card>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
         public static List<Card> SelectAllCardBrands()
         {
             try

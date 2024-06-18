@@ -65,6 +65,10 @@ namespace crm.Controllers
             try
             {
                 TransactionDTO Model = ProductBLL.Transacao(Pedido);
+
+                if (Model.Etapa == "CANCELADO")
+                    return RedirectToAction("Pedidos", new { Codigo });
+
                 return View(Model);
             }
             catch (Exception ex)

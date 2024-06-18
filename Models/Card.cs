@@ -42,7 +42,7 @@ namespace crm.Models
         public string NomeBandeira { get; set; }
 
         [Column("TOTAL")]
-        public string Total { get; set; }
+        public double Total { get; set; }
 
         [Column("CRIACAO")]
         public DateTime Criacao { get; set; }

@@ -8,6 +8,8 @@ namespace crm.DTO
 {
     public class TransactionDTO : Transaction
     {
+        public Client Cliente { get; set; }
+
         public List<ProductDTO> Produtos { get; set; }
 
         public List<Card> Cartoes { get; set; }

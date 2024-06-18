@@ -1,4 +1,5 @@
 ﻿using crm.DAL;
+using crm.DTO;
 using crm.Models;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,20 @@ namespace crm.BLL
         public static List<Client> SelectAllClients()
         {
             return ClientDAO.SelectAllClients();
+        }
+
+        public static AdminDTO Perfil(string Codigo)
+        {
+            AdminDTO Model = new();
+            Model.Funcionario.Codigo = Codigo;
+            Model.QntProcessandoPagamento = ProductDAO.QuantidadeProcessandoPagamento();
+
+            return Model;
+        }
+
+        public static List<PedidoDTO> ExibiPedidosParaGestao()
+        {
+            return TransactionDAO.SelectAllPedidos();
         }
     }
 }

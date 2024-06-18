@@ -14,7 +14,11 @@ namespace crm.DAL
         {
             try
             {
-                string query = @$"SELECT * FROM ECM_TRANSACOES TR
+                string query = @$"SELECT 
+                                	*,
+	                                (SELECT COUNT(1) FROM ECM_TRA_CAR TC WHERE TC.ID_TRANSACAO = TR.ID_TRANSACAO) AS QNT_CARTOES,
+	                                TR.CRIACAO AS DATA_COMPRA
+                                FROM ECM_TRANSACOES TR
                                     INNER JOIN ECM_ETAPAS ET ON ET.ID_ETAPA = TR.ID_ETAPA
 	                                    AND ET.D_E_L_E_T_ <> '*'
                                     INNER JOIN ECM_ENDERECOS EN ON EN.ID_ENDERECO = TR.ID_ENDERECO
@@ -121,9 +125,14 @@ namespace crm.DAL
         {
             try
             {
+                Random random = new Random();
+                string[] pagamento = { "APROVADO", "RECUSADO" };
+                int sorte = random.Next(0, pagamento.Length);
+
+
                 string query = @$" INSERT INTO ECM_TRANSACOES (ID_CLIENTE, ID_ENDERECO, TIPO, SUBTOTAL, FRETE, DESCONTOS, TOTAL, PAGAMENTO)
 		                                OUTPUT Inserted.ID_TRANSACAO
-		                                VALUES (@ID_CLIENTE, @ID_ENDERECO, 'COMPRA', @SUBTOTAL, @FRETE, @DESCONTOS, @TOTAL, '')";
+		                                VALUES (@ID_CLIENTE, @ID_ENDERECO, 'COMPRA', @SUBTOTAL, @FRETE, @DESCONTOS, @TOTAL, @PAGAMENTO)";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@ID_CLIENTE", I(transaction.IdCliente)),
@@ -131,6 +140,7 @@ namespace crm.DAL
                     new SqlParameter("@SUBTOTAL", I(transaction.Subtotal)),
                     new SqlParameter("@FRETE ", I(transaction.Frete)),
                     new SqlParameter("@DESCONTOS", I(transaction.Descontos)),
+                    new SqlParameter("@PAGAMENTO", pagamento[sorte]),
                     new SqlParameter("@TOTAL", I(transaction.Total)),
                 };
 
@@ -142,7 +152,7 @@ namespace crm.DAL
             }
         }
 
-        public static void AssociateCards(long IdTransaction, Card Cartao)
+        public static void AssociateCards(long IdTransacao, Card Cartao)
         {
             try
             {
@@ -150,7 +160,7 @@ namespace crm.DAL
 		                                VALUES (@ID_TRANSACAO, @ID_CARTAO, @TOTAL)";
 
                 SqlParameter[] parameters = new SqlParameter[] {
-                    new SqlParameter("@ID_TRANSACAO", I(IdTransaction)),
+                    new SqlParameter("@ID_TRANSACAO", I(IdTransacao)),
                     new SqlParameter("@ID_CARTAO", I(Cartao.IdCartao)),
                     new SqlParameter("@TOTAL", I(Cartao.Total)),
                 };
@@ -163,20 +173,114 @@ namespace crm.DAL
             }
         }
 
-        public static void AssociateProducts(long IdTransaction, Product Produto)
+        public static void AssociateProducts(long IdTransacao, Product Produto)
         {
             try
             {
-                string query = @$" INSERT INTO ECM_PRO_TRA (ID_TRANSACAO, ID_PRODUTO, QUANTIDADE)
+                string query = @$"INSERT INTO ECM_PRO_TRA (ID_TRANSACAO, ID_PRODUTO, QUANTIDADE)
 		                                VALUES (@ID_TRANSACAO, @ID_PRODUTO, @QUANTIDADE)";
 
                 SqlParameter[] parameters = new SqlParameter[] {
-                    new SqlParameter("@ID_TRANSACAO", I(IdTransaction)),
+                    new SqlParameter("@ID_TRANSACAO", I(IdTransacao)),
                     new SqlParameter("@ID_PRODUTO", I(Produto.IdProduto)),
                     new SqlParameter("@QUANTIDADE", I(Produto.QntCompra)),
                 };
 
                 DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void CancelaPedio(long IdTransacao)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_TRANSACOES SET ID_ETAPA = (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE ETAPA = 'CANCELADO')
+                WHERE ID_TRANSACAO = @ID_TRANSACAO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_TRANSACAO", I(IdTransacao)),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void AlteraEtapaPedido(long IdTransacao, string Etapa)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_TRANSACOES SET ID_ETAPA = (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE ETAPA = @ETAPA)
+                WHERE ID_TRANSACAO = @ID_TRANSACAO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ETAPA", I(Etapa)),
+                    new SqlParameter("@ID_TRANSACAO", I(IdTransacao)),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void RegistraAtividade(long IdTransacao, string Descricao, string Acao)
+        {
+            try
+            {
+                string query = @$"INSERT INTO ECM_HISTORICO_TRANSACOES (ID_TRANSACAO, DESCRICAO, ACAO)
+                VALUES (@ID_TRANSACAO, @DESCRICAO, @ACAO)";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_TRANSACAO", I(IdTransacao)),
+                    new SqlParameter("@DESCRICAO", I(Descricao)),
+                    new SqlParameter("@ACAO", I(Acao)),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<PedidoDTO> SelectAllPedidos()
+        {
+            try
+            {
+                string query = @$"SELECT 
+	                                ET.ID_TRANSACAO,
+	                                (SELECT SUM(QUANTIDADE) FROM ECM_PRO_TRA WHERE ID_TRANSACAO = ET.ID_TRANSACAO) AS QUANTIDADE,
+	                                ET.TOTAL,
+	                                CONCAT(EC.NOME, ' ', EC.SOBRENOME) AS NOME,
+	                                CONCAT(EN.LOGRADOURO, ', ', EN.NUMERO, ' - ', EN.BAIRRO, ', ', EN.CIDADE, ' - ', EN.ESTADO) AS NOME_ENDERECO,
+	                                ETP.ETAPA,
+	                                ETP.COR,
+	                                ET.PAGAMENTO,
+	                                ET.CRIACAO
+                                FROM ECM_TRANSACOES ET
+	                                INNER JOIN ECM_CLIENTES EC ON EC.ID_CLIENTE = ET.ID_CLIENTE
+		                                AND EC.D_E_L_E_T_ <> '*'
+	                                INNER JOIN ECM_ETAPAS ETP ON ETP.ID_ETAPA = ET.ID_ETAPA
+		                                AND ETP.D_E_L_E_T_ <> '*'
+	                                INNER JOIN ECM_ENDERECOS EN ON EN.ID_ENDERECO = ET.ID_ENDERECO
+		                                AND EN.D_E_L_E_T_ <> '*'
+                                WHERE ET.ID_ETAPA NOT IN (
+	                                SELECT ID_ETAPA FROM ECM_ETAPAS 
+	                                WHERE ETAPA IN ('TROCA SOLICITADA', 'DEVOLUÇÃO SOLICITADA','ENVIADO PARA TROCA', 'ENVIADO PARA DEVOLUÇÃO', 'CANCELADO')
+                                )";
+
+                return DatabaseProgramas().Select<PedidoDTO>(query);
             }
             catch (Exception)
             {

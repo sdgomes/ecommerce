@@ -1,90 +1,204 @@
 @model TransactionDTO
 @{
-ViewBreadcrumbs breadcrumbs = new();
-breadcrumbs.Title = "Pedidos";
-breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
-new BreadcrumbsDTO("Meus Pedidos", "./", "fa-solid fa-box-open-full"),
-new BreadcrumbsDTO("Pedido")
+    string[] podeCancelar = { "PROCESSANDO PAGAMENTO", "EM PREPARAÇÃO", "A CAMINHO", "PAGAMENTO APROVADO" };
+    string[] podeSolicitar = { "ENTREGUE" };
+
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Pedidos";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+    new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+    new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
+    new BreadcrumbsDTO("Meus Pedidos", "./", "fa-solid fa-box-open-full"),
+    new BreadcrumbsDTO("Pedido")
 };
 
-ViewData["Title"] = breadcrumbs.Title;
+    ViewData["Title"] = breadcrumbs.Title;
 }
 
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-    <div class="flex flex-wrap py-16 px-10">
-        <div class="w-7/12 px-3">
+<div class="p-8">
 
-            @*transação + cliente + endereco*@
-            <div class="bg-gray-100 rounded-lg p-5 mb-5">
-                <h2 class="font-bold text-xl">Compra 1171 - 16 de maio</h2>
-            </div>
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold">Detalhe do Pedido</h1>
+        <p class="text-lg">Pedido #: @Model.IdTransacao - @Model.DataCompra.ToString("dd MMMM yyyy")</p>
+    </div>
 
-            <div class="mb-5">
-                <div class="card rounded-lg shadow-md bg-gray-100">
-                    <div class="card-body">
-                        <h2 class="card-title text-lg">Resumo da compra</h2>
-                        <p class="flex justify-between items-center font-bold text-gray-800">
-                            <span>Produto</span><span>R$ 15.52</span>
-                        </p>
-                        <p class="flex justify-between items-center"><span>Produtos</span><span>R$ 154.4</span></p>
-                        <p class="flex justify-between items-center font-bold text-green-600"><span>Ferete</span><span
-                                class="text-base">R$ 154.4</span></p>
-                        <p class="flex justify-between items-center text-base text-gray-700"><span>Total</span><span>R$
-                                1154.4</span></p>
-                        <hr>
-                        <p class="font-bold text-base"><span>Seu pagamento</span></p>
-                        <p class="flex justify-between items-center"><span>Cartão: Fulana X</span><span>R$ 154.4</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+    <div class="grid grid-cols-3 gap-8 mb-8">
 
-            <div class="bg-green-900 mb-5">
-                <div class="card rounded-lg shadow-md bg-gray-50">
-                    <div class="card-body">
-                        <div class="space-y-10">
-                            <div class="flex gap-8 items-center">
-                                <button class="btn btn-lg btn-circle bg-zinc-300 pointer-events-none relative">
-                                    <i class="fa-solid fa-credit-card"></i>
-                                    <div class="badge badge-error badge-lg absolute -bottom-3 -right-3 py-2	h-auto">
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </div>
-                                </button>
+        <div class="col-span-2 bg-white border border-gray-200 p-6 rounded-lg shadow text-gray-600">
+            <h2 class="text-2xl font-bold mb-4">Pedido Nº: @Model.IdTransacao</h2>
+            <p><strong>Nome:</strong> @Model.Cliente.Nome.Capitalize() @Model.Cliente.Sobrenome.Capitalize()</p>
+            <p><strong>Email:</strong> @Model.Cliente.Email</p>
+            <p><strong>Data de Nascimento:</strong> @Model.Cliente.DataNascimento.ToString("d")</p>
+            <p><strong>Telefone:</strong> @Model.Cliente.Celular</p>
 
-                                <div>
-                                    <h2>Fulana X <b>Bandeira Y</b></h2>
-                                    <i>Pagamento no credito recusado no dia 18 de novembro 2024</i>
-                                </div>
-                            </div>
-
-                            <div class="flex gap-8 items-center">
-                                <button class="btn btn-lg btn-circle bg-zinc-300 pointer-events-none relative">
-                                    <i class="fa-solid fa-credit-card"></i>
-                                    <div class="badge badge-success badge-lg absolute -bottom-3 -right-3 py-2	h-auto">
-                                        <i class="fa-solid fa-check"></i>
-                                    </div>
-                                </button>
-
-                                <div>
-                                    <h2>Fulana X <b>Bandeira Y</b></h2>
-                                    <i>Pagamento no credito recusado no dia 18 de novembro 2024</i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="flex flex-wrap gap-3 mt-5">
+                @if (podeSolicitar.Contains(Model.Etapa))
+                {
+                    <button class="btn btn-sm btn-warning">Solicitar troca</button>
+                    <button class="btn btn-sm btn-primary">Solicitar devolução</button>
+                }
+                @if (podeCancelar.Contains(Model.Etapa))
+                {
+                    <button id="cancelar-transasao" data-id-transacao="@Model.IdTransacao"
+                            class="btn btn-sm btn-error">
+                        Cancelar pedido
+                    </button>
+                }
             </div>
         </div>
 
-        <div class="w-5/12 px-3">
-            <div class="bg-red-300 p-5 mb-5">2</div>
-            <div class="bg-red-800 p-5 mb-5">2.2</div>
-        </div>
-
-        <div class="w-full px-3">
-            <div class="bg-blue-400 p-5 mb-5">3</div>
+        <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg shadow text-gray-600">
+            <h2 class="text-2xl font-bold mb-4">Datas e Status</h2>
+            <p><strong>Data de Compra:</strong> @Model.DataCompra.ToString("d")</p>
+            <p><strong>Data de Entrega:</strong> @@Model.DeliveryDate</p>
+            <p><strong>Status do Pedido:</strong> @Model.Etapa.Capitalize()</p>
+            <p><strong>Status do Pagamento:</strong> <span class='font-bold @(Model.Pagamento == "APROVADO" ? "text-green-500":"")'>@Model.Pagamento.Capitalize()</span></p>
+            <p><strong>Cartões Usados:</strong> @Model.QntCartoes</p>
         </div>
     </div>
+
+    <div class="grid grid-cols-3 gap-8 mb-8">
+
+        <div class="col-span-2 bg-white border border-gray-200 p-6 rounded-lg shadow text-gray-600">
+            <h2 class="text-2xl font-bold mb-4">Endereço para Entrega</h2>
+            <p>
+                <strong>@Model.TipoLogradouro.Capitalize(), @Model.Logradouro - Nº @Model.Numero</strong>
+                &ensp;@Model.Bairro, @Model.Cidade - @Model.Estado
+            </p>
+
+            @if (Model.Complemento != null)
+            {
+                <p><strong>Complemento: </strong> @Model.Complemento</p>
+            }
+
+            <p><strong>CEP: @Model.CEP</strong>, @Model.Pais</p>
+            <p class="text-gray-800"><strong>Identificador:</strong> @Model.NomeEndereco</p>
+            <hr />
+            <p><strong>Observações:</strong> @Model.Frase</p>
+        </div>
+
+    </div>
+
+    <div class="bg-white border border-gray-200 p-6 rounded-lg shadow mb-8">
+        <h2 class="text-2xl font-bold mb-4">Produtos</h2>
+        <table class="min-w-full bg-white table table-sm table-zebra text-gray-700">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="font-bold text-gray-800 text-sm py-2">Código</th>
+                    <th class="font-bold text-gray-800 text-sm py-2">Item</th>
+                    <th class="font-bold text-gray-800 text-sm py-2">Produto</th>
+                    <th class="font-bold text-gray-800 text-sm py-2">Quantidade</th>
+                    <th class="font-bold text-gray-800 text-sm py-2">Preço Produto</th>
+                    <th class="font-bold text-gray-800 text-sm py-2">Preço Compra</th>
+                    <th class="font-bold text-gray-800 text-sm py-2">Desconto</th>
+                    <th class="font-bold text-gray-800 text-sm py-2">Total Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Produtos)
+                {
+                    <tr>
+                        <td class="py-2">@item.Codigo</td>
+                        <td class="py-2">
+                            <img width="40" src="@item.ImageSource" />
+                        </td>
+                        <td class="py-2">@item.Nome</td>
+                        <td class="py-2">@item.QntCompra</td>
+                        <td class="py-2">@item.Preco.ToString("C")</td>
+                        <td class="py-2">@((item.Preco * item.QntCompra).ToString("C"))</td>
+                        <td class="py-2">
+                            @if (item.Desconto)
+                            {
+                                <span>@(item.QntDesconto)%</span>
+                            }
+                            else
+                            {
+                                <span>-</span>
+                            }
+                        </td>
+                        <td class="py-2">
+                            @if (item.Desconto)
+                            {
+                                <span>@(((item.Preco * item.QntCompra) - item.CalculoDesconto).ToString("C"))</span>
+                            }
+                            else
+                            {
+                                <span>@((item.Preco * item.QntCompra).ToString("C"))</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="flex justify-between">
+        <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg shadow w-1/2 mr-4">
+            <h2 class="text-2xl font-bold mb-4">Cartões de Crédito</h2>
+            <ul class="text-gray-800">
+                @foreach (var card in Model.Cartoes)
+                {
+                    <li class="bg-[#6b5c89] px-3 rounded mb-3 text-white">
+                        <p>Cartão: @card.NomeCartao.Capitalize() - @card.NomeBandeira.Capitalize()</p>
+                        <p>@card.Total.ToString("C") , valor passado no cartão @card.NomeTitular.Capitalize()
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg shadow w-1/2 ml-4">
+            <h2 class="text-2xl font-bold mb-4">Resumo dos Valores</h2>
+            <p class="text-gray-700"><strong>Subtotal:</strong> @Model.Subtotal.ToString("C")</p>
+            <p class="text-gray-700"><strong>Descontos:</strong> @Model.Descontos.ToString("C")</p>
+            <p class="text-gray-700"><strong>Frete:</strong> @Model.Frete.ToString("C")</p>
+            <p class="text-gray-700"><strong>Total:</strong> @Model.Total.ToString("C")</p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).on('click', '#cancelar-transasao', function () {
+            let data = $(this).getData();
+            data.Descricao = "O cliente cancelou o pedido sem mais detalhes.";
+            data.Acao = "CANCELADO PELO CLIENTE";
+
+            Swal.fire({
+                title: "Atenção!",
+                text: "Deseja realmente cancelar essa compra?",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showCancelButton: true,
+                confirmButtonText: "Sim, Cancelar",
+                cancelButtonText: 'Não',
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: "!bg-[#130235] !twxt-white",
+                    denyButton: "!bg-[#ffcc00] !text-gray-800",
+                }
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const response = await $.ajax({
+                        url: `/cancela/pedido`,
+                        type: 'POST',
+                        data: data
+                    });
+
+                    if (response.success) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Feito!",
+                            text: 'Seu pedido foi cancelado com sucesso.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => location.href = response.href)
+                    }
+                }
+            });
+        })
+    </script>
+}

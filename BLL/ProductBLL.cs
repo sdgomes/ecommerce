@@ -21,7 +21,9 @@ namespace crm.BLL
             if (transacao == null)
                 throw new ArgumentException("Pedido não encontrado, entre em contato com o suporte.");
 
-            //transacao.Produtos =
+            transacao.Cliente = ClientDAO.SearchForClientById(transacao.IdCliente);
+            transacao.Produtos = ProductDAO.SelectAllProductsTransactions(transacao.IdTransacao);
+            transacao.Cartoes = CardDAO.SelectAllCardSTransactions(transacao.IdTransacao);
 
             return transacao;
         }

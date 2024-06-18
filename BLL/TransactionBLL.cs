@@ -23,5 +23,27 @@ namespace crm.BLL
 
             return Model;
         }
+
+        public static void CancelaPedido(long IdTransacao, string Descricao, string Acao)
+        {
+            TransactionDAO.CancelaPedio(IdTransacao);
+            TransactionDAO.RegistraAtividade(IdTransacao, Descricao, Acao);
+        }
+
+        public static void Etapa(long IdTransacao, string Etapa)
+        {
+            TransactionDAO.AlteraEtapaPedido(IdTransacao, Etapa);
+
+            switch (Etapa)
+            {
+                case "PAGAMENTO APROVADO":
+                    TransactionDAO.RegistraAtividade(IdTransacao, "A venda foi aprovada por um funcionário.", "APROVA VENDA");
+                    break;
+
+                case "PAGAMENTO RECUSADO":
+                    TransactionDAO.RegistraAtividade(IdTransacao, "A venda foi reprovada por um funcionário.", "APROVA RECUSADA");
+                    break;
+            }
+        }
     }
 }

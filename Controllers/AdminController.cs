@@ -1,5 +1,6 @@
 ﻿using crm.BLL;
 using crm.Controllers.Attributes;
+using crm.DTO;
 using crm.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,10 +19,16 @@ namespace crm.Controllers
         [HttpGet("/admin/perfil/{Codigo}")]
         public IActionResult Index(string Codigo)
         {
-            Employee employee = new();
-            employee.Codigo = Codigo;
+            AdminDTO Model = AdminBLL.Perfil(Codigo);
+            return View(Model);
+        }
 
-            return View(employee);
+        [FuncionarioExiste]
+        [HttpGet("/admin/perfil/{Codigo}/pedidos")]
+        public IActionResult Pedidos(string Codigo)
+        {
+            List<PedidoDTO> Model = AdminBLL.ExibiPedidosParaGestao();
+            return View(Model);
         }
 
         [FuncionarioExiste]
