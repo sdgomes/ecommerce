@@ -62,7 +62,7 @@
                                 </div>
                             </td>
                             <td>
-                                <span style='background-color: @transaction.Cor' class="text-sm px-2 py-1 rounded block w-fit">@transaction.Etapa.Capitalize()</span>
+                                <span style='background-color: @transaction.Cor' class="text-white text-sm px-2 py-1 rounded block w-fit">@transaction.Etapa.Capitalize()</span>
                             </td>
                             <td>
                                 <span class="text-sm px-2 py-1 rounded block w-fit @(transaction.Pagamento == "APROVADO" ? "bg-green-400" : "bg-red-400")">@transaction.Pagamento.Capitalize()</span>
@@ -72,13 +72,25 @@
                                 @if (transaction.Etapa == "PROCESSANDO PAGAMENTO" && transaction.Pagamento == "APROVADO")
                                 {
                                     <div class="tooltip" data-tip="Aprovar venda">
-                                        <button data-id-transacao="@transaction.IdTransacao" id="admin-aprova-venda" class="btn btn-sm btn-success btn-square">
+                                        <button data-id-transacao="@transaction.IdTransacao"
+                                                data-etapa="PAGAMENTO APROVADO"
+                                                data-before-title="Atenção!"
+                                                data-before-message="Confirma a aprovação dessa venda?"
+                                                data-after-title="Aprovado!"
+                                                data-after-message='Pedido foi aprovado com sucesso.'
+                                                data-trigger="manage" class="btn btn-sm btn-success btn-square">
                                             <i class="fa-solid fa-money-bill-trend-up"></i>
                                         </button>
                                     </div>
 
                                     <div class="tooltip" data-tip="Recusar venda">
-                                        <button class="btn btn-sm bg-orange-500 hover:bg-orange-600 btn-square">
+                                        <button data-id-transacao="@transaction.IdTransacao"
+                                                data-etapa="PAGAMENTO RECUSADO"
+                                                data-before-title="Atenção!"
+                                                data-before-message="Confirma a reprovação dessa venda?"
+                                                data-after-title="Recusado!"
+                                                data-after-message='Pedido foi aprovado com sucesso.'
+                                                data-trigger="manage" class="btn btn-sm bg-orange-500 hover:bg-orange-600 btn-square">
                                             <i class="fa-solid fa-do-not-enter"></i>
                                         </button>
                                     </div>
@@ -87,7 +99,13 @@
                                 @if (transaction.Etapa == "PAGAMENTO APROVADO")
                                 {
                                     <div class="tooltip" data-tip="Pedido em preparação">
-                                        <button class="btn btn-sm btn-warning btn-square">
+                                        <button data-id-transacao="@transaction.IdTransacao"
+                                                data-etapa="EM PREPARAÇÃO"
+                                                data-before-title="Atenção!"
+                                                data-before-message="Alterar status do pedido para preparação?"
+                                                data-after-title="Feito!"
+                                                data-after-message='Pedido identificado com "Em Preparação".'
+                                                data-trigger="manage" class="btn btn-sm btn-warning btn-square">
                                             <i class="fa-solid fa-conveyor-belt"></i>
                                         </button>
                                     </div>
@@ -96,17 +114,14 @@
                                 @if (transaction.Etapa == "EM PREPARAÇÃO")
                                 {
                                     <div class="tooltip" data-tip="Pedido a caminho">
-                                        <button class="btn btn-sm btn-primary btn-square">
+                                        <button data-id-transacao="@transaction.IdTransacao"
+                                                data-etapa="A CAMINHO"
+                                                data-before-title="Atenção!"
+                                                data-before-message="Enviar o pedido para o comprador?"
+                                                data-after-title="Feito!"
+                                                data-after-message='Pedido enviado para o comprador'
+                                                data-trigger="manage" class="btn btn-sm btn-primary btn-square">
                                             <i class="fa-solid fa-truck-fast"></i>
-                                        </button>
-                                    </div>
-                                }
-
-                                @if (podeCancelar.Contains(transaction.Etapa))
-                                {
-                                    <div class="tooltip" data-tip="Cancalar venda">
-                                        <button data-id-transacao="@transaction.IdTransacao" id="admin-cancela-venda" class="btn btn-sm btn-error btn-square">
-                                            <i class="fa-solid fa-ban"></i>
                                         </button>
                                     </div>
                                 }
@@ -114,11 +129,34 @@
                                 @if (transaction.Etapa == "A CAMINHO")
                                 {
                                     <div class="tooltip" data-tip="Marcar como entregue">
-                                        <button class="btn btn-sm btn-info btn-square">
+                                        <button data-id-transacao="@transaction.IdTransacao"
+                                                data-etapa="ENTREGUE"
+                                                data-before-title="Atenção!"
+                                                data-before-message="Comfirma a entrega desse pedido?"
+                                                data-after-title="Feito!"
+                                                data-after-message='O pedido foi entregue com sucesso.'
+                                                data-trigger="manage" class="btn btn-sm btn-info btn-square">
                                             <i class="fa-solid fa-truck"></i>
                                         </button>
                                     </div>
                                 }
+
+                                @if (podeCancelar.Contains(transaction.Etapa))
+                                {
+                                    <div class="tooltip" data-tip="Cancalar venda">
+                                        <button data-id-transacao="@transaction.IdTransacao"
+                                                data-etapa="CANCELADO"
+                                                data-before-title="Atenção!"
+                                                data-before-message="Comfirma que deseja cancelar esse pedido?"
+                                                data-after-title="Feito!"
+                                                data-after-message='Pedido cancelado com sucesso.'
+                                                data-trigger="manage" class="btn btn-sm btn-error btn-square">
+                                            <i class="fa-solid fa-ban"></i>
+                                        </button>
+                                    </div>
+                                }
+
+
                             </td>
                         </tr>
                     }
@@ -140,125 +178,6 @@
             },
         })
 
-        $(document).on("click", "#admin-aprova-venda", function () {
-            let data = $(this).getData();
-            data.Etapa = "PAGAMENTO RECUSADO";
-
-            Swal.fire({
-                title: "Atenção!",
-                text: "Confirma a recusa dessa venda?",
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey: false,
-                showCancelButton: true,
-                confirmButtonText: "Sim, Confirmar",
-                cancelButtonText: 'Não',
-                reverseButtons: true,
-                customClass: {
-                    confirmButton: "!bg-[#130235] !twxt-white",
-                    denyButton: "!bg-[#ffcc00] !text-gray-800",
-                }
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    const response = await $.ajax({
-                        url: `/altera/etapa/pedido`,
-                        type: 'POST',
-                        data: data
-                    });
-
-                    if (response.success) {
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "Feito!",
-                            text: 'Pedido reprovado pelo funcionário.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => location.reload())
-                    }
-                }
-            });
-        })
-
-        $(document).on("click", "#admin-aprova-venda", function () {
-            let data = $(this).getData();
-            data.Etapa = "PAGAMENTO APROVADO";
-
-            Swal.fire({
-                title: "Atenção!",
-                text: "Confirma a aprovação dessa venda?",
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey: false,
-                showCancelButton: true,
-                confirmButtonText: "Sim, Confirmar",
-                cancelButtonText: 'Não',
-                reverseButtons: true,
-                customClass: {
-                    confirmButton: "!bg-[#130235] !twxt-white",
-                    denyButton: "!bg-[#ffcc00] !text-gray-800",
-                }
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    const response = await $.ajax({
-                        url: `/altera/etapa/pedido`,
-                        type: 'POST',
-                        data: data
-                    });
-
-                    if (response.success) {
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "Feito!",
-                            text: 'Pedido foi aprovado com sucesso.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => location.reload())
-                    }
-                }
-            });
-        })
-
-        $(document).on("click", "#admin-cancela-venda", function () {
-            let data = $(this).getData();
-            data.Descricao = "O funcionário cancelou esse pedido sem mais detalhes.";
-            data.Acao = "CANCELADO POR FUNCIONARIO";
-
-            Swal.fire({
-                title: "Atenção!",
-                text: "Deseja realmente cancelar essa compra?",
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey: false,
-                showCancelButton: true,
-                confirmButtonText: "Sim, Cancelar",
-                cancelButtonText: 'Não',
-                reverseButtons: true,
-                customClass: {
-                    confirmButton: "!bg-[#130235] !twxt-white",
-                    denyButton: "!bg-[#ffcc00] !text-gray-800",
-                }
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    const response = await $.ajax({
-                        url: `/cancela/pedido`,
-                        type: 'POST',
-                        data: data
-                    });
-
-                    if (response.success) {
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "Feito!",
-                            text: 'Pedido foi cancelado com sucesso.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => location.reload())
-                    }
-                }
-            });
-        })
+        $(document).on("click", '[data-trigger="manage"]', PedidoAcoes)
     </script>
 }

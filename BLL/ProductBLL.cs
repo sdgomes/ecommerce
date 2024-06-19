@@ -88,6 +88,8 @@ namespace crm.BLL
 
             if (IdTransaction != 0)
             {
+                TransactionDAO.RegistraAtividade(IdTransaction, "Um novo pedido foi feito, e está aguardando validação de pagamento.", "COMPRA");
+
                 foreach (var Item in Transaction.Produtos)
                 {
                     TransactionDAO.AssociateProducts(IdTransaction, Item);

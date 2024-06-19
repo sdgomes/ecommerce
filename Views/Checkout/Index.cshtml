@@ -321,7 +321,7 @@ ViewData["Title"] = breadcrumbs.Title;
                     title: "Infromações de pagamento.",
                     html: `
                 <div>
-                    <h1 id="total-pagar-cartao" class="font-bold text-3xl text-gray-800">R$ <span total-sem-atribuicao>${$('[total-compra]').text().replace(/R\$/g, '').toFloat()}</span></h1>
+                    <h1 id="total-pagar-cartao" class="font-bold text-3xl text-gray-800">R$ <span total-sem-atribuicao>${$('[total-compra]').text().replace(/R\$/g, '').toFloat().toMoney()}</span></h1>
                     <p class="w-1/2 mx-auto mb-4 font-bold text-sm">Total da compra sem atribuição. Ao adicionar um valor no cartão selecionado ele será subitraido do valor tatal.</p>
                 </div>
 

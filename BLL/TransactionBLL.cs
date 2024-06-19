@@ -24,24 +24,34 @@ namespace crm.BLL
             return Model;
         }
 
-        public static void CancelaPedido(long IdTransacao, string Descricao, string Acao)
-        {
-            TransactionDAO.CancelaPedio(IdTransacao);
-            TransactionDAO.RegistraAtividade(IdTransacao, Descricao, Acao);
-        }
-
         public static void Etapa(long IdTransacao, string Etapa)
         {
             TransactionDAO.AlteraEtapaPedido(IdTransacao, Etapa);
 
             switch (Etapa)
             {
+                case "A CAMINHO":
+                    TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi marcado como enviado! Ação feita por um funcionário.", "ENVIADO");
+                    break;
+
+                case "CANCELADO":
+                    TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi cancelado.", "CANCELADO");
+                    break;
+
+                case "EM PREPARAÇÃO":
+                    TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi colocado em preparação! Ação feita por um funcionário.", "PREPARACAO");
+                    break;
+
+                case "ENTREGUE":
+                    TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi entregue pelos correios.", "ENTREGUE");
+                    break;
+
                 case "PAGAMENTO APROVADO":
-                    TransactionDAO.RegistraAtividade(IdTransacao, "A venda foi aprovada por um funcionário.", "APROVA VENDA");
+                    TransactionDAO.RegistraAtividade(IdTransacao, "A venda foi aprovada! Ação feita por um funcionário.", "APROVADO ");
                     break;
 
                 case "PAGAMENTO RECUSADO":
-                    TransactionDAO.RegistraAtividade(IdTransacao, "A venda foi reprovada por um funcionário.", "APROVA RECUSADA");
+                    TransactionDAO.RegistraAtividade(IdTransacao, "A venda foi reprovada! Ação feita por um funcionário.", "RECUSADO");
                     break;
             }
         }

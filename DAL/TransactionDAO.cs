@@ -37,11 +37,12 @@ namespace crm.DAL
             }
         }
 
-        public static List<TransactionDTO> SelectByIdTransaction(long IdTransacao, string Etapa, string Tipo)
+        public static List<TransactionDTO> SelectByIdTransaction(long IdTransacao, string Etapa, string Tipo, string Cor)
         {
             try
             {
                 string query = @$"SELECT 
+                                    @COR AS COR,
 	                                EPT.QUANTIDADE,
 	                                EPT.ID_PRODUTO,
 	                                PR.NOME,
@@ -58,6 +59,7 @@ namespace crm.DAL
                     new SqlParameter("@ID_TRANSACAO", IdTransacao),
                     new SqlParameter("@ETAPA", I(Etapa)),
                     new SqlParameter("@TIPO", I(Tipo)),
+                    new SqlParameter("@COR", I(Cor)),
                 };
 
                 return DatabaseProgramas().Select<TransactionDTO>(query, parameters);
@@ -74,6 +76,7 @@ namespace crm.DAL
             {
                 string query = @$"SELECT
 	                                ET.ETAPA, 
+	                                ET.COR, 
 	                                TR.TIPO,
 	                                ID_TRANSACAO
                                 FROM ECM_TRANSACOES TR
@@ -130,9 +133,9 @@ namespace crm.DAL
                 int sorte = random.Next(0, pagamento.Length);
 
 
-                string query = @$" INSERT INTO ECM_TRANSACOES (ID_CLIENTE, ID_ENDERECO, TIPO, SUBTOTAL, FRETE, DESCONTOS, TOTAL, PAGAMENTO)
+                string query = @$" INSERT INTO ECM_TRANSACOES (ID_CLIENTE, ID_ENDERECO, ID_ETAPA, TIPO, SUBTOTAL, FRETE, DESCONTOS, TOTAL, PAGAMENTO)
 		                                OUTPUT Inserted.ID_TRANSACAO
-		                                VALUES (@ID_CLIENTE, @ID_ENDERECO, 'COMPRA', @SUBTOTAL, @FRETE, @DESCONTOS, @TOTAL, @PAGAMENTO)";
+		                                VALUES (@ID_CLIENTE, @ID_ENDERECO, (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE ETAPA = 'PROCESSANDO PAGAMENTO'),'COMPRA', @SUBTOTAL, @FRETE, @DESCONTOS, @TOTAL, @PAGAMENTO)";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@ID_CLIENTE", I(transaction.IdCliente)),
@@ -184,25 +187,6 @@ namespace crm.DAL
                     new SqlParameter("@ID_TRANSACAO", I(IdTransacao)),
                     new SqlParameter("@ID_PRODUTO", I(Produto.IdProduto)),
                     new SqlParameter("@QUANTIDADE", I(Produto.QntCompra)),
-                };
-
-                DatabaseProgramas().Execute(query, parameters);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public static void CancelaPedio(long IdTransacao)
-        {
-            try
-            {
-                string query = @$"UPDATE ECM_TRANSACOES SET ID_ETAPA = (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE ETAPA = 'CANCELADO')
-                WHERE ID_TRANSACAO = @ID_TRANSACAO;";
-
-                SqlParameter[] parameters = new SqlParameter[] {
-                    new SqlParameter("@ID_TRANSACAO", I(IdTransacao)),
                 };
 
                 DatabaseProgramas().Execute(query, parameters);
@@ -277,7 +261,7 @@ namespace crm.DAL
 		                                AND EN.D_E_L_E_T_ <> '*'
                                 WHERE ET.ID_ETAPA NOT IN (
 	                                SELECT ID_ETAPA FROM ECM_ETAPAS 
-	                                WHERE ETAPA IN ('TROCA SOLICITADA', 'DEVOLUÇÃO SOLICITADA','ENVIADO PARA TROCA', 'ENVIADO PARA DEVOLUÇÃO', 'CANCELADO')
+	                                WHERE ETAPA IN ('TROCA SOLICITADA', 'DEVOLUÇÃO SOLICITADA','ENVIADO PARA TROCA', 'ENVIADO PARA DEVOLUÇÃO')
                                 )";
 
                 return DatabaseProgramas().Select<PedidoDTO>(query);

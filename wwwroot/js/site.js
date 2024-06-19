@@ -616,3 +616,43 @@ $(document).on('click', '#acesso', function () {
     $(this).hide()
     $('#form-acesso').show()
 })
+
+
+function PedidoAcoes() {
+    let data = $(this).getData();
+
+    Swal.fire({
+        title: data.beforeTitle,
+        text: data.beforeMessage,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        showCancelButton: true,
+        confirmButtonText: "Sim",
+        cancelButtonText: 'Não',
+        reverseButtons: true,
+        customClass: {
+            confirmButton: "!bg-[#130235] !twxt-white",
+            cancelButton: "!bg-transparent !text-[#ffcc00] !border !border-solid !border-[#ffcc00] hover:!border-[#ffe990] hover:!text-gray-900 hover:!bg-[#ffe990]",
+        }
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            const response = await $.ajax({
+                url: `/altera/etapa/pedido`,
+                type: 'POST',
+                data: data
+            });
+
+            if (response.success) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: data.afterTitle,
+                    text: data.afterMessage,
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => location.reload())
+            }
+        }
+    });
+}

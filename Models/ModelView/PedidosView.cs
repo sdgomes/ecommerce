@@ -20,7 +20,7 @@ namespace crm.Models.ModelView
 
             foreach (var i in transactions)
             {
-                List<TransactionDTO> transacoes = TransactionDAO.SelectByIdTransaction(i.IdTransacao, i.Etapa, i.Tipo);
+                List<TransactionDTO> transacoes = TransactionDAO.SelectByIdTransaction(i.IdTransacao, i.Etapa, i.Tipo, i.Cor);
                 foreach (var x in transacoes)
                 {
                     Items.Add(x);

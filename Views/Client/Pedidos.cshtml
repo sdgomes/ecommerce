@@ -5,7 +5,7 @@
     breadcrumbs.Title = "Pedidos";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
     new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-    new BreadcrumbsDTO("Perfil", "./", "fa-solid fa-user"),
+    new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
     new BreadcrumbsDTO("Meus Pedidos")
 };
 
@@ -40,7 +40,7 @@
                                              src="@produto.ImageSource" alt="">
 
                                         <div class="flex flex-col justify-between p-4 leading-normal">
-                                            <h3 class='mb-3 text-xl font-bold tracking-tight @(produto.Etapa == "CANCELADO" ? "text-red-600":"text-green-700")'>@produto.Etapa</h3>
+                                            <h3 class='mb-3 text-xl font-bold tracking-tight' style="color: @produto.Cor">@produto.Etapa</h3>
                                             <h5 class='mb-2 text-2xl font-bold tracking-tight text-gray-900 line-clamp-1 @(produto.Etapa == "CANCELADO" ? "grayscale":"")'>
                                                 @produto.Nome
                                             </h5>

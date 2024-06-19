@@ -33,21 +33,6 @@ namespace crm.Controllers
         }
 
         [HttpPost]
-        [Route("cancela/pedido")]
-        public IActionResult CancelaPedido(long IdTransacao, string Descricao, string Acao)
-        {
-            try
-            {
-                TransactionBLL.CancelaPedido(IdTransacao, Descricao, Acao);
-                return Json(new { success = true, href = Url.Action("Pedidos", "Client", new { Codigo = Request.Cookies["codigo"] }) });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(400, new { Message = ex.Message });
-            }
-        }
-
-        [HttpPost]
         [Route("altera/etapa/pedido")]
         public IActionResult EtapaPedido(long IdTransacao, string Etapa)
         {

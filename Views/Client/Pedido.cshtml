@@ -41,8 +41,14 @@
                 }
                 @if (podeCancelar.Contains(Model.Etapa))
                 {
-                    <button id="cancelar-transasao" data-id-transacao="@Model.IdTransacao"
-                            class="btn btn-sm btn-error">
+                    <button id="cancelar-transasao" 
+                        data-id-transacao="@Model.IdTransacao"
+                        data-etapa="CANCELADO"
+                        data-before-title="Atenção!"
+                        data-before-message="Comfirma que deseja cancelar esse pedido?"
+                        data-after-title="Cancelado!"
+                        data-after-message='O pedido foi cancelado com sucesso.'
+                        data-trigger="manage" class="btn btn-sm btn-error">
                         Cancelar pedido
                     </button>
                 }
@@ -160,45 +166,6 @@
 
 @section Scripts {
     <script>
-        $(document).on('click', '#cancelar-transasao', function () {
-            let data = $(this).getData();
-            data.Descricao = "O cliente cancelou o pedido sem mais detalhes.";
-            data.Acao = "CANCELADO PELO CLIENTE";
-
-            Swal.fire({
-                title: "Atenção!",
-                text: "Deseja realmente cancelar essa compra?",
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey: false,
-                showCancelButton: true,
-                confirmButtonText: "Sim, Cancelar",
-                cancelButtonText: 'Não',
-                reverseButtons: true,
-                customClass: {
-                    confirmButton: "!bg-[#130235] !twxt-white",
-                    denyButton: "!bg-[#ffcc00] !text-gray-800",
-                }
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    const response = await $.ajax({
-                        url: `/cancela/pedido`,
-                        type: 'POST',
-                        data: data
-                    });
-
-                    if (response.success) {
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "Feito!",
-                            text: 'Seu pedido foi cancelado com sucesso.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => location.href = response.href)
-                    }
-                }
-            });
-        })
+        $(document).on('click', '#cancelar-transasao', PedidoAcoes)
     </script>
 }
