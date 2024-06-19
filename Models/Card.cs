@@ -44,6 +44,9 @@ namespace crm.Models
         [Column("TOTAL")]
         public double Total { get; set; }
 
+        [Column("PAGAMENTO")]
+        public string Pagamento { get; set; }
+        
         [Column("CRIACAO")]
         public DateTime Criacao { get; set; }
 

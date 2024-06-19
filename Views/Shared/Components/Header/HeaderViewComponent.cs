@@ -18,6 +18,7 @@ namespace crm.Views.Shared.Components.Header
             {
                 var codigo = Request.Cookies["codigo"];
                 Model.Cliente = ClientDAO.SearchForClientByCodigo(codigo);
+                Model.Employee = EmployeeDAO.SearchForEmployeeByCodigo(codigo);
             }
 
             return View(Model);
@@ -27,6 +28,8 @@ namespace crm.Views.Shared.Components.Header
     public class ViewHeader
     {
         public Models.Client Cliente { get; set; }
+
+        public Employee Employee { get; set; }
 
         public List<CategoriaDTO> Categorias { get; set; }
 

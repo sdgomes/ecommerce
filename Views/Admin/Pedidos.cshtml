@@ -2,7 +2,7 @@
 
 @{
 
-    string[] podeCancelar = { "PROCESSANDO PAGAMENTO", "EM PREPARAÇÃO", "A CAMINHO", "PAGAMENTO APROVADO" };
+    string[] podeCancelar = { "PROCESSANDO PAGAMENTO", "EM PREPARAÇÃO", "A CAMINHO", "COMPRA APROVADA" };
     string[] podeSolicitar = { "ENTREGUE" };
 
 
@@ -48,7 +48,7 @@
                     @foreach (var transaction in Model)
                     {
                         <tr>
-                            <td>@transaction.IdTransacao</td>
+                            <td>@transaction.Codigo</td>
                             <td>@transaction.Quantidade</td>
                             <td>@transaction.Total.ToString("C")</td>
                             <td>
@@ -73,7 +73,7 @@
                                 {
                                     <div class="tooltip" data-tip="Aprovar venda">
                                         <button data-id-transacao="@transaction.IdTransacao"
-                                                data-etapa="PAGAMENTO APROVADO"
+                                                data-etapa="COMPRA APROVADA"
                                                 data-before-title="Atenção!"
                                                 data-before-message="Confirma a aprovação dessa venda?"
                                                 data-after-title="Aprovado!"
@@ -82,10 +82,13 @@
                                             <i class="fa-solid fa-money-bill-trend-up"></i>
                                         </button>
                                     </div>
+                                }
 
+                                @if (transaction.Etapa == "PROCESSANDO PAGAMENTO")
+                                {
                                     <div class="tooltip" data-tip="Recusar venda">
                                         <button data-id-transacao="@transaction.IdTransacao"
-                                                data-etapa="PAGAMENTO RECUSADO"
+                                                data-etapa="COMPRA RECUSADA"
                                                 data-before-title="Atenção!"
                                                 data-before-message="Confirma a reprovação dessa venda?"
                                                 data-after-title="Recusado!"
@@ -96,7 +99,7 @@
                                     </div>
                                 }
 
-                                @if (transaction.Etapa == "PAGAMENTO APROVADO")
+                                @if (transaction.Etapa == "COMPRA APROVADA")
                                 {
                                     <div class="tooltip" data-tip="Pedido em preparação">
                                         <button data-id-transacao="@transaction.IdTransacao"

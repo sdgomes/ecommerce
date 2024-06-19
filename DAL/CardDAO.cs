@@ -216,12 +216,15 @@ namespace crm.DAL
 	                                EC.NOME_TITULAR,
 	                                EC.NOME_CARTAO,
 	                                EB.NOME,
+	                                EB.ID_BANDEIRA,
+	                                ETC.PAGAMENTO,
 	                                EC.CRIACAO
                                 FROM ECM_TRA_CAR ETC
 	                                INNER JOIN ECM_CARTOES EC ON EC.ID_CARTAO = ETC.ID_CARTAO
 	                                INNER JOIN ECM_BANDEIRAS EB ON EB.ID_BANDEIRA = EC.ID_BANDEIRA
                                 WHERE 
-	                                ID_TRANSACAO = @ID_TRANSACAO";
+	                                ETC.ID_TRANSACAO = @ID_TRANSACAO 
+                                ORDER BY ETC.ID_TRANSACAO_CARTAO DESC;";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@ID_TRANSACAO", IdTransacao)

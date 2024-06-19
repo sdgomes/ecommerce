@@ -7,9 +7,11 @@
       "Nota": 5,
       "PrecoDesconto": "",
       "PrecoOriginal": "R$ 199,00",
-      "Id": "RQcHofRqTCNmmDdK3XCy5v",
+      "IdProduto": "1",
+      "Subcategoria": "SERIADO",
       "Desconto": 0,
-      "Tipo": ""
+      "Tipo": "",
+      "TipoProduto": "CD"
     },
     {
       "Imagem": "product-2.jpg",
@@ -18,9 +20,11 @@
       "Nota": 4,
       "PrecoDesconto": "R$ 449,92",
       "PrecoOriginal": "R$ 599,90",
-      "Id": "A4LEkPWdVQaBlgSAGHMp99",
+      "IdProduto": "1",
+      "Subcategoria": "SERIADO",
       "Desconto": 25,
-      "Tipo": ""
+      "Tipo": "",
+      "TipoProduto": "CD"
     },
     {
       "Imagem": "product-3.jpg",
@@ -29,9 +33,11 @@
       "Nota": 5,
       "PrecoDesconto": "",
       "PrecoOriginal": "R$ 549,90",
-      "Id": "HINIRH5ije0aJF9xgFevSD",
+      "IdProduto": "1",
+      "Subcategoria": "SERIADO",
       "Desconto": 0,
-      "Tipo": ""
+      "Tipo": "",
+      "TipoProduto": "CD"
     }
   ],
   "Banner": {
@@ -39,7 +45,10 @@
     "Titulo": "Endless Summer Vacation",
     "Texto": "Endless Summer Vacation é o novo álbum ansiosamente aguardado da artista, compositora e pioneira Miley Cyrus.",
     "PrecoOriginal": "R$ 590,90",
-    "Id": "Htpb8yFncCBUTcFpICIGZk"
+    "IdProduto": "1",
+    "Subcategoria": "SERIADO",
+    "Tipo": "",
+    "TipoProduto": "CD"
   },
   "OfertaPrincipal": {
     "Imagem": "offer-image.jpg",
@@ -49,8 +58,10 @@
     "Dias": 65,
     "PrecoDesconto": "R$ 424,95",
     "PrecoOriginal": "R$ 849,90",
-    "Id": "HINIRH5ije0aJF9xgFevSD",
+    "IdProduto": "1",
+    "Subcategoria": "SERIADO",
     "Desconto": 50,
-    "Tipo": "Novo"
+    "Tipo": "Novo",
+    "TipoProduto": "CD"
   }
 }

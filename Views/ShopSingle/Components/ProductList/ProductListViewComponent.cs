@@ -28,7 +28,10 @@ namespace crm.Views.ShopSingle.Components.ProductList
         public string Imagem { get; set; }
         public string NomeProduto { get; set; }
         public string PrecoOriginal { get; set; }
-        public string Id { get; set; }
+        public int IdProduto { get; set; }
+        public string Subcategoria { get; set; }
+        public string TipoProduto { get; set; }
+        public string Tipo { get; set; }
     }
 
 }

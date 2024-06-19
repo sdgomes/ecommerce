@@ -306,6 +306,32 @@ namespace crm.Controllers
                 throw;
             }
         }
+
+        [HttpPost("/componente/client/cartoes")]
+        public IActionResult Cartoes(long IdCliente)
+        {
+            try
+            {
+                return ViewComponent("Cartoes", new { IdCliente });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost("/componente/client/pagar/novamente")]
+        public IActionResult PagarNovamente(long IdCliente, long IdTransacao)
+        {
+            try
+            {
+                return ViewComponent("PagarNovamente", new { IdCliente, IdTransacao });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         #endregion
     }
 }

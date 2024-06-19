@@ -45,6 +45,9 @@ namespace crm.Views.Home.Components.HeroArea
         public string SubTitulo { get; set; }
         public List<string> InformativoPreco { get; set; }
         public string Imagem { get; set; }
-        public string Id { get; set; }
+        public int IdProduto { get; set; }
+        public string Subcategoria { get; set; }
+        public string TipoProduto { get; set; }
+        public string Tipo { get; set; }
     }
 }

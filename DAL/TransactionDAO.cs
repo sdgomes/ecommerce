@@ -78,6 +78,7 @@ namespace crm.DAL
 	                                ET.ETAPA, 
 	                                ET.COR, 
 	                                TR.TIPO,
+	                                TR.CODIGO,
 	                                ID_TRANSACAO
                                 FROM ECM_TRANSACOES TR
 	                                INNER JOIN ECM_ETAPAS ET ON ET.ID_ETAPA = TR.ID_ETAPA
@@ -128,9 +129,7 @@ namespace crm.DAL
         {
             try
             {
-                Random random = new Random();
-                string[] pagamento = { "APROVADO", "RECUSADO" };
-                int sorte = random.Next(0, pagamento.Length);
+
 
 
                 string query = @$" INSERT INTO ECM_TRANSACOES (ID_CLIENTE, ID_ENDERECO, ID_ETAPA, TIPO, SUBTOTAL, FRETE, DESCONTOS, TOTAL, PAGAMENTO)
@@ -141,9 +140,9 @@ namespace crm.DAL
                     new SqlParameter("@ID_CLIENTE", I(transaction.IdCliente)),
                     new SqlParameter("@ID_ENDERECO", I(transaction.IdEndereco)),
                     new SqlParameter("@SUBTOTAL", I(transaction.Subtotal)),
-                    new SqlParameter("@FRETE ", I(transaction.Frete)),
-                    new SqlParameter("@DESCONTOS", I(transaction.Descontos)),
-                    new SqlParameter("@PAGAMENTO", pagamento[sorte]),
+                    new SqlParameter("@FRETE", I(transaction.Frete)),
+                    new SqlParameter("@DESCONTOS", I(transaction.Pagamento == "RECUSADO" ? 0 : transaction.Descontos )),
+                    new SqlParameter("@PAGAMENTO", transaction.Pagamento),
                     new SqlParameter("@TOTAL", I(transaction.Total)),
                 };
 
@@ -159,13 +158,14 @@ namespace crm.DAL
         {
             try
             {
-                string query = @$" INSERT INTO ECM_TRA_CAR (ID_TRANSACAO, ID_CARTAO, TOTAL)
-		                                VALUES (@ID_TRANSACAO, @ID_CARTAO, @TOTAL)";
+                string query = @$" INSERT INTO ECM_TRA_CAR (ID_TRANSACAO, ID_CARTAO, TOTAL, PAGAMENTO)
+		                                VALUES (@ID_TRANSACAO, @ID_CARTAO, @TOTAL, @PAGAMENTO)";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@ID_TRANSACAO", I(IdTransacao)),
                     new SqlParameter("@ID_CARTAO", I(Cartao.IdCartao)),
                     new SqlParameter("@TOTAL", I(Cartao.Total)),
+                    new SqlParameter("@PAGAMENTO", I(Cartao.Pagamento)),
                 };
 
                 DatabaseProgramas().Execute(query, parameters);
@@ -201,7 +201,8 @@ namespace crm.DAL
         {
             try
             {
-                string query = @$"UPDATE ECM_TRANSACOES SET ID_ETAPA = (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE ETAPA = @ETAPA)
+                string query = @$"UPDATE ECM_TRANSACOES SET ID_ETAPA = (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE ETAPA = @ETAPA),
+                ENTREGA = CASE WHEN @ETAPA = 'ENTREGUE' THEN GETDATE() ELSE NULL END, ULTIMA_ALTERACAO = GETDATE()
                 WHERE ID_TRANSACAO = @ID_TRANSACAO;";
 
                 SqlParameter[] parameters = new SqlParameter[] {
@@ -216,6 +217,30 @@ namespace crm.DAL
                 throw;
             }
         }
+
+        public static void AlteraPagamento(TransactionDTO transaction)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_TRANSACOES SET ID_ETAPA = (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE ETAPA = 'PROCESSANDO PAGAMENTO'),
+                ULTIMA_ALTERACAO = GETDATE(), PAGAMENTO = @PAGAMENTO, DESCONTOS = @DESCONTOS, TOTAL = @TOTAL
+                WHERE ID_TRANSACAO = @ID_TRANSACAO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@DESCONTOS", I(transaction.Descontos)),
+                    new SqlParameter("@PAGAMENTO", transaction.Pagamento),
+                    new SqlParameter("@TOTAL", I(transaction.Total)),
+                    new SqlParameter("@ID_TRANSACAO", I(transaction.IdTransacao)),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         public static void RegistraAtividade(long IdTransacao, string Descricao, string Acao)
         {
@@ -251,6 +276,7 @@ namespace crm.DAL
 	                                ETP.ETAPA,
 	                                ETP.COR,
 	                                ET.PAGAMENTO,
+	                                ET.CODIGO,
 	                                ET.CRIACAO
                                 FROM ECM_TRANSACOES ET
 	                                INNER JOIN ECM_CLIENTES EC ON EC.ID_CLIENTE = ET.ID_CLIENTE

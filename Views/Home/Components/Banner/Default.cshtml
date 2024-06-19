@@ -11,7 +11,13 @@
                             <h2>@Item.NomeProduto</h2>
                             <p>@Item.Texto</p>
                             <div class="button">
-                                <a asp-action="Index" asp-controller="ShopSingle" asp-route-id-produto="@Item.Id" class="btn !w-fit !flex !text-gray-800 hover:!text-white">Compre agora</a>
+                                <a 
+                                asp-action="Index"
+                                asp-controller="ShopSingle"
+                                asp-route-categoria="@Item.TipoProduto.ToLower()"
+                                asp-route-subcategoria="@Item.Subcategoria.ToLower()"
+                                asp-route-idproduto="@Item.IdProduto"
+                                 class="btn !w-fit !flex !text-gray-800 hover:!text-white">Compre agora</a>
                             </div>
                         </div>
                     </div>

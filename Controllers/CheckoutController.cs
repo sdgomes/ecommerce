@@ -37,6 +37,20 @@ namespace crm.Controllers
             }
         }
 
+        [HttpPost("/registra/novo/pagamento/transacao")]
+        public IActionResult RegistraTransacao(TransactionDTO Transaction)
+        {
+            try
+            {
+                ProductBLL.NovoPagamento(Transaction);
+                return Json(new { success = true });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpGet("/buscar/desconto/{Codigo}")]
         public IActionResult BuscarDesconto(string Codigo)
         {

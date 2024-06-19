@@ -268,7 +268,6 @@ $(document).ready(function () {
             icon: "error",
             title: b64DecodeUnicode(error)
         });
-
         history.pushState({}, window.document.title, `${location.origin}${location.pathname}`);
     }
 });
@@ -503,7 +502,7 @@ $(document).on('click', '[data-action="finalizar-carrinho"]', function (e) {
         }).then((result) => {
             if (result.isConfirmed) {
                 if (result.value.isCliente) {
-                    cookie.Set("codigo", result.value.codigo, 1)
+                    cookie.Set("codigo", result.value.codigo, 0.2)
                     location.href = `/finalizar`;
                 }
 
@@ -572,8 +571,10 @@ $(document).on('click', '#entrar', function () {
         },
     }).then((result) => {
         if (result.isConfirmed) {
-            if (result.value.isCliente)
-                location.href = `/finalizar?Codigo=${result.value.codigo}`
+            if (result.value.isCliente) {
+                cookie.Set("codigo", result.value.codigo, 0.2)
+                location.href = `/cliente/perfil/${result.value.codigo}`
+            }
 
             else if (!result.value.isCliente)
                 Swal.fire({
@@ -590,7 +591,7 @@ $(document).on('click', '#entrar', function () {
     });
 })
 
-$(document).on('click', '#acessar', function () {
+$(document).on('click', '#acessar', async function () {
     let acesso = $('[name="acesso-restrito"]').val()
     if (acesso.trim() == "")
         Swal.fire({
@@ -601,8 +602,40 @@ $(document).on('click', '#acessar', function () {
             showConfirmButton: false,
             timer: 1500
         })
-    else
-        window.location.href = `/admin/perfil/${acesso.trim()}`
+    else {
+        try {
+            const response = await $.ajax({
+                url: `/buscar/funcionario/${acesso.trim()}`,
+                type: 'POST'
+            });
+
+            if (response.isFuncionario) {
+                cookie.Set("codigo", response.codigo, 0.2)
+                location.href = `/admin/perfil/${response.codigo}`
+            } else {
+                Swal.fire({
+                    position: "center",
+                    icon: "warning",
+                    title: "Atenção!",
+                    text: 'Seu código não é válido ou foi digitado errado.\nTente novamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+
+        } catch (error) {
+            console.log(error)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Atenção!",
+                text: 'Seu código não é válido ou foi digitado errado.\nTente novamente',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    }
+
 })
 
 $(document).on('click', '#close-acesso', function () {

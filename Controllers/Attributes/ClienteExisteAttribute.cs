@@ -27,7 +27,16 @@ namespace crm.Controllers.Attributes
                 if (cliente == null)
                 {
                     var controller = (Controller)context.Controller;
-                    context.Result = controller.RedirectToAction("Cadastro", "Client", new { error = "Aten��o! Cliente n�o encontrado.".ToBase64Encode() });
+
+                    Employee employee = EmployeeDAO.SearchForEmployeeByCodigo(Codigo);
+                    if (employee != null)
+                    {
+                        context.Result = controller.RedirectToAction("Index", "Admin", new { Codigo });
+                    }
+                    else
+                    {
+                        context.Result = controller.RedirectToAction("Index", "Home", new { error = "Atenção! Cliente não encontrado.".ToBase64Encode() });
+                    }
                 }
             }
             catch (Exception)

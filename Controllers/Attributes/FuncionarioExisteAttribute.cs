@@ -25,12 +25,22 @@ namespace crm.Controllers.Attributes
                         Codigo = parameter.Value.ToString();
                 }
 
-                Employee cliente = EmployeeDAO.SearchForEmployeeByCodigo(Codigo);
+                Employee employee = EmployeeDAO.SearchForEmployeeByCodigo(Codigo);
 
-                if (cliente == null)
+                if (employee == null)
                 {
                     var controller = (Controller)context.Controller;
-                    context.Result = controller.RedirectToAction("Index", "Home", new { error = "Atenção! Funcionário não encontrado.".ToBase64Encode() });
+
+                    Client cliente = ClientDAO.SearchForClientByCodigo(Codigo);
+                    if (cliente != null)
+                    {
+                        context.Result = controller.RedirectToAction("Perfil", "Client", new { Codigo });
+                    }
+                    else
+                    {
+                        context.Result = controller.RedirectToAction("Index", "Home", new { error = "Atenção! Funcionário não encontrado.".ToBase64Encode() });
+                    }
+
                 }
             }
             catch (Exception)

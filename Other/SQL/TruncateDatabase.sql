@@ -9,17 +9,24 @@ AS
     BEGIN
         DECLARE @CONSTRAINTS VARCHAR(max);
 
-        SELECT @CONSTRAINTS = STRING_AGG('ALTER TABLE [' +  OBJECT_SCHEMA_NAME(parent_object_id) +
-            '].[' + OBJECT_NAME(parent_object_id) + 
-            '] DROP CONSTRAINT [' + name + '];', ' ')
-        FROM sys.foreign_keys;
+       SELECT @CONSTRAINTS = STUFF((
+            SELECT 'ALTER TABLE [' + CAST(OBJECT_SCHEMA_NAME(TEMPSYS.parent_object_id) AS VARCHAR(MAX)) +
+            '].[' + CAST(OBJECT_NAME(TEMPSYS.parent_object_id) AS VARCHAR(MAX)) +	
+            '] DROP CONSTRAINT [' + name + '];' + ' ' 
+            FROM sys.foreign_keys TEMPSYS 
+            FOR XML PATH ('')
+        ), 1, 0, '')
 
         EXEC (@CONSTRAINTS);
 
-        DECLARE @TABLES_TO_DELETE VARCHAR(max);
+        DECLARE @TABLES_TO_DELETE VARCHAR(MAX);
 
-        SELECT @TABLES_TO_DELETE = STRING_AGG('DELETE FROM [' + TABLE_NAME + ']; DBCC CHECKIDENT (' + TABLE_NAME + ', RESEED, 0);', ' ') FROM INFORMATION_SCHEMA.TABLES;
+        SELECT @TABLES_TO_DELETE = STUFF((
+            SELECT 'DELETE FROM [' + TEMPSCHEMA.TABLE_NAME + ']; DBCC CHECKIDENT (' + TEMPSCHEMA.TABLE_NAME + ', RESEED, 1);' + ' ' 
+            FROM INFORMATION_SCHEMA.TABLES TEMPSCHEMA 
+            FOR XML PATH ('')
+        ), 1, 0, '')
 
         EXEC (@TABLES_TO_DELETE);
-    END
+    END  
 GO

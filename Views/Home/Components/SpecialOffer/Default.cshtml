@@ -34,6 +34,7 @@
                                     <div class="button flex gap-1">
                                         <a data-action="carrinho"
                                         data-tipo-produto="Item.TipoProduto.Capitalize()"
+                                        data-tipo="Item.Tipo.Capitalize()"
                                         data-subcategoria="Item.Subcategoria.Capitalize()"
                                         data-imagem="Item.ImageSource"
                                         data-preco="Item.Preco"
@@ -41,13 +42,19 @@
                                         data-nome="Item.Nome.Capitalize()"
                                         data-qnt-compra="1"
                                         data-id-produto="Item.IdProduto"  class="btn !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853]"><i class="fa-light fa-cart-circle-plus text-sm"></i> Carrinho</a>
-                                        <a data-action="favoritos" data-favorito="false" data-id-produto="@Item.Id" class="btn !w-fit !flex !itens-center"><i class="fa-solid fa-heart text-sm"></i></a>
+                                        <a data-action="favoritos" data-favorito="false" data-id-produto="@Item.IdProduto" class="btn !w-fit !flex !itens-center"><i class="fa-solid fa-heart text-sm"></i></a>
                                     </div>
                                 </div>
                                 <div class="product-info">
                                     <span class="category">@Item.PreInfo</span>
                                     <h4 class="title">
-                                        <a asp-action="Index" asp-controller="ShopSingle" asp-route-id-produto="@Item.Id">@Item.NomeProduto</a>
+                                        <a 
+                                                    asp-action="Index"
+                                                    asp-controller="ShopSingle"
+                                                    asp-route-categoria="@Item.TipoProduto.ToLower()"
+                                                    asp-route-subcategoria="@Item.Subcategoria.ToLower()"
+                                                    asp-route-idproduto="@Item.IdProduto"
+                                        >@Item.NomeProduto</a>
                                     </h4>
                                     <ul class="review">
                                         @for (var i = 1; i < 5; i++)
@@ -89,7 +96,13 @@
                             <span>@Model.Banner.PrecoOriginal</span>
                         </div>
                         <div class="button">
-                            <a asp-action="Index" asp-controller="ShopSingle" asp-route-produto="@Model.Banner.Id" class="btn !ml-auto !w-fit !flex !text-gray-800 hover:!text-white">Compre agora</a>
+                            <a 
+                            asp-action="Index"
+                            asp-controller="ShopSingle"
+                            asp-route-categoria="@Model.Banner.TipoProduto.ToLower()"
+                            asp-route-subcategoria="@Model.Banner.Subcategoria.ToLower()"
+                            asp-route-idproduto="@Model.Banner.IdProduto"
+                             class="btn !ml-auto !w-fit !flex !text-gray-800 hover:!text-white">Compre agora</a>
                         </div>
                     </div>
                 </div>
@@ -102,7 +115,13 @@
                         <span class="sale-tag">-@Model.OfertaPrincipal.Desconto%</span>
                     </div>
                     <div class="text">
-                        <h2><a asp-action="Index" asp-controller="ShopSingle" asp-route-produto="@Model.OfertaPrincipal.Id">@Model.OfertaPrincipal.NomeProduto</a></h2>
+                        <h2><a 
+                            asp-action="Index"
+                            asp-controller="ShopSingle"
+                            asp-route-categoria="@Model.OfertaPrincipal.TipoProduto.ToLower()"
+                            asp-route-subcategoria="@Model.OfertaPrincipal.Subcategoria.ToLower()"
+                            asp-route-idproduto="@Model.OfertaPrincipal.IdProduto"
+                            >@Model.OfertaPrincipal.NomeProduto</a></h2>
                         <ul class="review">
                             @for (var i = 1; i < 5; i++)
                             {

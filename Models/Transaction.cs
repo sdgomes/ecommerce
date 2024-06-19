@@ -32,6 +32,9 @@ namespace crm.Models
         [Column("SUBTOTAL")]
         public double Subtotal { get; set; }
 
+        [Column("CODIGO")]
+        public int Codigo { get; set; }
+
         [Column("FRETE")]
         public double Frete { get; set; }
 
@@ -49,6 +52,9 @@ namespace crm.Models
 
         [Column("DATA_COMPRA")]
         public DateTime DataCompra { get; set; }
+
+        [Column("ENTREGA")]
+        public DateTime? Entrega { get; set; }
 
         [Column("QNT_CARTOES")]
         public int QntCartoes { get; set; }

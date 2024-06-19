@@ -15,6 +15,8 @@ namespace crm.Controllers
     public class AdminController : Controller
     {
         #region Views
+
+        [FuncionarioLogado]
         [FuncionarioExiste]
         [HttpGet("/admin/perfil/{Codigo}")]
         public IActionResult Index(string Codigo)
@@ -23,6 +25,7 @@ namespace crm.Controllers
             return View(Model);
         }
 
+        [FuncionarioLogado]
         [FuncionarioExiste]
         [HttpGet("/admin/perfil/{Codigo}/pedidos")]
         public IActionResult Pedidos(string Codigo)
@@ -31,6 +34,7 @@ namespace crm.Controllers
             return View(Model);
         }
 
+        [FuncionarioLogado]
         [FuncionarioExiste]
         [HttpGet("/admin/perfil/{Codigo}/registro/clientes")]
         public IActionResult RegistroCliente(string Codigo)
@@ -48,6 +52,19 @@ namespace crm.Controllers
             {
                 AdminBLL.SituacaoCliente(Situacao, Codigo);
                 return Redirect(Request.Headers["Referer"].ToString());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost("/buscar/funcionario/{Codigo}")]
+        public IActionResult BuscarFuncionario(string Codigo)
+        {
+            try
+            {
+                return Json(new { Codigo, IsFuncionario = AdminBLL.IsFuncionarioByCodigo(Codigo) });
             }
             catch (Exception)
             {

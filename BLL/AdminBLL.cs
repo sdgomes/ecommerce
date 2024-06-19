@@ -10,6 +10,12 @@ namespace crm.BLL
 {
     public class AdminBLL
     {
+        public static bool IsFuncionarioByCodigo(string Codigo)
+        {
+            Employee employee = EmployeeDAO.SearchForEmployeeByCodigo(Codigo);
+            return employee == null ? false : true;
+        }
+
         public static void SituacaoCliente(string Situacao, string Codigo)
         {
             if (Situacao == "inativar" || Situacao == "ativar")

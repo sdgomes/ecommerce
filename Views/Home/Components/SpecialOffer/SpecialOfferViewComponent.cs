@@ -30,7 +30,10 @@ namespace crm.Views.Home.Components.SpecialOffer
         public string Titulo { get; set; }
         public string Texto { get; set; }
         public string PrecoOriginal { get; set; }
-        public string Id { get; set; }
+        public int IdProduto { get; set; }
+        public string Subcategoria { get; set; }
+        public string TipoProduto { get; set; }
+        public string Tipo { get; set; }
     }
 
     public class OfertaPrincipalDTO
@@ -42,8 +45,10 @@ namespace crm.Views.Home.Components.SpecialOffer
         public int Dias { get; set; }
         public string PrecoDesconto { get; set; }
         public string PrecoOriginal { get; set; }
-        public string Id { get; set; }
         public int Desconto { get; set; }
+        public int IdProduto { get; set; }
+        public string Subcategoria { get; set; }
+        public string TipoProduto { get; set; }
         public string Tipo { get; set; }
     }
 
@@ -55,8 +60,10 @@ namespace crm.Views.Home.Components.SpecialOffer
         public int Nota { get; set; }
         public string PrecoDesconto { get; set; }
         public string PrecoOriginal { get; set; }
-        public string Id { get; set; }
         public int Desconto { get; set; }
+        public int IdProduto { get; set; }
+        public string Subcategoria { get; set; }
+        public string TipoProduto { get; set; }
         public string Tipo { get; set; }
     }
 

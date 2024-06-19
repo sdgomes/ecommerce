@@ -82,8 +82,30 @@ namespace crm.BLL
             }
         }
 
+        public static void NovoPagamento(TransactionDTO Transaction)
+        {
+            string pagamento = "APROVADO";
+            Transaction.Pagamento = pagamento;
+
+            TransactionDAO.AlteraPagamento(Transaction);
+
+            foreach (var Item in Transaction.Cartoes)
+            {
+                Item.Pagamento = pagamento;
+                TransactionDAO.AssociateCards(Transaction.IdTransacao, Item);
+            }
+
+        }
+
         public static long RegistraTransacao(TransactionDTO Transaction)
         {
+            Random random = new Random();
+            string[] pagamentos = { "APROVADO", "RECUSADO" };
+            int sorte = random.Next(0, pagamentos.Length);
+            string pagamento = pagamentos[sorte];
+
+            Transaction.Pagamento = pagamento;
+
             long IdTransaction = TransactionDAO.Create(Transaction);
 
             if (IdTransaction != 0)
@@ -97,6 +119,7 @@ namespace crm.BLL
 
                 foreach (var Item in Transaction.Cartoes)
                 {
+                    Item.Pagamento = pagamento;
                     TransactionDAO.AssociateCards(IdTransaction, Item);
                 }
             }

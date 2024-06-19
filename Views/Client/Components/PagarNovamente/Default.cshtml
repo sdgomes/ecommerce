@@ -1,0 +1,50 @@
+﻿@model ViewPagarNovamente
+
+<div class="text-left">
+    <div class="checkout-sidebar-coupon">
+        <p>Aplique o cupom para obter desconto!</p>
+        <form>
+            <div class="single-form form-default">
+                <div class="form-input form">
+                    <input autocomplete="off" type="text" placeholder="Código do cupom">
+                </div>
+                <div class="button">
+                    <button type="button" data-action='desconto'
+                        class="btn !w-fit !flex !text-gray-800 hover:!text-white min-h-0">
+                        Aplicar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="cartoes-slider mt-5">
+        @(await Component.InvokeAsync<CartoesViewComponent>(new { IdCliente = Model.IdCliente}))
+    </div>
+
+        <div class="checkout-sidebar-price-table mt-30">
+            <h5 class="title">Tabela de preços</h5>
+
+            <div class="sub-total-price">
+                <div class="total-price">
+                    <p class="value">Subtotal do carrinho:</p>
+                    <p class="price" menu-total-amount>@Model.Transacao.Subtotal</p>
+                </div>
+                <div class="total-price shipping">
+                    <p class="value">Frete:</p>
+                    <p class="price" valor-frete>@Model.Transacao.Frete</p>
+                </div>
+                <div class="total-price discount">
+                    <p class="value">Descontos:</p>
+                    <p class="price" total-descontos>R$ 0,00</p>
+                </div>
+            </div>
+
+            <div class="total-payable">
+                <div class="payable-price">
+                    <p class="value">Total a pagar:</p>
+                    <p class="price" total-compra>@Model.Transacao.Total</p>
+                </div>
+            </div>
+        </div>
+</div>

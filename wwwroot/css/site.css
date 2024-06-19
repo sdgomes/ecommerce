@@ -8428,3 +8428,32 @@ div.wish-button>a[data-favorito="true"],
   background-color: #d00061 !important;
   color: #fff !important;
 }
+
+.tr-recusado {
+  background-image: linear-gradient(to top, transparent 49%, #b6b6b6 50%, transparent 51%);
+}
+
+.cartao-checkbox {
+  border-color: #d0d0d0 !important;
+}
+
+.cartoes-slider .item-cartao {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.slick-prev {
+  left: 15px;
+  z-index: 1;
+}
+
+.slick-next {
+  right: 15px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #ffcc00;
+  background: #000;
+  border-radius: 999px;
+}

@@ -2,12 +2,12 @@
 
 @{
     ViewBreadcrumbs breadcrumbs = new();
-    breadcrumbs.Title = "Pedidos";
-    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-    new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-    new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
-    new BreadcrumbsDTO("Meus Pedidos")
-};
+        breadcrumbs.Title = "Pedidos";
+        breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
+        new BreadcrumbsDTO("Meus Pedidos")
+    };
 
     ViewData["Title"] = breadcrumbs.Title;
 }

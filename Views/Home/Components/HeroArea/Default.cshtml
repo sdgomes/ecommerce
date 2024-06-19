@@ -32,8 +32,12 @@
                                                 <p>@Slide.SubTitulo</p>
                                                 <h3><span>@Slide.InformativoPreco[0]</span> @Slide.InformativoPreco[1]</h3>
                                                 <div class="button">
-                                                    <a asp-action="Index" asp-controller="ShopSingle"
-                                                       asp-route-produto="@Slide.Id"
+                                                    <a 
+                                                    asp-action="Index"
+                                                    asp-controller="ShopSingle"
+                                                    asp-route-categoria="@Slide.TipoProduto.ToLower()"
+                                                    asp-route-subcategoria="@Slide.Subcategoria.ToLower()"
+                                                    asp-route-idproduto="@Slide.IdProduto"
                                                        class="btn !flex !w-fit justify-center items-center !text-gray-800 hover:!text-white">
                                                         Comprar
                                                         Agora

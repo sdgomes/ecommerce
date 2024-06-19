@@ -1,55 +1,98 @@
-[{
+[
+  {
     "Titulo": "Mais Vendidos",
-    "Produtos": [{
+    "Produtos": [
+      {
         "Imagem": "01.webp",
         "NomeProduto": "Taylor Swift - The Tortured Poets Department",
         "PrecoOriginal": "R$ 499,00",
-        "Id": "5852IBJaCGJrKPszAjWY4l"
-    },{
+        "IdProduto": "2",
+        "Subcategoria": "SERIADO",
+        "Tipo": "",
+        "TipoProduto": "CD"
+      },
+      {
         "Imagem": "02.webp",
         "NomeProduto": "Lady Gaga - Dawn Of Chromatica",
         "PrecoOriginal": "R$ 59,90",
-        "Id": "7CMpx2bP1K92LNI8p8n2h4"
-    },{
+        "IdProduto": "2",
+        "Subcategoria": "SERIADO",
+        "Tipo": "",
+        "TipoProduto": "CD"
+      },
+      {
         "Imagem": "03.webp",
         "NomeProduto": "Vinil Jão - Anti-herói (branco Transparente)",
         "PrecoOriginal": "R$ 159,60",
-        "Id": "5F10Kx8MFKxbJlq01XBX1G"
-    }]
-},{
+        "IdProduto": "2",
+        "Subcategoria": "SERIADO",
+        "Tipo": "",
+        "TipoProduto": "CD"
+      }
+    ]
+  },
+  {
     "Titulo": "Novos Lançamentos",
-    "Produtos": [{
+    "Produtos": [
+      {
         "Imagem": "04.webp",
         "NomeProduto": "Ariana Grande - Eternal Sunshine",
         "PrecoOriginal": "R$ 469,90",
-        "Id": "5NgwERaOaD8Xh76rZ0C0qs"
-    },{
+        "IdProduto": "2",
+        "Subcategoria": "SERIADO",
+        "Tipo": "",
+        "TipoProduto": "CD"
+      },
+      {
         "Imagem": "05.webp",
         "NomeProduto": "Luke Hemmings - boy (Exclusive Gatefold) - LP",
         "PrecoOriginal": "R$ 429,00",
-        "Id": "4pWQYBZt50umBMvVkSsNy9"
-    },{
+        "IdProduto": "2",
+        "Subcategoria": "SERIADO",
+        "Tipo": "",
+        "TipoProduto": "CD"
+      },
+      {
         "Imagem": "06.webp",
         "NomeProduto": "Vinil Pabllo Vittar – Noitada",
         "PrecoOriginal": "R$ 239,90",
-        "Id": "8wfMFssI6MbA7bGdYr6TXY"
-    }]
-},{
+        "IdProduto": "2",
+        "Subcategoria": "SERIADO",
+        "Tipo": "",
+        "TipoProduto": "CD"
+      }
+    ]
+  },
+  {
     "Titulo": "Mais Populares",
-    "Produtos": [{
+    "Produtos": [
+      {
         "Imagem": "07.webp",
         "NomeProduto": "Dua Lipa - Radical Optimism Cassette",
         "PrecoOriginal": "R$ 175,00",
-        "Id": "6Hvto2wPuC2hBeJ7IQ96Tt"
-    },{
+        "IdProduto": "2",
+        "Subcategoria": "SERIADO",
+        "Tipo": "",
+        "TipoProduto": "CD"
+      },
+      {
         "Imagem": "08.webp",
         "NomeProduto": "Taylor Swift - The Tortured Poets Department",
         "PrecoOriginal": "R$ 549,90",
-        "Id": "2wPuC2hBeg7LRU7bGdYr6T"
-    },{
+        "IdProduto": "2",
+        "Subcategoria": "SERIADO",
+        "Tipo": "",
+        "TipoProduto": "CD"
+      },
+      {
         "Imagem": "09.webp",
         "NomeProduto": "Vinil Tulipa Ruiz – Tudo Tanto",
         "PrecoOriginal": "R$ 229,90",
-        "Id": "CTkzg7LMdRU98Dy24735oT"
-    }]
-}]
+        "IdProduto": "2",
+        "Subcategoria": "SERIADO",
+        "Tipo": "",
+        "TipoProduto": "CD"
+      }
+    ]
+  }
+]

@@ -46,11 +46,11 @@ namespace crm.BLL
                     TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi entregue pelos correios.", "ENTREGUE");
                     break;
 
-                case "PAGAMENTO APROVADO":
+                case "COMPRA APROVADA":
                     TransactionDAO.RegistraAtividade(IdTransacao, "A venda foi aprovada! Ação feita por um funcionário.", "APROVADO ");
                     break;
 
-                case "PAGAMENTO RECUSADO":
+                case "COMPRA RECUSADA":
                     TransactionDAO.RegistraAtividade(IdTransacao, "A venda foi reprovada! Ação feita por um funcionário.", "RECUSADO");
                     break;
             }

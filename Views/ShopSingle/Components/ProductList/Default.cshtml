@@ -12,13 +12,21 @@
                     {
                         <div class="single-list">
                             <div class="list-image">
-                                <a asp-action="Index" asp-controller="ShopSingle" asp-route-produto="@Produto.Id">
+                                <a asp-action="Index"
+                                asp-controller="ShopSingle"
+                                asp-route-categoria="@Produto.TipoProduto.ToLower()"
+                                asp-route-subcategoria="@Produto.Subcategoria.ToLower()"
+                                asp-route-idproduto="@Produto.IdProduto">
                                     <img src="~/img/images/home-product-list/@Produto.Imagem" alt="...">
                                 </a>
                             </div>
                             <div class="list-info">
                                 <h3>
-                                    <a asp-action="Index" asp-controller="ShopSingle" asp-route-produto="@Produto.Id">@Produto.NomeProduto</a>
+                                    <a asp-action="Index"
+                                    asp-controller="ShopSingle"
+                                    asp-route-categoria="@Produto.TipoProduto.ToLower()"
+                                    asp-route-subcategoria="@Produto.Subcategoria.ToLower()"
+                                    asp-route-idproduto="@Produto.IdProduto">@Produto.NomeProduto</a>
                                 </h3>
                                 <span>@Produto.PrecoOriginal</span>
                             </div>

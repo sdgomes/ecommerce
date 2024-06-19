@@ -119,6 +119,7 @@ new BreadcrumbsDTO("Detalhes")
                             <div class="button cart-button">
                                 <a data-compra-direta 
                                    data-tipo-produto="@Model.Produto.TipoProduto.Capitalize()"
+                                   data-tipo="@Model.Produto.Tipo.Capitalize()"
                                    data-subcategoria="@Model.Produto.Subcategoria.Capitalize()"
                                    data-imagem='@Model.Imagens.Where((Item) => (Item.NomeImagem == "COVER")).FirstOrDefault().ImageSource'
                                    data-preco="@Model.Produto.Preco"
@@ -133,6 +134,7 @@ new BreadcrumbsDTO("Detalhes")
                             <div class="button cart-button">
                                 <a data-action="carrinho"
                                    data-tipo-produto="@Model.Produto.TipoProduto.Capitalize()"
+                                   data-tipo="@Model.Produto.Tipo.Capitalize()"
                                    data-subcategoria="@Model.Produto.Subcategoria.Capitalize()"
                                    data-imagem='@Model.Imagens.Where((Item) => (Item.NomeImagem == "COVER")).FirstOrDefault().ImageSource'
                                    data-preco="@Model.Produto.Preco"
