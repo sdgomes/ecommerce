@@ -589,6 +589,25 @@ new BreadcrumbsDTO("Checkout")
                 Total: $('[total-compra]').toFloat(),
             }
 
+            console.log(transaction.Produtos)
+
+            if (transaction.Produtos.length == 0) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: "Atenção!",
+                    text: 'Sua lista de compras está vazia, por favor adicione itens.',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    confirmButtonText: "Tentar novamente",
+                    reverseButtons: true,
+                    customClass: {
+                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                    },
+                });
+                return false;
+            }
+
             $.ajax({
                 type: "POST",
                 url: `/registra/transacao`,
