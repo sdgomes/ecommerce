@@ -11,6 +11,40 @@ namespace crm.DAL
 {
     public class ClientDAO : BaseDAO
     {
+        public static long CreateSolicitacao(Solicitation solicitation)
+        {
+            try
+            {
+                string query = @$"BEGIN
+		                                IF NOT EXISTS (SELECT * FROM ECM_SOLICITACOES WHERE ID_TRANSACAO = @ID_TRANSACAO AND CODIGO = @CODIGO)
+		                                BEGIN
+                                            INSERT INTO ECM_SOLICITACOES
+                                            (CODIGO, ID_TRANSACAO, ID_ETAPA, TIPO, PRECO, MOTIVO_SOLICITACAO, GRUPO_CODIGO)
+                                            OUTPUT Inserted.ID_SOLICITACAO
+                                            VALUES (@CODIGO, @ID_TRANSACAO, 
+                                            (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE 
+                                            ETAPA = CASE WHEN @TIPO = 'TROCA' THEN 'TROCA SOLICITADA' ELSE 'DEVOLUÇÃO SOLICITADA' END), 
+                                            @TIPO, @PRECO, @MOTIVO_SOLICITACAO, @GRUPO_CODIGO)
+                                        END
+                                    END;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", I(solicitation.Codigo)),
+                    new SqlParameter("@ID_TRANSACAO", I(solicitation.IdTransacao)),
+                    new SqlParameter("@TIPO", I(solicitation.Tipo)),
+                    new SqlParameter("@PRECO", I(solicitation.Preco)),
+                    new SqlParameter("@MOTIVO_SOLICITACAO", I(solicitation.MotivoSolicitacao)),
+                    new SqlParameter("@GRUPO_CODIGO", I(solicitation.GrupoCodigo)),
+                };
+
+                return DatabaseProgramas().ChoosePrimitiveType<long>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static long CreateClient(Client client)
         {
             try

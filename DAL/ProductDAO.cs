@@ -120,6 +120,42 @@ namespace crm.DAL
             }
         }
 
+        public static List<ProductDTO> SelectAllProductsTransactionsSolicitacao(long IdTransacao)
+        {
+            try
+            {
+                string query = $@"SELECT * FROM
+                                (      
+                                    SELECT 
+									EPT.QUANTIDADE AS QNT_COMPRA,
+									EPT.ID_PRODUTO_TRANSACAO,
+									EP.CODIGO,
+									EP.NOME,
+									EP.PRECO,
+									EI.IMAGEM,
+									EP.QNT_DESCONTO,
+									EP.DESCONTO
+								FROM ECM_PRO_TRA EPT
+									INNER JOIN ECM_PRODUTOS EP ON EP.ID_PRODUTO = EPT.ID_PRODUTO
+									INNER JOIN ECM_IMAGENS EI ON EI.ID_PRODUTO = EPT.ID_PRODUTO
+										AND EI.NOME = 'COVER'
+								WHERE
+									ID_TRANSACAO = @ID_TRANSACAO
+                            ) TAB
+                            CROSS APPLY dbo.RepetirRegistros(TAB.QNT_COMPRA)";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_TRANSACAO", IdTransacao)
+                };
+
+                return DatabaseProgramas().Select<ProductDTO>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static List<ProductDTO> SelectAllProductsTransactions(long IdTransacao)
         {
             try

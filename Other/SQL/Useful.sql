@@ -25,3 +25,22 @@ AS
         EXEC dbo.Simulation;
     END
 GO
+
+/** Outras Funcoes */
+
+DROP FUNCTION IF EXISTS RepetirRegistros
+GO
+
+CREATE FUNCTION RepetirRegistros (
+	@qntCompra int
+) RETURNS TABLE RETURN (
+	WITH TEMP_TABLE AS (
+		SELECT 1 AS REPETICAO
+		UNION ALL
+		SELECT REPETICAO + 1
+			FROM TEMP_TABLE
+			WHERE
+		 (REPETICAO + 1) <= @qntCompra
+		)
+  SELECT * FROM TEMP_TABLE
+)

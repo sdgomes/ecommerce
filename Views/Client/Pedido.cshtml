@@ -2,397 +2,408 @@
 @{
 
 
-    string[] pagamento = { "PROCESSANDO PAGAMENTO", "COMPRA RECUSADA" };
-    string[] podeCancelar = { "PROCESSANDO PAGAMENTO", "EM PREPARAÇÃO", "A CAMINHO", "COMPRA APROVADA" };
-    string[] podeSolicitar = { "ENTREGUE" };
+string[] pagamento = { "PROCESSANDO PAGAMENTO", "COMPRA RECUSADA" };
+string[] podeCancelar = { "PROCESSANDO PAGAMENTO", "EM PREPARAÇÃO", "A CAMINHO", "COMPRA APROVADA" };
+string[] podeSolicitar = { "ENTREGUE" };
 
-    ViewBreadcrumbs breadcrumbs = new();
-    breadcrumbs.Title = "Pedidos";
-    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+ViewBreadcrumbs breadcrumbs = new();
+breadcrumbs.Title = "Pedidos";
+breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
 new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
 new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
 new BreadcrumbsDTO("Meus Pedidos", "./", "fa-solid fa-box-open-full"),
 new BreadcrumbsDTO("Pedido")
 };
 
-    ViewData["Title"] = breadcrumbs.Title;
+ViewData["Title"] = breadcrumbs.Title;
 }
 
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-<div class="p-8 mx-10">
+    <div class="p-8 mx-10">
 
-    <div>
-        <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg shadow">
-            <h2 class="text-2xl font-bold mb-4 text-center">Status do pedido</h2>
-            <div class="flex justify-between items-center">
+        <div>
+            <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-bold mb-4 text-center">Status do pedido</h2>
+                <div class="flex justify-between items-center">
 
-                <!-- Processando Pagamento -->
-                <div class="text-center">
-                    <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-2 text-2xl text-purple-500">
-                        <i class="fa-regular fa-money-check-dollar-pen"></i>
+                    <!-- Processando Pagamento -->
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-2 text-2xl text-purple-500">
+                            <i class="fa-regular fa-money-check-dollar-pen"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Processando Pagamento</h3>
+                        <p class="text-sm text-purple-500">Data Compra</p>
+                        <p class="text-sm text-gray-500">
+                            @Model.DataCompra.ToString("d") -
+                            @Model.DataCompra.ToString("t")
+                        </p>
                     </div>
-                    <h3 class="text-lg font-semibold">Processando Pagamento</h3>
-                    <p class="text-sm text-purple-500">Data Compra</p>
-                    <p class="text-sm text-gray-500">
-                        @Model.DataCompra.ToString("d") -
-                    @Model.DataCompra.ToString("t")
-                </p>
-            </div>
 
-            <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
+                    <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
 
-            <!-- Pagamento -->
-            <div class="text-center">
-                <div class='@(Model.Etapa == "PROCESSANDO PAGAMENTO" ? "bg-gray-100 text-gray-400" : Model.Etapa != "COMPRA RECUSADA" ? "bg-purple-100 text-purple-500" : "bg-red-100 text-red-500" ) text-2xl w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-2'>
-                    @if (Model.Etapa == "PROCESSANDO PAGAMENTO")
-                    {
-                        <i class="fa-sharp fa-regular fa-clock"></i>
-                    }
-                    else if (Model.Etapa != "COMPRA RECUSADA")
-                    {
-                        <i class="fa-regular fa-badge-check"></i>
-                    }
-                    else
-                    {
-                        <i class="fa-sharp fa-regular fa-octagon-xmark"></i>
-                    }
-                </div>
-                @if (Model.Etapa == "PROCESSANDO PAGAMENTO")
-                {
-                    <h3 class="text-lg font-semibold text-gray-400">Compra</h3>
-                }
-                else
-                {
-                    <h3 class="text-lg font-semibold">Compra</h3>
-                    <p class='text-sm @(Model.Etapa != "COMPRA RECUSADA" ? "text-purple-500" : "text-red-500")'>
-                        @if (Model.Etapa != "COMPRA RECUSADA")
+                    <!-- Pagamento -->
+                    <div class="text-center">
+                        <div
+                            class='@(Model.Etapa == "PROCESSANDO PAGAMENTO" ? "bg-gray-100 text-gray-400" : Model.Etapa != "COMPRA RECUSADA" ? "bg-purple-100 text-purple-500" : "bg-red-100 text-red-500" ) text-2xl w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-2'>
+                            @if (Model.Etapa == "PROCESSANDO PAGAMENTO")
+                            {
+                            <i class="fa-sharp fa-regular fa-clock"></i>
+                            }
+                            else if (Model.Etapa != "COMPRA RECUSADA")
+                            {
+                            <i class="fa-regular fa-badge-check"></i>
+                            }
+                            else
+                            {
+                            <i class="fa-sharp fa-regular fa-octagon-xmark"></i>
+                            }
+                        </div>
+                        @if (Model.Etapa == "PROCESSANDO PAGAMENTO")
                         {
-                            <span>Aprovada</span>
+                        <h3 class="text-lg font-semibold text-gray-400">Compra</h3>
                         }
                         else
                         {
+                        <h3 class="text-lg font-semibold">Compra</h3>
+                        <p class='text-sm @(Model.Etapa != "COMPRA RECUSADA" ? "text-purple-500" : "text-red-500")'>
+                            @if (Model.Etapa != "COMPRA RECUSADA")
+                            {
+                            <span>Aprovada</span>
+                            }
+                            else
+                            {
                             <span>Recusada</span>
+                            }
+                        </p>
                         }
-                    </p>
-                }
-            </div>
+                    </div>
 
-            <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
+                    <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
 
-            <!-- Preparação -->
-            @{
-                string[] caminho = { "PROCESSANDO PAGAMENTO", "COMPRA RECUSADA", "COMPRA APROVADA" };
-                bool preparacao = caminho.Contains(Model.Etapa);
-            }
-            <div class="text-center">
-                <div class='w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-2 text-2xl @(preparacao ? "bg-gray-100 text-gray-400" : "bg-purple-100 text-purple-500")'>
-                    <i class="fa-regular fa-box-open-full"></i>
+                    <!-- Preparação -->
+                    @{
+                    string[] caminho = { "PROCESSANDO PAGAMENTO", "COMPRA RECUSADA", "COMPRA APROVADA" };
+                    bool preparacao = caminho.Contains(Model.Etapa);
+                    }
+                    <div class="text-center">
+                        <div
+                            class='w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-2 text-2xl @(preparacao ? "bg-gray-100 text-gray-400" : "bg-purple-100 text-purple-500")'>
+                            <i class="fa-regular fa-box-open-full"></i>
+                        </div>
+                        @if (preparacao)
+                        {
+                        <h3 class="text-lg font-semibold text-gray-400">Em Preparação</h3>
+                        }
+                        else
+                        {
+                        <h3 class="text-lg font-semibold text-purple-600">Em Preparação</h3>
+                        }
+                    </div>
+
+                    <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
+
+                    <!-- Enviado -->
+                    @{
+                    caminho = caminho.Append("EM PREPARAÇÃO").ToArray();
+                    preparacao = caminho.Contains(Model.Etapa);
+                    }
+                    <div class="text-center">
+                        <div
+                            class='w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-2 text-2xl @(preparacao ? "bg-gray-100 text-gray-400" : "bg-purple-100 text-purple-500")'>
+                            <i class="fa-regular fa-truck-fast"></i>
+                        </div>
+                        @if (preparacao)
+                        {
+                        <h3 class="text-lg font-semibold text-gray-400">A caminho</h3>
+                        }
+                        else
+                        {
+                        <h3 class="text-lg font-semibold text-purple-600">A caminho</h3>
+                        }
+                    </div>
+
+                    <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
+
+                    <!-- Entregue  -->
+                    <div class="text-center">
+                        <div
+                            class='w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-2 text-2xl @(Model.Etapa != "ENTREGUE" ? "bg-gray-100 text-gray-400" : "bg-purple-100 text-purple-500")'>
+                            <i class="fa-regular fa-box-circle-check"></i>
+                        </div>
+                        @if (Model.Etapa != "ENTREGUE")
+                        {
+                        <h3 class="text-lg font-semibold text-gray-400">Entregue</h3>
+                        }
+                        else
+                        {
+                        <h3 class="text-lg font-semibold text-purple-600">Entregue</h3>
+                        <p class="text-sm text-purple-500">Data Entrega</p>
+                        <p class="text-sm text-gray-500">
+                            @Model.Entrega.Value.ToString("d") -
+                            @Model.Entrega.Value.ToString("t")
+                        </p>
+                        }
+                    </div>
                 </div>
-                @if (preparacao)
-                {
-                    <h3 class="text-lg font-semibold text-gray-400">Em Preparação</h3>
-                }
-                else
-                {
-                    <h3 class="text-lg font-semibold text-purple-600">Em Preparação</h3>
-                }
-            </div>
-
-            <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
-
-            <!-- Enviado -->
-            @{
-                caminho = caminho.Append("EM PREPARAÇÃO").ToArray();
-                preparacao = caminho.Contains(Model.Etapa);
-            }
-            <div class="text-center">
-                <div class='w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-2 text-2xl @(preparacao ? "bg-gray-100 text-gray-400" : "bg-purple-100 text-purple-500")'>
-                    <i class="fa-regular fa-truck-fast"></i>
-                </div>
-                @if (preparacao)
-                {
-                    <h3 class="text-lg font-semibold text-gray-400">A caminho</h3>
-                }
-                else
-                {
-                    <h3 class="text-lg font-semibold text-purple-600">A caminho</h3>
-                }
-            </div>
-
-            <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
-
-            <!-- Entregue  -->
-            <div class="text-center">
-                <div class='w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-2 text-2xl @(Model.Etapa != "ENTREGUE" ? "bg-gray-100 text-gray-400" : "bg-purple-100 text-purple-500")'>
-                    <i class="fa-regular fa-box-circle-check"></i>
-                </div>
-                @if (Model.Etapa != "ENTREGUE")
-                {
-                    <h3 class="text-lg font-semibold text-gray-400">Entregue</h3>
-                }
-                else
-                {
-                    <h3 class="text-lg font-semibold text-purple-600">Entregue</h3>
-                    <p class="text-sm text-purple-500">Data Entrega</p>
-                    <p class="text-sm text-gray-500">
-                        @Model.Entrega.Value.ToString("d") -
-                    @Model.Entrega.Value.ToString("t")
-                </p>
-            }
             </div>
         </div>
-    </div>
-</div>
 
-<div class="my-8">
-    <h1 class="text-2xl font-bold flex gap-3 items-center">
-        Detalhe do Pedido
-        @if (Model.Pagamento == "RECUSADO")
-        {
-            <span class="w-fit block text-xs px-2 rounded bg-red-200">Pagamento Recusado</span>
-        }
-    </h1>
-    <p class="text-lg">Pedido #: @Model.Codigo - @Model.DataCompra.ToString("dd MMMM yyyy")</p>
-</div>
-
-<div class="grid grid-cols-2 gap-8 mb-8">
-
-    <div class="col-span-1 bg-white border border-gray-200 p-6 rounded-lg shadow text-gray-600">
-
-        <div class="flex justify-between items-center mb-6 border-b pb-2">
-            <h2 class="text-2xl font-bold text-gray-800">Pedido Nº: @Model.Codigo</h2>
-            <div class="flex flex-wrap items-center gap-3">
-                @if (podeSolicitar.Contains(Model.Etapa))
+        <div class="my-8">
+            <h1 class="text-2xl font-bold flex gap-3 items-center">
+                Detalhe do Pedido
+                @if (Model.Pagamento == "RECUSADO")
                 {
-                    <button class="btn btn-sm btn-warning">Solicitar troca</button>
-                    <button class="btn btn-sm btn-primary">Solicitar devolução</button>
+                <span class="w-fit block text-xs px-2 rounded bg-red-200">Pagamento Recusado</span>
                 }
-                @if (podeCancelar.Contains(Model.Etapa))
-                {
-                    <button id="cancelar-transasao" data-id-transacao="@Model.IdTransacao" data-etapa="CANCELADO"
+            </h1>
+            <p class="text-lg">Pedido #: @Model.Codigo - @Model.DataCompra.ToString("dd MMMM yyyy")</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8 mb-8">
+
+            <div class="col-span-1 bg-white border border-gray-200 p-6 rounded-lg shadow text-gray-600">
+
+                <div class="flex justify-between items-center mb-6 border-b pb-2">
+                    <h2 class="text-2xl font-bold text-gray-800">Pedido Nº: @Model.Codigo</h2>
+                    <div class="flex flex-wrap items-center gap-3">
+                        @if (podeSolicitar.Contains(Model.Etapa))
+                        {
+                        <button id="solicitar-troca" data-id-transacao="@Model.IdTransacao"
+                            class="btn btn-sm btn-warning">Solicitar troca</button>
+                        <button class="btn btn-sm btn-primary">Solicitar devolução</button>
+                        }
+                        @if (podeCancelar.Contains(Model.Etapa))
+                        {
+                        <button id="cancelar-transasao" data-id-transacao="@Model.IdTransacao" data-etapa="CANCELADO"
                             data-before-title="Atenção!" data-before-message="Comfirma que deseja cancelar esse pedido?"
                             data-after-title="Cancelado!" data-after-message='O pedido foi cancelado com sucesso.'
                             data-trigger="manage" class="btn btn-sm btn-error">
-                        Cancelar pedido
-                    </button>
-                }
-            </div>
-        </div>
+                            Cancelar pedido
+                        </button>
+                        }
+                    </div>
+                </div>
 
-        <div class="space-y-4">
-            <div class="flex items-center">
-                <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M16.5 7a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zM3 20.75C3 18.68 6.58 17 12 17s9 .68 9 2.75V21H3v-.25z">
-                    </path>
-                </svg>
-                <div class="ml-3">
-                    <div class="text-gray-600">Nome:</div>
-                    <div class="text-gray-800 font-medium">
-                        @Model.Cliente.Nome.Capitalize()
-                    @Model.Cliente.Sobrenome.Capitalize()
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M16.5 7a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zM3 20.75C3 18.68 6.58 17 12 17s9 .68 9 2.75V21H3v-.25z">
+                            </path>
+                        </svg>
+                        <div class="ml-3">
+                            <div class="text-gray-600">Nome:</div>
+                            <div class="text-gray-800 font-medium">
+                                @Model.Cliente.Nome.Capitalize()
+                                @Model.Cliente.Sobrenome.Capitalize()
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M21 8V7l-3 2-2-1-3 2V8l-1-1-4 3v6l1 1h12l1-1v-7zM4 4h4v1H5v14h3v1H4V4zm13 0v2h-2V4h-2V3h4v1zm-3 6l1.5-1L18 10l1.5-1L21 10v7H9v-7h5z">
+                            </path>
+                        </svg>
+                        <div class="ml-3">
+                            <div class="text-gray-600">Email:</div>
+                            <div class="text-gray-800 font-medium">@Model.Cliente.Email</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M20 2H4C3.45 2 3 2.45 3 3v18c0 .55.45 1 1 1h6v-7H8v-2h2v-1.5c0-2.49 1.51-3.85 3.74-3.85 1.06 0 2.18.09 3.25.27v2.62h-2.23c-1.75 0-2.15.83-2.15 2.06V14h3.85l-.49 2H14v7h6c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1z">
+                            </path>
+                        </svg>
+                        <div class="ml-3">
+                            <div class="text-gray-600">Data de Nascimento:</div>
+                            <div class="text-gray-800 font-medium">@Model.Cliente.DataNascimento.ToString("d")</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M6.62 10.79a15.075 15.075 0 016.29-6.29l2.2 2.2c.22.22.54.29.85.22a1.007 1.007 0 00.69-.85l.8-5.01a1.004 1.004 0 00-.98-1.15c-9.94 0-18 8.06-18 18 0 .55.45 1 1 1l5.01-.8c.31-.05.63-.18.85-.39l2.2-2.2c.32-.31.37-.79.22-1.2a15.075 15.075 0 01-.3-2.69zm2.37 4.62l-2.2 2.2c-.13.13-.32.22-.52.22-.06 0-.13-.01-.19-.03L2 18c-.24-.04-.47-.1-.69-.2 1.15-5.33 5.56-9.74 10.89-10.89.1-.02.2-.04.3-.06.09.24.15.48.2.72l1.11 6.94c.03.18-.01.37-.12.52-.19.25-.48.33-.75.33-.17 0-.34-.05-.5-.15z">
+                            </path>
+                        </svg>
+                        <div class="ml-3">
+                            <div class="text-gray-600">Telefone:</div>
+                            <div class="text-gray-800 font-medium">@Model.Cliente.Celular</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-1 bg-white border border-gray-200 p-6 rounded-lg shadow text-gray-600">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Endereço para Entrega</h2>
+                <div class="space-y-4">
+                    <div class="text-gray-800">
+                        <p class="text-lg font-semibold">
+                            @Model.TipoLogradouro.Capitalize(), @Model.Logradouro - Nº
+                            @Model.Numero
+                        </p>
+                        <p class="text-gray-600">@Model.Bairro, @Model.Cidade - @Model.Estado</p>
+                    </div>
+                    @if (Model.Complemento != null)
+                    {
+                    <div class="text-gray-800">
+                        <p><span class="font-semibold">Complemento: </span> @Model.Complemento</p>
+                    </div>}
+                    <div class="text-gray-800">
+                        <p><span class="font-semibold">CEP: @Model.CEP</span>, @Model.Pais</p>
+                    </div>
+                    <div class="text-gray-800">
+                        <p><span class="font-semibold">Identificador: </span> @Model.NomeEndereco</p>
+                    </div>
+                    <div class="text-gray-800">
+                        <p><span class="font-semibold">Observações: </span> @Model.Frase</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="flex items-center">
-            <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M21 8V7l-3 2-2-1-3 2V8l-1-1-4 3v6l1 1h12l1-1v-7zM4 4h4v1H5v14h3v1H4V4zm13 0v2h-2V4h-2V3h4v1zm-3 6l1.5-1L18 10l1.5-1L21 10v7H9v-7h5z">
-                </path>
-            </svg>
-            <div class="ml-3">
-                <div class="text-gray-600">Email:</div>
-                <div class="text-gray-800 font-medium">@Model.Cliente.Email</div>
-            </div>
-        </div>
-        <div class="flex items-center">
-            <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20 2H4C3.45 2 3 2.45 3 3v18c0 .55.45 1 1 1h6v-7H8v-2h2v-1.5c0-2.49 1.51-3.85 3.74-3.85 1.06 0 2.18.09 3.25.27v2.62h-2.23c-1.75 0-2.15.83-2.15 2.06V14h3.85l-.49 2H14v7h6c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1z">
-                </path>
-            </svg>
-            <div class="ml-3">
-                <div class="text-gray-600">Data de Nascimento:</div>
-                <div class="text-gray-800 font-medium">@Model.Cliente.DataNascimento.ToString("d")</div>
-            </div>
-        </div>
-        <div class="flex items-center">
-            <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6.62 10.79a15.075 15.075 0 016.29-6.29l2.2 2.2c.22.22.54.29.85.22a1.007 1.007 0 00.69-.85l.8-5.01a1.004 1.004 0 00-.98-1.15c-9.94 0-18 8.06-18 18 0 .55.45 1 1 1l5.01-.8c.31-.05.63-.18.85-.39l2.2-2.2c.32-.31.37-.79.22-1.2a15.075 15.075 0 01-.3-2.69zm2.37 4.62l-2.2 2.2c-.13.13-.32.22-.52.22-.06 0-.13-.01-.19-.03L2 18c-.24-.04-.47-.1-.69-.2 1.15-5.33 5.56-9.74 10.89-10.89.1-.02.2-.04.3-.06.09.24.15.48.2.72l1.11 6.94c.03.18-.01.37-.12.52-.19.25-.48.33-.75.33-.17 0-.34-.05-.5-.15z">
-                </path>
-            </svg>
-            <div class="ml-3">
-                <div class="text-gray-600">Telefone:</div>
-                <div class="text-gray-800 font-medium">@Model.Cliente.Celular</div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="col-span-1 bg-white border border-gray-200 p-6 rounded-lg shadow text-gray-600">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Endereço para Entrega</h2>
-    <div class="space-y-4">
-        <div class="text-gray-800">
-            <p class="text-lg font-semibold">
-                @Model.TipoLogradouro.Capitalize(), @Model.Logradouro - Nº
-                @Model.Numero
-            </p>
-            <p class="text-gray-600">@Model.Bairro, @Model.Cidade - @Model.Estado</p>
-        </div>
-        @if (Model.Complemento != null)
-        {
-            <div class="text-gray-800">
-                <p><span class="font-semibold">Complemento: </span> @Model.Complemento</p>
-            </div>}
-        <div class="text-gray-800">
-            <p><span class="font-semibold">CEP: @Model.CEP</span>, @Model.Pais</p>
-        </div>
-        <div class="text-gray-800">
-            <p><span class="font-semibold">Identificador: </span> @Model.NomeEndereco</p>
-        </div>
-        <div class="text-gray-800">
-            <p><span class="font-semibold">Observações: </span> @Model.Frase</p>
-        </div>
-    </div>
-</div>
-</div>
-
-<div class="bg-white border border-gray-200 p-6 rounded-lg shadow mb-8">
-    <h2 class="text-2xl font-bold mb-4">Produtos</h2>
-    <table class="min-w-full bg-white table table-sm table-zebra text-gray-700">
-        <thead>
-            <tr class="bg-gray-200">
-                <th class="font-bold text-gray-800 text-sm py-2">Código</th>
-                <th class="font-bold text-gray-800 text-sm py-2">Item</th>
-                <th class="font-bold text-gray-800 text-sm py-2">Produto</th>
-                <th class="font-bold text-gray-800 text-sm py-2">Quantidade</th>
-                <th class="font-bold text-gray-800 text-sm py-2">Preço Produto</th>
-                <th class="font-bold text-gray-800 text-sm py-2">Preço Compra</th>
-                <th class="font-bold text-gray-800 text-sm py-2">Desconto</th>
-                <th class="font-bold text-gray-800 text-sm py-2">Total Preço</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Produtos)
-            {
-                <tr>
-                    <td class="py-2">@item.Codigo</td>
-                    <td class="py-2">
-                        <img width="40" src="@item.ImageSource" />
-                    </td>
-                    <td class="py-2">@item.Nome</td>
-                    <td class="py-2">@item.QntCompra</td>
-                    <td class="py-2">@item.Preco.ToString("C")</td>
-                    <td class="py-2">@((item.Preco * item.QntCompra).ToString("C"))</td>
-                    <td class="py-2">
-                        @if (item.Desconto)
-                        {
-                            <span>@(item.QntDesconto)%</span>
-                        }
-                        else
-                        {
-                            <span>-</span>
-                        }
-                    </td>
-                    <td class="py-2">
-                        @if (item.Desconto)
-                        {
-                            <span>@(((item.Preco * item.QntCompra) - item.CalculoDesconto).ToString("C"))</span>
-                        }
-                        else
-                        {
-                            <span>@((item.Preco * item.QntCompra).ToString("C"))</span>
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
-<div class="flex justify-between">
-    <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg shadow w-1/2 mr-4">
-        <h2 class="text-2xl font-bold mb-4">Informações de pagamento</h2>
-        @if (Model.Pagamento == "RECUSADO")
-        {
-            <div class="flex justify-between mb-5 items-center">
-                <h2 class="pr-10 text-xs italic">
-                    Infelizmente seu pagamento não foi aprovado, tente fazer o pagamento
-                    novamente, para que seu pedido seja enviado, caso o pagamento não seja feito em até 7 dias úteis
-                    a compra será cancelada automaticamente.
-                </h2>
-                <button id="refazer-pagamento" data-id-transacao="@Model.IdTransacao"
-                        data-id-cliente="@Model.IdCliente" class="btn btn-sm btn-primary">
-                    Fazer Pagamento
-                </button>
-            </div>
-        }
-
-        <div class="overflow-x-auto">
-            <table class="table-auto w-full text-gray-700">
-                <thead class="bg-gray-200">
-                    <tr>
-                        <th class="px-4 py-2">Bandeira</th>
-                        <th class="px-4 py-2">Cartão</th>
-                        <th class="px-4 py-2">Nome Titular</th>
-                        <th class="px-4 py-2">Valor</th>
+        <div class="bg-white border border-gray-200 p-6 rounded-lg shadow mb-8">
+            <h2 class="text-2xl font-bold mb-4">Produtos</h2>
+            <table class="min-w-full bg-white table table-sm table-zebra text-gray-700">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="font-bold text-gray-800 text-sm py-2">Código</th>
+                        <th class="font-bold text-gray-800 text-sm py-2">Item</th>
+                        <th class="font-bold text-gray-800 text-sm py-2">Produto</th>
+                        <th class="font-bold text-gray-800 text-sm py-2">Quantidade</th>
+                        <th class="font-bold text-gray-800 text-sm py-2">Preço Produto</th>
+                        <th class="font-bold text-gray-800 text-sm py-2">Preço Compra</th>
+                        <th class="font-bold text-gray-800 text-sm py-2">Desconto</th>
+                        <th class="font-bold text-gray-800 text-sm py-2">Total Preço</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var cartao in Model.Cartoes)
+                    @foreach (var item in Model.Produtos)
                     {
-                        <tr class='border-b @(cartao.Pagamento == "RECUSADO" ? "bg-red-100 tr-recusado" : "bg-green-50")'>
-                            <td class="px-4 py-2">
-                                <div class="flex items-center">
-                                    <img src="~/img/images/payment/@(cartao.IdBandeira).webp" class="w-8 h-8 mr-2">
-                                    <span>@cartao.NomeBandeira.Capitalize()</span>
-                                </div>
-                            </td>
-                            <td class="px-4 py-2">@cartao.NomeCartao.Capitalize()</td>
-                            <td class="px-4 py-2">@cartao.NomeTitular.Capitalize()</td>
-                            <td class="px-4 py-2 text-right">@cartao.Total.ToString("C")</td>
-                        </tr>
+                    <tr>
+                        <td class="py-2">@item.Codigo</td>
+                        <td class="py-2">
+                            <img width="40" src="@item.ImageSource" />
+                        </td>
+                        <td class="py-2">@item.Nome</td>
+                        <td class="py-2">@item.QntCompra</td>
+                        <td class="py-2">@item.Preco.ToString("C")</td>
+                        <td class="py-2">@((item.Preco * item.QntCompra).ToString("C"))</td>
+                        <td class="py-2">
+                            @if (item.Desconto)
+                            {
+                            <span>@(item.QntDesconto)%</span>
+                            }
+                            else
+                            {
+                            <span>-</span>
+                            }
+                        </td>
+                        <td class="py-2">
+                            @if (item.Desconto)
+                            {
+                            <span>@(((item.Preco * item.QntCompra) - item.CalculoDesconto).ToString("C"))</span>
+                            }
+                            else
+                            {
+                            <span>@((item.Preco * item.QntCompra).ToString("C"))</span>
+                            }
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
         </div>
 
-        @if (Model.Pagamento == "APROVADO" && Model.Etapa == "COMPRA RECUSADA")
-        {
-            <div class="flex justify-between mb-5 mt-8 items-center">
-                <h2 class="pr-10 text-xs italic">
-                    Caso seu estorno não tenha sido feito ainda, clique em solicitar para
-                    agilizar o processo, o período comum de estorno automático é de 72 horas.
-                </h2>
-                <button class="btn btn-sm btn-warning">Solicitar Estorno</button>
-            </div>
-        }
-    </div>
+        <div class="flex justify-between">
+            <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg shadow w-1/2 mr-4">
+                <h2 class="text-2xl font-bold mb-4">Informações de pagamento</h2>
+                @if (Model.Pagamento == "RECUSADO")
+                {
+                <div class="flex justify-between mb-5 items-center">
+                    <h2 class="pr-10 text-xs italic">
+                        Infelizmente seu pagamento não foi aprovado, tente fazer o pagamento
+                        novamente, para que seu pedido seja enviado, caso o pagamento não seja feito em até 7 dias úteis
+                        a compra será cancelada automaticamente.
+                    </h2>
+                    <button id="refazer-pagamento" data-id-transacao="@Model.IdTransacao"
+                        data-id-cliente="@Model.IdCliente" class="btn btn-sm btn-primary">
+                        Fazer Pagamento
+                    </button>
+                </div>
+                }
 
-    <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg shadow w-1/2 ml-4 h-fit">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Detalhes da Compra</h2>
-        <div class="space-y-2">
-            <p class="text-gray-700 flex justify-between">
-                <span class="font-semibold">Subtotal:</span>
-                <span>@Model.Subtotal.ToString("C")</span>
-            </p>
-            <p class="text-yellow-600 flex justify-between">
-                <span class="font-semibold">Descontos:</span>
-                <span>@Model.Descontos.ToString("C")</span>
-            </p>
-            <p class="text-gray-700 flex justify-between">
-                <span class="font-semibold">Frete:</span>
-                <span>@Model.Frete.ToString("C")</span>
-            </p>
-            <hr class="my-2">
-            <p class="text-green-600 text-lg flex justify-between">
-                <span class="font-bold">Total:</span>
-                <span>@Model.Total.ToString("C")</span>
-            </p>
+                <div class="overflow-x-auto">
+                    <table class="table-auto w-full text-gray-700">
+                        <thead class="bg-gray-200">
+                            <tr>
+                                <th class="px-4 py-2">Bandeira</th>
+                                <th class="px-4 py-2">Cartão</th>
+                                <th class="px-4 py-2">Nome Titular</th>
+                                <th class="px-4 py-2">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cartao in Model.Cartoes)
+                            {
+                            <tr
+                                class='border-b @(cartao.Pagamento == "RECUSADO" ? "bg-red-100 tr-recusado" : "bg-green-50")'>
+                                <td class="px-4 py-2">
+                                    <div class="flex items-center">
+                                        <img src="~/img/images/payment/@(cartao.IdBandeira).webp" class="w-8 h-8 mr-2">
+                                        <span>@cartao.NomeBandeira.Capitalize()</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-2">@cartao.NomeCartao.Capitalize()</td>
+                                <td class="px-4 py-2">@cartao.NomeTitular.Capitalize()</td>
+                                <td class="px-4 py-2 text-right">@cartao.Total.ToString("C")</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                @if (Model.Pagamento == "APROVADO" && Model.Etapa == "COMPRA RECUSADA")
+                {
+                <div class="flex justify-between mb-5 mt-8 items-center">
+                    <h2 class="pr-10 text-xs italic">
+                        Caso seu estorno não tenha sido feito ainda, clique em solicitar para
+                        agilizar o processo, o período comum de estorno automático é de 72 horas.
+                    </h2>
+                    <button class="btn btn-sm btn-warning">Solicitar Estorno</button>
+                </div>
+                }
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg shadow w-1/2 ml-4 h-fit">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Detalhes da Compra</h2>
+                <div class="space-y-2">
+                    <p class="text-gray-700 flex justify-between">
+                        <span class="font-semibold">Subtotal:</span>
+                        <span>@Model.Subtotal.ToString("C")</span>
+                    </p>
+                    <p class="text-yellow-600 flex justify-between">
+                        <span class="font-semibold">Descontos:</span>
+                        <span>@Model.Descontos.ToString("C")</span>
+                    </p>
+                    <p class="text-gray-700 flex justify-between">
+                        <span class="font-semibold">Frete:</span>
+                        <span>@Model.Frete.ToString("C")</span>
+                    </p>
+                    <hr class="my-2">
+                    <p class="text-green-600 text-lg flex justify-between">
+                        <span class="font-bold">Total:</span>
+                        <span>@Model.Total.ToString("C")</span>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 
-@section Scripts {
+    @section Scripts {
     <script>
         onDomChange(function () {
             setTimeout(() => {
@@ -445,9 +456,9 @@ new BreadcrumbsDTO("Pedido")
 
             Swal.fire({
                 title: "Aguarde",
-                allowOutsideClick: false,
                 allowEscapeKey: false,
                 allowEnterKey: false,
+                allowOutsideClick: false,
                 didOpen: () => {
                     Swal.showLoading();
                 }
@@ -470,6 +481,7 @@ new BreadcrumbsDTO("Pedido")
                         confirmButtonText: 'Concluir Pagamento',
                         cancelButtonText: 'Cancelar',
                         allowEnterKey: false,
+                        allowOutsideClick: false,
                         didOpen: () => {
                             Swal.hideLoading();
                         },
@@ -660,5 +672,130 @@ new BreadcrumbsDTO("Pedido")
                 },
             });
         }
+
+        $(document).on('keyup', '[name="motivoSolicitacao"]', function () {
+            let palavras = $(this).val().length
+            $('[data-target="motivo-solicitacao"]').html(palavras)
+
+            if (palavras > 520)
+                $('[data-target="motivo-solicitacao"]').addClass('text-red-600')
+            else
+                $('[data-target="motivo-solicitacao"]').removeClass('text-red-600')
+        })
+
+        $(document).on('change', '[data-target="solicitacao"]', function () {
+            let validate = $('[data-target="solicitacao"]').length == $('[data-target="solicitacao"]:checked').length;
+            $('#todos-solicitacao').prop("checked", validate)
+        })
+
+        $(document).on('change', '#todos-solicitacao', function () {
+            if ($(this).prop("checked"))
+                $('[data-target="solicitacao"]').check()
+            else
+                $('[data-target="solicitacao"]').uncheck()
+        })
+
+        $(document).on('click', '#solicitar-troca', function () {
+            $button = $(this);
+
+            Swal.fire({
+                title: "Aguarde... Listando Itens",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                data: $button.getData(),
+                url: "/componente/client/solicitar",
+                success: function (response) {
+                    Swal.fire({
+                        html: response,
+                        width: 905,
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        title: "Solicitação de troca.",
+                        customClass: {
+                            confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                        },
+                        confirmButtonText: 'Fazer Solicitação',
+                        cancelButtonText: 'Cancelar',
+                        allowEnterKey: false,
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.hideLoading();
+                        },
+                        showLoaderOnConfirm: true,
+                        preConfirm: async () => {
+                            try {
+                                const itens = $("#from-solicitacao").serializeJsonComplex()
+
+                                if (!itens.codigos)
+                                    return Swal.showValidationMessage(`Escolha pelo menos um item para fazer a solicitação`);
+
+                                if (itens.motivoSolicitacao == "") {
+                                    return Swal.showValidationMessage(`É necessário informar o motivo da sua solicitação de troca.`);
+                                }
+
+                                if (itens.motivoSolicitacao.length > 520) {
+                                    return Swal.showValidationMessage(`Sua descrição passou de 520 caracteres por favor reduza a quantidade`);
+                                }
+
+                                const solicitacao = [];
+                                itens.codigos.forEach(item => {
+                                    solicitacao.push({
+                                        ...$(`[value="${item}"]`).getData(),
+                                        ...{
+                                            tipo: "TROCA",
+                                            motivoSolicitacao: itens.motivoSolicitacao
+                                        }
+                                    })
+                                });
+
+                                console.log('antes', solicitacao)
+
+                                const response = await $.ajax({
+                                    url: '/criar/nova/solicitacao',
+                                    type: 'POST',
+                                    data: { solicitacao }
+                                });
+
+                                if (response.data.sucesso)
+                                    return response.data;
+
+                                return Swal.showValidationMessage(response.data.message);
+                            } catch (error) {
+                                console.log(error)
+                                return Swal.showValidationMessage('Um erro inesperado contate o TI.');
+                            }
+
+                            // return Swal.showValidationMessage(`A senha informada não confere, por favor tente novamente!`);
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed)
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Feito!",
+                                text: result.value.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                var path = location.pathname.split('/');
+                                path.pop(); path.pop();
+                                path.push('trocas');
+                                location.href = path.join('/')
+                            })
+                    });
+                },
+                error: function (response) {
+                    console.log(response);
+                },
+            });
+        })
     </script>
-}
+    }

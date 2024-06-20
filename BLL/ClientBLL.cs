@@ -12,6 +12,28 @@ namespace crm.BLL
 {
     public class ClientBLL
     {
+        public static dynamic CriarSolictacao(List<Solicitation> solicitacoes)
+        {
+            bool sucesso = true;
+            string message = "Todas as solicitações foram feitas, por favor aguarde andamento da loja.";
+                        
+            Random randNum = new Random();
+            string GrupoCodigo = randNum.Next(10000, 99999)
+
+            foreach (var solicitacao in solicitacoes)
+            {
+                solicitacao.GrupoCodigo = GrupoCodigo;
+                var IdSolicitacao = ClientDAO.CreateSolicitacao(solicitacao);
+
+                if (IdSolicitacao == 0)
+                {
+                    sucesso = false;
+                    message = "Atenção! Uma de suas solicitações não foi registrada, por favor entre em contato com o suporte da loja.";
+                }
+            }
+            return new { sucesso, message };
+        }
+
         public static void RemoveEndereco(long IdEndereco)
         {
             AddressDAO.RemoveAddress(IdEndereco);

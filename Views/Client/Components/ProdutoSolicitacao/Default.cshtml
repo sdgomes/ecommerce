@@ -1,0 +1,96 @@
+@model ViewProdutoSolicitacao
+
+<div class="text-left">
+    <div class="bg-white border border-gray-200 p-6 rounded-lg shadow mb-8">
+        <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-bold mb-4">Produtos</h2>
+            <div class="form-control">
+                <label class="cursor-pointer label">
+                    <span class="label-text">Marcar Todos</span>&ensp;
+                    <input type="checkbox" class="checkbox checkbox-warning" id="todos-solicitacao" />
+                </label>
+            </div>
+        </div>
+
+        <form id="from-solicitacao" class="mb-5">
+            <div>
+                <table class="min-w-full bg-white table table-sm table-zebra text-gray-700">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="font-bold text-gray-800 text-sm py-2">#</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Código</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Item</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Produto</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Preço Produto</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Desconto</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Total Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var (item, index) in Model.Transacao.Produtos.Select((item, index)=>(item, index)))
+                        {
+                        <tr>
+                            <td class="py-2">
+                                <div class="form-control">
+                                    <label class="cursor-pointer label">
+                                        <input type="checkbox" data-target="solicitacao" 
+
+                                            data-codigo="@(item.Repeticao)-@(item.Codigo)"
+                                            data-id-transacao="@Model.Transacao.IdTransacao"
+                                            data-preco="@item.Preco"
+
+                                            class="checkbox checkbox-warning" name="codigos[@index]"
+                                            value="@(item.Repeticao)-@(item.Codigo)" />
+                                    </label>
+                                </div>
+                            </td>
+                            <td class="py-2">@item.Codigo</td>
+                            <td class="py-2">
+                                <img width="40" src="@item.ImageSource" />
+                            </td>
+                            <td class="py-2">@item.Nome</td>
+                            <td class="py-2">@item.Preco.ToString("C")</td>
+                            <td class="py-2">
+                                @if (item.Desconto)
+                                {
+                                <span>@(item.QntDesconto)%</span>
+                                }
+                                else
+                                {
+                                <span>-</span>
+                                }
+                            </td>
+                            <td class="py-2">
+                                @if (item.Desconto)
+                                {
+                                <span>@item.CalculoDesconto.ToString("C")</span>
+                                }
+                                else
+                                {
+                                <span>@item.Preco.ToString("C")</span>
+                                }
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+
+            <hr>
+
+            <div>
+                <label class="form-control relative">
+                    <div class="label">
+                        <span class="label-text-alt">Motivo da solictação.</span>
+                    </div>
+                    <span data-target="motivo-solicitacao" class="block absolute bottom-2 right-3 text-sm font-bold" >0</span>
+                    <textarea name="motivoSolicitacao" rows="15"
+                        class="textarea textarea-bordered h-24 placeholder:italic resize-none"
+                        placeholder="Descreva o motivo da solicitação, caso o item esteja com defeito ou não queira mais o produto! Lembrando que a descrição do motivo é para solicitação não para cada item."></textarea>
+                </label>
+            </div>
+        </form>
+
+    </div>
+</div>

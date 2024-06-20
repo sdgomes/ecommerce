@@ -15,20 +15,27 @@ namespace crm.Views.Cart.Components.ProdutosCart
     {
         public IViewComponentResult Invoke(List<Product> Produtos)
         {
-            var IdsProdutos = String.Join(", ", Produtos.Select(x => x.IdProduto.ToString()).ToArray());
-
-            ViewProdutosCart Model = new();
-            if (IdsProdutos != "")
+            try
             {
-                Model.Products = ProductDAO.SelectProductsByInId(IdsProdutos);
-                foreach (var Item in Model.Products)
-                {
-                    Product Produto = Produtos.Where(x => x.IdProduto == Item.IdProduto).FirstOrDefault();
-                    Item.QntCompra = Produto.QntCompra;
-                }
-            }
+                var IdsProdutos = String.Join(", ", Produtos.Select(x => x.IdProduto.ToString()).ToArray());
 
-            return View(Model);
+                ViewProdutosCart Model = new();
+                if (IdsProdutos != "")
+                {
+                    Model.Products = ProductDAO.SelectProductsByInId(IdsProdutos);
+                    foreach (var Item in Model.Products)
+                    {
+                        Product Produto = Produtos.Where(x => x.IdProduto == Item.IdProduto).FirstOrDefault();
+                        Item.QntCompra = Produto.QntCompra;
+                    }
+                }
+
+                return View(Model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 

@@ -50,6 +50,15 @@ namespace crm.Controllers
 
         [ClienteExiste]
         [ClienteLogado]
+        [HttpGet("/cliente/perfil/{Codigo}/trocas")]
+        public IActionResult Trocas(string Codigo)
+        {
+            //PedidosView Model = TransactionBLL.Pedidos(Codigo);
+            return View();
+        }
+
+        [ClienteExiste]
+        [ClienteLogado]
         [HttpGet("/cliente/perfil/{Codigo}/pedidos")]
         public IActionResult Pedidos(string Codigo)
         {
@@ -79,6 +88,19 @@ namespace crm.Controllers
         #endregion
 
         #region Actions
+        [HttpPost("/criar/nova/solicitacao")]
+        public IActionResult ExcluirConta(List<Solicitation> Solicitacao)
+        {
+            try
+            {                
+                return Json(new { data = ClientBLL.CriarSolictacao(Solicitacao) });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpGet("/excluir/minha/conta/{Codigo}")]
         public IActionResult ExcluirConta(string Codigo)
         {
@@ -326,6 +348,19 @@ namespace crm.Controllers
             try
             {
                 return ViewComponent("PagarNovamente", new { IdCliente, IdTransacao });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost("/componente/client/solicitar")]
+        public IActionResult PagarNovamente(long IdTransacao)
+        {
+            try
+            {
+                return ViewComponent("ProdutoSolicitacao", new { IdTransacao });
             }
             catch (Exception)
             {

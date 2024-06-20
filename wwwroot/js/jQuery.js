@@ -48,7 +48,6 @@ jQuery.fn.extend({
             if (Object.hasOwnProperty.call(preFormulario, key)) {
                 const element = preFormulario[key];
                 var arrayObjeto = key.split(".");
-
                 if (arrayObjeto.length == 2) {
                     var chave1 = arrayObjeto[0].split('[')[0];
                     var index = parseInt(arrayObjeto[0].split('[')[1].split(']')[0]);
@@ -62,7 +61,17 @@ jQuery.fn.extend({
                     else
                         Formulario[chave1][index] = { ...Formulario[chave1][index], ...{ [chave2]: element } }
                 } else {
-                    Formulario[key] = element;
+                    if (arrayObjeto[0].search(/\[/) > -1) {
+                        var chave1 = arrayObjeto[0].split('[')[0];
+                        var index = parseInt(arrayObjeto[0].split('[')[1].split(']')[0]);
+
+                        if (Formulario[chave1] == undefined)
+                            Formulario[chave1] = [];
+
+                        Formulario[chave1][index] = element
+                    } else {
+                        Formulario[key] = element;
+                    }
                 }
             }
         }

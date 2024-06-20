@@ -348,6 +348,7 @@ $(document).on('click', '#acicionar-cartao', function () {
                 confirmButtonText: 'Cadastrar',
                 cancelButtonText: 'Cancelar',
                 allowEnterKey: false,
+                allowOutsideClick: false,
                 didOpen: () => {
                     Swal.hideLoading();
                 },
@@ -455,6 +456,7 @@ $(document).on('click', '#acicionar-endereco', function () {
                 confirmButtonText: 'Cadastrar',
                 cancelButtonText: 'Cancelar',
                 allowEnterKey: false,
+                allowOutsideClick: false,
                 didOpen: () => {
                     Swal.hideLoading();
                 },
@@ -535,6 +537,7 @@ $(document).on('click', '[data-action="altera-cliente"]', function () {
                 confirmButtonText: 'Salvar Edição',
                 cancelButtonText: 'Cancelar',
                 allowEnterKey: false,
+                allowOutsideClick: false,
                 didOpen: () => {
                     Swal.hideLoading();
                 },

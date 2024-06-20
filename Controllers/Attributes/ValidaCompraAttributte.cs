@@ -21,14 +21,16 @@ namespace crm.Controllers.Attributes
                     var controller = (Controller)context.Controller;
                     context.Result = controller.RedirectToAction("Cadastro", "Client", new { finalizar = true });
                 }
-
-                Client cliente = ClientDAO.SearchForClientByCodigo(codigo);
-
-                if (cliente == null)
+                else
                 {
-                    var controller = (Controller)context.Controller;
-                    context.Result = controller.RedirectToAction("Cadastro", "Client", new { error = "Atenção! Cliente nãoo encontrado.".ToBase64Encode() });
-                }
+                    Client cliente = ClientDAO.SearchForClientByCodigo(codigo);
+
+                    if (cliente == null)
+                    {
+                        var controller = (Controller)context.Controller;
+                        context.Result = controller.RedirectToAction("Cadastro", "Client", new { error = "Atenção! Cliente não encontrado.".ToBase64Encode() });
+                    }
+                }             
 
             }
             catch (Exception)
