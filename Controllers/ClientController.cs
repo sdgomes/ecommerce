@@ -50,6 +50,24 @@ namespace crm.Controllers
 
         [ClienteExiste]
         [ClienteLogado]
+        [HttpGet("/cliente/perfil/{Codigo}/trocas")]
+        public IActionResult Trocas(string Codigo)
+        {
+            TrocasView Model = ClientBLL.GetSolicitacoes(Codigo, "TROCA");
+            return View(Model);
+        }
+
+        [ClienteExiste]
+        [ClienteLogado]
+        [HttpGet("/cliente/perfil/{Codigo}/trocas/{GrupoCodigo}")]
+        public IActionResult TrocasItens(string Codigo, int GrupoCodigo)
+        {
+            TrocasItensView Model = ClientBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, "TROCA");
+            return View(Model);
+        }
+
+        [ClienteExiste]
+        [ClienteLogado]
         [HttpGet("/cliente/perfil/{Codigo}/pedidos")]
         public IActionResult Pedidos(string Codigo)
         {
@@ -79,6 +97,32 @@ namespace crm.Controllers
         #endregion
 
         #region Actions
+        [HttpPost("/criar/nova/mensagem")]
+        public IActionResult NovaMensagem(Notification notificacao)
+        {
+            try
+            {
+                return Json(new { data = ClientBLL.NovaMensagem(notificacao) });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost("/criar/nova/solicitacao")]
+        public IActionResult CriarSolictacao(List<Solicitation> Solicitacao)
+        {
+            try
+            {
+                return Json(new { data = ClientBLL.CriarSolictacao(Solicitacao) });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpGet("/excluir/minha/conta/{Codigo}")]
         public IActionResult ExcluirConta(string Codigo)
         {
@@ -326,6 +370,19 @@ namespace crm.Controllers
             try
             {
                 return ViewComponent("PagarNovamente", new { IdCliente, IdTransacao });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost("/componente/client/solicitar")]
+        public IActionResult PagarNovamente(long IdTransacao)
+        {
+            try
+            {
+                return ViewComponent("ProdutoSolicitacao", new { IdTransacao });
             }
             catch (Exception)
             {

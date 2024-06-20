@@ -64,6 +64,16 @@ String.prototype.FileExtension = function () {
     }
 }
 
+String.prototype.Avatar = function () {
+    var palavras = this.toString().split(" ");
+    var l1 = palavras[0].charAt(0);
+    var l2 = palavras[0].charAt(1);
+
+    if (palavras.length > 1) l2 = palavras[palavras.length - 1].charAt(0);
+
+    return `${l1}${l2}`;
+};
+
 Array.prototype.Divide = function (divisao) {
     var array = this;
     return [].concat.apply([],

@@ -52,5 +52,8 @@ namespace crm.Models
 
         [Column("QNT_COMPRA")]
         public int QntCompra { get; set; }
+
+        [Column("REPETICAO")]
+        public int Repeticao { get; set; }
     }
 }

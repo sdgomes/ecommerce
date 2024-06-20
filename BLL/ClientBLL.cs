@@ -1,6 +1,7 @@
 ﻿using crm.DAL;
 using crm.DTO;
 using crm.Models;
+using crm.Models.ModelView;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,52 @@ namespace crm.BLL
 {
     public class ClientBLL
     {
+        public static long NovaMensagem(Notification notification)
+        {
+            return NotificationDAO.CreateChat(notification);
+        }
+
+        public static TrocasItensView GetSolicitacoesByGrupoCodigo(string Codigo, int GrupoCodigo, string Tipo)
+        {
+            TrocasItensView Model = new();
+            Model.Codigo = GrupoCodigo;
+            Model.Cliente = ClientDAO.SearchForClientByCodigo(Codigo);
+            Model.Solicitacoes = TransactionDAO.SelectAllSolicitacaoByGrupoCodigo(GrupoCodigo, Tipo);
+            Model.Mensagens = NotificationDAO.SelectAllChatByGrupoCodigo(GrupoCodigo);
+
+            return Model;
+        }
+
+        public static TrocasView GetSolicitacoes(string Codigo, string Tipo)
+        {
+            TrocasView Model = new();
+            Model.Codigo = Codigo;
+            Model.Solicitacoes = TransactionDAO.SelectGrupoSolicitacoes(Codigo, Tipo);
+            return Model;
+        }
+
+        public static dynamic CriarSolictacao(List<Solicitation> solicitacoes)
+        {
+            bool sucesso = true;
+            string message = "Todas as solicitações foram feitas, por favor aguarde andamento da loja.";
+
+            Random randNum = new Random();
+            string GrupoCodigo = randNum.Next(10000, 99999).ToString();
+
+            foreach (var solicitacao in solicitacoes)
+            {
+                solicitacao.GrupoCodigo = GrupoCodigo;
+                var IdSolicitacao = ClientDAO.CreateSolicitacao(solicitacao);
+
+                if (IdSolicitacao == 0)
+                {
+                    sucesso = false;
+                    message = "Atenção! Uma de suas solicitações não foi registrada, por favor entre em contato com o suporte da loja.";
+                }
+            }
+            return new { sucesso, message };
+        }
+
         public static void RemoveEndereco(long IdEndereco)
         {
             AddressDAO.RemoveAddress(IdEndereco);

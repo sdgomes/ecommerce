@@ -1,0 +1,295 @@
+﻿@*@model TrocasItensView*@
+
+@{
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Troca";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
+        new BreadcrumbsDTO("Trocas", "./", "fa-solid fa-boxes-packing"),
+        new BreadcrumbsDTO("Controle da solicitação")
+    };
+
+    ViewData["Title"] = breadcrumbs.Title;
+}
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+@*<div class="p-8 mx-10">
+    <div class="bg-white border border-gray-200 p-6 rounded-lg shadow mb-8">
+
+        <div class="leading-none mb-3">
+            <h2 class="text-2xl leading-none font-bold">Itens Solicitados</h2>
+            <p class="text-lg">Solicitação #: @Model.Codigo</p>
+        </div>
+
+        <form id="from-itens-troca" class="mb-5">
+            <div>
+                <table class="min-w-full bg-white table table-sm table-zebra text-gray-700">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="font-bold text-gray-800 text-sm py-2">#</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Código Item</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Item</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Produto</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Preço Produto</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Desconto</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Total Preço</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Aprovação</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var (item, index) in Model.Solicitacoes.Select((item, index) => (item, index)))
+                        {
+                            <tr>
+                                <th class="py-2">@index</th>
+                                <td class="py-2">@item.Codigo</td>
+                                <td class="py-2">
+                                    <img width="40" src="@item.ImageSource" />
+                                </td>
+                                <td class="py-2">@item.Nome</td>
+                                <td class="py-2">@item.Preco.ToString("C")</td>
+                                <td class="py-2">
+                                    @if (item.Desconto)
+                                    {
+                                        <span>@(item.QntDesconto)%</span>
+                                    }
+                                    else
+                                    {
+                                        <span>-</span>
+                                    }
+                                </td>
+                                <td class="py-2">
+                                    @if (item.Desconto)
+                                    {
+                                        <span>@item.CalculoDesconto.ToString("C")</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@item.Preco.ToString("C")</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.Etapa == "CANCELADO")
+                                    {
+                                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">
+                                            Troca
+                                            Cancelada
+                                        </span>
+                                    }
+                                    else if (!item.Aprovacao1)
+                                    {
+                                        <span class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-600 ring-1 ring-inset ring-yellow-500/10">
+                                            Aguardando
+                                            liberação para envio
+                                        </span>
+                                    }
+                                    else if (item.Aprovacao1 && !item.Aprovacao2)
+                                    {
+                                        @if (item.Etapa == "TROCA SOLICITADA")
+                                        {
+                                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-600 ring-1 ring-inset ring-green-500/10">
+                                                Liberado
+                                                para envio
+                                            </span>
+                                        }
+                                        else if (item.Etapa == "ENVIADO PARA TROCA")
+                                        {
+                                            <span class="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
+                                                A
+                                                Caminho
+                                            </span>
+                                        }
+                                        else if (item.Etapa == "ENTREGUE")
+                                        {
+                                            if (item.MotivoRecusa == null)
+                                            {
+                                                <span class="inline-flex items-center rounded-md bg-orange-50 px-2 py-1 text-xs font-medium text-orange-600 ring-1 ring-inset ring-orange-500/10">
+                                                    Em
+                                                    análise
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="inline-flex items-center rounded-md bg-rose-50 px-2 py-1 text-xs font-medium text-rose-600 ring-1 ring-inset ring-rose-500/10">
+                                                    Troca
+                                                    Recusada
+                                                </span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span>Etapa não conhecida</span>
+                                        }
+                                    }
+                                    else if (item.Aprovacao1 && item.Aprovacao2)
+                                    {
+                                        <span class="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-600 ring-1 ring-inset ring-purple-500/10">
+                                            Troca
+                                            Aprovada
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span>Etapa não conhecida</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.Etapa == "TROCA SOLICITADA")
+                                    {
+                                        <div class="tooltip" data-tip="Cancalar solicitação item">
+                                            <button data-id-solicitacao="@item.IdSolicitacao" data-etapa="CANCELADO"
+                                                    data-before-title="Atenção!"
+                                                    data-before-message="Comfirma que deseja cancelar a solicitação desse item?"
+                                                    data-after-title="Feito!" data-after-message='Item cancelado com sucesso.'
+                                                    data-trigger="manage" class="btn btn-sm btn-error btn-square">
+                                                <i class="fa-solid fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="bg-white border border-gray-200 p-6 rounded-lg shadow mb-8">
+        <div class="bg-white w-[520px] rounded-lg shadow-lg p-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold">Conversa</h2>
+            </div>
+
+            <div class="mb-4">
+                <input type="text" placeholder="Procure na conversa..." id="serach-conversa"
+                       class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-purple-500">
+            </div>
+
+            <div class="space-y-4 px-3 overflow-y-auto h-[350px] mb-4" id="chat-container">
+
+                @if (Model.Mensagens.Count == 0)
+                {
+                    <div role="alert" class="alert alert-warning bg-yellow-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>
+                            Atenção: A conversa não foi iniciada! Você pode inicar o contato ou aguardar um
+                            funcionário.
+                        </span>
+                    </div>
+                }
+
+                @foreach (var item in Model.Mensagens)
+                {
+                    <div data-id-notificacao="@item.IdNotificacao"
+                         class='flex items-start @(item.IdFuncionario == 0 ? "bg-gray-50" : "bg-purple-100") py-2 px-3'>
+                        <div class="avatar placeholder mr-3">
+                            <div class="bg-neutral text-neutral-content rounded-full w-12 text-xl">
+                                <span>@item.NomeCompleto.Avatar()</span>
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <div class="flex justify-between items-center">
+                                <h3 class="font-semibold">@item.NomeCompleto.Capitalize()</h3>
+                                <span class="text-gray-500 text-sm">@item.Criacao.from_now()</span>
+                            </div>
+                            <p>@item.Mensagem</p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <hr class="mb-5">
+
+            <div class="flex items-center gap-3">
+                <textarea name="mensagem" class="textarea w-full textarea-bordered resize-none focus:outline-none"
+                          placeholder="Digite sua mensagem..." rows="2"></textarea>
+                <button data-grupo-codigo="@Model.Codigo"
+                        data-nome-completo="@Model.Cliente.Nome.Capitalize() @Model.Cliente.Sobrenome.Capitalize()"
+                        data-id-cliente="@Model.Cliente.IdCliente" id="envia-conversa"
+                        class="btn btn-warning btn-circle text-xl">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#serach-conversa").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("[data-id-notificacao]").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        $(document).on('click', '#envia-conversa', function () {
+            let chat = $(this).getData();
+            let mensagem = $('[name="mensagem"]').val().trim();
+
+            if (mensagem == "") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: "Atenção!",
+                    text: 'Escreva uma mensagem antes de enviar.',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    timer: 500,
+                    confirmButtonText: "Tentar novamente",
+                    reverseButtons: true,
+                    customClass: {
+                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                    },
+                });
+
+                return false;
+            }
+
+            $('[name="mensagem"]').val("");
+
+            if ($('[data-id-notificacao]').length == 0)
+                $("#chat-container").empty()
+
+            $("#chat-container").append(`
+                        <div data-id-notificacao="${$('[data-id-notificacao]').length + 1}"
+                            class='flex items-start bg-gray-50 py-2 px-3'>
+                          <div class="avatar placeholder mr-3">
+                              <div class="bg-neutral text-neutral-content rounded-full w-12 text-xl">
+                                  <span>${chat.nomeCompleto.Avatar()}</span>
+                              </div>
+                          </div>
+                          <div class="w-full">
+                              <div class="flex justify-between items-center">
+                                  <h3 class="font-semibold">${chat.nomeCompleto}</h3>
+                                  <span class="text-gray-500 text-sm">${moment().fromNow()}</span>
+                              </div>
+                              <p>${mensagem}</p>
+                          </div>
+                        </div>`)
+
+
+            $.ajax({
+                type: "POST",
+                data: { notificacao: { ...chat, mensagem } },
+                url: "/criar/nova/mensagem",
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (response) {
+                    console.log(response);
+                },
+            });
+        })
+    </script>
+}*@

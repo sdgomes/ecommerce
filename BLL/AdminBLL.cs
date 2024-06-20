@@ -1,6 +1,7 @@
 ﻿using crm.DAL;
 using crm.DTO;
 using crm.Models;
+using crm.Models.ModelView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,25 @@ namespace crm.BLL
 {
     public class AdminBLL
     {
+        public static TrocasView GetSolicitacoes(string Codigo, string Tipo)
+        {
+            TrocasView Model = new();
+            Model.Codigo = Codigo;
+            Model.Solicitacoes = EmployeeDAO.SelectGrupoSolicitacoes(Tipo);
+            return Model;
+        }
+
+        //public static TrocasItensView GetSolicitacoesByGrupoCodigo(string Codigo, int GrupoCodigo, string Tipo)
+        //{
+        //    TrocasItensView Model = new();
+        //    Model.Codigo = GrupoCodigo;
+        //    Model.Cliente = ClientDAO.SearchForClientByCodigo(Codigo);
+        //    Model.Solicitacoes = TransactionDAO.SelectAllSolicitacaoByGrupoCodigo(GrupoCodigo, Tipo);
+        //    Model.Mensagens = NotificationDAO.SelectAllChatByGrupoCodigo(GrupoCodigo);
+
+        //    return Model;
+        //}
+
         public static bool IsFuncionarioByCodigo(string Codigo)
         {
             Employee employee = EmployeeDAO.SearchForEmployeeByCodigo(Codigo);

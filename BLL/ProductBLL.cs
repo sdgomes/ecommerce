@@ -15,9 +15,20 @@ namespace crm.BLL
 {
     public class ProductBLL
     {
-        public static TransactionDTO Transacao(long Pedido)
+        public static TransactionDTO TransacaoParaSolicitacao(long IdTransacao)
         {
-            TransactionDTO transacao = TransactionDAO.SearchById(Pedido);
+            TransactionDTO transacao = TransactionDAO.SearchById(IdTransacao);
+            if (transacao == null)
+                throw new ArgumentException("Pedido não encontrado, entre em contato com o suporte.");
+
+            transacao.Produtos = ProductDAO.SelectAllProductsTransactionsSolicitacao(transacao.IdTransacao);
+
+            return transacao;
+        }
+
+        public static TransactionDTO Transacao(long IdTransacao)
+        {
+            TransactionDTO transacao = TransactionDAO.SearchById(IdTransacao);
             if (transacao == null)
                 throw new ArgumentException("Pedido não encontrado, entre em contato com o suporte.");
 

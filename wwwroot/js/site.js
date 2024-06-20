@@ -424,7 +424,6 @@ $(document).on("click", ".button-qnt", function () {
 
 $(document).on("click", '[data-compra-direta]', function () {
     $button = $(this);
-
     const data = $button.getData();
     Carrinho.Adicona(data);
 });
@@ -502,7 +501,7 @@ $(document).on('click', '[data-action="finalizar-carrinho"]', function (e) {
         }).then((result) => {
             if (result.isConfirmed) {
                 if (result.value.isCliente) {
-                    cookie.Set("codigo", result.value.codigo, 0.2)
+                    cookie.Set("codigo", result.value.codigo, 0.02)
                     location.href = `/finalizar`;
                 }
 
@@ -572,7 +571,7 @@ $(document).on('click', '#entrar', function () {
     }).then((result) => {
         if (result.isConfirmed) {
             if (result.value.isCliente) {
-                cookie.Set("codigo", result.value.codigo, 0.2)
+                cookie.Set("codigo", result.value.codigo, 0.02)
                 location.href = `/cliente/perfil/${result.value.codigo}`
             }
 
@@ -610,7 +609,7 @@ $(document).on('click', '#acessar', async function () {
             });
 
             if (response.isFuncionario) {
-                cookie.Set("codigo", response.codigo, 0.2)
+                cookie.Set("codigo", response.codigo, 0.02)
                 location.href = `/admin/perfil/${response.codigo}`
             } else {
                 Swal.fire({

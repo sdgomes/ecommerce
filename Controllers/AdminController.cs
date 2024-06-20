@@ -2,6 +2,7 @@
 using crm.Controllers.Attributes;
 using crm.DTO;
 using crm.Models;
+using crm.Models.ModelView;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -32,6 +33,25 @@ namespace crm.Controllers
         {
             List<PedidoDTO> Model = AdminBLL.ExibiPedidosParaGestao();
             return View(Model);
+        }
+
+        [FuncionarioLogado]
+        [FuncionarioExiste]
+        [HttpGet("/admin/perfil/{Codigo}/trocas")]
+        public IActionResult Trocas(string Codigo)
+        {
+            TrocasView Model = AdminBLL.GetSolicitacoes(Codigo, "TROCA");
+            return View(Model);
+        }
+
+        [FuncionarioLogado]
+        [FuncionarioExiste]
+        [HttpGet("/admin/perfil/{Codigo}/trocas/{GrupoCodigo}")]
+        public IActionResult TrocasItens(string Codigo, int GrupoCodigo)
+        {
+            //TrocasItensView Model = ClientBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, "TROCA");
+            //return View(Model);
+            return View();
         }
 
         [FuncionarioLogado]

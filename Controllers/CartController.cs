@@ -41,9 +41,9 @@ namespace crm.Controllers
             {
                 return ViewComponent("ProdutosCart", new { Produtos });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return StatusCode(400, new { Message = ex.Message });
             }
         }
         #endregion

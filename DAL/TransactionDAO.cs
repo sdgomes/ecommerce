@@ -297,5 +297,70 @@ namespace crm.DAL
                 throw;
             }
         }
+
+        public static List<SolicitationDTO> SelectAllSolicitacaoByGrupoCodigo(int GrupoCodigo, string Tipo)
+        {
+            try
+            {
+                string query = @$"SELECT 
+	                                * ,
+                                (SELECT IMAGEM FROM ECM_IMAGENS EI WHERE EI.NOME = 'COVER' AND EI.ID_PRODUTO = ES.ID_PRODUTO) AS IMAGEM
+                                FROM ECM_SOLICITACOES ES
+	                                INNER JOIN ECM_ETAPAS EE ON EE.ID_ETAPA = ES.ID_ETAPA
+	                                INNER JOIN ECM_PRODUTOS EP ON EP.ID_PRODUTO = ES.ID_PRODUTO
+                                WHERE ES.GRUPO_CODIGO = @GRUPO_CODIGO
+                                AND ES.TIPO = @TIPO";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@GRUPO_CODIGO", I(GrupoCodigo)),
+                    new SqlParameter("@TIPO", I(Tipo)),
+                };
+
+                return DatabaseProgramas().Select<SolicitationDTO>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<Solicitation> SelectGrupoSolicitacoes(string Codigo, string Tipo)
+        {
+            try
+            {
+                string query = @$"SELECT
+	                                ES.GRUPO_CODIGO,
+	                                EE.ETAPA,
+	                                EE.COR,
+	                                ET.CODIGO AS CODIGO_TRANSACAO,
+	                                DATEADD(dd, 0, DATEDIFF(dd, 0, ET.CRIACAO)) AS CRIACAO,
+	                                ES.MOTIVO_SOLICITACAO,
+	                                DATEADD(dd, 0, DATEDIFF(dd, 0, ES.DATA_SOLICITACAO)) AS DATA_SOLICITACAO
+                                FROM ECM_SOLICITACOES ES
+	                                INNER JOIN ECM_ETAPAS EE ON EE.ID_ETAPA = ES.ID_ETAPA
+	                                INNER JOIN ECM_TRANSACOES ET ON ET.ID_TRANSACAO = ES.ID_TRANSACAO
+		                                AND ET.ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO)
+                                WHERE
+	                                ES.TIPO = @TIPO
+                                GROUP BY ES.GRUPO_CODIGO,
+	                                EE.ETAPA, EE.COR,
+	                                ET.CODIGO, 
+									DATEADD(dd, 0, DATEDIFF(dd, 0, ET.CRIACAO)),
+	                                ES.MOTIVO_SOLICITACAO,
+	                                DATEADD(dd, 0, DATEDIFF(dd, 0, ES.DATA_SOLICITACAO))
+                                ORDER BY ES.GRUPO_CODIGO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", I(Codigo)),
+                    new SqlParameter("@TIPO", I(Tipo)),
+                };
+
+                return DatabaseProgramas().Select<Solicitation>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        } 
     }
 }

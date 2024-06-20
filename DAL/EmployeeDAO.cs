@@ -9,6 +9,43 @@ namespace crm.DAL
 {
     public class EmployeeDAO : BaseDAO
     {
+        public static List<Solicitation> SelectGrupoSolicitacoes(string Tipo)
+        {
+            try
+            {
+                string query = @$"SELECT
+	                                ES.GRUPO_CODIGO,
+	                                EE.ETAPA,
+	                                EE.COR,
+	                                ET.CODIGO AS CODIGO_TRANSACAO,
+	                                DATEADD(dd, 0, DATEDIFF(dd, 0, ET.CRIACAO)) AS CRIACAO,
+	                                ES.MOTIVO_SOLICITACAO,
+	                                DATEADD(dd, 0, DATEDIFF(dd, 0, ES.DATA_SOLICITACAO)) AS DATA_SOLICITACAO
+                                FROM ECM_SOLICITACOES ES
+	                                INNER JOIN ECM_ETAPAS EE ON EE.ID_ETAPA = ES.ID_ETAPA
+	                                INNER JOIN ECM_TRANSACOES ET ON ET.ID_TRANSACAO = ES.ID_TRANSACAO
+                                WHERE
+	                                ES.TIPO = @TIPO
+                                GROUP BY ES.GRUPO_CODIGO,
+	                                EE.ETAPA, EE.COR,
+	                                ET.CODIGO, 
+									DATEADD(dd, 0, DATEDIFF(dd, 0, ET.CRIACAO)),
+	                                ES.MOTIVO_SOLICITACAO,
+	                                DATEADD(dd, 0, DATEDIFF(dd, 0, ES.DATA_SOLICITACAO))
+                                ORDER BY ES.GRUPO_CODIGO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@TIPO", I(Tipo)),
+                };
+
+                return DatabaseProgramas().Select<Solicitation>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static Employee SearchForEmployeeByCodigo(string Codigo)
         {
             try
