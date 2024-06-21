@@ -23,8 +23,9 @@ namespace crm.DAL
                                             OUTPUT Inserted.ID_SOLICITACAO
                                             VALUES (@CODIGO, @ID_PRODUTO, @ID_TRANSACAO, 
                                             (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE 
-                                            ETAPA = CASE WHEN @TIPO = 'TROCA' THEN 'TROCA SOLICITADA' ELSE 'DEVOLUÇÃO SOLICITADA' END), 
-                                            @TIPO, @PRECO, @MOTIVO_SOLICITACAO, @GRUPO_CODIGO)
+                                            ETAPA = CASE WHEN @TIPO = 'TROCA' THEN 'TROCA SOLICITADA' 
+                                            WHEN @TIPO = 'DEVOLUCAO' THEN 'DEVOLUÇÃO SOLICITADA' 
+                                            ELSE @TIPO END), @TIPO, @PRECO, @MOTIVO_SOLICITACAO, @GRUPO_CODIGO)
                                         END
                                     END;";
 

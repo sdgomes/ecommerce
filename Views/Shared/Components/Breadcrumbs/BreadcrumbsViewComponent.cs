@@ -29,7 +29,10 @@ namespace crm.Views.Shared.Components.Breadcrumbs
         public BreadcrumbsDTO(string name, string link = "", string icone = "")
         {
             Name = name;
-            Link = link;
+            if (link == "" || link.EndsWith("/"))
+                Link = link;
+            else
+                Link = link + "/";
             Icone = icone;
         }
     }

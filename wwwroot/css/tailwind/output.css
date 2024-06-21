@@ -3506,6 +3506,10 @@ details.collapse summary::-webkit-details-marker {
   height: 27px;
 }
 
+.h-\[350px\] {
+  height: 350px;
+}
+
 .h-\[38px\] {
   height: 38px;
 }
@@ -3521,10 +3525,6 @@ details.collapse summary::-webkit-details-marker {
 
 .h-full {
   height: 100%;
-}
-
-.h-\[350px\] {
-  height: 350px;
 }
 
 .max-h-\[160px\] {
@@ -4063,6 +4063,11 @@ details.collapse summary::-webkit-details-marker {
   background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
 }
 
+.bg-emerald-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
+}
+
 .bg-gray-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -4157,14 +4162,14 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-yellow-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 252 232 / var(--tw-bg-opacity));
-}
-
 .bg-yellow-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 249 195 / var(--tw-bg-opacity));
+}
+
+.bg-yellow-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 252 232 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-r {
@@ -4181,12 +4186,12 @@ details.collapse summary::-webkit-details-marker {
   --tw-gradient-to: #673ab7 var(--tw-gradient-to-position);
 }
 
-.stroke-info {
-  stroke: var(--fallback-in,oklch(var(--in)/1));
-}
-
 .stroke-current {
   stroke: currentColor;
+}
+
+.stroke-info {
+  stroke: var(--fallback-in,oklch(var(--in)/1));
 }
 
 .object-cover {
@@ -4473,6 +4478,11 @@ details.collapse summary::-webkit-details-marker {
   color: rgb(217 119 6 / var(--tw-text-opacity));
 }
 
+.text-emerald-600 {
+  --tw-text-opacity: 1;
+  color: rgb(5 150 105 / var(--tw-text-opacity));
+}
+
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
@@ -4640,6 +4650,10 @@ details.collapse summary::-webkit-details-marker {
 
 .ring-amber-500\/10 {
   --tw-ring-color: rgb(245 158 11 / 0.1);
+}
+
+.ring-emerald-500\/10 {
+  --tw-ring-color: rgb(16 185 129 / 0.1);
 }
 
 .ring-green-500\/10 {

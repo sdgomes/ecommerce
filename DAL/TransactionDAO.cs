@@ -129,9 +129,6 @@ namespace crm.DAL
         {
             try
             {
-
-
-
                 string query = @$" INSERT INTO ECM_TRANSACOES (ID_CLIENTE, ID_ENDERECO, ID_ETAPA, TIPO, SUBTOTAL, FRETE, DESCONTOS, TOTAL, PAGAMENTO)
 		                                OUTPUT Inserted.ID_TRANSACAO
 		                                VALUES (@ID_CLIENTE, @ID_ENDERECO, (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE ETAPA = 'PROCESSANDO PAGAMENTO'),'COMPRA', @SUBTOTAL, @FRETE, @DESCONTOS, @TOTAL, @PAGAMENTO)";
@@ -187,6 +184,190 @@ namespace crm.DAL
                     new SqlParameter("@ID_TRANSACAO", I(IdTransacao)),
                     new SqlParameter("@ID_PRODUTO", I(Produto.IdProduto)),
                     new SqlParameter("@QUANTIDADE", I(Produto.QntCompra)),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static long GeraDesconto(long IdSolicitacao, string tipo)
+        {
+            try
+            {
+                string query = @$"INSERT INTO ECM_DESCONTOS (ID_CLIENTE, CODIGO, TIPO, DESCONTO)
+                OUTPUT Inserted.ID_DESCONTO
+                VALUES ((SELECT ID_CLIENTE FROM ECM_SOLICITACOES ES
+                INNER JOIN ECM_TRANSACOES ET ON ET.ID_TRANSACAO = ES.ID_TRANSACAO
+                WHERE ES.ID_SOLICITACAO = @ID_SOLICITACAO), (SELECT (ABS(CHECKSUM(NEWID())) % 99999) + 10000), @TIPO, 0)";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@TIPO", I(tipo)),
+                    new SqlParameter("@ID_SOLICITACAO", I(IdSolicitacao)),
+                };
+
+                return DatabaseProgramas().ChoosePrimitiveType<long>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void SolicitacaoReembolso(long IdSolicitacao, long IdDesconto)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_SOLICITACOES SET ID_ETAPA = (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE ETAPA = 'REEMBOLSO'),
+                ID_DESCONTO = @ID_DESCONTO
+                WHERE ID_SOLICITACAO = @ID_SOLICITACAO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_DESCONTO", I(IdDesconto)),
+                    new SqlParameter("@ID_SOLICITACAO", I(IdSolicitacao)),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void SolicitacaoEntregue(long IdSolicitacao, long IdDesconto)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_SOLICITACOES SET ID_ETAPA = (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE ETAPA = 'ENTREGUE'),
+                DATA_RECEBIMENTO = GETDATE(), ID_DESCONTO = @ID_DESCONTO
+                WHERE ID_SOLICITACAO = @ID_SOLICITACAO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_DESCONTO", I(IdDesconto)),
+                    new SqlParameter("@ID_SOLICITACAO", I(IdSolicitacao)),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void AprovaEntrega(long IdSolicitacao)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_SOLICITACOES SET APROCACAO_2 = 1
+                WHERE ID_SOLICITACAO = @ID_SOLICITACAO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_SOLICITACAO", I(IdSolicitacao)),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void AprovaSolicitacao(long IdSolicitacao)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_SOLICITACOES SET APROCACAO_1 = 1
+                WHERE ID_SOLICITACAO = @ID_SOLICITACAO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_SOLICITACAO", I(IdSolicitacao)),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void AlteraEtapaSolicitacao(long IdSolicitacao, string Etapa, string Motivo)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_SOLICITACOES SET ID_ETAPA = (SELECT ID_ETAPA FROM ECM_ETAPAS WHERE ETAPA = @ETAPA),
+                DATA_RECUSA = CASE WHEN @ETAPA = 'CANCELADO' THEN GETDATE() END, 
+                MOTIVO_RECUSA = CASE WHEN @ETAPA = 'CANCELADO' THEN @MOTIVO_RECUSA END,
+                DATA_ENVIO = CASE WHEN @ETAPA = 'ENVIADO PARA TROCA' THEN GETDATE() END
+                WHERE ID_SOLICITACAO = @ID_SOLICITACAO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@MOTIVO_RECUSA", I(Motivo)),
+                    new SqlParameter("@ETAPA", I(Etapa)),
+                    new SqlParameter("@ID_SOLICITACAO", I(IdSolicitacao)),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void AlteraPedidoReembolso(long IdTransacao)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_TRANSACOES SET REEMBOLSO = 1, ULTIMA_ALTERACAO = GETDATE()
+                WHERE ID_TRANSACAO = @ID_TRANSACAO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_TRANSACAO", I(IdTransacao)),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void AlteraPedidoTroca(long IdTransacao)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_TRANSACOES SET TROCA = 1, ULTIMA_ALTERACAO = GETDATE()
+                WHERE ID_TRANSACAO = @ID_TRANSACAO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_TRANSACAO", I(IdTransacao)),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void AlteraPedidoDevolucao(long IdTransacao)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_TRANSACOES SET DEVOLUCAO = 1, ULTIMA_ALTERACAO = GETDATE()
+                WHERE ID_TRANSACAO = @ID_TRANSACAO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_TRANSACAO", I(IdTransacao)),
                 };
 
                 DatabaseProgramas().Execute(query, parameters);
@@ -277,7 +458,10 @@ namespace crm.DAL
 	                                ETP.COR,
 	                                ET.PAGAMENTO,
 	                                ET.CODIGO,
-	                                ET.CRIACAO
+	                                ET.CRIACAO,
+                                    ET.REEMBOLSO,
+                                    ET.TROCA,
+                                    ET.DEVOLUCAO
                                 FROM ECM_TRANSACOES ET
 	                                INNER JOIN ECM_CLIENTES EC ON EC.ID_CLIENTE = ET.ID_CLIENTE
 		                                AND EC.D_E_L_E_T_ <> '*'
@@ -330,20 +514,16 @@ namespace crm.DAL
             {
                 string query = @$"SELECT
 	                                ES.GRUPO_CODIGO,
-	                                EE.ETAPA,
-	                                EE.COR,
 	                                ET.CODIGO AS CODIGO_TRANSACAO,
 	                                DATEADD(dd, 0, DATEDIFF(dd, 0, ET.CRIACAO)) AS CRIACAO,
 	                                ES.MOTIVO_SOLICITACAO,
 	                                DATEADD(dd, 0, DATEDIFF(dd, 0, ES.DATA_SOLICITACAO)) AS DATA_SOLICITACAO
                                 FROM ECM_SOLICITACOES ES
-	                                INNER JOIN ECM_ETAPAS EE ON EE.ID_ETAPA = ES.ID_ETAPA
 	                                INNER JOIN ECM_TRANSACOES ET ON ET.ID_TRANSACAO = ES.ID_TRANSACAO
 		                                AND ET.ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO)
                                 WHERE
 	                                ES.TIPO = @TIPO
                                 GROUP BY ES.GRUPO_CODIGO,
-	                                EE.ETAPA, EE.COR,
 	                                ET.CODIGO, 
 									DATEADD(dd, 0, DATEDIFF(dd, 0, ET.CRIACAO)),
 	                                ES.MOTIVO_SOLICITACAO,
@@ -361,6 +541,6 @@ namespace crm.DAL
             {
                 throw;
             }
-        } 
+        }
     }
 }

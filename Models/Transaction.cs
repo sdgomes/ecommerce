@@ -41,6 +41,15 @@ namespace crm.Models
         [Column("DESCONTOS")]
         public double Descontos { get; set; }
 
+        [Column("REEMBOLSO")]
+        public bool Reembolso { get; set; }
+
+        [Column("TROCA")]
+        public bool Troca { get; set; }
+
+        [Column("DEVOLUCAO")]
+        public bool Devolucao { get; set; }
+
         [Column("TOTAL")]
         public double Total { get; set; }
 
@@ -52,6 +61,9 @@ namespace crm.Models
 
         [Column("DATA_COMPRA")]
         public DateTime DataCompra { get; set; }
+
+        [Column("ULTIMA_ALTERACAO")]
+        public DateTime UltimaAlteracao { get; set; }
 
         [Column("ENTREGA")]
         public DateTime? Entrega { get; set; }

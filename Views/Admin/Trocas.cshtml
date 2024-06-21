@@ -8,7 +8,7 @@
         new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
         new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
         new BreadcrumbsDTO("Solicitações de Trocas")
-    };
+            };
 
     ViewData["Title"] = breadcrumbs.Title;
 }
@@ -38,11 +38,6 @@
                     <div>
                         <span class="text-purple-800 text-sm font-medium">
                             Nº Pedido @solicitacao.CodigoTransacao
-                        </span>
-                    </div>
-                    <div>
-                        <span style="background-color: @solicitacao.Cor" class="text-gray-800 text-sm font-medium px-2.5 py-0.5 rounded">
-                            @solicitacao.Etapa.Capitalize()
                         </span>
                     </div>
                 </div>

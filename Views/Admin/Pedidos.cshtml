@@ -65,7 +65,14 @@
                                 <span style='background-color: @transaction.Cor' class="text-white text-sm px-2 py-1 rounded block w-fit">@transaction.Etapa.Capitalize()</span>
                             </td>
                             <td>
-                                <span class="text-sm px-2 py-1 rounded block w-fit @(transaction.Pagamento == "APROVADO" ? "bg-green-400" : "bg-red-400")">@transaction.Pagamento.Capitalize()</span>
+                                @if (transaction.Reembolso)
+                                {
+                                    <span class="text-sm px-2 py-1 rounded block w-fit bg-orange-500">Reembolso</span>
+                                }
+                                else
+                                {
+                                    <span class="text-sm px-2 py-1 rounded block w-fit @(transaction.Pagamento == "APROVADO" ? "bg-green-400" : "bg-red-400")">@transaction.Pagamento.Capitalize()</span>
+                                }
                             </td>
                             <td>@transaction.Criacao.ToString("d")</td>
                             <td>
@@ -159,7 +166,23 @@
                                     </div>
                                 }
 
-
+                                @if (!transaction.Reembolso)
+                                {
+                                    if (transaction.Pagamento == "APROVADO" && (transaction.Etapa == "COMPRA RECUSADA" || transaction.Etapa == "CANCELADO"))
+                                    {
+                                        <div class="tooltip" data-tip="Cancalar venda">
+                                            <button data-id-transacao="@transaction.IdTransacao"
+                                                    data-etapa="REEMBOLSAR"
+                                                    data-before-title="Atenção!"
+                                                    data-before-message="Comfirma o reeibolso completo desse pedido?"
+                                                    data-after-title="Feito!"
+                                                    data-after-message='Pedido reeibolsado com sucesso.'
+                                                    data-trigger="manage" class="btn btn-sm btn-warning btn-square">
+                                                <i class="fa-regular fa-money-bill-transfer"></i>
+                                            </button>
+                                        </div>
+                                    }
+                                }
                             </td>
                         </tr>
                     }

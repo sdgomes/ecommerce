@@ -24,35 +24,89 @@ namespace crm.BLL
             return Model;
         }
 
-        public static void Etapa(long IdTransacao, string Etapa)
+        public static void EtapaTroca(long IdSolicitacao, string Etapa, string Motivo)
         {
-            TransactionDAO.AlteraEtapaPedido(IdTransacao, Etapa);
-
             switch (Etapa)
             {
-                case "A CAMINHO":
-                    TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi marcado como enviado! Ação feita por um funcionário.", "ENVIADO");
-                    break;
-
                 case "CANCELADO":
-                    TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi cancelado.", "CANCELADO");
+                case "ENVIADO PARA TROCA":
+                    TransactionDAO.AlteraEtapaSolicitacao(IdSolicitacao, Etapa, Motivo);
                     break;
 
-                case "EM PREPARAÇÃO":
-                    TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi colocado em preparação! Ação feita por um funcionário.", "PREPARACAO");
+                case "APROVAR SOLICITACAO DE TROCA":
+                    TransactionDAO.AprovaSolicitacao(IdSolicitacao);
+                    break;
+
+                case "APROVAR TROCA":
+                    TransactionDAO.AprovaEntrega(IdSolicitacao);
                     break;
 
                 case "ENTREGUE":
-                    TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi entregue pelos correios.", "ENTREGUE");
+                    long IdDesconto = TransactionDAO.GeraDesconto(IdSolicitacao, "TROCA");
+                    TransactionDAO.SolicitacaoEntregue(IdSolicitacao, IdDesconto);
                     break;
+            }
+        }
 
-                case "COMPRA APROVADA":
-                    TransactionDAO.RegistraAtividade(IdTransacao, "A venda foi aprovada! Ação feita por um funcionário.", "APROVADO ");
-                    break;
+        public static void Reembolso(long IdTransacao)
+        {
+            TransactionDTO transaction = TransactionDAO.SearchById(IdTransacao);
+            string Motivo = "Pedido cancelado ou venda não aprovada, foi feito reembolso.";
+            string Tipo = "REEMBOLSO";
 
-                case "COMPRA RECUSADA":
-                    TransactionDAO.RegistraAtividade(IdTransacao, "A venda foi reprovada! Ação feita por um funcionário.", "RECUSADO");
-                    break;
+            Solicitation solicitacao = new();
+            solicitacao.GrupoCodigo = transaction.Codigo.ToString();
+            solicitacao.Codigo = transaction.Codigo.ToString();
+            solicitacao.IdTransacao = IdTransacao;
+            solicitacao.Tipo = Tipo;
+            solicitacao.Preco = transaction.Total;
+            solicitacao.MotivoSolicitacao = Motivo;
+
+            var IdSolicitacao = ClientDAO.CreateSolicitacao(solicitacao);
+
+            long IdDesconto = TransactionDAO.GeraDesconto(IdSolicitacao, Tipo);
+            TransactionDAO.SolicitacaoReembolso(IdSolicitacao, IdDesconto);
+
+            TransactionDAO.AlteraPedidoReembolso(IdTransacao);
+            TransactionDAO.RegistraAtividade(IdTransacao, Motivo, Tipo);
+        }
+
+        public static void Etapa(long IdTransacao, string Etapa)
+        {
+            if (Etapa == "REEMBOLSAR")
+            {
+                Reembolso(IdTransacao);
+            }
+            else
+            {
+                TransactionDAO.AlteraEtapaPedido(IdTransacao, Etapa);
+
+                switch (Etapa)
+                {
+                    case "A CAMINHO":
+                        TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi marcado como enviado! Ação feita por um funcionário.", "ENVIADO");
+                        break;
+
+                    case "CANCELADO":
+                        TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi cancelado.", "CANCELADO");
+                        break;
+
+                    case "EM PREPARAÇÃO":
+                        TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi colocado em preparação! Ação feita por um funcionário.", "PREPARACAO");
+                        break;
+
+                    case "ENTREGUE":
+                        TransactionDAO.RegistraAtividade(IdTransacao, "O pedido foi entregue pelos correios.", "ENTREGUE");
+                        break;
+
+                    case "COMPRA APROVADA":
+                        TransactionDAO.RegistraAtividade(IdTransacao, "A venda foi aprovada! Ação feita por um funcionário.", "APROVADO ");
+                        break;
+
+                    case "COMPRA RECUSADA":
+                        TransactionDAO.RegistraAtividade(IdTransacao, "A venda foi reprovada! Ação feita por um funcionário.", "RECUSADO");
+                        break;
+                }
             }
         }
     }

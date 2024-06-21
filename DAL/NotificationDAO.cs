@@ -28,7 +28,7 @@ namespace crm.DAL
 	                                LEFT JOIN ECM_FUNCIONARIOS EF ON EF.ID_FUNCIONARIO = EN.ID_FUNCIONARIO
                                 WHERE
 	                                EN.GRUPO_CODIGO = @GRUPO_CODIGO
-                                ORDER BY EN.ID_NOTIFICACAO DESC;";
+                                ORDER BY EN.ID_NOTIFICACAO ASC;";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@GRUPO_CODIGO", GrupoCodigo)

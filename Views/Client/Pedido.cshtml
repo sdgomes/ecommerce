@@ -7,11 +7,11 @@
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Pedidos";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-        new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
-        new BreadcrumbsDTO("Meus Pedidos", "./", "fa-solid fa-box-open-full"),
-        new BreadcrumbsDTO("Pedido")
-    };
+new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
+new BreadcrumbsDTO("Meus Pedidos", "./", "fa-solid fa-box-open-full"),
+new BreadcrumbsDTO("Pedido")
+};
 
     ViewData["Title"] = breadcrumbs.Title;
 }
@@ -25,120 +25,147 @@
             <h2 class="text-2xl font-bold mb-4 text-center">Status do pedido</h2>
             <div class="flex justify-between items-center">
 
-                <!-- Processando Pagamento -->
-                <div class="text-center">
-                    <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-2 text-2xl text-purple-500">
-                        <i class="fa-regular fa-money-check-dollar-pen"></i>
+                @if (Model.Etapa == "CANCELADO")
+                {
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-2 text-2xl text-red-500">
+                            <i class="fa-solid fa-ban"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Calcelado</h3>
+                        <p class="text-sm text-red-500">Aprovado</p>
                     </div>
-                    <h3 class="text-lg font-semibold">Processando Pagamento</h3>
-                    <p class="text-sm text-purple-500">Data Compra</p>
-                    <p class="text-sm text-gray-500">
-                        @Model.DataCompra.ToString("d") -
-                        @Model.DataCompra.ToString("t")
-                    </p>
-                </div>
 
-                <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
-
-                <!-- Pagamento -->
-                <div class="text-center">
-                    <div class='@(Model.Etapa == "PROCESSANDO PAGAMENTO" ? "bg-gray-100 text-gray-400" : Model.Etapa != "COMPRA RECUSADA" ? "bg-purple-100 text-purple-500" : "bg-red-100 text-red-500" ) text-2xl w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-2'>
-                        @if (Model.Etapa == "PROCESSANDO PAGAMENTO")
-                        {
-                            <i class="fa-sharp fa-regular fa-clock"></i>
-                        }
-                        else if (Model.Etapa != "COMPRA RECUSADA")
-                        {
-                            <i class="fa-regular fa-badge-check"></i>
-                        }
-                        else
-                        {
-                            <i class="fa-sharp fa-regular fa-octagon-xmark"></i>
-                        }
-                    </div>
-                    @if (Model.Etapa == "PROCESSANDO PAGAMENTO")
+                    if (Model.Reembolso)
                     {
-                        <h3 class="text-lg font-semibold text-gray-400">Compra</h3>
+                        <div class="text-center">
+                            <div class="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center mx-auto mb-2 text-2xl text-orange-500">
+                                <i class="fa-regular fa-money-bill-transfer"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold">Reembolso</h3>
+                            <p class="text-sm text-orange-500">Data Cancelamento</p>
+                            <p class="text-sm text-gray-500">
+                                @Model.UltimaAlteracao.ToString("d") -
+                                @Model.UltimaAlteracao.ToString("t")
+                            </p>
+                        </div>
                     }
-                    else
-                    {
-                        <h3 class="text-lg font-semibold">Compra</h3>
-                        <p class='text-sm @(Model.Etapa != "COMPRA RECUSADA" ? "text-purple-500" : "text-red-500")'>
-                            @if (Model.Etapa != "COMPRA RECUSADA")
+                }
+                else
+                {
+                    <!-- Processando Pagamento -->
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-2 text-2xl text-purple-500">
+                            <i class="fa-regular fa-money-check-dollar-pen"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Processando Pagamento</h3>
+                        <p class="text-sm text-purple-500">Data Compra</p>
+                        <p class="text-sm text-gray-500">
+                            @Model.DataCompra.ToString("d") -
+                            @Model.DataCompra.ToString("t")
+                        </p>
+                    </div>
+
+                    <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
+
+                    <!-- Pagamento -->
+                    <div class="text-center">
+                        <div class='@(Model.Etapa == "PROCESSANDO PAGAMENTO" ? "bg-gray-100 text-gray-400" : Model.Etapa != "COMPRA RECUSADA" ? "bg-purple-100 text-purple-500" : "bg-red-100 text-red-500" ) text-2xl w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-2'>
+                            @if (Model.Etapa == "PROCESSANDO PAGAMENTO")
                             {
-                                <span>Aprovada</span>
+                                <i class="fa-sharp fa-regular fa-clock"></i>
+                            }
+                            else if (Model.Etapa != "COMPRA RECUSADA")
+                            {
+                                <i class="fa-regular fa-badge-check"></i>
                             }
                             else
                             {
-                                <span>Recusada</span>
+                                <i class="fa-sharp fa-regular fa-octagon-xmark"></i>
                             }
-                        </p>
-                    }
-                </div>
+                        </div>
+                        @if (Model.Etapa == "PROCESSANDO PAGAMENTO")
+                        {
+                            <h3 class="text-lg font-semibold text-gray-400">Compra</h3>
+                        }
+                        else
+                        {
+                            <h3 class="text-lg font-semibold">Compra</h3>
+                            <p class='text-sm @(Model.Etapa != "COMPRA RECUSADA" ? "text-purple-500" : "text-red-500")'>
+                                @if (Model.Etapa != "COMPRA RECUSADA")
+                                {
+                                    <span>Aprovada</span>
+                                }
+                                else
+                                {
+                                    <span>Recusada</span>
+                                }
+                            </p>
+                        }
+                    </div>
 
-                <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
+                    <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
 
-                <!-- Preparação -->
-                @{
+                    <!-- Preparação -->
+
                     string[] caminho = { "PROCESSANDO PAGAMENTO", "COMPRA RECUSADA", "COMPRA APROVADA" };
                     bool preparacao = caminho.Contains(Model.Etapa);
-                }
-                <div class="text-center">
-                    <div class='w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-2 text-2xl @(preparacao ? "bg-gray-100 text-gray-400" : "bg-purple-100 text-purple-500")'>
-                        <i class="fa-regular fa-box-open-full"></i>
+
+                    <div class="text-center">
+                        <div class='w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-2 text-2xl @(preparacao ? "bg-gray-100 text-gray-400" : "bg-purple-100 text-purple-500")'>
+                            <i class="fa-regular fa-box-open-full"></i>
+                        </div>
+                        @if (preparacao)
+                        {
+                            <h3 class="text-lg font-semibold text-gray-400">Em Preparação</h3>
+                        }
+                        else
+                        {
+                            <h3 class="text-lg font-semibold text-purple-600">Em Preparação</h3>
+                        }
                     </div>
-                    @if (preparacao)
-                    {
-                        <h3 class="text-lg font-semibold text-gray-400">Em Preparação</h3>
-                    }
-                    else
-                    {
-                        <h3 class="text-lg font-semibold text-purple-600">Em Preparação</h3>
-                    }
-                </div>
 
-                <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
+                    <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
 
-                <!-- Enviado -->
-                @{
+                    <!-- Enviado -->
                     caminho = caminho.Append("EM PREPARAÇÃO").ToArray();
                     preparacao = caminho.Contains(Model.Etapa);
+
+                    <div class="text-center">
+                        <div class='w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-2 text-2xl @(preparacao ? "bg-gray-100 text-gray-400" : "bg-purple-100 text-purple-500")'>
+                            <i class="fa-regular fa-truck-fast"></i>
+                        </div>
+                        @if (preparacao)
+                        {
+                            <h3 class="text-lg font-semibold text-gray-400">A caminho</h3>
+                        }
+                        else
+                        {
+                            <h3 class="text-lg font-semibold text-purple-600">A caminho</h3>
+                        }
+                    </div>
+
+                    <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
+
+                    <!-- Entregue  -->
+                    <div class="text-center">
+                        <div class='w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-2 text-2xl @(Model.Etapa != "ENTREGUE" ? "bg-gray-100 text-gray-400" : "bg-purple-100 text-purple-500")'>
+                            <i class="fa-regular fa-box-circle-check"></i>
+                        </div>
+                        @if (Model.Etapa != "ENTREGUE")
+                        {
+                            <h3 class="text-lg font-semibold text-gray-400">Entregue</h3>
+                        }
+                        else
+                        {
+                            <h3 class="text-lg font-semibold text-purple-600">Entregue</h3>
+                            <p class="text-sm text-purple-500">Data Entrega</p>
+                            <p class="text-sm text-gray-500">
+                                @Model.Entrega.Value.ToString("d") -
+                                @Model.Entrega.Value.ToString("t")
+                            </p>
+                        }
+                    </div>
                 }
-                <div class="text-center">
-                    <div class='w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-2 text-2xl @(preparacao ? "bg-gray-100 text-gray-400" : "bg-purple-100 text-purple-500")'>
-                        <i class="fa-regular fa-truck-fast"></i>
-                    </div>
-                    @if (preparacao)
-                    {
-                        <h3 class="text-lg font-semibold text-gray-400">A caminho</h3>
-                    }
-                    else
-                    {
-                        <h3 class="text-lg font-semibold text-purple-600">A caminho</h3>
-                    }
-                </div>
-
-                <div class="flex-1 h-0.5 bg-gray-200 mx-2"></div>
-
-                <!-- Entregue  -->
-                <div class="text-center">
-                    <div class='w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-2 text-2xl @(Model.Etapa != "ENTREGUE" ? "bg-gray-100 text-gray-400" : "bg-purple-100 text-purple-500")'>
-                        <i class="fa-regular fa-box-circle-check"></i>
-                    </div>
-                    @if (Model.Etapa != "ENTREGUE")
-                    {
-                        <h3 class="text-lg font-semibold text-gray-400">Entregue</h3>
-                    }
-                    else
-                    {
-                        <h3 class="text-lg font-semibold text-purple-600">Entregue</h3>
-                        <p class="text-sm text-purple-500">Data Entrega</p>
-                        <p class="text-sm text-gray-500">
-                            @Model.Entrega.Value.ToString("d") -
-                            @Model.Entrega.Value.ToString("t")
-                        </p>
-                    }
-                </div>
             </div>
         </div>
     </div>
@@ -312,7 +339,7 @@
     <div class="flex justify-between">
         <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg shadow w-1/2 mr-4">
             <h2 class="text-2xl font-bold mb-4">Informações de pagamento</h2>
-            @if (Model.Pagamento == "RECUSADO")
+            @if (Model.Pagamento == "RECUSADO" && Model.Etapa != "CANCELADO")
             {
                 <div class="flex justify-between mb-5 items-center">
                     <h2 class="pr-10 text-xs italic">
@@ -320,7 +347,7 @@
                         novamente, para que seu pedido seja enviado, caso o pagamento não seja feito em até 7 dias úteis
                         a compra será cancelada automaticamente.
                     </h2>
-                    <button id="refazer-pagamento" data-id-transacao="@Model.IdTransacao" 
+                    <button id="refazer-pagamento" data-id-transacao="@Model.IdTransacao"
                             data-id-cliente="@Model.IdCliente" class="btn btn-sm btn-primary">
                         Fazer Pagamento
                     </button>
@@ -356,15 +383,18 @@
                 </table>
             </div>
 
-            @if (Model.Pagamento == "APROVADO" && Model.Etapa == "COMPRA RECUSADA")
+            @if (!Model.Reembolso)
             {
-                <div class="flex justify-between mb-5 mt-8 items-center">
-                    <h2 class="pr-10 text-xs italic">
-                        Caso seu estorno não tenha sido feito ainda, clique em solicitar para
-                        agilizar o processo, o período comum de estorno automático é de 72 horas.
-                    </h2>
-                    <button class="btn btn-sm btn-warning">Solicitar Estorno</button>
-                </div>
+                if (Model.Pagamento == "APROVADO" && (Model.Etapa == "COMPRA RECUSADA" || Model.Etapa == "CANCELADO"))
+                {
+                    <div class="flex justify-between mb-5 mt-8 items-center">
+                        <h2 class="pr-10 text-xs italic">
+                            Caso seu estorno não tenha sido feito ainda, clique em solicitar para
+                            agilizar o processo, o período comum de estorno automático é de 72 horas.
+                        </h2>
+                        <button id="estorno" class="btn btn-sm btn-warning">Solicitar Estorno</button>
+                    </div>
+                }
             }
         </div>
 
@@ -414,6 +444,17 @@
                 });
             }, 95);
         });
+
+        $(document).on('click', '#estorno', function () {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Feito!",
+                text: "Aguarde que em até 12h o seu estorno será feito e estará acessível na sua lista de descontos.",
+                showConfirmButton: false,
+                timer: 1500
+            })
+        })
 
         $(document).on('click', '#cancelar-transasao', PedidoAcoes)
 
@@ -505,41 +546,41 @@
                                 var htmlCartoes = "";
                                 result1.value.cartoes.forEach(card => {
                                     htmlCartoes += `<div class="w-1/2 mb-3 px-3">
-                                        <div class="border rounded-lg p-5 text-start">
-                                            <div class="text-base !text-gray-800 font-bold w-full">
-                                                ${$(`#pagamentos input[value="${card}"]`).parents('.card-body')
+                                                                <div class="border rounded-lg p-5 text-start">
+                                                                    <div class="text-base !text-gray-800 font-bold w-full">
+                                                                        ${$(`#pagamentos input[value="${card}"]`).parents('.card-body')
                                             .find('[data-name="nome-cartao"]').text()}</div>
-                                            <div class="text-sm w-full">Número Cartão</div>
-                                            <div class="text-base w-full">
-                                                ${$(`#pagamentos input[value="${card}"]`).parents('.card-body')
+                                                                    <div class="text-sm w-full">Número Cartão</div>
+                                                                    <div class="text-base w-full">
+                                                                        ${$(`#pagamentos input[value="${card}"]`).parents('.card-body')
                                             .find('[data-name="numero-cartao"]').text()}</div>
 
-                                            <label class="form-control w-full mt-3">
-                                                <div class="label">
-                                                    <span class="label-text-alt">Quantia que será passada nessa cartção?</span>
-                                                </div>
-                                                <input name="${card}" type="text" class="por-cartao input input-bordered w-full" />
-                                            </label>
-                                        </div>
-                                    </div>`
+                                                                    <label class="form-control w-full mt-3">
+                                                                        <div class="label">
+                                                                            <span class="label-text-alt">Quantia que será passada nessa cartção?</span>
+                                                                        </div>
+                                                                        <input name="${card}" type="text" class="por-cartao input input-bordered w-full" />
+                                                                    </label>
+                                                                </div>
+                                                            </div>`
                                 });
 
                                 Swal.fire({
                                     title: "Infromações de pagamento.",
                                     html: `
-                                                    <div>
-                                                        <h1 id="total-pagar-cartao" class="font-bold text-3xl text-gray-800">R$ <span total-sem-atribuicao>${result1.value.totalCompra.toMoney()}</span></h1>
-                                                        <p class="w-1/2 mx-auto mb-4 font-bold text-sm">Total da compra sem atribuição. Ao adicionar um valor no cartão selecionado ele será subitraido do valor tatal.</p>
-                                                    </div>
+                                                                            <div>
+                                                                                <h1 id="total-pagar-cartao" class="font-bold text-3xl text-gray-800">R$ <span total-sem-atribuicao>${result1.value.totalCompra.toMoney()}</span></h1>
+                                                                                <p class="w-1/2 mx-auto mb-4 font-bold text-sm">Total da compra sem atribuição. Ao adicionar um valor no cartão selecionado ele será subitraido do valor tatal.</p>
+                                                                            </div>
 
-                                                    <div class="mb-3">
-                                                        <p>Escolha quais valores serão passados em cada cartão </p>
-                                                        <small>Lembre-se o valor minimo a ser paga em pelo menos um dos cartões é de R$ 10,00</small>
-                                                    </div>
+                                                                            <div class="mb-3">
+                                                                                <p>Escolha quais valores serão passados em cada cartão </p>
+                                                                                <small>Lembre-se o valor minimo a ser paga em pelo menos um dos cartões é de R$ 10,00</small>
+                                                                            </div>
 
-                                                    <form class="flex flex-wrap">
-                                                        ${htmlCartoes}
-                                                    </form>`,
+                                                                            <form class="flex flex-wrap">
+                                                                                ${htmlCartoes}
+                                                                            </form>`,
                                     width: 645,
                                     allowOutsideClick: false,
                                     allowEscapeKey: false,
@@ -762,8 +803,6 @@
                                 console.log(error)
                                 return Swal.showValidationMessage('Um erro inesperado contate o TI.');
                             }
-
-                            // return Swal.showValidationMessage(`A senha informada não confere, por favor tente novamente!`);
                         }
                     }).then((result) => {
                         if (result.isConfirmed)

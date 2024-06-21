@@ -49,9 +49,8 @@ namespace crm.Controllers
         [HttpGet("/admin/perfil/{Codigo}/trocas/{GrupoCodigo}")]
         public IActionResult TrocasItens(string Codigo, int GrupoCodigo)
         {
-            //TrocasItensView Model = ClientBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, "TROCA");
-            //return View(Model);
-            return View();
+            TrocasItensView Model = AdminBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, "TROCA");
+            return View(Model);
         }
 
         [FuncionarioLogado]

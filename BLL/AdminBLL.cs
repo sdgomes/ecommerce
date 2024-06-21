@@ -19,16 +19,16 @@ namespace crm.BLL
             return Model;
         }
 
-        //public static TrocasItensView GetSolicitacoesByGrupoCodigo(string Codigo, int GrupoCodigo, string Tipo)
-        //{
-        //    TrocasItensView Model = new();
-        //    Model.Codigo = GrupoCodigo;
-        //    Model.Cliente = ClientDAO.SearchForClientByCodigo(Codigo);
-        //    Model.Solicitacoes = TransactionDAO.SelectAllSolicitacaoByGrupoCodigo(GrupoCodigo, Tipo);
-        //    Model.Mensagens = NotificationDAO.SelectAllChatByGrupoCodigo(GrupoCodigo);
+        public static TrocasItensView GetSolicitacoesByGrupoCodigo(string Codigo, int GrupoCodigo, string Tipo)
+        {
+            TrocasItensView Model = new();
+            Model.Codigo = GrupoCodigo;
+            Model.Funcionario = EmployeeDAO.SearchForEmployeeByCodigo(Codigo);
+            Model.Solicitacoes = TransactionDAO.SelectAllSolicitacaoByGrupoCodigo(GrupoCodigo, Tipo);
+            Model.Mensagens = NotificationDAO.SelectAllChatByGrupoCodigo(GrupoCodigo);
 
-        //    return Model;
-        //}
+            return Model;
+        }
 
         public static bool IsFuncionarioByCodigo(string Codigo)
         {

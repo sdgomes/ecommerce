@@ -46,5 +46,20 @@ namespace crm.Controllers
                 return StatusCode(400, new { Message = ex.Message });
             }
         }
+
+        [HttpPost]
+        [Route("altera/etapa/troca")]
+        public IActionResult EtapaTroca(long IdSolicitacao, string Etapa, string Motivo)
+        {
+            try
+            {
+                TransactionBLL.EtapaTroca(IdSolicitacao, Etapa, Motivo);
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, new { Message = ex.Message });
+            }
+        }
     }
 }

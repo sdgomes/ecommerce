@@ -34,7 +34,7 @@
                                 <div class="px-3 w-1/3 mb-4">
                                     <a asp-controller="Client" asp-action="Pedido" asp-route-codigo="@Model.Cliente.Codigo"
                                        asp-route-pedido="@produto.IdTransacao"
-                                       class='@(produto.Etapa == "CANCELADO" ? "pointer-events-none select-none":"") flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100'>
+                                       class='flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100'>
 
                                         <img class='@(produto.Etapa == "CANCELADO" ? "grayscale":"") object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg'
                                              src="@produto.ImageSource" alt="">

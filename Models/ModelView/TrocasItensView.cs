@@ -13,6 +13,8 @@ namespace crm.Models.ModelView
 
         public Client Cliente { get; set; }
 
+        public Employee Funcionario { get; set; }
+
         public List<Notification> Mensagens { get; set; }
 
         public List<SolicitationDTO> Solicitacoes { get; set; }

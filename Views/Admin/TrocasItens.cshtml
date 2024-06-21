@@ -1,21 +1,21 @@
-﻿@*@model TrocasItensView*@
+﻿@model TrocasItensView
 
 @{
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Troca";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-        new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
-        new BreadcrumbsDTO("Trocas", "./", "fa-solid fa-boxes-packing"),
-        new BreadcrumbsDTO("Controle da solicitação")
-    };
+new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
+new BreadcrumbsDTO("Trocas", "./", "fa-solid fa-boxes-packing"),
+new BreadcrumbsDTO("Controle da solicitação")
+};
 
     ViewData["Title"] = breadcrumbs.Title;
 }
 
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-@*<div class="p-8 mx-10">
+<div class="p-8 mx-10">
     <div class="bg-white border border-gray-200 p-6 rounded-lg shadow mb-8">
 
         <div class="leading-none mb-3">
@@ -43,7 +43,7 @@
                         @foreach (var (item, index) in Model.Solicitacoes.Select((item, index) => (item, index)))
                         {
                             <tr>
-                                <th class="py-2">@index</th>
+                                <th class="py-2">@(index + 1)</th>
                                 <td class="py-2">@item.Codigo</td>
                                 <td class="py-2">
                                     <img width="40" src="@item.ImageSource" />
@@ -123,7 +123,7 @@
                                             <span>Etapa não conhecida</span>
                                         }
                                     }
-                                    else if (item.Aprovacao1 && item.Aprovacao2)
+                                    else if (item.Aprovacao1 && item.Aprovacao2 && item.Etapa != "ENTREGUE")
                                     {
                                         <span class="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-600 ring-1 ring-inset ring-purple-500/10">
                                             Troca
@@ -132,22 +132,77 @@
                                     }
                                     else
                                     {
-                                        <span>Etapa não conhecida</span>
+                                        <span class="inline-flex items-center rounded-md bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-600 ring-1 ring-inset ring-emerald-500/10">Concluída</span>
                                     }
                                 </td>
                                 <td>
                                     @if (item.Etapa == "TROCA SOLICITADA")
                                     {
                                         <div class="tooltip" data-tip="Cancalar solicitação item">
-                                            <button data-id-solicitacao="@item.IdSolicitacao" data-etapa="CANCELADO"
-                                                    data-before-title="Atenção!"
+                                            <button type="button" data-id-solicitacao="@item.IdSolicitacao"
+                                                    data-etapa="CANCELADO" data-before-title="Atenção!"
                                                     data-before-message="Comfirma que deseja cancelar a solicitação desse item?"
-                                                    data-after-title="Feito!" data-after-message='Item cancelado com sucesso.'
+                                                    data-after-title="Feito!"
+                                                    data-after-message='Solicitação de troca de item cancelada com sucesso.'
                                                     data-trigger="manage" class="btn btn-sm btn-error btn-square">
                                                 <i class="fa-solid fa-ban"></i>
                                             </button>
                                         </div>
                                     }
+
+                                    @if (!item.Aprovacao1 && !item.Aprovacao2 && item.Etapa != "CANCELADO")
+                                    {
+                                        <div class="tooltip" data-tip="Aprovar solicitação do item">
+                                            <button type="button" data-id-solicitacao="@item.IdSolicitacao"
+                                                    data-etapa="APROVAR SOLICITACAO DE TROCA" data-before-title="Atenção!"
+                                                    data-before-message="Comfirma a aprovação da solicitação de troca desse item?"
+                                                    data-after-title="Feito!" data-after-message='Item aprovado para envio.'
+                                                    data-trigger="manage" class="btn btn-sm btn-success btn-square">
+                                                <i class="fa-solid fa-thumbs-up"></i>
+                                            </button>
+                                        </div>
+                                    }
+
+                                    @if (item.Aprovacao1 && !item.Aprovacao2 && item.Etapa != "ENVIADO PARA TROCA")
+                                    {
+                                        <div class="tooltip" data-tip="Item enviado">
+                                            <button type="button" data-id-solicitacao="@item.IdSolicitacao"
+                                                    data-etapa="ENVIADO PARA TROCA" data-before-title="Atenção!"
+                                                    data-before-message="Comfirma que esse item foi entrege aos correios e está a caminho?"
+                                                    data-after-title="Feito!" data-after-message='Item enviado.'
+                                                    data-trigger="manage" class="btn btn-sm btn-primary btn-square">
+                                                <i class="fa-solid fa-mailbox"></i>
+                                            </button>
+                                        </div>
+                                    }
+
+                                    @if (item.Aprovacao1 && !item.Aprovacao2 && item.Etapa == "ENVIADO PARA TROCA")
+                                    {
+                                        <div class="tooltip" data-tip="Aprovar troca do item">
+                                            <button type="button" data-id-solicitacao="@item.IdSolicitacao"
+                                                    data-etapa="APROVAR TROCA" data-before-title="Atenção!"
+                                                    data-before-message="Comfirma que o item foi recebido e está apto para troca?"
+                                                    data-after-title="Feito!"
+                                                    data-after-message='Item liberado para finalização.' data-trigger="manage"
+                                                    class="btn btn-sm btn-warning btn-square">
+                                                <i class="fa-solid fa-box-circle-check"></i>
+                                            </button>
+                                        </div>
+                                    }
+
+                                    @if (item.Aprovacao1 && item.Aprovacao2 && item.Etapa != "ENTREGUE")
+                                    {
+                                        <div class="tooltip" data-tip="Aprovar troca">
+                                            <button type="button" data-id-solicitacao="@item.IdSolicitacao"
+                                                    data-etapa="ENTREGUE" data-before-title="Atenção!"
+                                                    data-before-message="Comfirma a aprovação da troca desse item?"
+                                                    data-after-title="Feito!" data-after-message='Troca feita com sucesso.'
+                                                    data-trigger="manage" class="btn btn-sm btn-success btn-square">
+                                                <i class="fa-solid fa-flag-checkered"></i>
+                                            </button>
+                                        </div>
+                                    }
+
                                 </td>
                             </tr>
                         }
@@ -212,8 +267,8 @@
                 <textarea name="mensagem" class="textarea w-full textarea-bordered resize-none focus:outline-none"
                           placeholder="Digite sua mensagem..." rows="2"></textarea>
                 <button data-grupo-codigo="@Model.Codigo"
-                        data-nome-completo="@Model.Cliente.Nome.Capitalize() @Model.Cliente.Sobrenome.Capitalize()"
-                        data-id-cliente="@Model.Cliente.IdCliente" id="envia-conversa"
+                        data-nome-completo="@Model.Funcionario.NomeCompleto.Capitalize()"
+                        data-id-funcionario="@Model.Funcionario.IdFuncionario" id="envia-conversa"
                         class="btn btn-warning btn-circle text-xl">
                     <i class="fa-solid fa-paper-plane"></i>
                 </button>
@@ -225,6 +280,8 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
+            $('#chat-container').animate({ scrollTop: $('#chat-container')[0].scrollHeight });
+
             $("#serach-conversa").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
                 $("[data-id-notificacao]").filter(function () {
@@ -262,22 +319,23 @@
                 $("#chat-container").empty()
 
             $("#chat-container").append(`
-                        <div data-id-notificacao="${$('[data-id-notificacao]').length + 1}"
-                            class='flex items-start bg-gray-50 py-2 px-3'>
-                          <div class="avatar placeholder mr-3">
-                              <div class="bg-neutral text-neutral-content rounded-full w-12 text-xl">
-                                  <span>${chat.nomeCompleto.Avatar()}</span>
-                              </div>
-                          </div>
-                          <div class="w-full">
-                              <div class="flex justify-between items-center">
-                                  <h3 class="font-semibold">${chat.nomeCompleto}</h3>
-                                  <span class="text-gray-500 text-sm">${moment().fromNow()}</span>
-                              </div>
-                              <p>${mensagem}</p>
-                          </div>
-                        </div>`)
+                                        <div data-id-notificacao="${$('[data-id-notificacao]').length + 1}"
+                                            class='flex items-start bg-purple-100 py-2 px-3'>
+                                          <div class="avatar placeholder mr-3">
+                                              <div class="bg-neutral text-neutral-content rounded-full w-12 text-xl">
+                                                  <span>${chat.nomeCompleto.Avatar()}</span>
+                                              </div>
+                                          </div>
+                                          <div class="w-full">
+                                              <div class="flex justify-between items-center">
+                                                  <h3 class="font-semibold">${chat.nomeCompleto}</h3>
+                                                  <span class="text-gray-500 text-sm">${moment().fromNow()}</span>
+                                              </div>
+                                              <p>${mensagem}</p>
+                                          </div>
+                                        </div>`)
 
+            $('#chat-container').animate({ scrollTop: $('#chat-container')[0].scrollHeight });
 
             $.ajax({
                 type: "POST",
@@ -291,5 +349,124 @@
                 },
             });
         })
+
+        $(document).on('keyup', '[name="motivoRecusa"]', function () {
+            let palavras = $(this).val().length
+            $('[data-target="motivo-recusa"]').html(palavras)
+
+            if (palavras > 520)
+                $('[data-target="motivo-recusa"]').addClass('text-red-600')
+            else
+                $('[data-target="motivo-recusa"]').removeClass('text-red-600')
+        })
+
+        $(document).on('click', '[data-trigger="manage"]', function () {
+            let data = $(this).getData();
+
+            Swal.fire({
+                title: data.beforeTitle,
+                text: data.beforeMessage,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showCancelButton: true,
+                confirmButtonText: "Sim",
+                cancelButtonText: 'Não',
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: "!bg-[#130235] !twxt-white",
+                    cancelButton: "!bg-transparent !text-[#ffcc00] !border !border-solid !border-[#ffcc00] hover:!border-[#ffe990] hover:!text-gray-900 hover:!bg-[#ffe990]",
+                }
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+
+                    if (data.etapa == "CANCELADO") {
+                        Swal.fire({
+                            html: `<form id="from-solicitacao">
+                                    <div>
+                                        <label class="form-control relative">
+                                            <div class="label">
+                                                <span class="label-text-alt">Motivo da recusa da solictação.</span>
+                                            </div>
+                                            <span data-target="motivo-recusa" class="block absolute bottom-2 right-3 text-sm font-bold">0</span>
+                                            <textarea name="motivoRecusa" rows="15"
+                                                class="textarea textarea-bordered h-24 placeholder:italic resize-none"
+                                                placeholder="Descreva o motivo que deseja cancelar a solicitação de troca! Lembrando que a descrição do motivo é para o item selecionado."></textarea>
+                                        </label>
+                                    </div>
+                                </form>`,
+                            showCancelButton: true,
+                            reverseButtons: true,
+                            title: "Cancelar troca de item.",
+                            customClass: {
+                                confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                            },
+                            confirmButtonText: 'Sim, cancelar',
+                            cancelButtonText: 'Não',
+                            allowEnterKey: false,
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.hideLoading();
+                            },
+                            showLoaderOnConfirm: true,
+                            preConfirm: async () => {
+                                try {
+                                    const item = $("#from-solicitacao").serializeJsonComplex()
+
+                                    if (item.motivoRecusa == "") {
+                                        return Swal.showValidationMessage(`É necessário informar o motivo da sua solicitação de troca.`);
+                                    }
+
+                                    if (item.motivoRecusa.length > 520) {
+                                        return Swal.showValidationMessage(`Sua descrição passou de 520 caracteres por favor reduza a quantidade`);
+                                    }
+
+                                    return item.motivoRecusa;
+                                } catch (error) {
+                                    console.log(error)
+                                    return Swal.showValidationMessage('Um erro inesperado contate o TI.');
+                                }
+                            }
+                        }).then(async (result) => {
+                            if (result.isConfirmed) {
+                                const response = await $.ajax({
+                                    url: `/altera/etapa/troca`,
+                                    type: 'POST',
+                                    data: { ...data, motivo: result.value }
+                                });
+
+                                if (response.success) {
+                                    Swal.fire({
+                                        position: "center",
+                                        icon: "success",
+                                        title: data.afterTitle,
+                                        text: data.afterMessage,
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    }).then(() => location.reload())
+                                }
+                            }
+                        })
+                    } else {
+                        const response = await $.ajax({
+                            url: `/altera/etapa/troca`,
+                            type: 'POST',
+                            data: data
+                        });
+
+                        if (response.success) {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: data.afterTitle,
+                                text: data.afterMessage,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => location.reload())
+                        }
+                    }
+                }
+            });
+        })
     </script>
-}*@
+}
