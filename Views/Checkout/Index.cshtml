@@ -1,340 +1,647 @@
 @model ClientDTO
 
 @{
-ViewBreadcrumbs breadcrumbs = new();
-breadcrumbs.Title = "Checkout";
-breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Checkout";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
 new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
 new BreadcrumbsDTO("Produtos", "./shop"),
 new BreadcrumbsDTO("Checkout")
 };
 
-ViewData["Title"] = breadcrumbs.Title;
+    ViewData["Title"] = breadcrumbs.Title;
+}
+
+@section Styles {
+    <style>
+        #form-adiciona-cartao > div > div:nth-child(6),
+        #form-adiciona-endereco > div.flex.flex-wrap {
+            display: none
+        }
+    </style>
 }
 
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-    <input type="hidden" value="@Model.Client.IdCliente" name="idCliente">
-    <input type="hidden" value="@Model.Client.Codigo" name="codigo">
+<input type="hidden" value="@Model.Client.IdCliente" name="idCliente">
+<input type="hidden" value="@Model.Client.Codigo" name="codigo">
 
-    <section class="checkout-wrapper section">
-        <div class="container mx-auto sm:px-4">
-            <div class="flex flex-wrap  justify-center">
-                <div class="lg:w-2/3 px-4">
-                    <div class="checkout-steps-form-style-1">
-                        <div class="join join-vertical w-full space-y-5">
-                            <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px]">
-                                <input readonly autocomplete="off" type="radio" name="my-accordion-1" checked />
-                                <div class="collapse-title font-bold !bg-white !text-gray-800 border-b">
-                                    Informações pessoais
-                                </div>
-                                <div class="collapse-content bg-white">
-                                    <div class="flex flex-wrap ">
-                                        <div class="md:w-2/3 px-4">
-                                            <div class="single-form form-default">
-                                                <label>Nome</label>
-                                                <div class="form-input form">
-                                                    <input readonly autocomplete="off" type="text"
-                                                        value="@Model.Client.Nome.Capitalize() @Model.Client.Sobrenome.Capitalize()">
-                                                </div>
-                                            </div>
-                                        </div>
+<section class="checkout-wrapper section">
 
-                                        <div class="md:w-1/3 px-4">
-                                            <div class="single-form form-default">
-                                                <label>RG</label>
-                                                <div class="form-input form">
-                                                    <input readonly autocomplete="off" type="text"
-                                                        value="**.***.@Model.Client.RG.Split('.')[2]">
-                                                </div>
-                                            </div>
-                                        </div>
+    <div class="container mx-auto sm:px-4 mb-10">
 
-                                        <div class="md:w-1/3 px-4">
-                                            <div class="single-form form-default">
-                                                <label>CPF</label>
-                                                <div class="form-input form">
-                                                    <input readonly autocomplete="off" type="text"
-                                                        value="***.***.@Model.Client.CPF.Split('.')[2]">
-                                                </div>
-                                            </div>
-                                        </div>
+        <div class="mx-4">
+            <div class="card w-full bg-base-100 rounded border">
+                <div class="card-body py-3 px-3">
+                    <h2 class="card-title !text-base">Produtos</h2>
 
-                                        <div class="md:w-1/3 px-4">
-                                            <div class="single-form form-default">
-                                                <label>Celular</label>
-                                                <div class="form-input form">
-                                                    <input readonly autocomplete="off" type="text"
-                                                        value="@Model.Client.Celular">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="md:w-1/3 px-4">
-                                            <div class="single-form form-default">
-                                                <label>Telefone (fixo)</label>
-                                                <div class="form-input form">
-                                                    <input readonly autocomplete="off" type="text"
-                                                        value="@Model.Client.Telefone">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="md:w-1/3 px-4">
-                                            <div class="single-form form-default">
-                                                <label>Gênero</label>
-                                                <div class="form-input form">
-                                                    <input readonly autocomplete="off" type="text"
-                                                        value='@Model.Client.Genero.Replace("_", " ").Capitalize()'>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="md:w-1/3 px-4">
-                                            <div class="single-form form-default">
-                                                <label>Data nascimento</label>
-                                                <div class="form-input form">
-                                                    <input readonly autocomplete="off" type="text"
-                                                        value='@Model.Client.DataNascimento.ToString("dd/MM/yyyyy")'>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div>
+                        @if (Model.Products == null)
+                        {
+                            <div role="alert" class="alert rounded-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Nenhum item foi adicionado ao carrinho.</span>
                             </div>
+                        }
+                        else
+                        {
+                            <table class="table table-zebra border">
+                                <thead>
+                                    <tr class="bg-purple-200">
+                                        <th>Item</th>
+                                        <th>Nome do Produto</th>
+                                        <th>Quantidade</th>
+                                        <th>Subtotal</th>
+                                        <th>Desconto</th>
+                                        <th>Remover</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var Item in Model.Products)
+                                    {
 
-                            <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px]">
-                                <input readonly autocomplete="off" type="radio" name="my-accordion-2" checked />
-                                <div class="collapse-title font-bold !bg-white !text-gray-800 border-b">
-                                    Endereço para envio
-                                </div>
-                                <div class="collapse-content bg-white">
-
-                                    <div class="flex flex-wrap -mx-3">
-                                        @foreach (var (address, index) in Model.Adresses.Select((address, index) =>
-                                        (address, index)))
-                                        {
-                                        <div class="w-1/2 px-3">
-                                            <label class="w-full card bg-base-200 rounded">
-                                                <div class="card-body px-3 py-3.5">
-                                                    <label class="flex items-center gap-2">
-                                                        <input class="accent-yellow-400 h-[25px] w-[25px]" type="radio"
-                                                            name="enderecoEntrega" value="@address.IdEndereco">
-                                                        @address.NomeEndereco
-                                                    </label>
-
-                                                    <div class="flex flex-wrap mt-4 px-3">
-                                                        <div data-type="CEP" class="text-base w-full">@address.CEP</div>
-                                                        <div class="w-full text-gray-800">
-                                                            @address.TipoLogradouro.Capitalize(),
-                                                            @address.TipoResidencia.Capitalize()
-                                                        </div>
-                                                        <div class="text-base w-full text-gray-800">
-                                                            @address.Logradouro,
-                                                            @address.Numero - @address.Bairro, @address.Cidade -
-                                                            @address.Estado
-                                                        </div>
-                                                        <hr>
-                                                        <div>@address.Complemento</div>
-                                                        <div>@address.Frase</div>
-                                                    </div>
+                                        <tr>
+                                            <td>
+                                                <a asp-action="Index"
+                                                   asp-controller="ShopSingle"
+                                                   asp-route-categoria="@Item.TipoProduto.ToLower()"
+                                                   asp-route-subcategoria="@Item.Subcategoria.ToLower()"
+                                                   asp-route-idproduto="@Item.IdProduto">
+                                                    <img src="@Item.ImageSource" class="w-14" alt="...">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <h5 class="product-name">
+                                                    <a asp-action="Index"
+                                                       asp-controller="ShopSingle"
+                                                       asp-route-categoria="@Item.TipoProduto.ToLower()"
+                                                       asp-route-subcategoria="@Item.Subcategoria.ToLower()"
+                                                       asp-route-idproduto="@Item.IdProduto">
+                                                        @Item.Nome
+                                                    </a>
+                                                </h5>
+                                                <p class="product-des">
+                                                    <span>@Item.Subcategoria.Capitalize(), @Item.TipoProduto.Capitalize(), @Item.Cor.Capitalize(), @Item.Marca.Capitalize()</span>
+                                                    <span><em>Cor:</em> @Item.Cor.Capitalize()</span>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <div class="count-input flex">
+                                                    <button class="button-qnt" data-id-produto="@Item.IdProduto" data-operador="menos"><i class="fa-solid fa-minus"></i></button>
+                                                    <input autocomplete="off" type="text" value="@Item.QntCompra"
+                                                           class="input-qnt !w-[65px] !mx-2" />
+                                                    <button class="button-qnt" data-id-produto="@Item.IdProduto" data-operador="mais"><i class="fa-solid fa-plus"></i></button>
                                                 </div>
-                                            </label>
-                                        </div>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
+                                            </td>
+                                            <td>
+                                                <p preco-unitario="@Item.IdProduto">@((Item.QntCompra * Item.Preco).ToString("C"))</p>
+                                            </td>
+                                            <td>
+                                                @if (Item.Desconto)
+                                                {
+                                                    @Item.CalculoDesconto.ToString("C")
+                                                }
+                                                else
+                                                {
+                                                    <span>-</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a data-id-produto="@Item.IdProduto" class="remove-item-carrinho btn btn-error btn-sm btn-square text-white"><i class="fa-light fa-xmark"></i></a>
+                                            </td>
+                                        </tr>
 
-                            <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px]">
-                                <input readonly autocomplete="off" type="radio" name="my-accordion-3" checked />
-                                <div class="collapse-title font-bold !bg-white !text-gray-800 border-b">
-                                    Forma de pagamento
-                                </div>
-                                <div id="pagamentos" class="collapse-content bg-white">
-
-                                    <div class="flex flex-wrap -mx-3 gap-5">
-                                        @(await Component.InvokeAsync<CartoesViewComponent>(new { IdCliente =
-                                            Model.Client.IdCliente}))
-                                            @* @foreach (var (card, index) in Model.Cards.Select((card, index) => (card,
-                                            index)))
-                                            {
-                                            <div class="w-1/2 px-3">
-                                                <label class="w-full card bg-base-200 rounded">
-                                                    <div class="card-body px-3 py-3.5">
-                                                        <label class="flex items-center gap-2">
-                                                            <input class="accent-yellow-400 h-[25px] w-[25px]"
-                                                                type="checkbox" name="cartaoPagamento"
-                                                                value="@card.IdCartao">
-                                                            Nome titular: @card.NomeTitular.Capitalize()
-                                                        </label>
-
-                                                        <div class="flex flex-wrap mt-4 px-3">
-                                                            <div class="w-full mb-3">
-                                                                <div data-name="nome-cartao"
-                                                                    class="text-base !text-gray-800 font-bold w-full">
-                                                                    @card.NomeCartao.Capitalize()
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="w-1/2">
-                                                                <div class="text-sm w-full">Número Cartão</div>
-                                                                <div class="text-base w-full" data-name="numero-cartao">
-                                                                    *** *** ***
-                                                                    @card.Numero.Split(' ')[3]
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="w-1/2 text-gray-700">
-                                                                <div class="text-sm w-full">Válidade até</div>
-                                                                @card.DataValidade.Split("-")[1]/@card.DataValidade.Split("-")[0]
-                                                            </div>
-
-                                                            <div class="text-base w-1/2 text-gray-800">
-                                                                <div class="text-base w-full">CVV</div>
-                                                                ***
-                                                            </div>
-
-                                                            <div class="w-1/2">
-                                                                <div>@card.NomeBandeira.Capitalize()&ensp;</div>
-                                                                <div>
-                                                                    <img class=""
-                                                                        src="~/img/images/payment/@(card.IdBandeira).webp" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            } *@
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="lg:w-1/3 px-4">
-                    <div class="checkout-sidebar">
-                        <div class="checkout-sidebar-coupon">
-                            <p>Aplique o cupom para obter desconto!</p>
-                            <form>
-                                <div class="single-form form-default">
-                                    <div class="form-input form">
-                                        <input autocomplete="off" type="text" placeholder="Código do cupom">
-                                    </div>
-                                    <div class="button">
-                                        <button type="button" data-action='desconto'
-                                            class="btn !w-fit !flex !text-gray-800 hover:!text-white min-h-0">
-                                            Aplicar
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="checkout-sidebar-coupon mt-5">
-                            <p>Informe seu CEP para o cálculo do frete!</p>
-                            <form>
-                                <div class="single-form form-default">
-                                    <div class="form-input form">
-                                        <input calculo-frete autocomplete="off" type="text" placeholder="Insira seu CEP"
-                                            data-mask="00000-000">
-                                    </div>
-                                    <div class="button">
-                                        <button type="button" data-action='frete'
-                                            class="btn !w-fit !flex !text-gray-800 hover:!text-white min-h-0">
-                                            Cálcular
-                                            frete
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="checkout-sidebar-price-table mt-30">
-                            <h5 class="title">Tabela de preços</h5>
-
-                            <div class="sub-total-price">
-                                <div class="total-price">
-                                    <p class="value">Subtotal do carrinho:</p>
-                                    <p class="price" menu-total-amount>R$ 0,00</p>
-                                </div>
-                                <div class="total-price shipping">
-                                    <p class="value">Frete:</p>
-                                    <p class="price" valor-frete>R$ 0,00</p>
-                                </div>
-                                <div class="total-price discount">
-                                    <p class="value">Descontos:</p>
-                                    <p class="price" total-descontos>R$ 0,00</p>
-                                </div>
-                            </div>
-
-                            <div class="total-payable">
-                                <div class="payable-price">
-                                    <p class="value">Total a pagar:</p>
-                                    <p class="price" total-compra>R$ 0,00</p>
-                                </div>
-                            </div>
-                            <div class="price-table-btn button">
-                                <a comprar
-                                    class="btn !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853] hover:!text-gray-800 btn-alt">Comprar</a>
-                            </div>
-                        </div>
-                        <div class="checkout-sidebar-banner mt-30">
-                            <a asp-action="Index" asp-controller="Shop">
-                                <img src="~/img/images/banner/banner.jpg" alt="...">
-                            </a>
-                        </div>
+                                    }
+                                </tbody>
+                            </table>
+                        }
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="container mx-auto sm:px-4">
+        <div class="flex flex-wrap  justify-center">
+            <div class="lg:w-2/3 px-4">
+                <div class="checkout-steps-form-style-1">
+                    <div class="join join-vertical w-full space-y-5">
+
+                        <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px]">
+                            <input readonly autocomplete="off" type="radio" name="my-accordion-1" checked />
+                            <div class="collapse-title font-bold !bg-white !text-gray-800 border-b after:!content-[none]">
+                                Informações pessoais
+                            </div>
+                            <div class="collapse-content bg-white">
+                                <div class="flex flex-wrap ">
+                                    <div class="md:w-2/3 px-4">
+                                        <div class="single-form form-default">
+                                            <label>Nome</label>
+                                            <div class="form-input form">
+                                                <input readonly autocomplete="off" type="text"
+                                                       value="@Model.Client.Nome.Capitalize() @Model.Client.Sobrenome.Capitalize()">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="md:w-1/3 px-4">
+                                        <div class="single-form form-default">
+                                            <label>RG</label>
+                                            <div class="form-input form">
+                                                <input readonly autocomplete="off" type="text"
+                                                       value="**.***.@Model.Client.RG.Split('.')[2]">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="md:w-1/3 px-4">
+                                        <div class="single-form form-default">
+                                            <label>CPF</label>
+                                            <div class="form-input form">
+                                                <input readonly autocomplete="off" type="text"
+                                                       value="***.***.@Model.Client.CPF.Split('.')[2]">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="md:w-1/3 px-4">
+                                        <div class="single-form form-default">
+                                            <label>Celular</label>
+                                            <div class="form-input form">
+                                                <input readonly autocomplete="off" type="text"
+                                                       value="@Model.Client.Celular">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="md:w-1/3 px-4">
+                                        <div class="single-form form-default">
+                                            <label>Telefone (fixo)</label>
+                                            <div class="form-input form">
+                                                <input readonly autocomplete="off" type="text"
+                                                       value="@Model.Client.Telefone">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="md:w-1/3 px-4">
+                                        <div class="single-form form-default">
+                                            <label>Gênero</label>
+                                            <div class="form-input form">
+                                                <input readonly autocomplete="off" type="text"
+                                                       value='@Model.Client.Genero.Replace("_", " ").Capitalize()'>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="md:w-1/3 px-4">
+                                        <div class="single-form form-default">
+                                            <label>Data nascimento</label>
+                                            <div class="form-input form">
+                                                <input readonly autocomplete="off" type="text"
+                                                       value='@Model.Client.DataNascimento.ToString("dd/MM/yyyyy")'>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px]">
+                            <input readonly autocomplete="off" type="radio" name="my-accordion-2" checked />
+                            <div class="collapse-title font-bold !bg-white !text-gray-800 border-b after:!content-[none]">
+                                <span>Endereço para envio</span>
+                            </div>
+                            <button id="novo-endereco" data-id-cliente="@Model.Client.IdCliente"
+                                    class="text-white btn btn-sm bg-purple-700 hover:bg-purple-800 absolute top-4 right-4 z-10">
+                                Novo Endereço
+                            </button>
+                            <div class="collapse-content bg-white">
+
+                                <div class="flex flex-wrap -mx-3" id="container-enderecos">
+                                    @(await Component.InvokeAsync<EnderecoCompraViewComponent>(Model.Adresses))
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapse collapse-arrow join-item border border-base-300 !rounded-[3px]">
+                            <input readonly autocomplete="off" type="radio" name="my-accordion-3" checked />
+                            <div class="collapse-title font-bold !bg-white !text-gray-800 border-b after:!content-[none]">
+                                <span>Forma de pagamento</span>
+                            </div>
+                            <button id="novo-pagamento" data-id-cliente="@Model.Client.IdCliente"
+                                    class="text-white btn btn-sm bg-yellow-700 hover:bg-yellow-800 absolute top-4 right-4 z-10">
+                                Adicionar Cartão
+                            </button>
+                            <div id="pagamentos" class="collapse-content bg-white">
+
+                                <div class="flex flex-wrap -mx-3 gap-5" id="container-cartoes">
+                                    @(await Component.InvokeAsync<CartoesViewComponent>(new { IdCliente =
+                                            Model.Client.IdCliente}))
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:w-1/3 px-4">
+                <div class="checkout-sidebar">
+                    <div class="checkout-sidebar-coupon">
+                        <p>Aplique o cupom para obter desconto!</p>
+                        <form>
+                            <div class="single-form form-default">
+                                <div class="form-input form">
+                                    <input autocomplete="off" type="text" placeholder="Código do cupom">
+                                </div>
+                                <div class="button">
+                                    <button type="button" data-action='desconto'
+                                            class="btn !w-fit !flex !text-gray-800 hover:!text-white min-h-0">
+                                        Aplicar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="checkout-sidebar-coupon mt-5">
+                        <p>Informe seu CEP para o cálculo do frete!</p>
+                        <form>
+                            <div class="single-form form-default">
+                                <div class="form-input form">
+                                    <input calculo-frete autocomplete="off" type="text" placeholder="Insira seu CEP"
+                                           data-mask="00000-000">
+                                </div>
+                                <div class="button">
+                                    <button type="button" data-action='frete'
+                                            class="btn !w-fit !flex !text-gray-800 hover:!text-white min-h-0">
+                                        Cálcular
+                                        frete
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="checkout-sidebar-price-table mt-30">
+                        <h5 class="title">Tabela de preços</h5>
+
+                        <div class="sub-total-price">
+                            <div class="total-price">
+                                <p class="value">Subtotal do carrinho:</p>
+                                <p class="price" menu-total-amount>R$ 0,00</p>
+                            </div>
+                            <div class="total-price shipping">
+                                <p class="value">Frete:</p>
+                                <p class="price" valor-frete>R$ 0,00</p>
+                            </div>
+                            <div class="total-price discount">
+                                <p class="value">Descontos:</p>
+                                <p class="price" total-descontos>R$ 0,00</p>
+                            </div>
+                        </div>
+
+                        <div class="total-payable">
+                            <div class="payable-price">
+                                <p class="value">Total a pagar:</p>
+                                <p class="price" total-compra>R$ 0,00</p>
+                            </div>
+                        </div>
+                        <div class="price-table-btn button">
+                            <a comprar
+                               class="btn !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853] hover:!text-gray-800 btn-alt">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="checkout-sidebar-banner mt-30">
+                        <a asp-action="Index" asp-controller="Shop">
+                            <img src="~/img/images/banner/banner.jpg" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
-    @section Scripts {
+@section Scripts {
     <script type="text/javascript">
+
+        $(document).on('click', '.viacep', function () {
+            $button = $(this);
+            $button.disabled().html('<span class="loading loading-spinner loading-sm"></span>');
+
+            fetch(`https://viacep.com.br/ws/${$button.parent('.form-input').find('input').val()}/json/`)
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    const conteudo = {
+                        cep: data.cep,
+                        logradouro: data.logradouro,
+                        complemento: data.complemento,
+                        bairro: data.bairro,
+                        cidade: data.localidade,
+                        estado: data.uf,
+                        pais: "Brasil",
+                    }
+
+                    populate($button.parents(".address-capsule"), conteudo);
+
+                }).catch(error => {
+                    console.error(error);
+                }).finally(function () {
+                    $button.enabled().html('<i class="fa-regular fa-magnifying-glass"></i>');
+                });
+        });
+
+        const validation = () => {
+            var valid = true;
+            $(".swal2-html-container form").find('[required]').each(function (index, element) {
+                if (element.value.trim() == "") {
+                    valid = false;
+                    $(element).addClass("!border-red-600")
+                    $(element).parents('[data-tip]').addClass("tooltip-open").removeClass('before:!hidden after:!hidden');
+                }
+
+                if ($(element).attr("data-mask"))
+                    if (element.value.trim().length < $(element).attr("data-mask").length)
+                        if ($(element).attr("data-mask").length != 4) {
+                            valid = false;
+                            $(element).addClass("!border-red-600")
+                            $(element).parents('[data-tip]').addClass("tooltip-open").removeClass('before:!hidden after:!hidden');
+                        }
+            });
+
+            return valid;
+        }
+
+        $(document).on('click', '#novo-pagamento', function () {
+            $button = $(this);
+            const data = $button.getData();
+
+            Swal.fire({
+                title: "Aguarde",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                data: { Index: 1 },
+                url: "/componente/client/adiciona/cartao",
+                success: function (response) {
+                    Swal.fire({
+                        html: `<div class="checkout-steps-form-style-1" style="width: 500px; margin: auto;">
+                                                            <form id="form-adiciona-cartao" class="text-start">
+                                                                <input type="hidden" name="card[1].idCliente" value="${data.idCliente}">
+                                                                ${response}
+                                                            </form>
+                                                           </div>`,
+                        width: 575,
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        title: "Adiciona novo cartão.",
+                        customClass: {
+                            htmlContainer: '!overflow-hidden',
+                            confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                        },
+                        confirmButtonText: 'Cadastrar',
+                        cancelButtonText: 'Cancelar',
+                        allowEnterKey: false,
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.hideLoading();
+                        },
+                        showLoaderOnConfirm: true,
+                        preConfirm: async () => {
+                            if (!validation())
+                                return Swal.showValidationMessage(`Todos os campos em vermelho precisam ser preenchidos.`);
+
+                            const form = $(".swal2-html-container").find('form').serializeJson();
+                            var Cartao = {};
+
+                            for (const key in form) {
+                                if (Object.hasOwnProperty.call(form, key)) {
+                                    const value = form[key];
+                                    var chaves = key.split('.');
+                                    Cartao[chaves[1]] = value;
+                                }
+                            }
+
+                            Cartao.Principal = form.mainCard == undefined ? false : true;
+
+                            const response = await $.ajax({
+                                url: '/cadastrar/novo/cartao',
+                                type: 'POST',
+                                data: { card: Cartao }
+                            });
+
+                            return response;
+                        },
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: "Cartão adicionado",
+                                showConfirmButton: false,
+                                customClass: {
+                                    confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                                },
+                                timer: 1500,
+                                didOpen: () => {
+                                    Swal.hideLoading();
+                                }
+                            }).then(() => {
+                                $.ajax({
+                                    type: "POST",
+                                    data: {
+                                        IdCliente: data.idCliente
+                                    },
+                                    url: "/componente/client/cartoes",
+                                    success: function (response) {
+                                        $("#container-cartoes").html(response)
+                                    },
+                                    error: function (response) {
+                                        console.log(response);
+                                    },
+                                });
+                            })
+                        }
+                    })
+                },
+                error: function (response) {
+                    console.log(response);
+                },
+            });
+        })
+
+        $(document).on('click', '#novo-endereco', function () {
+            $button = $(this);
+            const data = $button.getData();
+
+            Swal.fire({
+                title: "Aguarde",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                data: { Index: 0 },
+                url: "/componente/client/adiciona/endereco",
+                success: function (response) {
+                    Swal.fire({
+                        html: `<div class="checkout-steps-form-style-1">
+                                                                                            <form id="form-adiciona-endereco" class="text-start">
+                                                                                                <input type="hidden" name="adresses[0].idCliente" value="${data.idCliente}">
+                                                                                                <div class="flex flex-wrap">
+                                                                                                    <div class="px-3">
+                                                                                                        <div class="form-control">
+                                                                                                            <label class="cursor-pointer label gap-3">
+                                                                                                                <input type="checkbox" class="toggle toggle-secondary" name="adresses[0].principal" value="true" />
+                                                                                                                <span class="label-text !text-sm">Endereço principal</span>
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                    <div class="px-3">
+                                                                                                        <div class="form-control">
+                                                                                                            <label class="cursor-pointer label gap-3">
+                                                                                                                <input type="checkbox" class="toggle toggle-secondary" name="adresses[0].cobranca"  value="true" />
+                                                                                                                <span class="label-text !text-sm">Endereço de cobrança</span>
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                ${response}
+                                                                                            </form>
+                                                                                           </div>`,
+                        width: 755,
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        title: "Adiciona novo endereço.",
+                        customClass: {
+                            confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                        },
+                        confirmButtonText: 'Cadastrar',
+                        cancelButtonText: 'Cancelar',
+                        allowEnterKey: false,
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.hideLoading();
+                        },
+                        showLoaderOnConfirm: true,
+                        preConfirm: async () => {
+                            if (!validation())
+                                return Swal.showValidationMessage(`Todos os campos em vermelho precisam ser preenchidos.`);
+
+                            const form = $(".swal2-html-container").find('form').serializeJson();
+                            var Address = {};
+
+                            for (const key in form) {
+                                if (Object.hasOwnProperty.call(form, key)) {
+                                    const value = form[key];
+                                    var chaves = key.split('.');
+                                    Address[chaves[1]] = value;
+                                }
+                            }
+
+                            const response = await $.ajax({
+                                url: '/cadastrar/novo/endereco',
+                                type: 'POST',
+                                data: { address: Address }
+                            });
+
+                            return response;
+                        },
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: "Endereço adicionado",
+                                showConfirmButton: false,
+                                customClass: {
+                                    confirmButton: "!bg-[#ffcc00] !text-gray-800",
+                                },
+                                timer: 1500,
+                                didOpen: () => {
+                                    Swal.hideLoading();
+                                }
+                            }).then(() => {
+                                $.ajax({
+                                    type: "POST",
+                                    data: {
+                                        Enderecos: [result.value.address]
+                                    },
+                                    url: "/componente/client/lista/endereco",
+                                    success: function (response) {
+                                        $card = $(response)
+                                        $card.find('[name="enderecoEntrega"]').prop("checked", true)
+                                        $("#container-enderecos").append($card)
+
+                                    },
+                                    error: function (response) {
+                                        console.log(response);
+                                    },
+                                });
+                            })
+                        }
+                    })
+                },
+                error: function (response) {
+                    console.log(response);
+                },
+            });
+        })
+
         function alerta(cards) {
             return new Promise((resolve, reject) => {
                 var htmlCartoes = "";
                 cards.forEach(card => {
+                    console.log(card);
                     htmlCartoes += `<div class="w-1/2 mb-3 px-3">
-                                <div class="border rounded-lg p-5 text-start">
-                                    <div class="text-base !text-gray-800 font-bold w-full">
-                                        ${$(`#pagamentos input[value="${card}"]`).parents('.card-body')
+                                                                                                        <div class="border rounded-lg p-5 text-start">
+                                                                                                            <div class="text-base !text-gray-800 font-bold w-full">
+                                                                                                                ${$(`#pagamentos input[value="${card}"]`).parents('.card-body')
                             .find('[data-name="nome-cartao"]').text()}</div>
-                                    <div class="text-sm w-full">Número Cartão</div>
-                                    <div class="text-base w-full">
-                                        ${$(`#pagamentos input[value="${card}"]`).parents('.card-body')
-                            .find('[data-name="numero-cartao"]').text()}</div>
-
-                                    <label class="form-control w-full mt-3">
-                                        <div class="label">
-                                            <span class="label-text-alt">Quantia que será passada nessa cartção?</span>
-                                        </div>
-                                        <input name="${card}" type="text" class="por-cartao input input-bordered w-full" />
-                                    </label>
-                                </div>
-                            </div>`
+                                                                                                            <div class="text-sm w-full">Número Cartão</div>
+                                                                                                            <div class="text-base w-full font-bold">${$(`input[value="${card}"]`).parent('label').find('.tracking-wider').text().trim()}</div>
+                                                                                                            <label class="form-control w-full">
+                                                                                                                <div class="label">
+                                                                                                                    <span class="label-text-alt">Quantia que será passada nessa cartção?</span>
+                                                                                                                </div>
+                                                                                                                <input name="${card}" type="text" class="por-cartao input input-bordered w-full" />
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    </div>`
                 });
 
                 Swal.fire({
                     title: "Infromações de pagamento.",
                     html: `
-                        <div>
-                            <h1 id="total-pagar-cartao" class="font-bold text-3xl text-gray-800">R$ <span total-sem-atribuicao>${$('[total-compra]').text().replace(/R\$/g, '').toFloat().toMoney()}</span></h1>
-                            <p class="w-1/2 mx-auto mb-4 font-bold text-sm">Total da compra sem atribuição. Ao adicionar um valor no cartão selecionado ele será subitraido do valor tatal.</p>
-                        </div>
+                                                                                                <div>
+                                                                                                    <h1 id="total-pagar-cartao" class="font-bold text-3xl text-gray-800">R$ <span total-sem-atribuicao>${$('[total-compra]').text().replace(/R\$/g, '').toFloat().toMoney()}</span></h1>
+                                                                                                    <p class="w-1/2 mx-auto mb-4 font-bold text-sm">Total da compra sem atribuição. Ao adicionar um valor no cartão selecionado ele será subitraido do valor tatal.</p>
+                                                                                                </div>
 
-                        <div class="mb-3">
-                            <p>Escolha quais valores serão passados em cada cartão </p>
-                            <small>Lembre-se o valor minimo a ser paga em pelo menos um dos cartões é de R$ 10,00</small>
-                        </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <p>Escolha quais valores serão passados em cada cartão </p>
+                                                                                                    <small>Lembre-se o valor minimo a ser paga em pelo menos um dos cartões é de R$ 10,00</small>
+                                                                                                </div>
 
-                        <form class="flex flex-wrap">
-                            ${htmlCartoes}
-                        </form>`,
+                                                                                                <form class="flex flex-wrap">
+                                                                                                    ${htmlCartoes}
+                                                                                                </form>`,
                     width: 645,
                     allowOutsideClick: false,
                     allowEscapeKey: false,
@@ -591,7 +898,7 @@ ViewData["Title"] = breadcrumbs.Title;
                 Descontos: $('[total-descontos]').toFloat(),
                 Total: $('[total-compra]').toFloat(),
             }
-            
+
             console.log(transaction.Produtos)
 
             if (transaction.Produtos.length == 0) {
@@ -610,8 +917,6 @@ ViewData["Title"] = breadcrumbs.Title;
                 });
                 return false;
             }
-
-            console.log(transaction.Produtos)
 
             if (transaction.Produtos.length == 0) {
                 Swal.fire({
@@ -718,4 +1023,4 @@ ViewData["Title"] = breadcrumbs.Title;
             }
         })
     </script>
-    }
+}

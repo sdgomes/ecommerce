@@ -57,7 +57,7 @@
                                         >@Item.NomeProduto</a>
                                     </h4>
                                     <ul class="review">
-                                        @for (var i = 1; i < 5; i++)
+                                        @for (var i = 0; i < 5; i++)
                                         {
                                             if (i <= Item.Nota)
                                             {
@@ -123,7 +123,7 @@
                             asp-route-idproduto="@Model.OfertaPrincipal.IdProduto"
                             >@Model.OfertaPrincipal.NomeProduto</a></h2>
                         <ul class="review">
-                            @for (var i = 1; i < 5; i++)
+                            @for (var i = 0; i < 5; i++)
                             {
                                 if (i <= Model.OfertaPrincipal.Nota)
                                 {

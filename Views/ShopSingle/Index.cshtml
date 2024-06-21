@@ -4,171 +4,98 @@
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Produto";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-new BreadcrumbsDTO("Produtos", "../"),
-new BreadcrumbsDTO("Detalhes")
-};
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Produtos", "../"),
+        new BreadcrumbsDTO("Detalhes")
+    };
 
     ViewData["Title"] = breadcrumbs.Title;
 }
 
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-<section class="item-details section">
-    <div class="container mx-auto sm:px-4">
-        <div class="top-area">
-            <div class="flex flex-wrap  items-center">
+<div class="max-w-[1030px] mx-auto my-10 flex gap-5 justify-center">
 
-                <div class="lg:w-1/2 px-4 md:w-full w-full">
-                    <div class="product-images">
-                        <main id="gallery">
-                            <div class="main-img">
-                                <img src='@Model.Imagens.Where((Item) => (Item.NomeImagem == "COVER")).FirstOrDefault().ImageSource'
-                                     id="current" alt="...">
-                            </div>
-
-                            <div class="images">
-                                @foreach (var Imagem in Model.Imagens.Where((Item) => (Item.NomeImagem != "COVER")))
-                                {
-                                    <img src="@Imagem.ImageSource" class="img" alt="...">
-                                }
-                            </div>
-                        </main>
-                    </div>
-                </div>
-
-                <div class="lg:w-1/2 px-4 md:w-full w-full">
-                    <div class="product-info relative">
-                        <span class="shop">
-                            @if (Model.Produto.Tipo != "")
-                            {
-                                <span class="new-tag">@Model.Produto.Tipo.Capitalize()</span>
-                            }
-
-                            @if (Model.Produto.Desconto)
-                            {
-                                <span class="sale-tag">-@Model.Produto.QntDesconto%</span>
-                            }
-                        </span>
-
-                        <h2 class="title">@Model.Produto.Nome.Capitalize()</h2>
-                        <p class="category">
-                            @Model.Produto.Subcategoria.Capitalize(), @Model.Produto.TipoProduto.Capitalize(),
-                            @Model.Produto.Cor.Capitalize(), @Model.Produto.Marca.Capitalize()
-                        </p>
-                        <div>Disponivel: @Model.Produto.Saldo</div>
-
-                        <h3 class="price">
-                            @if (Model.Produto.Desconto)
-                            {
-                                @Model.Produto.CalculoDesconto.ToString("C")
-                                <span class="discount-price">@Model.Produto.Preco.ToString("C")</span>
-                            }
-                            else
-                            {
-                                @Model.Produto.Preco.ToString("C")
-                            }
-                        </h3>
-
-                        <div class="single-product !px-0 !py-0 !bg-transparent !border-0 !shadow-none">
-                            <div class="product-info !px-0 !py-0 !bg-transparent">
-                                <ul class="review">
-                                    @for (var i = 1; i < 5; i++)
-                                    {
-                                        if (i <= Model.Produto.Nota)
-                                        {
-                                            <li>
-                                                <i class="fa-solid fa-star"></i>
-                                            </li>
-                                        }
-                                        else
-                                        {
-                                            <li><i class="fa-light fa-star"></i></li>
-                                        }
-                                    }
-                                    <li><span>@Model.Produto.QntAvaliacoes Review(s)</span></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <p class="info-text">
-                            @Model.Produto.Descricao
-                        </p>
-
-                        <div class="flex flex-wrap">
-
-                            <div class="lg:w-1/3 md:w-1/3 w-full">
-                                <div class="mb-4 quantity text-center">
-                                    <label for="color">Quantidade</label>
-                                    <div class="count-input flex">
-                                        <button class="button-qnt" data-single="true" data-operador="menos">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </button>
-                                        <input autocomplete="off" type="text" value="1" data-mask="0#"
-                                               class="input-qnt" />
-                                        <button class="button-qnt" data-single="true" data-operador="mais">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bottom-content">
-                        <div class="flex flex-wrap gap-3">
-                            <div class="button cart-button">
-                                <a data-compra-direta 
-                                   data-tipo-produto="@Model.Produto.TipoProduto.Capitalize()"
-                                   data-tipo="@Model.Produto.Tipo.Capitalize()"
-                                   data-subcategoria="@Model.Produto.Subcategoria.Capitalize()"
-                                   data-imagem='@Model.Imagens.Where((Item) => (Item.NomeImagem == "COVER")).FirstOrDefault().ImageSource'
-                                   data-preco="@Model.Produto.Preco"
-                                   data-desconto="@(Model.Produto.Desconto ? @Model.Produto.CalculoDesconto : 0)"
-                                   data-nome="@Model.Produto.Nome.Capitalize()"
-                                   data-qnt-compra="1"
-                                   data-id-produto="@Model.Produto.IdProduto"
-                                   asp-action="Index" asp-controller="Checkout"
-                                   asp-route-id-produto="@Model.Produto.IdProduto"
-                                   class="btn !flex !text-gray-800 hover:!text-white !w-fit">Comprar</a>
-                            </div>
-                            <div class="button cart-button">
-                                <a data-action="carrinho"
-                                   data-tipo-produto="@Model.Produto.TipoProduto.Capitalize()"
-                                   data-tipo="@Model.Produto.Tipo.Capitalize()"
-                                   data-subcategoria="@Model.Produto.Subcategoria.Capitalize()"
-                                   data-imagem='@Model.Imagens.Where((Item) => (Item.NomeImagem == "COVER")).FirstOrDefault().ImageSource'
-                                   data-preco="@Model.Produto.Preco"
-                                   data-desconto="@(Model.Produto.Desconto ? @Model.Produto.CalculoDesconto : 0)"
-                                   data-nome="@Model.Produto.Nome.Capitalize()"
-                                   data-qnt-compra="1"
-                                   data-id-produto="@Model.Produto.IdProduto"
-                                   class="btn !flex !text-gray-800 hover:!text-white !w-fit">
-                                    <i class="fa-solid fa-cart-shopping"></i> Carrinho
-                                </a>
-                            </div>
-                            <div class="wish-button">
-                                <a data-action="favoritos" data-favorito="false"
-                                   data-id-produto="@Model.Produto.IdProduto"
-                                   class="btn !flex !text-gray-800 !w-fit !rounded-[3px] hover:!text-gray-800">
-                                    <i class="fa-solid fa-heart"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="w-5/12 bg-white p-6 rounded-lg shadow">
+        <img src='@Model.Imagens.Where((Item) => (Item.NomeImagem == "COVER")).FirstOrDefault().ImageSource' alt=""
+             class="w-full mb-4 rounded">
+        <div class="flex -mx-2">
+            @foreach (var Imagem in Model.Imagens.Where((Item) => (Item.NomeImagem != "COVER")))
+            {
+                <img src="@Imagem.ImageSource" class="w-1/4 px-2 rounded" alt="...">
+            }
         </div>
     </div>
 
+    <div class="w-6/12 bg-white p-6 rounded-lg shadow">
+
+        <div class="flex flex-wrap justify-between items-center mb-2">
+            <p class="text-gray-600 w-full">
+                @Model.Produto.Subcategoria, @Model.Produto.TipoProduto,
+                @Model.Produto.Cor, @Model.Produto.Marca
+            </p>
+            <div class="flex gap-4 justify-between items-center w-full">
+                <h1 class="text-2xl font-bold w-full">@Model.Produto.Nome.Capitalize()</h1>
+                <button class="text-primary text-2xl">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex items-center mb-4">
+            <div class="text-yellow-500 text-base mr-2 flex gap-2">
+                @for (var i = 0; i < 5; i++)
+                {
+                    if (i <= Model.Produto.Nota)
+                    {<i class="fa-solid fa-star"></i>
+                    }
+                    else
+                    {
+                        <i class="fa-light fa-star"></i>
+                    }
+                }
+            </div>
+            <span class="text-gray-600 leading-none text-base">@Model.Produto.QntAvaliacoes Review(s)</span>
+        </div>
+
+        <p class="text-primary mb-4 font-bold text-3xl">
+            @if (Model.Produto.Desconto)
+            {
+                @Model.Produto.CalculoDesconto.ToString("C")
+                <span class="block line-through text-gray-500 text-lg font-semibold">
+                    @Model.Produto.Preco.ToString("C")
+                </span>
+            }
+            else
+            {
+                @Model.Produto.Preco.ToString("C")
+            }
+        </p>
+        <p class="text-gray-700 mb-4">
+            @Model.Produto.Descricao
+        </p>
+
+
+        <p class="text-gray-700 mb-4">Quantidade disponivel em estoque: @Model.Produto.Saldo</p>
+        <div class="flex items-center mb-4">
+            <label for="quantity" class="mr-2">Quantidade:</label>
+            <select id="quantity" class="p-2 border rounded-lg">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <a asp-action="Index" asp-controller="Checkout"
+           asp-route-rota="produto" asp-route-idproduto="@Model.Produto.IdProduto"asp-route-quantidade="1" class="w-full btn btn-primary mb-2">Comprar</a>
+        <a class="w-full btn btn-warning">Adicionar ao Carrinho <i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+
+</div>
+
+<div class="max-w-[1250px] mx-auto">
     @(await Component.InvokeAsync<ProductListViewComponent>())
     @(await Component.InvokeAsync<KeepShoppingViewComponent>())
     @(await Component.InvokeAsync<KeepShoppingInfoViewComponent>())
-
-</section>
-
-
-@section Scripts {
-    <script type="text/javascript">
-
-    </script>
-}
+</div>

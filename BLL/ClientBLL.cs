@@ -101,9 +101,18 @@ namespace crm.BLL
             return Crypt.Verify(user.Senha, clientUser.Senha);
         }
 
-        public static ClientDTO SelectClientByCodigo(string Codigo)
+        public static ClientDTO SelectClientByCodigo(string Codigo, long IdProduto = 0, int QntCompra = 0)
         {
             ClientDTO Model = new();
+            if (IdProduto != 0)
+            {
+                Model.Products = ProductDAO.SelectProductsByInId($"{IdProduto}");
+                foreach (var Item in Model.Products)
+                {
+                    Item.QntCompra = QntCompra == 0 ? 1 : QntCompra;
+                }
+            }
+
             Model.Client = ClientDAO.SearchForClientByCodigo(Codigo);
             Model.Adresses = AddressDAO.SelectAllAddressByClient(Model.Client.IdCliente);
             Model.Cards = CardDAO.SelectClientCard(Model.Client.IdCliente);
@@ -142,12 +151,13 @@ namespace crm.BLL
             return client.Codigo;
         }
 
-        public static void CreateNewCard(Card card)
+        public static Card CreateNewCard(Card card)
         {
-            CardDAO.CreateCard(card.IdCliente, card);
+           long IdCartao = CardDAO.CreateCard(card.IdCliente, card);
+            return CardDAO.SearchCardById(IdCartao);
         }
 
-        public static void CreateNewAddress(Address address)
+        public static Address CreateNewAddress(Address address)
         {
             if (address.Principal)
                 AddressDAO.LimpaPrincipal(address.IdCliente);
@@ -155,7 +165,8 @@ namespace crm.BLL
             if (address.Cobranca)
                 AddressDAO.LimpaCobranca(address.IdCliente);
 
-            AddressDAO.CreateAddress(address.IdCliente, address);
+            long IdEndereco = AddressDAO.CreateAddress(address.IdCliente, address);
+            return AddressDAO.SearchAddressByIdEndereco(IdEndereco);
         }
     }
 }

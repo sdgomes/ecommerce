@@ -162,6 +162,32 @@ namespace crm.DAL
             }
         }
 
+        public static Card SearchCardById(long IdCartao)
+        {
+            try
+            {
+                string query = $@"SELECT
+	                                CAR.ID_CARTAO,CAR.ID_CLIENTE,CAR.ID_BANDEIRA,CAR.NOME_CARTAO,
+	                                CAR.NOME_TITULAR,CAR.PRINCIPAL,CAR.CPF_TITULAR,CAR.NUMERO,
+	                                CAR.DATA_VALIDADE,CAR.CODIGO_SEGURANCA,CAR.CRIACAO, BAN.NOME
+                                FROM ECM_CARTOES CAR
+                                    INNER JOIN ECM_BANDEIRAS BAN ON BAN.ID_BANDEIRA = CAR.ID_BANDEIRA
+                                        AND BAN.D_E_L_E_T_ <> '*'
+                                WHERE CAR.D_E_L_E_T_ <> '*' AND CAR.ID_CARTAO = @ID_CARTAO;";
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@ID_CARTAO", IdCartao),
+                };
+
+                return DatabaseProgramas().Choose<Card>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static List<Card> SelectClientCard(long IdCliente)
         {
             try

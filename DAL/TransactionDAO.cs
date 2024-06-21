@@ -79,7 +79,12 @@ namespace crm.DAL
 	                                ET.COR, 
 	                                TR.TIPO,
 	                                TR.CODIGO,
-	                                ID_TRANSACAO
+                                    TR.PAGAMENTO,
+                                    TR.TOTAL, 
+                                    TR.FRETE, 
+                                    TR.DESCONTOS,
+                                    (SELECT COUNT(1) FROM ECM_PRO_TRA EPT WHERE EPT.ID_TRANSACAO = TR.ID_TRANSACAO) AS QUANTIDADE,
+	                                TR.ID_TRANSACAO
                                 FROM ECM_TRANSACOES TR
 	                                INNER JOIN ECM_ETAPAS ET ON ET.ID_ETAPA = TR.ID_ETAPA
                                 WHERE TR.ID_CLIENTE = @ID_CLIENTE AND 

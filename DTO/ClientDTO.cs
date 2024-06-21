@@ -12,6 +12,8 @@ namespace crm.DTO
 
         public int MainCard { get; set; }
 
+        public List<ProductDTO> Products { get; set; }
+
         public Client Client { get; set; }
 
         public List<Address> Adresses { get; set; }

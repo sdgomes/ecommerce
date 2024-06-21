@@ -19,7 +19,7 @@ namespace crm.BLL
         {
             PedidosView Model = new();
             Model.Cliente = ClientDAO.SearchForClientByCodigo(Codigo);
-            Model.Transactions = TransactionDAO.SelectByClient(Model.Cliente.IdCliente);
+            Model.TransacoesDatas = TransactionDAO.SelectByClient(Model.Cliente.IdCliente);
 
             return Model;
         }

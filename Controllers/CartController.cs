@@ -12,6 +12,7 @@ namespace crm.Controllers
 {
     public class CartController : Controller
     {
+        [HttpGet("/carrinho")]
         public IActionResult Index()
         {
             return View();

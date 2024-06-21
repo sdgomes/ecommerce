@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <div class="product-info">
-                            <span class="category">@Item.Subcategoria.Capitalize(), @Item.TipoProduto.Capitalize(), @Item.Cor.Capitalize(), @Item.Marca.Capitalize()</span>
+                            <span class="category text-sm">@Item.Subcategoria, @Item.TipoProduto, @Item.Cor, @Item.Marca</span>
                             <h4 class="title">
                                 <a asp-action="Index" asp-controller="ShopSingle"  
                                 asp-route-categoria="@Item.TipoProduto.ToLower()"
@@ -53,7 +53,7 @@
                                   asp-route-idproduto="@Item.IdProduto">@Item.Nome.Capitalize()</a>
                             </h4>
                             <ul class="review">
-                                @for (var i = 1; i < 5; i++)
+                                @for (var i = 0; i < 5; i++)
                                 {
                                     if (i <= Item.Nota)
                                     {

@@ -1,0 +1,33 @@
+@model List<Address>
+
+    @foreach (var (address, index) in Model.Select((address, index) =>
+    (address, index)))
+    {
+    <div class="w-1/2 px-3 mb-5">
+        <label class="w-full card bg-base-200 rounded">
+            <div class="card-body px-3 py-3.5">
+                <label class="flex items-center gap-2">
+                    <input class="accent-yellow-400 h-[25px] w-[25px]" type="radio" name="enderecoEntrega"
+                        value="@address.IdEndereco">
+                    @address.NomeEndereco.Capitalize()
+                </label>
+
+                <div class="flex flex-wrap mt-4 px-3">
+                    <div data-type="CEP" class="text-base w-full">@address.CEP</div>
+                    <div class="w-full text-gray-800">
+                        @address.TipoLogradouro.Capitalize(),
+                        @address.TipoResidencia.Capitalize()
+                    </div>
+                    <div class="text-base w-full text-gray-800">
+                        @address.Logradouro.Capitalize(),
+                        @address.Numero.Capitalize() - @address.Bairro.Capitalize(), @address.Cidade.Capitalize() -
+                        @address.Estado.Capitalize()
+                    </div>
+                    <hr>
+                    <div>@address.Complemento</div>
+                    <div>@address.Frase</div>
+                </div>
+            </div>
+        </label>
+    </div>
+    }

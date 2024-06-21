@@ -171,8 +171,7 @@ namespace crm.Controllers
         {
             try
             {
-                ClientBLL.CreateNewCard(card);
-                return Json(new { confirm = true });
+                return Json(new { confirm = true, cartao = ClientBLL.CreateNewCard(card) });
             }
             catch (Exception)
             {
@@ -185,8 +184,7 @@ namespace crm.Controllers
         {
             try
             {
-                ClientBLL.CreateNewAddress(address);
-                return Json(new { confirm = true });
+                return Json(new { confirm = true, address = ClientBLL.CreateNewAddress(address) });
             }
             catch (Exception)
             {
@@ -301,6 +299,19 @@ namespace crm.Controllers
             try
             {
                 return ViewComponent("AlteraEndereco", new { IdEndereco });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost("/componente/client/lista/endereco")]
+        public IActionResult ListaEnderecos(List<Address> Enderecos)
+        {
+            try
+            {
+                return ViewComponent("EnderecoCompra", Enderecos);
             }
             catch (Exception)
             {
