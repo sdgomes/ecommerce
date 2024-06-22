@@ -28,7 +28,7 @@
     </div>
 
     <div class="w-6/12 bg-white p-6 rounded-lg shadow">
-
+        <form asp-controller="Checkout" asp-action="Index" asp-route-rota="produtos" method="GET">
         <div class="flex flex-wrap justify-between items-center mb-2">
             <p class="text-gray-600 w-full">
                 @Model.Produto.Subcategoria, @Model.Produto.TipoProduto,
@@ -36,7 +36,7 @@
             </p>
             <div class="flex gap-4 justify-between items-center w-full">
                 <h1 class="text-2xl font-bold w-full">@Model.Produto.Nome.Capitalize()</h1>
-                <button class="text-primary text-2xl">
+                <button type="button" class="text-primary text-2xl">
                     <i class="fa-regular fa-heart"></i>
                 </button>
             </div>
@@ -58,7 +58,7 @@
             <span class="text-gray-600 leading-none text-base">@Model.Produto.QntAvaliacoes Review(s)</span>
         </div>
 
-        <p class="text-primary mb-4 font-bold text-3xl">
+        <p class="text-purple-800 mb-4 font-bold text-3xl">
             @if (Model.Produto.Desconto)
             {
                 @Model.Produto.CalculoDesconto.ToString("C")
@@ -77,20 +77,20 @@
 
 
         <p class="text-gray-700 mb-4">Quantidade disponivel em estoque: @Model.Produto.Saldo</p>
-        <div class="flex items-center mb-4">
-            <label for="quantity" class="mr-2">Quantidade:</label>
-            <select id="quantity" class="p-2 border rounded-lg">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+        <div class="mb-4">
+            <input type="hidden" value="@Model.Produto.IdProduto" name="produtos[0].idProduto">
+
+            <div class="count-input flex w-fit">
+                <button type="button" class="button-qnt" data-operador="menos"><i class="fa-solid fa-minus"></i></button>
+                <input autocomplete="off" type="text" value="1" name="produtos[0].qntCompra"
+                       class="input-qnt !w-[65px] !mx-2" />
+                <button type="button" class="button-qnt" data-operador="mais"><i class="fa-solid fa-plus"></i></button>
+            </div>
         </div>
-        <a asp-action="Index" asp-controller="Checkout"
-           asp-route-rota="produto" asp-route-idproduto="@Model.Produto.IdProduto"asp-route-quantidade="1" class="w-full btn btn-primary mb-2">Comprar</a>
+        <button type="submit" class="w-full btn bg-purple-700 hover:bg-purple-800 text-white mb-2">Comprar</button>
         <a class="w-full btn btn-warning">Adicionar ao Carrinho <i class="fa-solid fa-cart-shopping"></i></a>
-    </div>
+        </form>
+</div>
 
 </div>
 

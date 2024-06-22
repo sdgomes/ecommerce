@@ -16,19 +16,11 @@ namespace crm.Controllers
     public class CheckoutController : Controller
     {
         [ValidaCompra]
-        [HttpGet("/finalizar/{Rota}/{IdProduto?}/{Quantidade?}")]
-        public IActionResult Index(string Rota, long IdProduto, int Quantidade)
+        [HttpGet("/finalizar/compra")]
+        public IActionResult Index(List<Product> Produtos)
         {
             var codigo = Request.Cookies["codigo"];
-            if (Rota == "produto")
-            {
-                if (IdProduto == 0)
-                    return RedirectToAction("Index", "Shop");
-
-                return View(ClientBLL.SelectClientByCodigo(codigo, IdProduto, Quantidade));
-            }
-
-            return View(ClientBLL.SelectClientByCodigo(codigo, IdProduto, Quantidade));
+            return View(ClientBLL.ClientCheckoutByCodigo(codigo, Produtos));
         }
 
         [HttpPost("/registra/transacao")]

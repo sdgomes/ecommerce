@@ -101,16 +101,26 @@ namespace crm.BLL
             return Crypt.Verify(user.Senha, clientUser.Senha);
         }
 
-        public static ClientDTO SelectClientByCodigo(string Codigo, long IdProduto = 0, int QntCompra = 0)
+        public static ClientDTO SelectClientByCodigo(string Codigo)
         {
             ClientDTO Model = new();
-            if (IdProduto != 0)
+
+            Model.Client = ClientDAO.SearchForClientByCodigo(Codigo);
+            Model.Adresses = AddressDAO.SelectAllAddressByClient(Model.Client.IdCliente);
+            Model.Cards = CardDAO.SelectClientCard(Model.Client.IdCliente);
+            return Model;
+        }
+
+        public static ClientDTO ClientCheckoutByCodigo(string Codigo, List<Product> Produtos)
+        {
+            ClientDTO Model = new();
+
+            var IdsProdutos = String.Join(", ", Produtos.Select(x => x.IdProduto.ToString()).ToArray());
+            Model.Products = ProductDAO.SelectProductsByInId(IdsProdutos);
+            foreach (var Item in Model.Products)
             {
-                Model.Products = ProductDAO.SelectProductsByInId($"{IdProduto}");
-                foreach (var Item in Model.Products)
-                {
-                    Item.QntCompra = QntCompra == 0 ? 1 : QntCompra;
-                }
+                Product Produto = Produtos.Where(x => x.IdProduto == Item.IdProduto).FirstOrDefault();
+                Item.QntCompra = Produto.QntCompra;
             }
 
             Model.Client = ClientDAO.SearchForClientByCodigo(Codigo);

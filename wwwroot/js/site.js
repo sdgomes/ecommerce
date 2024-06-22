@@ -414,13 +414,24 @@ $(document).on("click", ".button-qnt", function () {
         $input.val(current)
 
         var data = $button.getData();
-        if (data.idProduto)
-            Carrinho.AtualizaQuantidade(data.idProduto, current)
+        if (data.idProduto) {
+            $tr = $button.parents('tr');
+            $tr.find('[data-target="preco"]').html(`R$ ${(current * data.preco.toFloat()).toMoney()}`)
 
-        if (data.single.parseBool())
-            $button.parents('.top-area').find('[data-action="carrinho"], [data-compra-direta]').attr('data-qnt-compra', current)
+            if (data.desconto)
+                $tr.find('[data-target="desconto"]').html(`R$ ${(current * data.calculoDesconto.toFloat()).toMoney()}`)
+        }
     }
 });
+
+$(document).on('click', '[data-trigger="remove-produto"]', function(){
+    $button = $(this);
+    $button.parents('tr').remove();
+
+    if($.isEmptyObject($("#lista-produtos").serializeJsonComplex())){
+        
+    }
+})
 
 $(document).on("click", '[data-compra-direta]', function () {
     $button = $(this);

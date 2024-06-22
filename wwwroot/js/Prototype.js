@@ -26,7 +26,7 @@ Number.prototype.toMoney = function () {
 
 String.prototype.toFloat = function () {
     const palavra = this.toString();
-    return parseFloat(palavra.replace(/\./g, '').replace(/\,/g, '.'));
+    return parseFloat(palavra.replace(/\./g, '').replace(/\,/g, '.')).toTwo();
 }
 
 String.prototype.parseBool = function () {
