@@ -51,12 +51,12 @@ namespace crm.Controllers
             }
         }
 
-        [HttpGet("/buscar/desconto/{Codigo}")]
-        public IActionResult BuscarDesconto(string Codigo)
+        [HttpGet("/buscar/desconto/{Codigo}/{Tipo}")]
+        public IActionResult BuscarDesconto(string Codigo, string Tipo)
         {
             try
             {
-                return Json(new { response = ProductBLL.BuscarDesconto(Codigo) });
+                return Json(new { response = ProductBLL.BuscarDesconto(Codigo, Tipo) });
             }
             catch (Exception)
             {

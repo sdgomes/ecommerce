@@ -98,13 +98,11 @@ AS
         ('VINIL','VINIL MONOMERICO',281.58,837.56),
         ('VINIL','VINIL POLIMERICO',226.94,616.13)    
 
-        INSERT INTO ECM_DESCONTOS (CODIGO, DESCONTO, TIPO, ATIVO)
-        VALUES ('o3gl3af7l', 10, '', 1),('m0ny5ht8v', 50, '', 1),
-        ('q4mf0ny1i', 25, '', 1),('j0qk7hn1o', 40, '', 1),
-        ('o8ss6ik2l', 15, '', 1),('r5qw8vc4b', 70, '', 1),
-        ('k2vm8nb6c', 30, '', 1),('c5xf5iu5h', 25, '', 1),
-        ('n3qz1le3x', 10, '', 1),('s6lt2vc9c', 15, '', 1)
-
+        INSERT INTO ECM_DESCONTOS (TIPO)
+        VALUES ('CUPONS'),('CUPONS'),('CUPONS'),('CUPONS'),('CUPONS'),('CUPONS'),('CUPONS'),('CUPONS'),
+        ('CUPONS'),('CUPONS'),('CUPONS'),('CUPONS'),('CUPONS'),('CUPONS'),('CUPONS'),('CUPONS'),('CUPONS'),
+        ('CUPONS'),('CUPONS')
+        
         INSERT INTO ECM_FRETES (ESTADO,PRECO)
         VALUES
         ('AC','13.33'), ('MT','84.41'),

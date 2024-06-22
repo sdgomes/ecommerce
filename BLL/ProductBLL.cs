@@ -79,13 +79,30 @@ namespace crm.BLL
             }
         }
 
-        public static dynamic BuscarDesconto(string Codigo)
+        public static dynamic BuscarDesconto(string Codigo, string Tipo)
         {
             try
             {
-                Discount Desconto = ProductDAO.SearchDiscountByCodigo(Codigo);
+                dynamic desconto;
+                if (Tipo == "DESCONTO")
+                {
+                    desconto = ProductDAO.ResgataCodigo(Codigo);
+                    if (desconto == null)
+                        return new { success = false, message = "O código informado é inválido, por favor tente novamente!" };
+                    else
+                        return new { success = true, message = $@"Seu desconto resgatado é de {desconto.toString("C")}", desconto };
+                }
 
-                return new { success = true, message = $@"Seu desconto é de {Desconto.Desconto}%", desconto = Desconto.Desconto };
+                if (Tipo == "CUPONS")
+                {
+                    desconto = ProductDAO.SearchDiscountByCodigo(Codigo);
+                    if (desconto == null)
+                        return new { success = false, message = "O código informado é inválido, por favor tente novamente!" };
+                    else
+                        return new { success = true, message = $@"Seu desconto é de {desconto}%", desconto };
+                }
+
+                return new { success = false, message = "O código informado é inválido, ou o tipo não aceito, por favor tente novamente!" };
             }
             catch (Exception)
             {

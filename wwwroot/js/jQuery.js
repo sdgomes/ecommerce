@@ -1,7 +1,7 @@
 jQuery.fn.extend({
 
     toFloat: function () {
-        return $(this).text().replace(/R\$/g, '').toFloat().toString().replace(/\./g, ',')
+        return $(this).text().replace(/R\$|%/g, '').toFloat().toString().replace(/\./g, ',')
     },
 
     id: function () {

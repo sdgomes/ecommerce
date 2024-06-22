@@ -453,7 +453,11 @@ const atualizaTabelaPrecos = () => {
 
         $('.subtotal').html(`R$ ${subtotal.toMoney()}`)
         $('.descontos').html(`R$ ${descontos.toMoney()}`)
-        $('.total-compra').html(`R$ ${((subtotal + frete) - (descontos + cupons)).toTwo().toMoney()}`)
+
+        const total = ((subtotal + frete) - descontos).toTwo();
+        var cuponsExtra = (total / 100) * cupons;
+
+        $('.total-compra').html(`R$ ${(total - cuponsExtra).toMoney()}`)
     } else {
         $('.subtotal, .descontos, .total-compra, .frete').html(`R$ 0,00`)
     }

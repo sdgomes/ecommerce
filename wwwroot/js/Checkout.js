@@ -656,7 +656,7 @@ $(document).on("click", "[data-action='desconto'], [data-action='cupons']", func
 
         $.ajax({
             type: "GET",
-            url: `/buscar/desconto/${$input.val()}`,
+            url: `/buscar/desconto/${$input.val()}/${buttonData.action.toUpperCase()}`,
             success: function (data) {
                 $button.html(buttonData.action == 'cupons' ? 'Aplicar' : 'Resgatar')
 
@@ -666,10 +666,11 @@ $(document).on("click", "[data-action='desconto'], [data-action='cupons']", func
                 });
 
                 if (buttonData.action == 'cupons') {
-                    // $('.cupons').html(`R$ ${data.response.preco.toMoney()}`)
+                    $('.cupons').html(`${data.response.desconto}%`)
                 }else{
-                    // descontoPlus = data.response.preco
+                    descontoPlus = data.response.desconto
                 }
+
                 atualizaTabelaPrecos()
             },
             error: function (response) {

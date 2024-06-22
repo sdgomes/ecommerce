@@ -33,17 +33,42 @@ namespace crm.DAL
             }
         }
 
-        public static Discount SearchDiscountByCodigo(string Codigo)
+        public static double ResgataCodigo(string Codigo)
         {
             try
             {
-                string query = @$"SELECT * FROM ECM_DESCONTOS WHERE CODIGO = @CODIGO AND RESGATADO = 0 AND ATIVO = 1 AND D_E_L_E_T_ <> '*';";
+                string query = @$"SELECT 
+	                                ES.PRECO
+                                FROM ECM_DESCONTOS EC
+	                                INNER JOIN ECM_SOLICITACOES ES ON ES.ID_DESCONTO = EC.ID_DESCONTO
+                                WHERE 
+	                                EC.CODIGO = @CODIGO AND 
+	                                EC.RESGATADO = 0 AND 
+	                                EC.D_E_L_E_T_ <> '*';";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@CODIGO", Codigo)
                 };
 
-                return DatabaseProgramas().Choose<Discount>(query, parameters);
+                return DatabaseProgramas().ChoosePrimitiveType<double>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static int SearchDiscountByCodigo(string Codigo)
+        {
+            try
+            {
+                string query = @$"SELECT DESCONTO FROM ECM_DESCONTOS WHERE CODIGO = @CODIGO AND RESGATADO = 0 AND ATIVO = 1 AND D_E_L_E_T_ <> '*';";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo)
+                };
+
+                return DatabaseProgramas().ChoosePrimitiveType<int>(query, parameters);
             }
             catch (Exception)
             {
