@@ -457,7 +457,7 @@ const atualizaTabelaPrecos = () => {
         const total = ((subtotal + frete) - descontos).toTwo();
         var cuponsExtra = (total / 100) * cupons;
 
-        $('.total-compra').html(`R$ ${(total - cuponsExtra).toMoney()}`)
+        $('.total-compra').html(`R$ ${(total - cuponsExtra).toTwo().toMoney()}`)
     } else {
         $('.subtotal, .descontos, .total-compra, .frete').html(`R$ 0,00`)
     }
