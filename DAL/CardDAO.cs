@@ -42,52 +42,6 @@ namespace crm.DAL
             }
         }
 
-        public static void UpdateCard(long IdCartao, Card card)
-        {
-            try
-            {
-                string query = @$"UPDATE ECM_CARTOES SET ID_BANDEIRA = @ID_BANDEIRA, NOME_TITULAR = UPPER(@NOME_TITULAR), NOME_CARTAO = UPPER(@NOME_CARTAO),
-                PRINCIPAL = @PRINCIPAL, CPF_TITULAR = @CPF_TITULAR, NUMERO = @NUMERO,
-                DATA_VALIDADE = @DATA_VALIDADE, CODIGO_SEGURANCA = @CODIGO_SEGURANCA WHERE ID_CARTAO = @ID_CARTAO;";
-
-                SqlParameter[] parameters = new SqlParameter[] {
-                    new SqlParameter("@ID_CARTAO", IdCartao),
-                    new SqlParameter("@ID_BANDEIRA", card.IdBandeira),
-                    new SqlParameter("@NOME_TITULAR", card.NomeTitular),
-                    new SqlParameter("@NOME_CARTAO", card.NomeCartao),
-                    new SqlParameter("@PRINCIPAL", card.Principal),
-                    new SqlParameter("@CPF_TITULAR", card.CPFTitular),
-                    new SqlParameter("@NUMERO", card.Numero),
-                    new SqlParameter("@DATA_VALIDADE", card.DataValidade),
-                    new SqlParameter("@CODIGO_SEGURANCA", card.CodigoSeguranca),
-                };
-
-                DatabaseProgramas().Execute(query, parameters);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public static void DeleteCard(long IdCartao)
-        {
-            try
-            {
-                string query = @$"UPDATE ECM_CARTOES SET = D_E_L_E_T_ '*' WHERE ID_CARTAO = @ID_CARTAO;";
-
-                SqlParameter[] parameters = new SqlParameter[] {
-                    new SqlParameter("@ID_CARTAO", IdCartao)
-                };
-
-                DatabaseProgramas().Execute(query, parameters);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public static void RemoveCard(long IdCartao)
         {
             try
@@ -99,62 +53,6 @@ namespace crm.DAL
                 };
 
                 DatabaseProgramas().Execute(query, parameters);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public static Card SearchCardBy(string NomeTitular, string NomeCartao, string Numero)
-        {
-            try
-            {
-                string query = $@"SELECT
-	                                ID_CARTAO,ID_CLIENTE,ID_BANDEIRA,NOME_CARTAO,
-	                                NOME_TITULAR,PRINCIPAL,CPF_TITULAR,NUMERO,
-	                                DATA_VALIDADE,CODIGO_SEGURANCA,CRIACAO
-                                FROM ECM_CARTOES
-                                WHERE D_E_L_E_T_ <> '*' AND
-	                                (NOME_TITULAR = @NOME_TITULAR OR NOME_CARTAO = @NOME_CARTAO OR NUMERO = @NUMERO);";
-
-                SqlParameter[] parameters = new SqlParameter[]
-                {
-                    new SqlParameter("@NUMERO", Numero),
-                    new SqlParameter("@NOME_TITULAR", NomeTitular),
-                    new SqlParameter("@NOME_CARTAO", NomeCartao),
-                };
-
-                return DatabaseProgramas().Choose<Card>(query, parameters);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public static Card SearchClientCardBy(long IdCliente, string NomeTitular, string NomeCartao, string Numero)
-        {
-            try
-            {
-                string query = $@"SELECT
-	                                ID_CARTAO,ID_CLIENTE,ID_BANDEIRA,NOME_CARTAO,
-	                                NOME_TITULAR,PRINCIPAL,CPF_TITULAR,NUMERO,
-	                                DATA_VALIDADE,CODIGO_SEGURANCA,CRIACAO
-                                FROM ECM_CARTOES
-                                WHERE D_E_L_E_T_ <> '*' AND ID_CLIENTE = @ID_CLIENTE AND
-	                                (NOME_TITULAR = @NOME_TITULAR
-	                                OR NUMERO = @NUMERO);";
-
-                SqlParameter[] parameters = new SqlParameter[]
-                {
-                    new SqlParameter("@ID_CLIENTE", IdCliente),
-                    new SqlParameter("@NUMERO", Numero),
-                    new SqlParameter("@NOME_TITULAR", NomeTitular),
-                    new SqlParameter("@NOME_CARTAO", NomeCartao),
-                };
-
-                return DatabaseProgramas().Choose<Card>(query, parameters);
             }
             catch (Exception)
             {
@@ -214,25 +112,6 @@ namespace crm.DAL
             }
         }
 
-        public static List<Card> SelectAllCard()
-        {
-            try
-            {
-                string query = $@"SELECT
-	                                ID_CARTAO,ID_CLIENTE,ID_BANDEIRA,NOME_CARTAO,
-	                                NOME_TITULAR,PRINCIPAL,CPF_TITULAR,NUMERO,
-	                                DATA_VALIDADE,CODIGO_SEGURANCA,CRIACAO
-                                FROM ECM_CARTOES
-                                WHERE D_E_L_E_T_ <> '*';";
-
-                return DatabaseProgramas().Select<Card>(query);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public static List<Card> SelectAllCardSTransactions(long IdTransacao)
         {
             try
@@ -263,7 +142,6 @@ namespace crm.DAL
                 throw;
             }
         }
-
 
         public static List<Card> SelectAllCardBrands()
         {

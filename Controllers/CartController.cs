@@ -19,6 +19,7 @@ namespace crm.Controllers
         }
 
         #region Actions
+
         [HttpGet("/calcular/frete/{CEP}")]
         public async Task<IActionResult> CalcularFrete(string CEP)
         {
@@ -35,6 +36,7 @@ namespace crm.Controllers
         #endregion
 
         #region Components
+
         [HttpPost("/componente/carrinho")]
         public IActionResult Carrinho(List<Product> Produtos)
         {
@@ -47,6 +49,7 @@ namespace crm.Controllers
                 return StatusCode(400, new { Message = ex.Message });
             }
         }
+     
         #endregion
     }
 }

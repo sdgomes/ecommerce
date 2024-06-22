@@ -1,14 +1,17 @@
 ﻿@model TrocasItensView
 
 @{
+    var url = Context.Request.RouteValues;
+    var codigo = url["Codigo"].ToString();
+
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Troca";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
-new BreadcrumbsDTO("Trocas", "./", "fa-solid fa-boxes-packing"),
-new BreadcrumbsDTO("Controle da solicitação")
-};
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Perfil", Url.Action("Perfil", "Client", new{ codigo }), "fa-solid fa-user"),
+        new BreadcrumbsDTO("Trocas", "./", "fa-solid fa-boxes-packing"),
+        new BreadcrumbsDTO("Controle da solicitação")
+    };
 
     ViewData["Title"] = breadcrumbs.Title;
 }
@@ -253,7 +256,7 @@ new BreadcrumbsDTO("Controle da solicitação")
                         <div class="w-full">
                             <div class="flex justify-between items-center">
                                 <h3 class="font-semibold">@item.NomeCompleto.Capitalize()</h3>
-                                <span class="text-gray-500 text-sm">@item.Criacao.from_now()</span>
+                                <span class="text-gray-500 text-sm">@item.Criacao</span>
                             </div>
                             <p>@item.Mensagem</p>
                         </div>

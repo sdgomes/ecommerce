@@ -1,12 +1,15 @@
 ﻿@model TrocasView
 
 @{
+    var url = Context.Request.RouteValues;
+    var codigo = url["Codigo"].ToString();
+
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Solicitações de Trocas";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]
     {
         new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-        new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
+        new BreadcrumbsDTO("Perfil", Url.Action("Perfil", "Client", new{ codigo }), "fa-solid fa-user"),
         new BreadcrumbsDTO("Trocas")
     };
 

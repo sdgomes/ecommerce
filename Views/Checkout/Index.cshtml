@@ -5,7 +5,7 @@
     breadcrumbs.Title = "Checkout";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
         new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-        new BreadcrumbsDTO("Produtos", "./shop"),
+        new BreadcrumbsDTO("Produtos", Url.Action("Index", "Shop")),
         new BreadcrumbsDTO("Checkout")
     };
 

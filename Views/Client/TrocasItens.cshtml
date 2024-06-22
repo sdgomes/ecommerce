@@ -1,14 +1,17 @@
 ﻿@model TrocasItensView
 
 @{
+    var url = Context.Request.RouteValues;
+    var codigo = url["Codigo"].ToString();
+
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Troca";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
-new BreadcrumbsDTO("Trocas", "./", "fa-solid fa-boxes-packing"),
-new BreadcrumbsDTO("Solicitação")
-};
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Perfil", Url.Action("Perfil", "Client", new{ codigo }), "fa-solid fa-user"),
+        new BreadcrumbsDTO("Trocas", "./", "fa-solid fa-boxes-packing"),
+        new BreadcrumbsDTO("Solicitação")
+    };
 
     ViewData["Title"] = breadcrumbs.Title;
 }
@@ -198,7 +201,7 @@ new BreadcrumbsDTO("Solicitação")
                         <div class="w-full">
                             <div class="flex justify-between items-center">
                                 <h3 class="font-semibold">@item.NomeCompleto.Capitalize()</h3>
-                                <span class="text-gray-500 text-sm">@item.Criacao.from_now()</span>
+                                <span class="text-gray-500 text-sm">@item.Criacao</span>
                             </div>
                             <p>@item.Mensagem</p>
                         </div>
@@ -274,21 +277,21 @@ new BreadcrumbsDTO("Solicitação")
                 $("#chat-container").empty()
 
             $("#chat-container").append(`
-                            <div data-id-notificacao="${$('[data-id-notificacao]').length + 1}"
-                                class='flex items-start bg-gray-50 py-2 px-3'>
-                              <div class="avatar placeholder mr-3">
-                                  <div class="bg-neutral text-neutral-content rounded-full w-12 text-xl">
-                                      <span>${chat.nomeCompleto.Avatar()}</span>
+                                <div data-id-notificacao="${$('[data-id-notificacao]').length + 1}"
+                                    class='flex items-start bg-gray-50 py-2 px-3'>
+                                  <div class="avatar placeholder mr-3">
+                                      <div class="bg-neutral text-neutral-content rounded-full w-12 text-xl">
+                                          <span>${chat.nomeCompleto.Avatar()}</span>
+                                      </div>
                                   </div>
-                              </div>
-                              <div class="w-full">
-                                  <div class="flex justify-between items-center">
-                                      <h3 class="font-semibold">${chat.nomeCompleto}</h3>
-                                      <span class="text-gray-500 text-sm">${moment().fromNow()}</span>
+                                  <div class="w-full">
+                                      <div class="flex justify-between items-center">
+                                          <h3 class="font-semibold">${chat.nomeCompleto}</h3>
+                                          <span class="text-gray-500 text-sm">${moment().fromNow()}</span>
+                                      </div>
+                                      <p>${mensagem}</p>
                                   </div>
-                                  <p>${mensagem}</p>
-                              </div>
-                            </div>`)
+                                </div>`)
 
             $('#chat-container').animate({ scrollTop: $('#chat-container')[0].scrollHeight });
 
@@ -328,18 +331,18 @@ new BreadcrumbsDTO("Solicitação")
                     if (data.etapa == "CANCELADO") {
                         Swal.fire({
                             html: `<form id="from-solicitacao">
-                                    <div>
-                                        <label class="form-control relative">
-                                            <div class="label">
-                                                <span class="label-text-alt">Motivo da recusa da solictação.</span>
-                                            </div>
-                                            <span data-target="motivo-recusa" class="block absolute bottom-2 right-3 text-sm font-bold">0</span>
-                                            <textarea name="motivoRecusa" rows="15"
-                                                class="textarea textarea-bordered h-24 placeholder:italic resize-none"
-                                                placeholder="Descreva o motivo que deseja cancelar a solicitação de troca! Lembrando que a descrição do motivo é para o item selecionado."></textarea>
-                                        </label>
-                                    </div>
-                                </form>`,
+                                        <div>
+                                            <label class="form-control relative">
+                                                <div class="label">
+                                                    <span class="label-text-alt">Motivo da recusa da solictação.</span>
+                                                </div>
+                                                <span data-target="motivo-recusa" class="block absolute bottom-2 right-3 text-sm font-bold">0</span>
+                                                <textarea name="motivoRecusa" rows="15"
+                                                    class="textarea textarea-bordered h-24 placeholder:italic resize-none"
+                                                    placeholder="Descreva o motivo que deseja cancelar a solicitação de troca! Lembrando que a descrição do motivo é para o item selecionado."></textarea>
+                                            </label>
+                                        </div>
+                                    </form>`,
                             showCancelButton: true,
                             reverseButtons: true,
                             title: "Cancelar troca de item.",

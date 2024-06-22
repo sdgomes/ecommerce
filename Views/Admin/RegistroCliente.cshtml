@@ -1,12 +1,15 @@
 ﻿@model List<Client>
 
 @{
+    var url = Context.Request.RouteValues;
+    var codigo = url["Codigo"].ToString();
+
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Registro clientes";
-    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-    new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-    new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
-    new BreadcrumbsDTO("Registro clientes")
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[] {
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Perfil", Url.Action("Index", "Admin", new{ codigo }), "fa-solid fa-user"),
+        new BreadcrumbsDTO("Registro clientes")
     };
 
     ViewData["Title"] = breadcrumbs.Title;

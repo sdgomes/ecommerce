@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace crm.Controllers
 {
-     public class FaqController : Controller
+    public class FaqController : Controller
     {
         public IActionResult Index()
         {

@@ -427,7 +427,6 @@ namespace crm.DAL
             }
         }
 
-
         public static void RegistraAtividade(long IdTransacao, string Descricao, string Acao)
         {
             try

@@ -105,24 +105,6 @@ namespace crm.DAL
             }
         }
 
-        public static void DeleteAddress(long IdEndereco)
-        {
-            try
-            {
-                string query = @$"UPDATE ECM_ENDERECOS SET D_E_L_E_T_ = '*' WHERE ID_ENDERECO = @ID_ENDERECO;";
-
-                SqlParameter[] parameters = new SqlParameter[] {
-                    new SqlParameter("@ID_ENDERECO", IdEndereco)
-                };
-
-                DatabaseProgramas().Execute(query, parameters);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public static void LimpaPrincipal(long IdCiente)
         {
             try
@@ -177,30 +159,6 @@ namespace crm.DAL
             }
         }
 
-        public static Address SearchAddressByEndereco(string Endereco)
-        {
-            try
-            {
-                string query = $@"SELECT ID_CLIENTE, ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
-                                TIPO_RESIDENCIA, LOGRADOURO, BAIRRO, CIDADE, ESTADO,
-                                NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, 
-                                COMPLEMENTO, NUMERO, PAIS, CRIACAO FROM ECM_ENDERECOS
-                                WHERE CONCAT(LOGRADOURO, ', ', NUMERO, ' - ', BAIRRO, ', ', CIDADE, ' - ', ESTADO, ', ', PAIS) 
-                                LIKE CONCAT('%', @ENDERECO, '%') AND D_E_L_E_T_ <> '*';";
-
-                SqlParameter[] parameters = new SqlParameter[]
-                {
-                    new SqlParameter("@ENDERECO", Endereco),
-                };
-
-                return DatabaseProgramas().Choose<Address>(query, parameters);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public static Address SearchAddressByIdEndereco(long IdEndereco)
         {
             try
@@ -217,98 +175,6 @@ namespace crm.DAL
                 };
 
                 return DatabaseProgramas().Choose<Address>(query, parameters);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public static Address SearchClientAddressByEndereco(long IdCliente, string Endereco)
-        {
-            try
-            {
-                string query = $@"SELECT ID_CLIENTE, ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
-                                TIPO_RESIDENCIA, LOGRADOURO, BAIRRO, CIDADE, ESTADO,
-                                NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, 
-                                COMPLEMENTO, NUMERO, PAIS, CRIACAO FROM ECM_ENDERECOS
-                                WHERE CONCAT(LOGRADOURO, ', ', NUMERO, ' - ', BAIRRO, ', ', CIDADE, ' - ', ESTADO, ', ', PAIS) 
-                                LIKE CONCAT('%', @ENDERECO, '%') AND ID_CLIENTE = @ID_CLIENTE AND D_E_L_E_T_ <> '*';";
-
-                SqlParameter[] parameters = new SqlParameter[]
-                {
-                    new SqlParameter("@ID_CLIENTE", IdCliente),
-                    new SqlParameter("@ENDERECO", Endereco),
-                };
-
-                return DatabaseProgramas().Choose<Address>(query, parameters);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public static List<Address> SelectAddressByEndereco(string Endereco)
-        {
-            try
-            {
-                string query = $@"SELECT ID_CLIENTE, ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
-                                TIPO_RESIDENCIA, LOGRADOURO, BAIRRO, CIDADE, ESTADO,
-                                NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, 
-                                COMPLEMENTO, NUMERO, PAIS, CRIACAO FROM ECM_ENDERECOS
-                                WHERE CONCAT(LOGRADOURO, ', ', NUMERO, ' - ', BAIRRO, ', ', CIDADE, ' - ', ESTADO, ', ', PAIS) 
-                                LIKE CONCAT('%', @ENDERECO, '%') AND D_E_L_E_T_ <> '*';";
-
-                SqlParameter[] parameters = new SqlParameter[]
-                {
-                    new SqlParameter("@ENDERECO", Endereco),
-                };
-
-                return DatabaseProgramas().Select<Address>(query, parameters);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public static List<Address> SelectClientAddressByEndereco(long IdCliente, string Endereco)
-        {
-            try
-            {
-                string query = $@"SELECT ID_CLIENTE, ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
-                                TIPO_RESIDENCIA, LOGRADOURO, BAIRRO, CIDADE, ESTADO,
-                                NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, 
-                                COMPLEMENTO, NUMERO, PAIS, CRIACAO FROM ECM_ENDERECOS
-                                WHERE CONCAT(LOGRADOURO, ', ', NUMERO, ' - ', BAIRRO, ', ', CIDADE, ' - ', ESTADO, ', ', PAIS) 
-                                LIKE CONCAT('%', @ENDERECO, '%') AND ID_CLIENTE = @ID_CLIENTE AND D_E_L_E_T_ <> '*';";
-
-                SqlParameter[] parameters = new SqlParameter[]
-                {
-                    new SqlParameter("@ID_CLIENTE", IdCliente),
-                    new SqlParameter("@ENDERECO", Endereco),
-                };
-
-                return DatabaseProgramas().Select<Address>(query, parameters);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public static List<Address> SelectAllAddress()
-        {
-            try
-            {
-                string query = $@"SELECT ID_CLIENTE, ID_ENDERECO, CEP, TIPO_LOGRADOURO, TIPO_ENDERECO, 
-                                TIPO_RESIDENCIA, LOGRADOURO, BAIRRO, CIDADE, ESTADO,
-                                NOME_ENDERECO, FRASE, PRINCIPAL, COBRANCA, 
-                                COMPLEMENTO, NUMERO, PAIS, CRIACAO FROM ECM_ENDERECOS
-                                WHERE AND D_E_L_E_T_ <> '*';";
-
-                return DatabaseProgramas().Select<Address>(query);
             }
             catch (Exception)
             {

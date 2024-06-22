@@ -17,6 +17,7 @@ namespace crm.Controllers
         }
 
         #region Components
+
         [HttpPost("/componente/favorites")]
         public IActionResult Favoritos(List<Product> Produtos)
         {
@@ -29,6 +30,7 @@ namespace crm.Controllers
                 throw;
             }
         }
+
         #endregion
     }
 }

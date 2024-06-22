@@ -17,6 +17,7 @@ namespace crm.Controllers
     public class ClientController : Controller
     {
         #region Views
+
         [HttpGet("/cadastro/cliente")]
         public IActionResult Cadastro()
         {
@@ -90,9 +91,11 @@ namespace crm.Controllers
                 return StatusCode(400, new { Message = ex.Message });
             }
         }
+
         #endregion
 
         #region Actions
+
         [HttpPost("/criar/nova/mensagem")]
         public IActionResult NovaMensagem(Notification notificacao)
         {
@@ -265,6 +268,7 @@ namespace crm.Controllers
         #endregion
 
         #region Queries 
+
         [HttpPost("/confirma/senha/cliente")]
         public IActionResult ConfirmaSenhaUsuario(User user)
         {
@@ -277,9 +281,11 @@ namespace crm.Controllers
                 throw;
             }
         }
+
         #endregion
 
         #region Components
+
         [HttpPost("/componente/client/altera/cliente")]
         public IActionResult AlteraCliente(long IdCliente)
         {
@@ -396,6 +402,7 @@ namespace crm.Controllers
                 throw;
             }
         }
+
         #endregion
     }
 }

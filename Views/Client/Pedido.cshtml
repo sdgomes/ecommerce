@@ -4,14 +4,17 @@
     string[] podeCancelar = { "PROCESSANDO PAGAMENTO", "EM PREPARAÇÃO", "A CAMINHO", "COMPRA APROVADA" };
     string[] podeSolicitar = { "ENTREGUE" };
 
+    var url = Context.Request.RouteValues;
+    var codigo = url["Codigo"].ToString();
+
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Pedidos";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-new BreadcrumbsDTO("Perfil", "../", "fa-solid fa-user"),
-new BreadcrumbsDTO("Meus Pedidos", "./", "fa-solid fa-box-open-full"),
-new BreadcrumbsDTO("Pedido")
-};
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Perfil", Url.Action("Perfil", "Client", new{ codigo }), "fa-solid fa-user"),
+        new BreadcrumbsDTO("Meus Pedidos", "./", "fa-solid fa-box-open-full"),
+        new BreadcrumbsDTO("Pedido")
+    };
 
     ViewData["Title"] = breadcrumbs.Title;
 }
@@ -297,7 +300,7 @@ new BreadcrumbsDTO("Pedido")
                     <th class="font-bold text-gray-800 text-sm py-2">Item</th>
                     <th class="font-bold text-gray-800 text-sm py-2">Produto</th>
                     <th class="font-bold text-gray-800 text-sm py-2">Quantidade</th>
-                    <th class="font-bold text-gray-800 text-sm py-2">Preço Produto</th>
+                    <th class="font-bold text-gray-800 text-sm py-2">Preço Unidade</th>
                     <th class="font-bold text-gray-800 text-sm py-2">Preço Compra</th>
                     <th class="font-bold text-gray-800 text-sm py-2">Desconto</th>
                     <th class="font-bold text-gray-800 text-sm py-2">Total Preço</th>
@@ -344,7 +347,7 @@ new BreadcrumbsDTO("Pedido")
     <div class="flex justify-between">
         <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg shadow w-1/2 mr-4">
             <h2 class="text-2xl font-bold mb-4">Informações de pagamento</h2>
-            @if (Model.Pagamento == "RECUSADO" && Model.Etapa != "CANCELADO")
+            @if (Model.Pagamento == "RECUSADO" && Model.Etapa != "CANCELADO" && Model.Etapa != "COMPRA RECUSADA")
             {
                 <div class="flex justify-between mb-5 items-center">
                     <h2 class="pr-10 text-xs italic">

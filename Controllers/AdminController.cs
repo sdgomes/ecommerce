@@ -64,6 +64,7 @@ namespace crm.Controllers
         #endregion
 
         #region Actions
+
         [HttpGet("/admin/perfil/{Situacao}/{Codigo}/cliente")]
         public IActionResult CadastrarCliente(string Situacao, string Codigo)
         {
@@ -90,6 +91,7 @@ namespace crm.Controllers
                 throw;
             }
         }
+
         #endregion
 
     }

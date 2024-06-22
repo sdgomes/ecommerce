@@ -30,7 +30,7 @@ namespace crm.Controllers.Attributes
                         var controller = (Controller)context.Controller;
                         context.Result = controller.RedirectToAction("Cadastro", "Client", new { error = "Atenção! Cliente não encontrado.".ToBase64Encode() });
                     }
-                }             
+                }
 
             }
             catch (Exception)

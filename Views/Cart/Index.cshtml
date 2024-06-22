@@ -1,32 +1,32 @@
 @{
-ViewBreadcrumbs breadcrumbs = new();
-breadcrumbs.Title = "Meu Carrinho";
-breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-new BreadcrumbsDTO("Produtos", "./shop"),
-new BreadcrumbsDTO("Meu Carrinho")
-};
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Meu Carrinho";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Produtos", Url.Action("Index", "Shop")),
+        new BreadcrumbsDTO("Meu Carrinho")
+    };
 
-ViewData["Title"] = breadcrumbs.Title;
+    ViewData["Title"] = breadcrumbs.Title;
 }
 
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-    <div class="shopping-cart section">
-        <div class="container mx-auto px-4">
+<div class="shopping-cart section">
+    <div class="container mx-auto px-4">
 
-            <div id="container-carrinho">
-                <div class="text-center">
-                    <span class="loading loading-spinner loading-lg text-primary"></span>
-                    <h3>Carregando</h3>
-                </div>
+        <div id="container-carrinho">
+            <div class="text-center">
+                <span class="loading loading-spinner loading-lg text-primary"></span>
+                <h3>Carregando</h3>
             </div>
-
         </div>
+
     </div>
+</div>
 
 
-    @section Scripts {
+@section Scripts {
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function (event) {
             onDomChange(function () {
@@ -91,4 +91,4 @@ ViewData["Title"] = breadcrumbs.Title;
             });
         });
     </script>
-    }
+}

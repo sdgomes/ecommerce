@@ -1,17 +1,18 @@
 ﻿@model List<PedidoDTO>
 
 @{
-
     string[] podeCancelar = { "PROCESSANDO PAGAMENTO", "EM PREPARAÇÃO", "A CAMINHO", "COMPRA APROVADA" };
     string[] podeSolicitar = { "ENTREGUE" };
 
+    var url = Context.Request.RouteValues;
+    var codigo = url["Codigo"].ToString();
 
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Controle de Pedidos";
-    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-    new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-    new BreadcrumbsDTO("Perfil", "./", "fa-solid fa-user"),
-    new BreadcrumbsDTO("Controle de Pedidos")
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[] {
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Perfil", Url.Action("Index", "Admin", new{ codigo }), "fa-solid fa-user"),
+        new BreadcrumbsDTO("Controle de Pedidos")
     };
 
     ViewData["Title"] = breadcrumbs.Title;
@@ -193,17 +194,5 @@
 </div>
 
 @section Scripts {
-    <script>
-        let tabela = new DataTable('#registros', {
-            dom: 'Bfrtip',
-            order: [[0, 'desc']],
-            ordering: true,
-            order: [[0, 'desc']],
-            language: {
-                url: '/json/pt-BR.json',
-            },
-        })
-
-        $(document).on("click", '[data-trigger="manage"]', PedidoAcoes)
-    </script>
+    <script src="~/js/Admin/Pedidos.js" asp-append-version="true"></script>
 }
