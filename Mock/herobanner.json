@@ -5,32 +5,30 @@
   },
   "Slider": [
     {
-      "PreTitulo": "Pronta Entrega, Vinil e Outras Mídias (CD e K7)",
-      "Titulo": "Solar Power",
-      "SubTitulo": "O terceiro álbum de estúdio da cantora e compositora neozelandesa Lorde, lançado no dia 20 de agosto de 2021 pela Universal Music.",
-      "InformativoPreco": ["Agora por apenas", "R$ 259.99"],
+      "PreTitulo": "Pronta Entrega, Mídias (CD e CD-R)",
+      "Titulo": "Solar Power - Lorde",
+      "SubTitulo": "Solar Power é o terceiro álbum de estúdio da cantora e compositora neozelandesa Lorde, lançado no dia 20 de agosto de 2021 pela Universal Music. Lorde escreveu e produziu o álbum com o músico estadunidense Jack Antonoff, colaboração que já havia ocorrido em seu segundo álbum de estúdio, Melodrama.",
+      "InformativoPreco": ["Agora por apenas", "R$ 304,51"],
       "Imagem": "slider-bg1.jpg",
-      "IdProduto": "1",
-      "Subcategoria": "SERIADO",
-      "Tipo": "",
+      "IdProduto": "73",
+      "Subcategoria": "POP",
       "TipoProduto": "CD"
     },
     {
       "PreTitulo": "Grande oferta de venda",
-      "Titulo": "Obtenha o POP Celebration em várias mídias",
-      "SubTitulo": "Celebration é o terceiro álbum de grandes êxitos da artista musical estadunidense Madonna. O seu lançamento ocorreu em 18 de setembro de 2009.",
-      "InformativoPreco": ["Combo Completo:", "R$ 590.00"],
+      "Titulo": "Obtenha o POP Who's That Girl by Madonna em várias mídias",
+      "SubTitulo": "Who's That Girl: Original Motion Picture Soundtrack ou simplesmente chamada de Who's That Girl é a primeira trilha ou banda sonora da artista musical estadunidense Madonna, lançada em 21 de julho de 1987 pela Sire Records para promover o filme de mesmo nome.",
+      "InformativoPreco": ["Combo Completo:", "R$ 863,72"],
       "Imagem": "slider-bg2.jpg",
-      "IdProduto": "2",
-      "Subcategoria": "SERIADO",
-      "Tipo": "",
-      "TipoProduto": "CD"
+      "IdProduto": "20",
+      "Subcategoria": "POP",
+      "TipoProduto": "VINIL MONOMERICO"
     }
   ],
   "Oferta": {
     "PreTitulo": "Ariana Grande",
     "Titulo": "Eternal Sunshine",
-    "Preco": "R$ 259.99",
+    "Preco": "R$ 602,94",
     "Imagem": "slider-bnr.jpg"
   }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace crm.Models
 {
-     public class Gender
+    public class Gender
     {
         [Column("ID_GENERO")]
         public long IdGenero { get; set; }
@@ -60,7 +60,9 @@ namespace crm.Models
     public class AddressDataDTO
     {
         public List<TypeOfAddress> TypesOfAddresses { get; set; }
+
         public List<TypeOfResidence> TypesOfResidences { get; set; }
+
         public List<State> States { get; set; }
     }
 }

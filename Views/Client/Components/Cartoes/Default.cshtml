@@ -2,12 +2,12 @@
 
 @foreach (var Cartao in Model.Cartoes)
 {
-<label
-    class="item-cartao cursor-pointer !flex items-end relative max-w-[270px] max-h-[160px]  min-w-[270px] min-h-[160px] bg-gradient-to-r from-purple-600 to-[#673ab7] rounded-xl shadow-lg p-6">
+<label style="background: @Cartao.Cor"
+    class="item-cartao cursor-pointer !flex items-end relative max-w-[270px] max-h-[160px]  min-w-[270px] min-h-[160px] rounded-xl shadow-lg p-6">
     <input type="checkbox" name="cartaoPagamento" value="@Cartao.IdCartao"
         class="radio border-[4px] cartao-checkbox checked:border checked:radio-warning absolute top-4">
     <div class="absolute top-4 right-4">
-        <img src="~/img/images/payment/@(Cartao.IdBandeira).webp" alt="" class="h-[27px]">
+        <img src="@Model.ImageSource(Cartao.Imagem)" alt="" class="h-[27px]">
     </div>
     <div class="text-white text-left w-full">
         <div class="text-[15px] font-semibold tracking-wider mb-2">

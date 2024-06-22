@@ -443,10 +443,10 @@ const atualizaTabelaPrecos = () => {
             return total + item.preco.toFloat();
         }, 0).toTwo();
 
-        let descontos = descontoPlus + produtos.filter(item => item.desconto.parseBool())
+        let descontos = (descontoPlus + produtos.filter(item => item.desconto.parseBool())
             .reduce((total, item) => {
                 return total + item.calculoDesconto.toFloat();
-            }, 0).toTwo();
+            }, 0)).toTwo();
 
         let frete = $('.frete').toFloat().toFloat();
         let cupons = $('.cupons').toFloat().toFloat();

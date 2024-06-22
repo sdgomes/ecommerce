@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using crm.Models;
 using crm.DAL;
+using System;
 
 namespace crm.Views.Client.Components.Cartao
 {
@@ -23,9 +24,23 @@ namespace crm.Views.Client.Components.Cartao
         public List<Card> Cards { get; set; }
 
         public ViewCartao() { }
+
         public ViewCartao(int _Index)
         {
             Index = _Index;
+        }
+
+        public string ImageSource(byte[] Imagem)
+        {
+
+            try
+            {
+                return "data:image/webp;base64," + Convert.ToBase64String(Imagem);
+            }
+            catch (Exception)
+            {
+                return "data:image/webp;base64,";
+            }
         }
     }
 }

@@ -17,8 +17,5 @@ namespace crm.Models
         [Column("COR")]
         public string Cor { get; set; }
 
-        [Column("CRIACAO")]
-        public DateTime Criacao { get; set; }
-
     }
 }

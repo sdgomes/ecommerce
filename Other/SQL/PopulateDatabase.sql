@@ -7,10 +7,18 @@ GO
 CREATE PROCEDURE dbo.Populate
 AS
     BEGIN
-        INSERT INTO ECM_BANDEIRAS (NOME)
-        VALUES ('VISA'), ('MASTERCARD'),('HIPER'),
-        ('ELO'), ('AURA'), ('AMEX'), ('VOYAGER'),
-        ('DINERS'), ('JCB'), ('DISCOVER'), ('ENROUTE')
+        INSERT INTO ECM_BANDEIRAS (NOME, COR, IMAGEM)
+        VALUES ('VISA', 'linear-gradient(to right, #005ca8, #f6a723)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\visa.png', SINGLE_BLOB) AS IMAGE)),
+        ('MASTERCARD', 'linear-gradient(45deg, #f50014, #f79c03)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\mastercard.png', SINGLE_BLOB) AS IMAGE)),
+        ('HIPER', 'linear-gradient(45deg, #950f18, #a1161c)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\hiper.png', SINGLE_BLOB) AS IMAGE)),
+        ('ELO', 'linear-gradient(45deg, #009fd8, #f7c405, #e73f22)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\elo.png', SINGLE_BLOB) AS IMAGE)),
+        ('AURA', 'linear-gradient(45deg, #6ab5a8, #398c76)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\aura.png', SINGLE_BLOB) AS IMAGE)),
+        ('AMEX', 'linear-gradient(45deg, #aac2b8, #d6e6dc)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\amex.png', SINGLE_BLOB) AS IMAGE)),
+        ('VOYAGER', 'linear-gradient(45deg, #afafaf, #2e2e2e)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\voyager.png', SINGLE_BLOB) AS IMAGE)),
+        ('DINERS', 'linear-gradient(45deg, #a27c38, #947d3f)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\diners.png', SINGLE_BLOB) AS IMAGE)), 
+        ('JCB', 'linear-gradient(45deg, #bca561, #dbc383)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\jcb.png', SINGLE_BLOB) AS IMAGE)), 
+        ('DISCOVER', 'linear-gradient(45deg, #509dbd, #6cb4ce)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\discover.png', SINGLE_BLOB) AS IMAGE)),
+        ('ENROUTE', 'linear-gradient(45deg, #242424, #000000)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\enroute.png', SINGLE_BLOB) AS IMAGE))
 
         INSERT INTO ECM_TIPOS_LOGRADOURO (NOME)
         VALUES ('AEROPORTO'), ('ALAMEDA'), ('ÁREA'), ('AVENIDA'), ('CAMPO'), 
@@ -254,7 +262,9 @@ AS
         ((SELECT ID_PRECIFICACAO FROM ECM_PRECIFICACOES WHERE TIPO = 'CD-R'),'7893672436219','Eternal Sunshine - Ariana Grande',(SELECT RAND() * (PRECO_MAXIMO - PRECO_MINIMO) + PRECO_MINIMO FROM ECM_PRECIFICACOES WHERE TIPO = 'CD-R'),'','Eternal Sunshine é o sétimo álbum de estúdio da cantora norte-americana Ariana Grande, lançado em 8 de março de 2024, através da Republic Records.',0,0,0,'2007','Ariana Grande',45),
         ((SELECT ID_PRECIFICACAO FROM ECM_PRECIFICACOES WHERE TIPO = 'CD-R'),'7896210284033','Reputation - Taylor Swift',(SELECT RAND() * (PRECO_MAXIMO - PRECO_MINIMO) + PRECO_MINIMO FROM ECM_PRECIFICACOES WHERE TIPO = 'CD-R'),'','Reputation é o sexto álbum de estúdio da artista musical estadunidense Taylor Swift, lançado em 10 de novembro de 2017, através da gravadora Big Machine.',0,0,0,'1988','Taylor Swift',42),
         ((SELECT ID_PRECIFICACAO FROM ECM_PRECIFICACOES WHERE TIPO = 'CD-RW'),'7897985628068','The Tortured Poets Department - Taylor Swift',(SELECT RAND() * (PRECO_MAXIMO - PRECO_MINIMO) + PRECO_MINIMO FROM ECM_PRECIFICACOES WHERE TIPO = 'CD-RW'),'','The Tortured Poets Department é o futuro décimo primeiro álbum de estúdio da cantora e compositora estadunidense Taylor Swift, com lançamento previsto para 19 de abril de 2024, através da Republic Records.',0,0,0,'1988','Taylor Swift',34),
-        ((SELECT ID_PRECIFICACAO FROM ECM_PRECIFICACOES WHERE TIPO = 'CD-RW'),'7896514521745','1989: Taylor''s Version - Taylor Swift',(SELECT RAND() * (PRECO_MAXIMO - PRECO_MINIMO) + PRECO_MINIMO FROM ECM_PRECIFICACOES WHERE TIPO = 'CD-RW'),'','Taylor Swift é o álbum de estreia homônimo da cantora e compositora estadunidense Taylor Swift, lançado através da Big Machine Records em 24 de outubro de 2006.',0,0,0,'1981','Taylor Swift',44)
+        ((SELECT ID_PRECIFICACAO FROM ECM_PRECIFICACOES WHERE TIPO = 'CD-RW'),'7896514521745','1989: Taylor''s Version - Taylor Swift',(SELECT RAND() * (PRECO_MAXIMO - PRECO_MINIMO) + PRECO_MINIMO FROM ECM_PRECIFICACOES WHERE TIPO = 'CD-RW'),'','Taylor Swift é o álbum de estreia homônimo da cantora e compositora estadunidense Taylor Swift, lançado através da Big Machine Records em 24 de outubro de 2006.',0,0,0,'1981','Taylor Swift',44),
+        ((SELECT ID_PRECIFICACAO FROM ECM_PRECIFICACOES WHERE TIPO = 'VINIL MONOMERICO'),'7892174565145','Dua Lipa - LP Radical Optimism',(SELECT RAND() * (PRECO_MAXIMO - PRECO_MINIMO) + PRECO_MINIMO FROM ECM_PRECIFICACOES WHERE TIPO = 'VINIL MONOMERICO'),'','Inspirado na autodescoberta de Dua, Radical Optimism é um álbum que explora a pura alegria e felicidade de ter clareza em situações que antes pareciam impossíveis de enfrentar..',0,0,0,'2020','Dua Lipa',44),
+        ((SELECT ID_PRECIFICACAO FROM ECM_PRECIFICACOES WHERE TIPO = 'VINIL POLIMERICO'),'7896517451452','Leigh-Anne: Don’t Say Love (Autografado)',(SELECT RAND() * (PRECO_MAXIMO - PRECO_MINIMO) + PRECO_MINIMO FROM ECM_PRECIFICACOES WHERE TIPO = 'VINIL POLIMERICO'),'','Signed Don''t Say Love CD single bundle including standard and alternative cover versions. Both CD singles include a personal message record by Leigh-Anne.',0,0,0,'2019','Leigh-Anne',44)
 
         INSERT INTO ECM_STATUS (ID_PRODUTO,ATIVO,OBSERVACAO)
         VALUES
@@ -280,7 +290,8 @@ AS
         (57,1,''), (67,1,''), (77,1,''), (87,1,''), (97,1,''),
         (58,1,''), (68,1,''), (78,1,''), (88,1,''), (98,1,''),
         (59,1,''), (69,1,''), (79,1,''), (89,1,''), (99,1,''),
-        (60,1,''), (70,1,''), (80,1,''), (90,1,''), (100,1,'')
+        (60,1,''), (70,1,''), (80,1,''), (90,1,''), (100,1,''),
+        (101,1,''), (102,1,'')
 
         UPDATE ECM_PRODUTOS SET PRE_VENDA = 1 WHERE TIPO = 'PRE-VENDA'
 
@@ -416,7 +427,9 @@ AS
         (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
         (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
         (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
+        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
 
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
@@ -546,7 +559,9 @@ AS
         (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
         (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
         (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
+        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
 
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
@@ -676,7 +691,9 @@ AS
         (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
         (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
         (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
+        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
 
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
@@ -806,7 +823,9 @@ AS
         (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
         (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
         (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
+        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
 
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
@@ -936,8 +955,10 @@ AS
         (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
         (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
         (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
-        
+        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
+
         INSERT INTO ECM_ESTOQUES (ID_PRODUTO,CODIGO,SALDO,NOTA_FISCAL,COR,PRECO_UNITARIO,TIPO,TAMANHO,MARCA,GRAVADORA,PESO)
         VALUES
         (1,'7899673881858',45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',148.87,'','120mm','SONY','WARNER MUSIC',1.3),
@@ -1066,6 +1087,134 @@ AS
         (97,'7893672436219',44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',163.37,'','120mm','CIS','POLYSOM',1.3),
         (98,'7896210284033',33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',89.13,'','120mm','MULTILASER','ONIMUSIC',1.3),
         (99,'7897985628068',18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',107.59,'','17.50cm','SONY','NOVO TEMPO',1.6),
-        (100,'7896514521745',31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',102.57,'','17.50cm','MAKETECH','MOVIEPLAY',1.6)
+        (100,'7896514521745',31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',102.57,'','17.50cm','MAKETECH','MOVIEPLAY',1.6),
+        (101,'7896514521745',31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',102.57,'','17.50cm','MAKETECH','MOVIEPLAY',1.6),
+        (102,'7896514521745',31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',102.57,'','17.50cm','MAKETECH','MOVIEPLAY',1.6)
+  
+        INSERT INTO [ECM_CAT_PRO] (ID_PRODUTO,ID_CATEGORIA)
+        VALUES
+        (1,48),
+        (2,2),
+        (3,8),
+        (4,34),
+        (5,22),
+        (6,15),
+        (7,31),
+        (8,25),
+        (9,9),
+        (10,29),
+        (11,10),
+        (12,32),
+        (13,44),
+        (14,12),
+        (15,52)
+
+        INSERT INTO [ECM_CAT_PRO] (ID_PRODUTO,ID_CATEGORIA)
+        VALUES
+        (16,24),
+        (17,33),
+        (18,16),
+        (19,10),
+        (20,23),
+        (21,37),
+        (22,44),
+        (23,41),
+        (24,36),
+        (25,40),
+        (26,8),
+        (27,40),
+        (28,45),
+        (29,18),
+        (30,18)
+
+        INSERT INTO [ECM_CAT_PRO] (ID_PRODUTO,ID_CATEGORIA)
+        VALUES
+        (31,17),
+        (32,34),
+        (33,18),
+        (34,51),
+        (35,15),
+        (36,40),
+        (37,41),
+        (38,50),
+        (39,44),
+        (40,40),
+        (41,29),
+        (42,40),
+        (43,3),
+        (44,49),
+        (45,31)
+
+        INSERT INTO [ECM_CAT_PRO] (ID_PRODUTO,ID_CATEGORIA)
+        VALUES
+        (46,48),
+        (47,23),
+        (48,48),
+        (49,28),
+        (50,23)
+
+        INSERT INTO [ECM_CAT_PRO] (ID_PRODUTO,ID_CATEGORIA)
+        VALUES
+        (51,28),
+        (52,3),
+        (53,43),
+        (54,21),
+        (55,13),
+        (56,4),
+        (57,52),
+        (58,31),
+        (59,9),
+        (60,5),
+        (61,29),
+        (62,9),
+        (63,18),
+        (64,37),
+        (65,3)
+
+        INSERT INTO [ECM_CAT_PRO] (ID_PRODUTO,ID_CATEGORIA)
+        VALUES
+        (66,25),
+        (67,48),
+        (68,54),
+        (69,3),
+        (70,4),
+        (71,11),
+        (72,24),
+        (73,49),
+        (74,53),
+        (75,46),
+        (76,23),
+        (77,5),
+        (78,3),
+        (79,20),
+        (80,28)
+
+        INSERT INTO [ECM_CAT_PRO] (ID_PRODUTO,ID_CATEGORIA)
+        VALUES
+        (81,41),
+        (82,6),
+        (83,42),
+        (84,52),
+        (85,41),
+        (86,3),
+        (87,39),
+        (88,5),
+        (89,20),
+        (90,38),
+        (91,8),
+        (92,49),
+        (93,35),
+        (94,11),
+        (95,48)
+
+        INSERT INTO [ECM_CAT_PRO] (ID_PRODUTO,ID_CATEGORIA)
+        VALUES
+        (96,22),
+        (97,11),
+        (98,40),
+        (99,54),
+        (100,38),
+        (101,32),
+        (102,3)
     END
 GO

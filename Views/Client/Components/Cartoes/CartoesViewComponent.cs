@@ -23,5 +23,18 @@ namespace crm.Views.Client.Components.Cartoes
     public class ViewCartoes
     {
         public List<Card> Cartoes { get; set; }
+
+        public string ImageSource(byte[] Imagem)
+        {
+
+            try
+            {
+                return "data:image/webp;base64," + Convert.ToBase64String(Imagem);
+            }
+            catch (Exception)
+            {
+                return "data:image/webp;base64,";
+            }
+        }
     }
 }

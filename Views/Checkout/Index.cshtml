@@ -24,7 +24,6 @@
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
 <input type="hidden" value="@Model.Cliente.IdCliente" name="idCliente">
-<input type="hidden" value="@Model.Cliente.Codigo" name="codigo">
 
 <section class="checkout-wrapper section">
 
@@ -300,7 +299,7 @@
                         <form>
                             <div class="single-form form-default">
                                 <div class="form-input form">
-                                    <input autocomplete="off" type="text" placeholder="Código do cupom" name="desconto">
+                                    <input autocomplete="off" type="text" placeholder="Código de troca, devolução ou reembolso" name="desconto">
                                 </div>
                                 <div class="button">
                                     <button type="button" data-action='desconto'

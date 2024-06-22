@@ -20,6 +20,12 @@ namespace crm.Models
         [Column("NOME_TITULAR")]
         public string NomeTitular { get; set; }
 
+        [Column("COR")]
+        public string Cor { get; set; }
+
+        [Column("IMAGEM")]
+        public byte[] Imagem { get; set; }
+
         [Column("NOME_CARTAO")]
         public string NomeCartao { get; set; }
         

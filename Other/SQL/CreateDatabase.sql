@@ -29,6 +29,8 @@ AS
         (
             ID_BANDEIRA BIGINT IDENTITY(1, 1) NOT NULL,
             NOME VARCHAR(255) NOT NULL,
+            COR VARCHAR(255) NOT NULL,
+            IMAGEM VARBINARY(MAX),
             CRIACAO DATETIME DEFAULT GETDATE() NULL,
             D_E_L_E_T_ CHAR(1) DEFAULT '' NULL
         );

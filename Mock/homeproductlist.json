@@ -5,29 +5,29 @@
       {
         "Imagem": "01.webp",
         "NomeProduto": "Taylor Swift - The Tortured Poets Department",
-        "PrecoOriginal": "R$ 499,00",
-        "IdProduto": "2",
-        "Subcategoria": "SERIADO",
+        "PrecoOriginal": "R$ 375,42",
+        "IdProduto": "99",
+        "Subcategoria": "BLUES",
         "Tipo": "",
-        "TipoProduto": "CD"
+        "TipoProduto": "CD-RW"
       },
       {
         "Imagem": "02.webp",
-        "NomeProduto": "Lady Gaga - Dawn Of Chromatica",
-        "PrecoOriginal": "R$ 59,90",
-        "IdProduto": "2",
-        "Subcategoria": "SERIADO",
+        "NomeProduto": "B'Day - Beyoncé",
+        "PrecoOriginal": "R$ 377,52",
+        "IdProduto": "42",
+        "Subcategoria": "HIP HOP",
         "Tipo": "",
-        "TipoProduto": "CD"
+        "TipoProduto": "VINIL MONOMERICO"
       },
       {
         "Imagem": "03.webp",
         "NomeProduto": "Vinil Jão - Anti-herói (branco Transparente)",
-        "PrecoOriginal": "R$ 159,60",
-        "IdProduto": "2",
-        "Subcategoria": "SERIADO",
+        "PrecoOriginal": "R$ 604,76",
+        "IdProduto": "6",
+        "Subcategoria": "ROMÂNTICO",
         "Tipo": "",
-        "TipoProduto": "CD"
+        "TipoProduto": "CD-RW"
       }
     ]
   },
@@ -37,29 +37,29 @@
       {
         "Imagem": "04.webp",
         "NomeProduto": "Ariana Grande - Eternal Sunshine",
-        "PrecoOriginal": "R$ 469,90",
-        "IdProduto": "2",
-        "Subcategoria": "SERIADO",
+        "PrecoOriginal": "R$ 602,94",
+        "IdProduto": "97",
+        "Subcategoria": "ROMÂNTICO",
         "Tipo": "",
-        "TipoProduto": "CD"
+        "TipoProduto": "CD-R"
       },
       {
         "Imagem": "05.webp",
-        "NomeProduto": "Luke Hemmings - boy (Exclusive Gatefold) - LP",
-        "PrecoOriginal": "R$ 429,00",
-        "IdProduto": "2",
-        "Subcategoria": "SERIADO",
+        "NomeProduto": "A Hard Day's Night - Os Beatles", 
+        "PrecoOriginal": "R$ 359,61",
+        "IdProduto": "29",
+        "Subcategoria": "ROCK ALTERNATIVO",
         "Tipo": "",
-        "TipoProduto": "CD"
+        "TipoProduto": "VINIL MONOMERICO"
       },
       {
         "Imagem": "06.webp",
         "NomeProduto": "Vinil Pabllo Vittar – Noitada",
-        "PrecoOriginal": "R$ 239,90",
-        "IdProduto": "2",
-        "Subcategoria": "SERIADO",
+        "PrecoOriginal": "R$ 356,11",
+        "IdProduto": "3",
+        "Subcategoria": "HITS",
         "Tipo": "",
-        "TipoProduto": "CD"
+        "TipoProduto": "CD-RW"
       }
     ]
   },
@@ -68,30 +68,30 @@
     "Produtos": [
       {
         "Imagem": "07.webp",
-        "NomeProduto": "Dua Lipa - Radical Optimism Cassette",
-        "PrecoOriginal": "R$ 175,00",
-        "IdProduto": "2",
-        "Subcategoria": "SERIADO",
+        "NomeProduto": "Justice - Justin Bieber",
+        "PrecoOriginal": "R$ 403,35",
+        "IdProduto": "68",
+        "Subcategoria": "DANCE",
         "Tipo": "",
-        "TipoProduto": "CD"
+        "TipoProduto": "CD-R"
       },
       {
         "Imagem": "08.webp",
         "NomeProduto": "Taylor Swift - The Tortured Poets Department",
-        "PrecoOriginal": "R$ 549,90",
-        "IdProduto": "2",
-        "Subcategoria": "SERIADO",
+        "PrecoOriginal": "R$ 375,42",
+        "IdProduto": "99",
+        "Subcategoria": "POP",
         "Tipo": "",
-        "TipoProduto": "CD"
+        "TipoProduto": "CD-RW"
       },
       {
         "Imagem": "09.webp",
-        "NomeProduto": "Vinil Tulipa Ruiz – Tudo Tanto",
-        "PrecoOriginal": "R$ 229,90",
-        "IdProduto": "2",
-        "Subcategoria": "SERIADO",
+        "NomeProduto": "K-12 - Melanie Martinez",
+        "PrecoOriginal": "R$ 723,89",
+        "IdProduto": "80",
+        "Subcategoria": "PICTURE DISC",
         "Tipo": "",
-        "TipoProduto": "CD"
+        "TipoProduto": "CD-R"
       }
     ]
   }

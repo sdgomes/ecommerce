@@ -192,7 +192,7 @@ namespace crm.DAL
         {
             try
             {
-                string query = $@"SELECT
+                string query = $@"SELECT BAN.COR, BAN.IMAGEM,
 	                                CAR.ID_CARTAO,CAR.ID_CLIENTE,CAR.ID_BANDEIRA,CAR.NOME_CARTAO,
 	                                CAR.NOME_TITULAR,CAR.PRINCIPAL,CAR.CPF_TITULAR,CAR.NUMERO,
 	                                CAR.DATA_VALIDADE,CAR.CODIGO_SEGURANCA,CAR.CRIACAO, BAN.NOME
@@ -269,7 +269,7 @@ namespace crm.DAL
         {
             try
             {
-                string query = $@"SELECT ID_BANDEIRA, NOME FROM ECM_BANDEIRAS WHERE D_E_L_E_T_ <> '*' ORDER BY NOME ASC;";
+                string query = $@"SELECT ID_BANDEIRA, NOME, IMAGEM FROM ECM_BANDEIRAS WHERE D_E_L_E_T_ <> '*' ORDER BY NOME ASC;";
 
                 return DatabaseProgramas().Select<Card>(query);
             }

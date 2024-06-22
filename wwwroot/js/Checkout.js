@@ -287,7 +287,7 @@ $(document).on('click', '#novo-endereco', function () {
     });
 })
 
-function alerta(cards) {
+const getPagamentos = (cards) => {
     return new Promise((resolve, reject) => {
         let formHtml = "";
         cards.forEach(card => {
@@ -313,7 +313,7 @@ function alerta(cards) {
             title: "Infromações de pagamento.",
             html: `<div>
                 <div>
-                    <h1 id="total-pagar-cartao" class="font-bold text-3xl text-gray-800">R$ <span total-sem-atribuicao>${$('[total-compra]').text().replace(/R\$/g, '').toFloat().toMoney()}</span></h1>
+                    <h1 id="total-pagar-cartao" class="font-bold text-3xl text-gray-800">R$ <span total-sem-atribuicao>${$('.total-compra').text()}</span></h1>
                     <p class="w-1/2 mx-auto mb-4 font-bold text-sm">Total da compra sem atribuição. Ao adicionar um valor no cartão selecionado ele será subitraido do valor tatal.</p>
                 </div>
                 <div class="mb-3">
@@ -336,7 +336,7 @@ function alerta(cards) {
                 confirmButton: "!bg-[#ffcc00] !text-gray-800",
             },
             didOpen: () => {
-                totalTravado = $('[total-compra]').text().replace(/R\$/g, '').toFloat()
+                totalTravado = $('.total-compra').toFloat().toFloat()
             },
             preConfirm: () => {
                 try {
@@ -416,8 +416,6 @@ $(document).ready(function () {
     });
 });
 
-
-
 var totalTravado;
 var descontoPlus = 0;
 
@@ -496,6 +494,7 @@ $(document).on("click", '[comprar]', async function () {
         return false;
     }
 
+    /** Validar Frete */
     if ($('[calculo-frete]').val() == "") {
         Swal.fire({
             icon: 'warning',
@@ -514,7 +513,7 @@ $(document).on("click", '[comprar]', async function () {
         return false;
     }
 
-    if ($('[valor-frete]').text().replace(/R\$/g, '').toFloat() == 0) {
+    if ($('.frete').toFloat().toFloat() == 0) {
         Swal.fire({
             icon: 'warning',
             title: "Atenção!",
@@ -532,7 +531,7 @@ $(document).on("click", '[comprar]', async function () {
         return false;
     }
 
-    var CEPEndereco = $('[name="enderecoEntrega"]:checked').parents('.card-body').find('[data-type="CEP"]').text();
+    var CEPEndereco = $('[name="enderecoEntrega"]:checked').getData().cep;
     var calculoCEP = $('[calculo-frete]').val();
 
     if (CEPEndereco != calculoCEP) {
@@ -552,53 +551,52 @@ $(document).on("click", '[comprar]', async function () {
 
         return false;
     }
+    /** Validar Frete */
 
+    /** Validar Cartoes */
     var cartoes = [];
     $('[name="cartaoPagamento"]:checked').each(function (index, element) {
         cartoes.push($(element).val())
     });
 
     var validation = false;
-    var EnviaCartoes = [];
+    var Cartoes = [];
 
     if (cartoes.length > 1) {
-        EnviaCartoes = await alerta(cartoes)
+        Cartoes = await getPagamentos(cartoes)
 
-        if (EnviaCartoes == false)
+        if (Cartoes == false)
             return false;
     }
     else
-        EnviaCartoes.push({
+        Cartoes.push({
             IdCartao: cartoes[0],
-            Total: $('[total-compra]').toFloat()
+            Total: $('.total-compra').toFloat()
         })
 
     if (validation)
         return false;
 
+    /** Validar Cartoes */
+
     var transaction = {
         ...$("#lista-produtos").serializeJsonComplex(),
         ...{
-            Cartoes: EnviaCartoes,
+            CodCupons: $('[name="cupons"]').val().trim(),
+            CodDesconto: $('[name="desconto"]').val().trim(),
+            Cartoes: Cartoes,
             IdEndereco: $('[name="enderecoEntrega"]:checked').val(),
             IdCliente: $('[name="idCliente"]').val(),
-            Subtotal: $('[menu-total-amount]').toFloat(),
-            Frete: $('[valor-frete]').toFloat(),
-            Descontos: $('[total-descontos]').toFloat(),
-            Total: $('[total-compra]').toFloat()
+            CEP: $('[calculo-frete]').val().trim(),
         }
     }
 
     $.ajax({
         type: "POST",
         url: `/registra/transacao`,
-        data: { Transaction: transaction, Codigo: $('[name="codigo"]').val() },
-        success: function (data) {
-            localStorage.setItem('transacao', JSON.stringify(data))
-            localStorage.removeItem('produtos-carrinho')
-            localStorage.removeItem('frete')
-
-            location.href = data.url;
+        data: { Transaction: transaction },
+        success: function (response) {
+            location.href = response.url;
         },
         error: function (response) {
             console.log(response);
@@ -657,21 +655,23 @@ $(document).on("click", "[data-action='desconto'], [data-action='cupons']", func
         $.ajax({
             type: "GET",
             url: `/buscar/desconto/${$input.val()}/${buttonData.action.toUpperCase()}`,
-            success: function (data) {
+            success: function (response) {
                 $button.html(buttonData.action == 'cupons' ? 'Aplicar' : 'Resgatar')
 
                 Toast.fire({
-                    icon: data.response.success ? "success" : "error",
-                    title: data.response.message
+                    icon: response.data.success ? "success" : "error",
+                    title: response.data.message
                 });
 
-                if (buttonData.action == 'cupons') {
-                    $('.cupons').html(`${data.response.desconto}%`)
-                }else{
-                    descontoPlus = data.response.desconto
-                }
+                if (response.data.success) {
+                    if (buttonData.action == 'cupons') {
+                        $('.cupons').html(`${response.data.desconto}%`)
+                    } else {
+                        descontoPlus = response.data.desconto
+                    }
 
-                atualizaTabelaPrecos()
+                    atualizaTabelaPrecos()
+                }
             },
             error: function (response) {
                 console.log(response);

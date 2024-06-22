@@ -83,20 +83,20 @@ namespace crm.BLL
         {
             try
             {
-                dynamic desconto;
+                double desconto;
                 if (Tipo == "DESCONTO")
                 {
                     desconto = ProductDAO.ResgataCodigo(Codigo);
-                    if (desconto == null)
+                    if (desconto == 0)
                         return new { success = false, message = "O código informado é inválido, por favor tente novamente!" };
                     else
-                        return new { success = true, message = $@"Seu desconto resgatado é de {desconto.toString("C")}", desconto };
+                        return new { success = true, message = $@"Seu desconto resgatado é de {desconto.ToString("C")}", desconto };
                 }
 
                 if (Tipo == "CUPONS")
                 {
                     desconto = ProductDAO.SearchDiscountByCodigo(Codigo);
-                    if (desconto == null)
+                    if (desconto == 0)
                         return new { success = false, message = "O código informado é inválido, por favor tente novamente!" };
                     else
                         return new { success = true, message = $@"Seu desconto é de {desconto}%", desconto };
@@ -104,7 +104,7 @@ namespace crm.BLL
 
                 return new { success = false, message = "O código informado é inválido, ou o tipo não aceito, por favor tente novamente!" };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new { success = false, message = "O código informado é inválido, por favor tente novamente!" };
             }
@@ -125,29 +125,94 @@ namespace crm.BLL
 
         }
 
-        public static long RegistraTransacao(TransactionDTO Transaction)
+        public static TransactionDTO ValidaCupons(TransactionDTO transaction)
+        {
+            if (transaction.CodCupons != null)
+            {
+                var cupom = ProductDAO.SearchDiscountByCodigo(transaction.CodCupons);
+
+                if (cupom > 0)
+                {
+                    var cuponsExtra = (transaction.Total / 100) * cupom;
+                    transaction.Total -= cuponsExtra;
+
+                    ProductDAO.RegistraResgateDesconto(transaction.CodCupons);
+                }
+            }
+
+            return transaction;
+        }
+
+        public static TransactionDTO ValidaDesconto(TransactionDTO transaction)
+        {
+            transaction.Descontos = transaction.Produtos.Where(x => x.Desconto).Sum(x => x.QntCompra * x.CalculoDesconto);
+
+            if (transaction.CodDesconto != null)
+            {
+                var descontoMais = ProductDAO.ResgataCodigo(transaction.CodDesconto);
+                transaction.Descontos += descontoMais;
+
+                if (descontoMais > 0)
+                {
+                    ProductDAO.RegistraResgateDesconto(transaction.CodDesconto);
+                }
+            }
+
+            return transaction;
+        }
+
+        public static TransactionDTO ValidaPagamrnto(TransactionDTO transaction)
         {
             Random random = new Random();
-            string[] pagamentos = { "APROVADO", "RECUSADO" };
+            string[] pagamentos = { "APROVADO", "APROVADO", "APROVADO", "APROVADO", "RECUSADO" };
             int sorte = random.Next(0, pagamentos.Length);
             string pagamento = pagamentos[sorte];
 
-            Transaction.Pagamento = pagamento;
+            if (transaction.Total <= 0)
+            {
+                transaction.Pagamento = "APROVADO";
+                transaction.Total = 0;
+            }
+            else
+            {
+                transaction.Pagamento = pagamento;
+            }
 
-            long IdTransaction = TransactionDAO.Create(Transaction);
+            return transaction;
+        }
+
+        public static async Task<long> RegistraTransacao(TransactionDTO transaction)
+        {
+            dynamic via = await CalcularFrete(transaction.CEP);
+            transaction.Frete = via.preco;
+
+            transaction = ValidaDesconto(transaction);
+
+            transaction.Subtotal = transaction.Produtos.Sum(x => x.QntCompra * x.Preco);
+
+            transaction.Total = (transaction.Subtotal + transaction.Frete) - transaction.Descontos;
+
+            transaction = ValidaCupons(transaction);
+
+            transaction = ValidaPagamrnto(transaction);
+
+            long IdTransaction = TransactionDAO.Create(transaction);
 
             if (IdTransaction != 0)
             {
                 TransactionDAO.RegistraAtividade(IdTransaction, "Um novo pedido foi feito, e está aguardando validação de pagamento.", "COMPRA");
 
-                foreach (var Item in Transaction.Produtos)
+                foreach (var Item in transaction.Produtos)
                 {
                     TransactionDAO.AssociateProducts(IdTransaction, Item);
                 }
 
-                foreach (var Item in Transaction.Cartoes)
+                foreach (var Item in transaction.Cartoes)
                 {
-                    Item.Pagamento = pagamento;
+                    Item.Pagamento = transaction.Pagamento;
+                    if (transaction.Total == 0)
+                        Item.Total = 0;
+
                     TransactionDAO.AssociateCards(IdTransaction, Item);
                 }
             }

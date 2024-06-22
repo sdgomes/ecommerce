@@ -33,6 +33,24 @@ namespace crm.DAL
             }
         }
 
+        public static void RegistraResgateDesconto(string Codigo)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_DESCONTOS SET RESGATADO = 1 WHERE CODIGO = @CODIGO;";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo)
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static double ResgataCodigo(string Codigo)
         {
             try
@@ -62,7 +80,7 @@ namespace crm.DAL
         {
             try
             {
-                string query = @$"SELECT DESCONTO FROM ECM_DESCONTOS WHERE CODIGO = @CODIGO AND RESGATADO = 0 AND ATIVO = 1 AND D_E_L_E_T_ <> '*';";
+                string query = @$"SELECT DESCONTO FROM ECM_DESCONTOS WHERE TIPO = 'CUPONS' AND CODIGO = @CODIGO AND RESGATADO = 0 AND ATIVO = 1 AND D_E_L_E_T_ <> '*';";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@CODIGO", Codigo)

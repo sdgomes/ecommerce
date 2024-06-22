@@ -24,11 +24,13 @@ namespace crm.Controllers
         }
 
         [HttpPost("/registra/transacao")]
-        public IActionResult RegistraTransacao(TransactionDTO Transaction, string Codigo)
+        public async Task<IActionResult> RegistraTransacao(TransactionDTO Transaction)
         {
             try
             {
-                long IdTransacao = ProductBLL.RegistraTransacao(Transaction);
+                var Codigo = Request.Cookies["codigo"];
+
+                long IdTransacao = await ProductBLL.RegistraTransacao(Transaction);
                 return Json(new { Transacoes = Transaction, Url = Url.Action("Pedido", "Client", new { Codigo, Pedido = IdTransacao }) });
             }
             catch (Exception)
@@ -38,7 +40,7 @@ namespace crm.Controllers
         }
 
         [HttpPost("/registra/novo/pagamento/transacao")]
-        public IActionResult RegistraTransacao(TransactionDTO Transaction)
+        public IActionResult RegistraNovoPagamento(TransactionDTO Transaction)
         {
             try
             {
@@ -56,7 +58,7 @@ namespace crm.Controllers
         {
             try
             {
-                return Json(new { response = ProductBLL.BuscarDesconto(Codigo, Tipo) });
+                return Json(new { data = ProductBLL.BuscarDesconto(Codigo, Tipo) });
             }
             catch (Exception)
             {

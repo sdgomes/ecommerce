@@ -40,11 +40,6 @@ const CardReorder = () => {
     });
 }
 
-$(document).on('change', '.card-flags', function () {
-    $select = $(this);
-    $select.parents('.checkout-payment-form').find('.image-flags').attr("src", `/img/images/payment/${$select.val()}.webp`);
-});
-
 $(document).on("click", '[data-click="remove"]', function () {
     $(this).parents('[data-target="removible"]').remove();
     AddressReorder();

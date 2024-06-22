@@ -1,23 +1,6 @@
 ﻿@model ViewPagarNovamente
 
 <div class="text-left">
-    <div class="checkout-sidebar-coupon">
-        <p>Aplique o cupom para obter desconto!</p>
-        <form>
-            <div class="single-form form-default">
-                <div class="form-input form">
-                    <input autocomplete="off" type="text" placeholder="Código do cupom">
-                </div>
-                <div class="button">
-                    <button type="button" data-action='desconto'
-                        class="btn !w-fit !flex !text-gray-800 hover:!text-white min-h-0">
-                        Aplicar
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-
     <div class="cartoes-slider mt-5">
         @(await Component.InvokeAsync<CartoesViewComponent>(new { IdCliente = Model.IdCliente}))
     </div>

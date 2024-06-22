@@ -14,6 +14,10 @@ namespace crm.DTO
 
         public List<Card> Cartoes { get; set; }
 
+        public string CodCupons { get; set; }
+
+        public string CodDesconto { get; set; }
+
         public string ImageSource
         {
             get
