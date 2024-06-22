@@ -111,21 +111,21 @@ namespace crm.BLL
             return Model;
         }
 
-        public static ClientDTO ClientCheckoutByCodigo(string Codigo, List<Product> Produtos)
+        public static CheckoutView ClientCheckoutByCodigo(string Codigo, List<Product> Produtos)
         {
-            ClientDTO Model = new();
+            CheckoutView Model = new();
 
             var IdsProdutos = String.Join(", ", Produtos.Select(x => x.IdProduto.ToString()).ToArray());
-            Model.Products = ProductDAO.SelectProductsByInId(IdsProdutos);
-            foreach (var Item in Model.Products)
+            Model.Produtos = ProductDAO.SelectProductsByInId(IdsProdutos);
+            foreach (var Item in Model.Produtos)
             {
                 Product Produto = Produtos.Where(x => x.IdProduto == Item.IdProduto).FirstOrDefault();
                 Item.QntCompra = Produto.QntCompra;
             }
 
-            Model.Client = ClientDAO.SearchForClientByCodigo(Codigo);
-            Model.Adresses = AddressDAO.SelectAllAddressByClient(Model.Client.IdCliente);
-            Model.Cards = CardDAO.SelectClientCard(Model.Client.IdCliente);
+            Model.Cliente = ClientDAO.SearchForClientByCodigo(Codigo);
+            Model.Enderecos = AddressDAO.SelectAllAddressByClient(Model.Cliente.IdCliente);
+
             return Model;
         }
 

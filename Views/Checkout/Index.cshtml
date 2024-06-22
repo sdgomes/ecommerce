@@ -1,13 +1,13 @@
-@model ClientDTO
+@model CheckoutView
 
 @{
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Checkout";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
-new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
-new BreadcrumbsDTO("Produtos", "./shop"),
-new BreadcrumbsDTO("Checkout")
-};
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Produtos", "./shop"),
+        new BreadcrumbsDTO("Checkout")
+    };
 
     ViewData["Title"] = breadcrumbs.Title;
 }
@@ -23,8 +23,8 @@ new BreadcrumbsDTO("Checkout")
 
 @(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
 
-<input type="hidden" value="@Model.Client.IdCliente" name="idCliente">
-<input type="hidden" value="@Model.Client.Codigo" name="codigo">
+<input type="hidden" value="@Model.Cliente.IdCliente" name="idCliente">
+<input type="hidden" value="@Model.Cliente.Codigo" name="codigo">
 
 <section class="checkout-wrapper section">
 
@@ -36,109 +36,117 @@ new BreadcrumbsDTO("Checkout")
                     <h2 class="card-title !text-base">Produtos</h2>
 
                     <div>
-                        @if (Model.Products == null)
-                        {
-                            <div role="alert" class="alert rounded-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span>Nenhum item foi adicionado ao carrinho.</span>
-                            </div>
-                        }
-                        else
-                        {
-                            <table class="table table-zebra border">
-                                <thead>
-                                    <tr class="bg-purple-200">
-                                        <th>Item</th>
-                                        <th>Nome do Produto</th>
-                                        <th>Quantidade</th>
-                                        <th>Subtotal</th>
-                                        <th>Desconto</th>
-                                        <th>Remover</th>
+                        <table class="table table-zebra border">
+                            <thead>
+                                <tr class="bg-purple-200">
+                                    <th>Item</th>
+                                    <th>Nome do Produto</th>
+                                    <th>Quantidade</th>
+                                    <th>Subtotal</th>
+                                    <th>Desconto</th>
+                                    <th>Remover</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Produtos == null)
+                                {
+                                    <tr>
+                                        <td colspan="6">
+                                            <div role="alert" class="alert rounded-md">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                                <span>Nenhum item foi adicionado ao carrinho.</span>
+                                            </div>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var (Item, Index) in Model.Products.Select((Item, Index) => (Item, Index)))
-                                    {
+                                }
 
-                                        <tr>
-                                            <td>
+                                @foreach (var (Item, Index) in Model.Produtos.Select((Item, Index) => (Item, Index)))
+                                {
+                                    <tr>
+                                        <td>
+                                            <a asp-action="Index" asp-controller="ShopSingle"
+                                               asp-route-categoria="@Item.TipoProduto.ToLower()"
+                                               asp-route-subcategoria="@Item.Subcategoria.ToLower()"
+                                               asp-route-idproduto="@Item.IdProduto">
+                                                <img src="@Item.ImageSource" class="w-14" alt="...">
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <h5 class="product-name">
                                                 <a asp-action="Index" asp-controller="ShopSingle"
                                                    asp-route-categoria="@Item.TipoProduto.ToLower()"
                                                    asp-route-subcategoria="@Item.Subcategoria.ToLower()"
                                                    asp-route-idproduto="@Item.IdProduto">
-                                                    <img src="@Item.ImageSource" class="w-14" alt="...">
+                                                    @Item.Nome
                                                 </a>
-                                            </td>
-                                            <td>
-                                                <h5 class="product-name">
-                                                    <a asp-action="Index" asp-controller="ShopSingle"
-                                                       asp-route-categoria="@Item.TipoProduto.ToLower()"
-                                                       asp-route-subcategoria="@Item.Subcategoria.ToLower()"
-                                                       asp-route-idproduto="@Item.IdProduto">
-                                                        @Item.Nome
-                                                    </a>
-                                                </h5>
-                                                <p class="product-des">
-                                                    <span>
-                                                        @Item.Subcategoria.Capitalize(), @Item.TipoProduto.Capitalize(),
-                                                        @Item.Cor.Capitalize(), @Item.Marca.Capitalize()
-                                                    </span>
-                                                    <span><em>Cor:</em> @Item.Cor.Capitalize()</span>
-                                                </p>
-                                            </td>
-                                            <td>
-                                                <input type="hidden" value="@Item.IdProduto"
-                                                       name="produtos[@Index].idProduto">
-                                                <div class="count-input flex">
-                                                    <button type="button" class="button-qnt"
-                                                            data-desconto='@(Item.Desconto ? "true" : "false")'
-                                                            data-id-produto="@Item.IdProduto"
-                                                            data-preco="@Item.Preco"
-                                                            data-calculo-desconto="@Item.CalculoDesconto"
-                                                            data-operador="menos">
-                                                        <i class="fa-solid fa-minus"></i>
-                                                    </button>
+                                            </h5>
+                                            <p class="product-des">
+                                                <span>
+                                                    @Item.Subcategoria.Capitalize(), @Item.TipoProduto.Capitalize(),
+                                                    @Item.Cor.Capitalize(), @Item.Marca.Capitalize()
+                                                </span>
+                                                <span><em>Cor:</em> @Item.Cor.Capitalize()</span>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <input type="hidden" value="@Item.IdProduto"
+                                                   name="produtos[@Index].idProduto">
+                                            <input type="hidden" value="@Item.Preco"
+                                                   name="produtos[@Index].preco">
+                                            <input type="hidden" value='@(Item.Desconto ? "true" : "false")'
+                                                   name="produtos[@Index].desconto">
+                                            <input type="hidden" value="@Item.CalculoDesconto"
+                                                   name="produtos[@Index].calculoDesconto">
 
-                                                    <input autocomplete="off" type="text"
-                                                           value="@Item.QntCompra"
-                                                           name="produtos[@Index].qntCompra"
-                                                           class="input-qnt !w-[65px] !mx-2" />
-
-                                                    <button type="button" class="button-qnt"
-                                                            data-desconto='@(Item.Desconto ? "true" : "false")'
-                                                            data-id-produto="@Item.IdProduto"
-                                                            data-preco="@Item.Preco"
-                                                            data-calculo-desconto="@Item.CalculoDesconto"
-                                                            data-operador="mais">
-                                                        <i class="fa-solid fa-plus"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p data-target="preco">@((Item.QntCompra * Item.Preco).ToString("C"))</p>
-                                            </td>
-                                            <td>
-                                                @if (Item.Desconto)
-                                                {
-                                                    <p data-target="desconto">@((Item.QntCompra * Item.CalculoDesconto).ToString("C"))</p>
-                                                }
-                                                else
-                                                {
-                                                    <span>-</span>
-                                                }
-                                            </td>
-                                            <td>
-                                                <button data-trigger="remove-produto"
-                                                        class="remove-item-carrinho btn btn-error btn-sm btn-square text-white">
-                                                    <i class="fa-light fa-xmark"></i>
+                                            <div class="count-input flex">
+                                                <button type="button" class="button-qnt"
+                                                        data-desconto='@(Item.Desconto ? "true" : "false")'
+                                                        data-id-produto="@Item.IdProduto"
+                                                        data-preco="@Item.Preco"
+                                                        data-calculo-desconto="@Item.CalculoDesconto"
+                                                        data-operador="menos">
+                                                    <i class="fa-solid fa-minus"></i>
                                                 </button>
-                                            </td>
-                                        </tr>
 
-                                    }
-                                </tbody>
-                            </table>
-                        }
+                                                <input autocomplete="off" type="text"
+                                                       value="@Item.QntCompra"
+                                                       name="produtos[@Index].qntCompra"
+                                                       class="input-qnt !w-[65px] !mx-2" />
+
+                                                <button type="button" class="button-qnt"
+                                                        data-desconto='@(Item.Desconto ? "true" : "false")'
+                                                        data-id-produto="@Item.IdProduto"
+                                                        data-preco="@Item.Preco"
+                                                        data-calculo-desconto="@Item.CalculoDesconto"
+                                                        data-operador="mais">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p data-target="preco">@((Item.QntCompra * Item.Preco).ToString("C"))</p>
+                                        </td>
+                                        <td>
+                                            @if (Item.Desconto)
+                                            {
+                                                <p data-target="desconto">@((Item.QntCompra * Item.CalculoDesconto).ToString("C"))</p>
+                                            }
+                                            else
+                                            {
+                                                <span>-</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <button data-trigger="remove-produto"
+                                                    class="remove-item-carrinho btn btn-error btn-sm btn-square text-white">
+                                                <i class="fa-light fa-xmark"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -163,7 +171,7 @@ new BreadcrumbsDTO("Checkout")
                                             <label>Nome</label>
                                             <div class="form-input form">
                                                 <input readonly autocomplete="off" type="text"
-                                                       value="@Model.Client.Nome.Capitalize() @Model.Client.Sobrenome.Capitalize()">
+                                                       value="@Model.Cliente.Nome.Capitalize() @Model.Cliente.Sobrenome.Capitalize()">
                                             </div>
                                         </div>
                                     </div>
@@ -173,7 +181,7 @@ new BreadcrumbsDTO("Checkout")
                                             <label>RG</label>
                                             <div class="form-input form">
                                                 <input readonly autocomplete="off" type="text"
-                                                       value="**.***.@Model.Client.RG.Split('.')[2]">
+                                                       value="**.***.@Model.Cliente.RG.Split('.')[2]">
                                             </div>
                                         </div>
                                     </div>
@@ -183,7 +191,7 @@ new BreadcrumbsDTO("Checkout")
                                             <label>CPF</label>
                                             <div class="form-input form">
                                                 <input readonly autocomplete="off" type="text"
-                                                       value="***.***.@Model.Client.CPF.Split('.')[2]">
+                                                       value="***.***.@Model.Cliente.CPF.Split('.')[2]">
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +201,7 @@ new BreadcrumbsDTO("Checkout")
                                             <label>Celular</label>
                                             <div class="form-input form">
                                                 <input readonly autocomplete="off" type="text"
-                                                       value="@Model.Client.Celular">
+                                                       value="@Model.Cliente.Celular">
                                             </div>
                                         </div>
                                     </div>
@@ -203,7 +211,7 @@ new BreadcrumbsDTO("Checkout")
                                             <label>Telefone (fixo)</label>
                                             <div class="form-input form">
                                                 <input readonly autocomplete="off" type="text"
-                                                       value="@Model.Client.Telefone">
+                                                       value="@Model.Cliente.Telefone">
                                             </div>
                                         </div>
                                     </div>
@@ -213,7 +221,7 @@ new BreadcrumbsDTO("Checkout")
                                             <label>Gênero</label>
                                             <div class="form-input form">
                                                 <input readonly autocomplete="off" type="text"
-                                                       value='@Model.Client.Genero.Replace("_", " ").Capitalize()'>
+                                                       value='@Model.Cliente.Genero.Replace("_", " ").Capitalize()'>
                                             </div>
                                         </div>
                                     </div>
@@ -223,7 +231,7 @@ new BreadcrumbsDTO("Checkout")
                                             <label>Data nascimento</label>
                                             <div class="form-input form">
                                                 <input readonly autocomplete="off" type="text"
-                                                       value='@Model.Client.DataNascimento.ToString("dd/MM/yyyyy")'>
+                                                       value='@Model.Cliente.DataNascimento.ToString("dd/MM/yyyyy")'>
                                             </div>
                                         </div>
                                     </div>
@@ -236,14 +244,14 @@ new BreadcrumbsDTO("Checkout")
                             <div class="collapse-title font-bold !bg-white !text-gray-800 border-b after:!content-[none]">
                                 <span>Endereço para envio</span>
                             </div>
-                            <button id="novo-endereco" data-id-cliente="@Model.Client.IdCliente"
+                            <button id="novo-endereco" data-id-cliente="@Model.Cliente.IdCliente"
                                     class="text-white btn btn-sm bg-purple-700 hover:bg-purple-800 absolute top-4 right-4 z-10">
                                 Novo Endereço
                             </button>
                             <div class="collapse-content bg-white">
 
                                 <div class="flex flex-wrap -mx-3" id="container-enderecos">
-                                    @(await Component.InvokeAsync<EnderecoCompraViewComponent>(Model.Adresses))
+                                    @(await Component.InvokeAsync<EnderecoCompraViewComponent>(Model.Enderecos))
                                 </div>
                             </div>
                         </div>
@@ -253,15 +261,14 @@ new BreadcrumbsDTO("Checkout")
                             <div class="collapse-title font-bold !bg-white !text-gray-800 border-b after:!content-[none]">
                                 <span>Forma de pagamento</span>
                             </div>
-                            <button id="novo-pagamento" data-id-cliente="@Model.Client.IdCliente"
+                            <button id="novo-pagamento" data-id-cliente="@Model.Cliente.IdCliente"
                                     class="text-white btn btn-sm bg-yellow-700 hover:bg-yellow-800 absolute top-4 right-4 z-10">
                                 Adicionar Cartão
                             </button>
                             <div id="pagamentos" class="collapse-content bg-white">
 
                                 <div class="flex flex-wrap -mx-3 gap-5" id="container-cartoes">
-                                    @(await Component.InvokeAsync<CartoesViewComponent>(new { IdCliente =
-                                            Model.Client.IdCliente}))
+                                    @(await Component.InvokeAsync<CartoesViewComponent>(new { IdCliente = Model.Cliente.IdCliente}))
                                 </div>
                             </div>
                         </div>
@@ -271,15 +278,15 @@ new BreadcrumbsDTO("Checkout")
 
             <div class="lg:w-1/3 px-4">
                 <div class="checkout-sidebar">
-                    <div class="checkout-sidebar-coupon">
+                    <div class="checkout-sidebar-coupon mb-5">
                         <p>Aplique cupons de troca, devolução ou reembolso!</p>
                         <form>
                             <div class="single-form form-default">
                                 <div class="form-input form">
-                                    <input autocomplete="off" type="text" placeholder="Código do cupom">
+                                    <input autocomplete="off" type="text" placeholder="Código do cupom" name="cupons">
                                 </div>
                                 <div class="button">
-                                    <button type="button" data-action='desconto'
+                                    <button type="button" data-action='cupons'
                                             class="btn !w-fit !flex !text-gray-800 hover:!text-white min-h-0">
                                         Aplicar
                                     </button>
@@ -288,12 +295,12 @@ new BreadcrumbsDTO("Checkout")
                         </form>
                     </div>
 
-                    <div class="checkout-sidebar-coupon">
+                    <div class="checkout-sidebar-coupon my-5">
                         <p>Resgate cupons de promoções para obter desconto!</p>
                         <form>
                             <div class="single-form form-default">
                                 <div class="form-input form">
-                                    <input autocomplete="off" type="text" placeholder="Código do cupom">
+                                    <input autocomplete="off" type="text" placeholder="Código do cupom" name="desconto">
                                 </div>
                                 <div class="button">
                                     <button type="button" data-action='desconto'
@@ -330,26 +337,28 @@ new BreadcrumbsDTO("Checkout")
                         <div class="sub-total-price">
                             <div class="total-price">
                                 <p class="value">Subtotal do carrinho:</p>
-                                <p class="price">@Model.Products.Sum(x => x.QntCompra * x.Preco).ToString("C")</p>
+                                <p class="price text-base font-semibold subtotal">@Model.Subtotal().ToString("C")</p>
                             </div>
-                            <div class="total-price shipping">
+                            <div class="total-price">
                                 <p class="value">Frete:</p>
-                                <p class="price">R$ 0,00</p>
+                                <p class="price text-base frete">R$ 0,00</p>
                             </div>
-                            <div class="total-price discount">
+                            <div class="total-price">
                                 <p class="value">Descontos:</p>
-                                <p class="price">R$ 0,00</p>
+                                <p class="price text-base descontos">@Model.Descontos().ToString("C")</p>
                             </div>
-                            <div class="total-price discount">
+                            <div class="total-price">
                                 <p class="value">Cupons:</p>
-                                <p class="price">R$ 0,00</p>
+                                <p class="price text-base cupons">R$ 0,00</p>
                             </div>
                         </div>
 
                         <div class="total-payable">
                             <div class="payable-price">
                                 <p class="value">Total a pagar:</p>
-                                <p class="price">@Model.Products.Sum(x => x.QntCompra * x.Preco).ToString("C")</p>
+                                <p class="price text-base font-semibold total-compra">
+                                    @Model.Total().ToString("C")
+                                </p>
                             </div>
                         </div>
                         <div class="price-table-btn button">
@@ -370,685 +379,5 @@ new BreadcrumbsDTO("Checkout")
 
 
 @section Scripts {
-    <script type="text/javascript">
-
-        $(document).on('click', '.viacep', function () {
-            $button = $(this);
-            $button.disabled().html('<span class="loading loading-spinner loading-sm"></span>');
-
-            fetch(`https://viacep.com.br/ws/${$button.parent('.form-input').find('input').val()}/json/`)
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    const conteudo = {
-                        cep: data.cep,
-                        logradouro: data.logradouro,
-                        complemento: data.complemento,
-                        bairro: data.bairro,
-                        cidade: data.localidade,
-                        estado: data.uf,
-                        pais: "Brasil",
-                    }
-
-                    populate($button.parents(".address-capsule"), conteudo);
-
-                }).catch(error => {
-                    console.error(error);
-                }).finally(function () {
-                    $button.enabled().html('<i class="fa-regular fa-magnifying-glass"></i>');
-                });
-        });
-
-        const validation = () => {
-            var valid = true;
-            $(".swal2-html-container form").find('[required]').each(function (index, element) {
-                if (element.value.trim() == "") {
-                    valid = false;
-                    $(element).addClass("!border-red-600")
-                    $(element).parents('[data-tip]').addClass("tooltip-open").removeClass('before:!hidden after:!hidden');
-                }
-
-                if ($(element).attr("data-mask"))
-                    if (element.value.trim().length < $(element).attr("data-mask").length)
-                        if ($(element).attr("data-mask").length != 4) {
-                            valid = false;
-                            $(element).addClass("!border-red-600")
-                            $(element).parents('[data-tip]').addClass("tooltip-open").removeClass('before:!hidden after:!hidden');
-                        }
-            });
-
-            return valid;
-        }
-
-        $(document).on('click', '#novo-pagamento', function () {
-            $button = $(this);
-            const data = $button.getData();
-
-            Swal.fire({
-                title: "Aguarde",
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-
-            $.ajax({
-                type: "POST",
-                data: { Index: 1 },
-                url: "/componente/client/adiciona/cartao",
-                success: function (response) {
-                    Swal.fire({
-                        html: `<div class="checkout-steps-form-style-1" style="width: 500px; margin: auto;">
-                                                                        <form id="form-adiciona-cartao" class="text-start">
-                                                                            <input type="hidden" name="card[1].idCliente" value="${data.idCliente}">
-                                                                            ${response}
-                                                                        </form>
-                                                                       </div>`,
-                        width: 575,
-                        showCancelButton: true,
-                        reverseButtons: true,
-                        title: "Adiciona novo cartão.",
-                        customClass: {
-                            htmlContainer: '!overflow-hidden',
-                            confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                        },
-                        confirmButtonText: 'Cadastrar',
-                        cancelButtonText: 'Cancelar',
-                        allowEnterKey: false,
-                        allowOutsideClick: false,
-                        didOpen: () => {
-                            Swal.hideLoading();
-                        },
-                        showLoaderOnConfirm: true,
-                        preConfirm: async () => {
-                            if (!validation())
-                                return Swal.showValidationMessage(`Todos os campos em vermelho precisam ser preenchidos.`);
-
-                            const form = $(".swal2-html-container").find('form').serializeJson();
-                            var Cartao = {};
-
-                            for (const key in form) {
-                                if (Object.hasOwnProperty.call(form, key)) {
-                                    const value = form[key];
-                                    var chaves = key.split('.');
-                                    Cartao[chaves[1]] = value;
-                                }
-                            }
-
-                            Cartao.Principal = form.mainCard == undefined ? false : true;
-
-                            const response = await $.ajax({
-                                url: '/cadastrar/novo/cartao',
-                                type: 'POST',
-                                data: { card: Cartao }
-                            });
-
-                            return response;
-                        },
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: "Cartão adicionado",
-                                showConfirmButton: false,
-                                customClass: {
-                                    confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                                },
-                                timer: 1500,
-                                didOpen: () => {
-                                    Swal.hideLoading();
-                                }
-                            }).then(() => {
-                                $.ajax({
-                                    type: "POST",
-                                    data: {
-                                        IdCliente: data.idCliente
-                                    },
-                                    url: "/componente/client/cartoes",
-                                    success: function (response) {
-                                        $("#container-cartoes").html(response)
-                                    },
-                                    error: function (response) {
-                                        console.log(response);
-                                    },
-                                });
-                            })
-                        }
-                    })
-                },
-                error: function (response) {
-                    console.log(response);
-                },
-            });
-        })
-
-        $(document).on('click', '#novo-endereco', function () {
-            $button = $(this);
-            const data = $button.getData();
-
-            Swal.fire({
-                title: "Aguarde",
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-
-            $.ajax({
-                type: "POST",
-                data: { Index: 0 },
-                url: "/componente/client/adiciona/endereco",
-                success: function (response) {
-                    Swal.fire({
-                        html: `<div class="checkout-steps-form-style-1">
-                                                                                                        <form id="form-adiciona-endereco" class="text-start">
-                                                                                                            <input type="hidden" name="adresses[0].idCliente" value="${data.idCliente}">
-                                                                                                            <div class="flex flex-wrap">
-                                                                                                                <div class="px-3">
-                                                                                                                    <div class="form-control">
-                                                                                                                        <label class="cursor-pointer label gap-3">
-                                                                                                                            <input type="checkbox" class="toggle toggle-secondary" name="adresses[0].principal" value="true" />
-                                                                                                                            <span class="label-text !text-sm">Endereço principal</span>
-                                                                                                                        </label>
-                                                                                                                    </div>
-                                                                                                                </div>
-
-                                                                                                                <div class="px-3">
-                                                                                                                    <div class="form-control">
-                                                                                                                        <label class="cursor-pointer label gap-3">
-                                                                                                                            <input type="checkbox" class="toggle toggle-secondary" name="adresses[0].cobranca"  value="true" />
-                                                                                                                            <span class="label-text !text-sm">Endereço de cobrança</span>
-                                                                                                                        </label>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </div>
-
-                                                                                                            ${response}
-                                                                                                        </form>
-                                                                                                       </div>`,
-                        width: 755,
-                        showCancelButton: true,
-                        reverseButtons: true,
-                        title: "Adiciona novo endereço.",
-                        customClass: {
-                            confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                        },
-                        confirmButtonText: 'Cadastrar',
-                        cancelButtonText: 'Cancelar',
-                        allowEnterKey: false,
-                        allowOutsideClick: false,
-                        didOpen: () => {
-                            Swal.hideLoading();
-                        },
-                        showLoaderOnConfirm: true,
-                        preConfirm: async () => {
-                            if (!validation())
-                                return Swal.showValidationMessage(`Todos os campos em vermelho precisam ser preenchidos.`);
-
-                            const form = $(".swal2-html-container").find('form').serializeJson();
-                            var Address = {};
-
-                            for (const key in form) {
-                                if (Object.hasOwnProperty.call(form, key)) {
-                                    const value = form[key];
-                                    var chaves = key.split('.');
-                                    Address[chaves[1]] = value;
-                                }
-                            }
-
-                            const response = await $.ajax({
-                                url: '/cadastrar/novo/endereco',
-                                type: 'POST',
-                                data: { address: Address }
-                            });
-
-                            return response;
-                        },
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: "Endereço adicionado",
-                                showConfirmButton: false,
-                                customClass: {
-                                    confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                                },
-                                timer: 1500,
-                                didOpen: () => {
-                                    Swal.hideLoading();
-                                }
-                            }).then(() => {
-                                $.ajax({
-                                    type: "POST",
-                                    data: {
-                                        Enderecos: [result.value.address]
-                                    },
-                                    url: "/componente/client/lista/endereco",
-                                    success: function (response) {
-                                        $card = $(response)
-                                        $card.find('[name="enderecoEntrega"]').prop("checked", true)
-                                        $("#container-enderecos").append($card)
-
-                                    },
-                                    error: function (response) {
-                                        console.log(response);
-                                    },
-                                });
-                            })
-                        }
-                    })
-                },
-                error: function (response) {
-                    console.log(response);
-                },
-            });
-        })
-
-        function alerta(cards) {
-            return new Promise((resolve, reject) => {
-                var htmlCartoes = "";
-                cards.forEach(card => {
-                    console.log(card);
-                    htmlCartoes += `<div class="w-1/2 mb-3 px-3">
-                                                                                                                    <div class="border rounded-lg p-5 text-start">
-                                                                                                                        <div class="text-base !text-gray-800 font-bold w-full">
-                                                                                                                            ${$(`#pagamentos input[value="${card}"]`).parents('.card-body')
-                            .find('[data-name="nome-cartao"]').text()}</div>
-                                                                                                                        <div class="text-sm w-full">Número Cartão</div>
-                                                                                                                        <div class="text-base w-full font-bold">${$(`input[value="${card}"]`).parent('label').find('.tracking-wider').text().trim()}</div>
-                                                                                                                        <label class="form-control w-full">
-                                                                                                                            <div class="label">
-                                                                                                                                <span class="label-text-alt">Quantia que será passada nessa cartção?</span>
-                                                                                                                            </div>
-                                                                                                                            <input name="${card}" type="text" class="por-cartao input input-bordered w-full" />
-                                                                                                                        </label>
-                                                                                                                    </div>
-                                                                                                                </div>`
-                });
-
-                Swal.fire({
-                    title: "Infromações de pagamento.",
-                    html: `
-                                                                                                            <div>
-                                                                                                                <h1 id="total-pagar-cartao" class="font-bold text-3xl text-gray-800">R$ <span total-sem-atribuicao>${$('[total-compra]').text().replace(/R\$/g, '').toFloat().toMoney()}</span></h1>
-                                                                                                                <p class="w-1/2 mx-auto mb-4 font-bold text-sm">Total da compra sem atribuição. Ao adicionar um valor no cartão selecionado ele será subitraido do valor tatal.</p>
-                                                                                                            </div>
-
-                                                                                                            <div class="mb-3">
-                                                                                                                <p>Escolha quais valores serão passados em cada cartão </p>
-                                                                                                                <small>Lembre-se o valor minimo a ser paga em pelo menos um dos cartões é de R$ 10,00</small>
-                                                                                                            </div>
-
-                                                                                                            <form class="flex flex-wrap">
-                                                                                                                ${htmlCartoes}
-                                                                                                            </form>`,
-                    width: 645,
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    showCancelButton: true,
-                    confirmButtonText: "Confirmar",
-                    cancelButtonText: "Cancelar",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                    },
-                    didOpen: () => {
-                        totalTravado = $('[total-compra]').text().replace(/R\$/g, '').toFloat()
-                    },
-                    preConfirm: () => {
-                        try {
-                            var validate = false;
-                            var allInput = 0;
-
-                            $(".por-cartao").each(function (index, element) {
-                                if ($(element).val() == "") {
-                                    Swal.showValidationMessage('Todos os cartões devem ter um valor minimo de R$ 10,00');
-                                    validate = true;
-                                    return false;
-                                }
-
-                                if ($(element).val().toFloat() < 10) {
-                                    Swal.showValidationMessage('Todos os cartões devem ter um valor minimo de R$ 10,00');
-                                    validate = true;
-                                    return false;
-                                }
-
-                                allInput += $(element).val().toFloat();
-                            });
-
-                            if (validate)
-                                return false;
-
-                            allInput = allInput.toTwo()
-
-                            if (allInput > totalTravado) {
-                                Swal.showValidationMessage('Os valores informados do pagamento é maior que o valor da compra');
-                                validate = true;
-                                return;
-                            }
-
-                            if (allInput < totalTravado) {
-                                Swal.showValidationMessage('Os valores informados do pagamento é menor que o valor da compra');
-                                validate = true;
-                                return;
-                            }
-
-                            if (validate)
-                                return false;
-
-                            var retornoCards = []
-                            const cardsOBJ = $(".swal2-html-container").find('form').serializeJson();
-                            for (const key in cardsOBJ) {
-                                if (Object.hasOwnProperty.call(cardsOBJ, key)) {
-                                    const value = cardsOBJ[key];
-                                    retornoCards.push({
-                                        IdCartao: key,
-                                        Total: value.toFloat().toMoney()
-                                    })
-                                }
-                            }
-
-                            return retornoCards;
-                        } catch (error) {
-                            console.log(error);
-
-                            const result = error.responseJSON;
-                            Swal.showValidationMessage(`${result.message}`);
-                        }
-                    }
-
-                }).then((result) => {
-                    if (result.isConfirmed)
-                        resolve(result.value)
-                    else
-                        reject(false)
-                })
-            });
-        }
-
-        $(document).ready(function () {
-            $('form').keypress(function (e) {
-                if ((e.keyCode == 10) || (e.keyCode == 13)) {
-                    e.preventDefault();
-                }
-            });
-        });
-
-        document.addEventListener("DOMContentLoaded", function (event) {
-            onDomChange(function () {
-                setTimeout(() => {
-                    $.applyDataMask('[data-mask');
-
-                    $(".por-cartao").maskMoney({
-                        decimal: ",",
-                        thousands: "."
-                    });
-                }, 125);
-            });
-        });
-
-        var totalTravado;
-
-        $(document).on("keyup", ".por-cartao", function (e) {
-            const numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-            var total = $('[total-sem-atribuicao]').text().toFloat();
-            var allInput = 0;
-
-            $(".por-cartao").each(function (index, element) {
-                if ($(element).val() != "")
-                    allInput += $(element).val().toFloat();
-            });
-
-            allInput = allInput.toTwo()
-
-            $('[total-sem-atribuicao]').html((totalTravado - allInput).toMoney());
-
-            if (totalTravado - allInput < 0)
-                $('#total-pagar-cartao').removeClass("text-green-500 text-gray-800").addClass("text-red-500")
-            else if (totalTravado - allInput == 0)
-                $('#total-pagar-cartao').removeClass("text-gray-800 text-red-500").addClass("text-green-500")
-            else
-                $('#total-pagar-cartao').removeClass("text-green-500 text-red-500").addClass("text-gray-800")
-        });
-
-        $(document).on("click", '[comprar]', async function () {
-            if ($.isEmptyObject($("#lista-produtos").serializeJsonComplex())) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: "Atenção!",
-                    text: 'Sua lista de compras está vazia, por favor adicione itens.',
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    confirmButtonText: "Tentar novamente",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                    },
-                });
-                return false;
-            }
-
-            if ($('[name="enderecoEntrega"]:checked').length == 0) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: "Atenção!",
-                    text: 'Selecione um endereço para entrega.',
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    confirmButtonText: "Tentar novamente",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                    },
-                });
-                return false;
-            }
-
-            if ($('[name="cartaoPagamento"]:checked').length == 0) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: "Atenção!",
-                    text: 'Escolha pelo menos um cartão para efetuar o pagamento.',
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    confirmButtonText: "Tentar novamente",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                    },
-                });
-
-                return false;
-            }
-
-            if ($('[calculo-frete]').val() == "") {
-                Swal.fire({
-                    icon: 'warning',
-                    title: "Atenção!",
-                    text: 'Informe seu CEP para calculo de frete.',
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    confirmButtonText: "Tentar novamente",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                    },
-                });
-
-                return false;
-            }
-
-            if ($('[valor-frete]').text().replace(/R\$/g, '').toFloat() == 0) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: "Atenção!",
-                    text: 'Por favor, clique em Calcular frete.',
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    confirmButtonText: "Tentar novamente",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                    },
-                });
-
-                return false;
-            }
-
-            var CEPEndereco = $('[name="enderecoEntrega"]:checked').parents('.card-body').find('[data-type="CEP"]').text();
-            var calculoCEP = $('[calculo-frete]').val();
-
-            if (CEPEndereco != calculoCEP) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: "Atenção!",
-                    text: 'O CEP informado é diferente do que foi selecionado no endereço de entrega.',
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    confirmButtonText: "Tentar novamente",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "!bg-[#ffcc00] !text-gray-800",
-                    },
-                });
-
-                return false;
-            }
-
-            var cartoes = [];
-            $('[name="cartaoPagamento"]:checked').each(function (index, element) {
-                cartoes.push($(element).val())
-            });
-
-            var validation = false;
-            var EnviaCartoes = [];
-
-            if (cartoes.length > 1) {
-                EnviaCartoes = await alerta(cartoes)
-
-                if (EnviaCartoes == false)
-                    return false;
-            }
-            else
-                EnviaCartoes.push({
-                    IdCartao: cartoes[0],
-                    Total: $('[total-compra]').toFloat()
-                })
-
-            if (validation)
-                return false;
-
-            var transaction = {
-                ...$("#lista-produtos").serializeJsonComplex(),
-                ...{
-                    Cartoes: EnviaCartoes,
-                    IdEndereco: $('[name="enderecoEntrega"]:checked').val(),
-                    IdCliente: $('[name="idCliente"]').val(),
-                    Subtotal: $('[menu-total-amount]').toFloat(),
-                    Frete: $('[valor-frete]').toFloat(),
-                    Descontos: $('[total-descontos]').toFloat(),
-                    Total: $('[total-compra]').toFloat()
-                }
-            }
-
-            $.ajax({
-                type: "POST",
-                url: `/registra/transacao`,
-                data: { Transaction: transaction, Codigo: $('[name="codigo"]').val() },
-                success: function (data) {
-                    localStorage.setItem('transacao', JSON.stringify(data))
-                    localStorage.removeItem('produtos-carrinho')
-                    localStorage.removeItem('frete')
-
-                    location.href = data.url;
-                },
-                error: function (response) {
-                    console.log(response);
-                },
-            });
-
-        })
-
-        $(document).on("click", '[data-action="frete"]', function () {
-            $button = $(this);
-            $input = $button.parents('form').find('input');
-
-            if ($input.val().trim() == "")
-                Toast.fire({
-                    icon: "error",
-                    title: "O campo CEP precisa ser preenchido."
-                });
-            else {
-                $button.html(`<span class="loading loading-spinner loading-sm"></span> Calculando`)
-
-                $.ajax({
-                    type: "GET",
-                    url: `/calcular/frete/${$input.val()}`,
-                    success: function (data) {
-                        $button.html(`Cálcular frete`)
-
-                        Toast.fire({
-                            icon: data.response.success ? "success" : "error",
-                            title: data.response.message
-                        });
-
-                        if (data.response.success) {
-                            localStorage.setItem("frete", data.response.preco)
-                            Carrinho.AtualizaFreCalculos()
-                        }
-                    },
-                    error: function (response) {
-                        console.log(response);
-                    },
-                });
-            }
-        })
-
-        $(document).on("click", "[data-action='desconto']", function () {
-            $button = $(this);
-            $input = $button.parents('form').find('input');
-
-            if ($input.val().trim() == "")
-                Toast.fire({
-                    icon: "error",
-                    title: "Informe um código para aplicar o cupom."
-                });
-            else {
-                $button.html(`<span class="loading loading-spinner loading-sm"></span> Calculando`)
-
-                $.ajax({
-                    type: "GET",
-                    url: `/buscar/desconto/${$input.val()}`,
-                    success: function (data) {
-                        $button.html(`Aplicar`)
-
-                        Toast.fire({
-                            icon: data.response.success ? "success" : "error",
-                            title: data.response.message
-                        });
-
-                        if (data.response.success) {
-                            DescontosMias = data.response.desconto
-                            Carrinho.AtualizaFreCalculos()
-                        }
-                    },
-                    error: function (response) {
-                        console.log(response);
-                    },
-                });
-            }
-        })
-    </script>
+    <script src="~/js/Checkout.js" asp-append-version="true"></script>
 }

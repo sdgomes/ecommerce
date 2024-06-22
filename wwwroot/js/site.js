@@ -201,7 +201,7 @@ const Toast = Swal.mixin({
     position: "top-end",
     showConfirmButton: false,
     timer: 3000,
-    timerProgressBar: true,
+    timerProgressBar: false,
     didOpen: (toast) => {
         toast.onmouseenter = Swal.stopTimer;
         toast.onmouseleave = Swal.resumeTimer;
@@ -415,21 +415,64 @@ $(document).on("click", ".button-qnt", function () {
 
         var data = $button.getData();
         if (data.idProduto) {
-            $tr = $button.parents('tr');
-            $tr.find('[data-target="preco"]').html(`R$ ${(current * data.preco.toFloat()).toMoney()}`)
+            const preco = (current * data.preco.toFloat()).toMoney()
+            const calculoDesconto = (current * data.calculoDesconto.toFloat()).toMoney()
 
-            if (data.desconto)
-                $tr.find('[data-target="desconto"]').html(`R$ ${(current * data.calculoDesconto.toFloat()).toMoney()}`)
+            $tr = $button.parents('tr');
+
+            $tr.find('input[name$=".preco"]').val(preco)
+            $tr.find('[data-target="preco"]').html(`R$ ${preco}`)
+
+            if (data.desconto) {
+                $tr.find('input[name$=".calculoDesconto"]').val(calculoDesconto)
+                $tr.find('[data-target="desconto"]').html(`R$ ${calculoDesconto}`)
+            }
         }
+
+        atualizaTabelaPrecos()
     }
 });
 
-$(document).on('click', '[data-trigger="remove-produto"]', function(){
+const atualizaTabelaPrecos = () => {
+    const from = $("#lista-produtos").serializeJsonComplex();
+
+    if (!$.isEmptyObject(from)) {
+        let produtos = from.produtos;
+
+        let subtotal = produtos.reduce((total, item) => {
+            return total + item.preco.toFloat();
+        }, 0).toTwo();
+
+        let descontos = descontoPlus + produtos.filter(item => item.desconto.parseBool())
+            .reduce((total, item) => {
+                return total + item.calculoDesconto.toFloat();
+            }, 0).toTwo();
+
+        let frete = $('.frete').toFloat().toFloat();
+        let cupons = $('.cupons').toFloat().toFloat();
+
+        $('.subtotal').html(`R$ ${subtotal.toMoney()}`)
+        $('.descontos').html(`R$ ${descontos.toMoney()}`)
+        $('.total-compra').html(`R$ ${((subtotal + frete) - (descontos + cupons)).toTwo().toMoney()}`)
+    } else {
+        $('.subtotal, .descontos, .total-compra, .frete').html(`R$ 0,00`)
+    }
+}
+
+$(document).on('click', '[data-trigger="remove-produto"]', function () {
     $button = $(this);
     $button.parents('tr').remove();
 
-    if($.isEmptyObject($("#lista-produtos").serializeJsonComplex())){
-        
+    atualizaTabelaPrecos()
+    if ($.isEmptyObject($("#lista-produtos").serializeJsonComplex())) {
+        $("#lista-produtos").find('tbody').html(`<tr>
+            <td colspan="6">
+                <div role="alert" class="alert rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>Nenhum item foi adicionado ao carrinho.</span>
+                </div>
+            </td>
+        </tr>`)
     }
 })
 
