@@ -2,7 +2,7 @@
 
 @{
     ViewBreadcrumbs breadcrumbs = new();
-    breadcrumbs.Title = "Sua conta";
+    breadcrumbs.Title = "Minha conta";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
         new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
         new BreadcrumbsDTO("Perfil")
@@ -16,6 +16,9 @@
 <div class="my-10">
     <div class="container mx-auto px-5">
         <div class="mx-auto">
+            <h2 class="px-4 mb-2 font-bold text-xl text-gray-900">Informações</h2>
+            <hr class="mb-5">
+
             <div class="flex flex-wrap">
 
                 <div class="w-1/5 px-5 mb-10">
@@ -47,7 +50,8 @@
                 </div>
 
                 <div class="w-1/5 px-5 mb-10">
-                    <a asp-controller="Client" asp-action="Trocas" asp-route-codigo="@Model.Codigo" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                    <a asp-controller="Client" asp-action="Solicitacoes" asp-route-codigo="@Model.Codigo"
+                        asp-route-tipo="trocas" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
                         <div class="px-3 pt-3 h-[155px]"><figure class="rounded-xl bg-white h-full">
                             <img src="~/img/images/perfil/cliente/troca.png" alt="" class="h-full rounded-xl" />
                         </figure></div>
@@ -61,7 +65,8 @@
                 </div>
 
                 <div class="w-1/5 px-5 mb-10">
-                    <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                    <a asp-controller="Client" asp-action="Solicitacoes" asp-route-codigo="@Model.Codigo"
+                    asp-route-tipo="devolucoes" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
                         <div class="px-3 pt-3 h-[155px]"><figure class="rounded-xl bg-white h-full">
                             <img src="~/img/images/perfil/cliente/devolucao.png" alt="" class="h-full rounded-xl" />
                         </figure></div>
@@ -75,7 +80,7 @@
                 </div>
 
                 <div class="w-1/5 px-5 mb-10">
-                    <a class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                    <a asp-action="Cupons" asp-controller="Client" asp-route-codigo="@Model.Codigo" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
                         <div class="px-3 pt-3 h-[155px]"><figure class="rounded-xl bg-white h-full">
                             <img src="~/img/images/perfil/cliente/cupom.png" alt="" class="h-full rounded-xl" />
                         </figure></div>
@@ -92,11 +97,20 @@
         </div>
 
         <div class="my-5">
+            <h2 class="px-4 mb-2 font-bold text-xl text-gray-900">Controle</h2>
+            <hr class="mb-5">
+
             <div class="mx-auto px-5">
                 <div class="flex flex-wrap gap-5 button">
-                    <a asp-action="ExcluirConta" asp-controller="Client" asp-route-codigo="@Model.Codigo" class="btn !flex !items-center !bg-red-600 hover:!bg-red-900">Excluir minha conta</a>
+                    <button id="excluir-conta" data-codigo="@Model.Codigo" class="btn !flex !items-center !bg-red-600 hover:!bg-red-900">Excluir minha conta</button>
+                    <button disabled="@(!Model.Situacao)" id="inativar-conta"  data-codigo="@Model.Codigo" class='@(!Model.Situacao ? "disabled:!opacity-50" : "") btn !flex !text-gray-900 !items-center !bg-yellow-400 hover:!bg-yellow-500'>Inativar minha conta</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+@section Scripts {
+    <script src="~/js/Client/Perfil.js" asp-append-version="true"></script>
+}

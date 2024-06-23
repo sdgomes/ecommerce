@@ -517,7 +517,7 @@ namespace crm.DAL
             try
             {
                 string query = @$"SELECT
-	                                ES.GRUPO_CODIGO,
+	                                ES.GRUPO_CODIGO, ES.ID_TRANSACAO,
 	                                ET.CODIGO AS CODIGO_TRANSACAO,
 	                                DATEADD(dd, 0, DATEDIFF(dd, 0, ET.CRIACAO)) AS CRIACAO,
 	                                ES.MOTIVO_SOLICITACAO,
@@ -528,7 +528,7 @@ namespace crm.DAL
                                 WHERE
 	                                ES.TIPO = @TIPO
                                 GROUP BY ES.GRUPO_CODIGO,
-	                                ET.CODIGO, 
+	                                ET.CODIGO, ES.ID_TRANSACAO, 
 									DATEADD(dd, 0, DATEDIFF(dd, 0, ET.CRIACAO)),
 	                                ES.MOTIVO_SOLICITACAO,
 	                                DATEADD(dd, 0, DATEDIFF(dd, 0, ES.DATA_SOLICITACAO))

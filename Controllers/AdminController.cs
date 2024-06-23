@@ -37,20 +37,20 @@ namespace crm.Controllers
 
         [FuncionarioLogado]
         [FuncionarioExiste]
-        [HttpGet("/admin/perfil/{Codigo}/trocas")]
-        public IActionResult Trocas(string Codigo)
+        [HttpGet("/admin/perfil/{Codigo}/{Tipo}")]
+        public IActionResult Solicitacoes(string Codigo, string Tipo)
         {
-            TrocasView Model = AdminBLL.GetSolicitacoes(Codigo, "TROCA");
-            return View(Model);
+            SolicitacoesView Model = AdminBLL.GetSolicitacoes(Codigo, Tipo == "trocas" ? "TROCA" : "DEVOLUCAO");
+            return View((Tipo == "trocas" ? "Trocas" : "Devolucoes"), Model);
         }
 
         [FuncionarioLogado]
         [FuncionarioExiste]
-        [HttpGet("/admin/perfil/{Codigo}/trocas/{GrupoCodigo}")]
-        public IActionResult TrocasItens(string Codigo, int GrupoCodigo)
-        {
-            TrocasItensView Model = AdminBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, "TROCA");
-            return View(Model);
+        [HttpGet("/admin/perfil/{Codigo}/{Tipo}/{GrupoCodigo}")]
+        public IActionResult SolicitacoesItens(string Codigo, int GrupoCodigo)
+        {            
+            SolicitacoesItensView Model = AdminBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, Tipo == "trocas" ? "TROCA" : "DEVOLUCAO");
+            return View((Tipo == "trocas" ? "TrocasItens" : "DevolucoesItens"), Model);
         }
 
         [FuncionarioLogado]
@@ -65,8 +65,22 @@ namespace crm.Controllers
 
         #region Actions
 
+        [HttpGet("/admin/perfil/cliente/resetar/{Codigo}")]
+        public IActionResult ResetarSenha(string Codigo)
+        {
+            try
+            {
+                AdminBLL.ResetarSenhaCliente(Codigo);
+                return Redirect(Request.Headers["Referer"].ToString());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpGet("/admin/perfil/{Situacao}/{Codigo}/cliente")]
-        public IActionResult CadastrarCliente(string Situacao, string Codigo)
+        public IActionResult SatatusCliente(string Situacao, string Codigo)
         {
             try
             {

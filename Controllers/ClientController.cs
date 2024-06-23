@@ -34,9 +34,7 @@ namespace crm.Controllers
         [HttpGet("/cliente/perfil/{Codigo}")]
         public IActionResult Perfil(string Codigo)
         {
-            Client client = new();
-            client.Codigo = Codigo;
-
+            Client client = ClientBLL.SelectPerfilByCodigo(Codigo);
             return View(client);
         }
 
@@ -51,20 +49,29 @@ namespace crm.Controllers
 
         [ClienteExiste]
         [ClienteLogado]
-        [HttpGet("/cliente/perfil/{Codigo}/trocas")]
-        public IActionResult Trocas(string Codigo)
+        [HttpGet("/cliente/perfil/{Codigo}/cupons")]
+        public IActionResult Cupons(string Codigo)
         {
-            TrocasView Model = ClientBLL.GetSolicitacoes(Codigo, "TROCA");
+            List<Discount> Model = ClientBLL.BuscaDescontos(Codigo);
             return View(Model);
         }
 
         [ClienteExiste]
         [ClienteLogado]
-        [HttpGet("/cliente/perfil/{Codigo}/trocas/{GrupoCodigo}")]
-        public IActionResult TrocasItens(string Codigo, int GrupoCodigo)
+        [HttpGet("/cliente/perfil/{Codigo}/{Tipo}")]
+        public IActionResult Solicitacoes(string Codigo, string Tipo)
         {
-            TrocasItensView Model = ClientBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, "TROCA");
-            return View(Model);
+            SolicitacoesView Model = ClientBLL.GetSolicitacoes(Codigo, Tipo == "trocas" ? "TROCA" : "DEVOLUCAO");
+            return View((Tipo == "trocas" ? "Trocas" : "Devolucoes"), Model);
+        }
+
+        [ClienteExiste]
+        [ClienteLogado]
+        [HttpGet("/cliente/perfil/{Codigo}/{Tipo}/{GrupoCodigo}")]
+        public IActionResult SolicitacoesItens(string Codigo, string Tipo, int GrupoCodigo)
+        {
+            SolicitacoesItensView Model = ClientBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, Tipo == "trocas" ? "TROCA" : "DEVOLUCAO");
+            return View((Tipo == "trocas" ? "TrocasItens" : "DevolucoesItens"), Model);
         }
 
         [ClienteExiste]
@@ -122,30 +129,44 @@ namespace crm.Controllers
             }
         }
 
+        [HttpGet("/inativar/minha/conta/{Codigo}")]
+        public IActionResult InativarConta(string Codigo)
+        {
+            try
+            {
+                ClientBLL.InativarConta(Codigo);
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         [HttpGet("/excluir/minha/conta/{Codigo}")]
         public IActionResult ExcluirConta(string Codigo)
         {
             try
             {
                 ClientBLL.ExcluiConta(Codigo);
-                return Redirect(Request.Headers["Referer"].ToString());
+                return Json(new { success = true });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
         }
 
-        [HttpPost("/buscar/cliente/{Codigo}")]
-        public IActionResult BuscarCliente(string Codigo)
+        [HttpPost("/buscar/cliente")]
+        public IActionResult BuscarCliente(string Email, string Password)
         {
             try
             {
-                return Json(new { Codigo, IsCliente = ClientBLL.IsClientByCodigo(Codigo) });
+                return Json(new { data = ClientBLL.IsClientByLogin(Email, Password) });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return StatusCode(400, new { Message = ex.Message });
             }
         }
 

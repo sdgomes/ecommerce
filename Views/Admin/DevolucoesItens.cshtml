@@ -5,12 +5,12 @@
     var codigo = url["Codigo"].ToString();
 
     ViewBreadcrumbs breadcrumbs = new();
-    breadcrumbs.Title = "Troca";
+    breadcrumbs.Title = "Devolução";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
         new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
         new BreadcrumbsDTO("Perfil", Url.Action("Perfil", "Client", new{ codigo }), "fa-solid fa-user"),
-        new BreadcrumbsDTO("Trocas", "./", "fa-solid fa-boxes-packing"),
-        new BreadcrumbsDTO("Solicitação")
+        new BreadcrumbsDTO("Devoluções", "./", "fa-solid fa-boxes-packing"),
+        new BreadcrumbsDTO("Controle da solicitação")
     };
 
     ViewData["Title"] = breadcrumbs.Title;
@@ -77,7 +77,7 @@
                                     @if (item.Etapa == "CANCELADO")
                                     {
                                         <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">
-                                            Troca
+                                            Devolução
                                             Cancelada
                                         </span>
                                     }
@@ -90,14 +90,14 @@
                                     }
                                     else if (item.Aprovacao1 && !item.Aprovacao2)
                                     {
-                                        @if (item.Etapa == "TROCA SOLICITADA")
+                                        @if (item.Etapa == "DEVOLUÇÃO SOLICITADA")
                                         {
                                             <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-600 ring-1 ring-inset ring-green-500/10">
                                                 Liberado
                                                 para envio
                                             </span>
                                         }
-                                        else if (item.Etapa == "ENVIADO PARA TROCA")
+                                        else if (item.Etapa == "ENVIADO PARA DEVOLUÇÃO")
                                         {
                                             <span class="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-600 ring-1 ring-inset ring-amber-500/10">
                                                 A
@@ -116,7 +116,7 @@
                                             else
                                             {
                                                 <span class="inline-flex items-center rounded-md bg-rose-50 px-2 py-1 text-xs font-medium text-rose-600 ring-1 ring-inset ring-rose-500/10">
-                                                    Troca
+                                                    Devolução
                                                     Recusada
                                                 </span>
                                             }
@@ -129,7 +129,7 @@
                                     else if (item.Aprovacao1 && item.Aprovacao2 && item.Etapa != "ENTREGUE")
                                     {
                                         <span class="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-600 ring-1 ring-inset ring-purple-500/10">
-                                            Troca
+                                            Devolução
                                             Aprovada
                                         </span>
                                     }
@@ -139,18 +139,74 @@
                                     }
                                 </td>
                                 <td>
-                                    @if (item.Etapa == "TROCA SOLICITADA")
+                                    @if (item.Etapa == "DEVOLUÇÃO SOLICITADA")
                                     {
                                         <div class="tooltip" data-tip="Cancalar solicitação item">
                                             <button type="button" data-id-solicitacao="@item.IdSolicitacao"
                                                     data-etapa="CANCELADO" data-before-title="Atenção!"
                                                     data-before-message="Comfirma que deseja cancelar a solicitação desse item?"
-                                                    data-after-title="Feito!" data-after-message='Item cancelado com sucesso.'
+                                                    data-after-title="Feito!"
+                                                    data-after-message='Solicitação de devolução de item cancelada com sucesso.'
                                                     data-trigger="manage" class="btn btn-sm btn-error btn-square">
                                                 <i class="fa-solid fa-ban"></i>
                                             </button>
                                         </div>
                                     }
+
+                                    @if (!item.Aprovacao1 && !item.Aprovacao2 && item.Etapa != "CANCELADO")
+                                    {
+                                        <div class="tooltip" data-tip="Aprovar solicitação do item">
+                                            <button type="button" data-id-solicitacao="@item.IdSolicitacao"
+                                                    data-etapa="APROVAR SOLICITACAO DE DEVOLUÇÃO" data-before-title="Atenção!"
+                                                    data-before-message="Comfirma a aprovação da solicitação de devolução desse item?"
+                                                    data-after-title="Feito!" data-after-message='Item aprovado para envio.'
+                                                    data-trigger="manage" class="btn btn-sm btn-success btn-square">
+                                                <i class="fa-solid fa-thumbs-up"></i>
+                                            </button>
+                                        </div>
+                                    }
+
+                                    @if (item.Aprovacao1 && !item.Aprovacao2 && item.Etapa != "ENVIADO PARA DEVOLUÇÃO")
+                                    {
+                                        <div class="tooltip" data-tip="Item enviado">
+                                            <button type="button" data-id-solicitacao="@item.IdSolicitacao"
+                                                    data-etapa="ENVIADO PARA DEVOLUÇÃO" data-before-title="Atenção!"
+                                                    data-before-message="Comfirma que esse item foi entrege aos correios e está a caminho?"
+                                                    data-after-title="Feito!" data-after-message='Item enviado.'
+                                                    data-trigger="manage" class="btn btn-sm btn-primary btn-square">
+                                                <i class="fa-solid fa-mailbox"></i>
+                                            </button>
+                                        </div>
+                                    }
+
+                                    @if (item.Aprovacao1 && !item.Aprovacao2 && item.Etapa == "ENVIADO PARA DEVOLUÇÃO")
+                                    {
+                                        <div class="tooltip" data-tip="Aprovar devolução do item">
+                                            <button type="button" data-id-solicitacao="@item.IdSolicitacao"
+                                                    data-etapa="APROVAR DEVOLUÇÃO" data-before-title="Atenção!"
+                                                    data-before-message="Comfirma que o item foi recebido e está apto para devolução?"
+                                                    data-after-title="Feito!"
+                                                    data-after-message='Item liberado para finalização.' data-trigger="manage"
+                                                    class="btn btn-sm btn-warning btn-square">
+                                                <i class="fa-solid fa-box-circle-check"></i>
+                                            </button>
+                                        </div>
+                                    }
+
+                                    @if (item.Aprovacao1 && item.Aprovacao2 && item.Etapa != "ENTREGUE")
+                                    {
+                                        <div class="tooltip" data-tip="Aprovar devolução">
+                                            <button type="button" data-id-solicitacao="@item.IdSolicitacao"
+                                                    data-tipo="DEVOLUCAO"
+                                                    data-etapa="ENTREGUE" data-before-title="Atenção!"
+                                                    data-before-message="Comfirma a aprovação da devolução desse item?"
+                                                    data-after-title="Feito!" data-after-message='Devolução feita com sucesso.'
+                                                    data-trigger="manage" class="btn btn-sm btn-success btn-square">
+                                                <i class="fa-solid fa-flag-checkered"></i>
+                                            </button>
+                                        </div>
+                                    }
+
                                 </td>
                             </tr>
                         }
@@ -215,8 +271,8 @@
                 <textarea name="mensagem" class="textarea w-full textarea-bordered resize-none focus:outline-none"
                           placeholder="Digite sua mensagem..." rows="2"></textarea>
                 <button data-grupo-codigo="@Model.Codigo"
-                        data-nome-completo="@Model.Cliente.Nome.Capitalize() @Model.Cliente.Sobrenome.Capitalize()"
-                        data-id-cliente="@Model.Cliente.IdCliente" id="envia-conversa"
+                        data-nome-completo="@Model.Funcionario.NomeCompleto.Capitalize()"
+                        data-id-funcionario="@Model.Funcionario.IdFuncionario" id="envia-conversa"
                         class="btn btn-warning btn-circle text-xl">
                     <i class="fa-solid fa-paper-plane"></i>
                 </button>
@@ -226,5 +282,5 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/Client/SolicitacoesItens.js" asp-append-version="true"></script>
+    <script src="~/js/Admin/SolicitacoesItens.js" asp-append-version="true"></script>
 }

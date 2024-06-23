@@ -24,25 +24,28 @@ namespace crm.BLL
             return Model;
         }
 
-        public static void EtapaTroca(long IdSolicitacao, string Etapa, string Motivo)
+        public static void AlteraSolicitacao(long IdSolicitacao, string Etapa, string Motivo, string Tipo)
         {
             switch (Etapa)
             {
                 case "CANCELADO":
                 case "ENVIADO PARA TROCA":
+                case "ENVIADO PARA DEVOLUÇÃO":
                     TransactionDAO.AlteraEtapaSolicitacao(IdSolicitacao, Etapa, Motivo);
                     break;
 
                 case "APROVAR SOLICITACAO DE TROCA":
+                case "APROVAR SOLICITACAO DE DEVOLUÇÃO":
                     TransactionDAO.AprovaSolicitacao(IdSolicitacao);
                     break;
 
                 case "APROVAR TROCA":
+                case "APROVAR DEVOLUÇÃO":
                     TransactionDAO.AprovaEntrega(IdSolicitacao);
                     break;
 
                 case "ENTREGUE":
-                    long IdDesconto = TransactionDAO.GeraDesconto(IdSolicitacao, "TROCA");
+                    long IdDesconto = TransactionDAO.GeraDesconto(IdSolicitacao, Tipo);
                     TransactionDAO.SolicitacaoEntregue(IdSolicitacao, IdDesconto);
                     break;
             }

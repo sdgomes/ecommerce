@@ -11,17 +11,17 @@ namespace crm.BLL
 {
     public class AdminBLL
     {
-        public static TrocasView GetSolicitacoes(string Codigo, string Tipo)
+        public static SolicitacoesView GetSolicitacoes(string Codigo, string Tipo)
         {
-            TrocasView Model = new();
+            SolicitacoesView Model = new();
             Model.Codigo = Codigo;
             Model.Solicitacoes = EmployeeDAO.SelectGrupoSolicitacoes(Tipo);
             return Model;
         }
 
-        public static TrocasItensView GetSolicitacoesByGrupoCodigo(string Codigo, int GrupoCodigo, string Tipo)
+        public static SolicitacoesItensView GetSolicitacoesByGrupoCodigo(string Codigo, int GrupoCodigo, string Tipo)
         {
-            TrocasItensView Model = new();
+            SolicitacoesItensView Model = new();
             Model.Codigo = GrupoCodigo;
             Model.Funcionario = EmployeeDAO.SearchForEmployeeByCodigo(Codigo);
             Model.Solicitacoes = TransactionDAO.SelectAllSolicitacaoByGrupoCodigo(GrupoCodigo, Tipo);
@@ -34,6 +34,11 @@ namespace crm.BLL
         {
             Employee employee = EmployeeDAO.SearchForEmployeeByCodigo(Codigo);
             return employee == null ? false : true;
+        }
+
+        public static void ResetarSenhaCliente(string Codigo)
+        {
+                ClientDAO.UpdatePassword(Codigo, "Padrao.1235");
         }
 
         public static void SituacaoCliente(string Situacao, string Codigo)

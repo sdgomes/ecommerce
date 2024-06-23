@@ -62,6 +62,7 @@ namespace crm.DAL
                                 WHERE 
 	                                EC.CODIGO = @CODIGO AND 
 	                                EC.RESGATADO = 0 AND 
+                                    EC.ATIVO = 1 AND
 	                                EC.D_E_L_E_T_ <> '*';";
 
                 SqlParameter[] parameters = new SqlParameter[] {

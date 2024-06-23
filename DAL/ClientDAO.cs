@@ -11,6 +11,37 @@ namespace crm.DAL
 {
     public class ClientDAO : BaseDAO
     {
+        public static List<Discount> SelectDiscountByClient(string Codigo)
+        {
+            try
+            {
+                string query = @$"SELECT 
+	                    ED.ID_DESCONTO, ED.ID_DESCONTO,
+	                    ED.CODIGO, ED.RESGATADO, ED.TIPO,
+	                    ED.ATIVO, ED.CRIACAO, 
+	                    CASE
+		                    WHEN ES.ID_SOLICITACAO IS NULL THEN ED.DESCONTO
+		                    ELSE ES.PRECO
+	                    END AS DESCONTO,
+	                    ES.ID_SOLICITACAO
+                    FROM ECM_DESCONTOS ED
+                    LEFT JOIN  ECM_SOLICITACOES ES ON ES.ID_DESCONTO = ED.ID_DESCONTO
+                    WHERE ED.ID_CLIENTE = 
+                    (SELECT EC.ID_CLIENTE FROM ECM_CLIENTES EC WHERE EC.CODIGO = @CODIGO)
+                    AND ED.D_E_L_E_T_ <> '*'";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo)
+                };
+
+                return DatabaseProgramas().Select<Discount>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static long CreateSolicitacao(Solicitation solicitation)
         {
             try
@@ -89,15 +120,15 @@ namespace crm.DAL
             }
         }
 
-        public static void UpdatePassword(long IdUsuario, string Senha)
+        public static void UpdatePassword(string Codigo, string Senha)
         {
             try
             {
-                string query = @$"UPDATE ECM_USUARIOS SET SENHA = @SENHA WHERE ID_USUARIO = @ID_USUARIO;";
+                string query = @$"UPDATE ECM_USUARIOS SET SENHA = @SENHA WHERE CODIGO = @CODIGO;";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@SENHA", Crypt.HashPassword(Senha)),
-                    new SqlParameter("@ID_USUARIO", IdUsuario),
+                    new SqlParameter("@CODIGO", Codigo),
                 };
 
                 DatabaseProgramas().Execute(query, parameters);
@@ -164,7 +195,8 @@ namespace crm.DAL
             try
             {
                 string query = @$"UPDATE ECM_CLIENTES SET D_E_L_E_T_ = '*' WHERE CODIGO = @CODIGO;
-                                UPDATE ECM_USUARIOS SET D_E_L_E_T_ = '*' WHERE ID_USUARIO = SELECT ID_USUARIO FROM ECM_CLIENTES WHERE CODIGO = @CODIGO";
+                                UPDATE ECM_USUARIOS SET D_E_L_E_T_ = '*' WHERE ID_USUARIO = 
+                                (SELECT ID_USUARIO FROM ECM_CLIENTES WHERE CODIGO = @CODIGO)";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@CODIGO", Codigo),
@@ -214,6 +246,31 @@ namespace crm.DAL
             }
         }
 
+        public static Client SearchClientByLoginSenha(string Email)
+        {
+            try
+            {
+                string query = $@"SELECT
+	                                CLI.CODIGO, USU.SENHA
+                                FROM ECM_CLIENTES CLI
+	                                INNER JOIN ECM_USUARIOS USU ON USU.ID_USUARIO = CLI.ID_USUARIO
+		                                AND USU.D_E_L_E_T_ <> '*'
+                                WHERE CLI.D_E_L_E_T_ <> '*' AND USU.EMAIL = @EMAIL;";
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@EMAIL", Email),
+                };
+
+                return DatabaseProgramas().Choose<Client>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
         public static Client SearchForClientByCodigo(string Codigo)
         {
             try
@@ -222,7 +279,7 @@ namespace crm.DAL
 	                                USU.EMAIL, CLI.CODIGO, USU.ID_USUARIO,
 	                                CLI.ID_CLIENTE, CLI.NOME, CLI.SOBRENOME, CLI.CPF,
 	                                CLI.DATA_NASCIMENTO, CLI.RG, CLI.GENERO,
-	                                CLI.CRIACAO, CLI.TELEFONE, CLI.CELULAR
+	                                CLI.CRIACAO, CLI.TELEFONE, CLI.CELULAR, CLI.SITUACAO
                                 FROM ECM_CLIENTES CLI
 	                                INNER JOIN ECM_USUARIOS USU ON USU.ID_USUARIO = CLI.ID_USUARIO
 		                                AND USU.D_E_L_E_T_ <> '*'

@@ -7,10 +7,15 @@ using System.Threading.Tasks;
 
 namespace crm.Models.ModelView
 {
-    public class TrocasView
+    public class SolicitacoesView
     {
         public string Codigo { get; set; }
 
         public List<Solicitation> Solicitacoes { get; set; }
+
+        public List<ProductDTO> GetProdutos(long IdTransacao)
+        {
+            return ProductDAO.ImagensCapaPedido(IdTransacao);
+        }
     }
 }

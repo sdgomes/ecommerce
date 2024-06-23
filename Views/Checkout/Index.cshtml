@@ -361,8 +361,8 @@
                             </div>
                         </div>
                         <div class="price-table-btn button">
-                            <a comprar
-                               class="btn !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853] hover:!text-gray-800 btn-alt">Comprar</a>
+                            <button comprar disabled="@(!Model.Cliente.Situacao)"
+                               class='@(!Model.Cliente.Situacao ? "disabled:!opacity-50" : "") btn w-full !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853] hover:!text-gray-800 btn-alt'>Comprar</button>
                         </div>
                     </div>
                     <div class="checkout-sidebar-banner mt-30">

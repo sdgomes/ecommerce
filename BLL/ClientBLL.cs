@@ -18,9 +18,9 @@ namespace crm.BLL
             return NotificationDAO.CreateChat(notification);
         }
 
-        public static TrocasItensView GetSolicitacoesByGrupoCodigo(string Codigo, int GrupoCodigo, string Tipo)
+        public static SolicitacoesItensView GetSolicitacoesByGrupoCodigo(string Codigo, int GrupoCodigo, string Tipo)
         {
-            TrocasItensView Model = new();
+            SolicitacoesItensView Model = new();
             Model.Codigo = GrupoCodigo;
             Model.Cliente = ClientDAO.SearchForClientByCodigo(Codigo);
             Model.Solicitacoes = TransactionDAO.SelectAllSolicitacaoByGrupoCodigo(GrupoCodigo, Tipo);
@@ -29,9 +29,9 @@ namespace crm.BLL
             return Model;
         }
 
-        public static TrocasView GetSolicitacoes(string Codigo, string Tipo)
+        public static SolicitacoesView GetSolicitacoes(string Codigo, string Tipo)
         {
-            TrocasView Model = new();
+            SolicitacoesView Model = new();
             Model.Codigo = Codigo;
             Model.Solicitacoes = TransactionDAO.SelectGrupoSolicitacoes(Codigo, Tipo);
             return Model;
@@ -74,6 +74,11 @@ namespace crm.BLL
             ClientDAO.DeleteClientByCodigo(Codigo);
         }
 
+        public static void InativarConta(string Codigo)
+        {
+            ClientDAO.UpdateClientSituacao(Codigo, false);
+        }
+
         public static void AlteraDadosCliente(Client client)
         {
             ClientDAO.UpdateClient(client.IdCliente, client);
@@ -99,6 +104,11 @@ namespace crm.BLL
         {
             User clientUser = UserDAO.SearchForUserById(user.IdUsuario);
             return Crypt.Verify(user.Senha, clientUser.Senha);
+        }
+
+        public static List<Discount> BuscaDescontos(string Codigo)
+        {
+            return ClientDAO.SelectDiscountByClient(Codigo);
         }
 
         public static ClientDTO SelectClientByCodigo(string Codigo)
@@ -129,15 +139,31 @@ namespace crm.BLL
             return Model;
         }
 
-        public static bool IsClientByCodigo(string Codigo)
+        public static dynamic IsClientByLogin(string Email, string Password)
         {
-            Client cliente = ClientDAO.SearchForClientByCodigo(Codigo);
-            return cliente == null ? false : true;
+            Client cliente = ClientDAO.SearchClientByLoginSenha(Email);
+
+            if (cliente == null)
+            {
+                throw new ArgumentException("Email ou senha incorretos, tente novamente!");
+            }
+
+            if (!Crypt.Verify(Password, cliente.Senha))
+            {
+                throw new ArgumentException("Email ou senha incorretos, tente novamente!");
+            }
+
+            return new { codigo = cliente.Codigo };
         }
 
         public static Client SelectClientById(long IdCliente)
         {
             return ClientDAO.SearchForClientById(IdCliente);
+        }
+
+        public static Client SelectPerfilByCodigo(string Codigo)
+        {
+            return ClientDAO.SearchForClientByCodigo(Codigo);
         }
 
         public static string CreateClient(ClientDTO newClient)
@@ -163,7 +189,7 @@ namespace crm.BLL
 
         public static Card CreateNewCard(Card card)
         {
-           long IdCartao = CardDAO.CreateCard(card.IdCliente, card);
+            long IdCartao = CardDAO.CreateCard(card.IdCliente, card);
             return CardDAO.SearchCardById(IdCartao);
         }
 

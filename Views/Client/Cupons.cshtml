@@ -1,0 +1,93 @@
+@model List<Discount>
+
+@{
+    var url = Context.Request.RouteValues;
+    var codigo = url["Codigo"].ToString();
+
+    ViewBreadcrumbs breadcrumbs = new();
+    breadcrumbs.Title = "Meus Cupons";
+    breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[]{
+        new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
+        new BreadcrumbsDTO("Perfil", Url.Action("Perfil", "Client", new{ codigo }), "fa-solid fa-user"),
+        new BreadcrumbsDTO("Meus Cupons")
+    };
+
+    ViewData["Title"] = breadcrumbs.Title;
+}
+
+@(await Component.InvokeAsync<BreadcrumbsViewComponent>(breadcrumbs))
+
+
+<div class="p-8 mx-10">
+    <div class="bg-white border border-gray-200 p-6 rounded-lg shadow mb-8">
+
+        <div class="leading-none mb-3">
+            <h2 class="text-2xl leading-none font-bold">Lista de cupons</h2>
+            <p class="text-lg">Acompanhe seus cupons de desconto, troca, devolução ou reembolso.</p>
+        </div>
+
+        <form class="mb-5">
+            <div>
+                <table class="min-w-full bg-white table table-sm table-zebra text-gray-700">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="font-bold text-gray-800 text-sm py-2">#</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Código</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Tipo</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Status</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Desconto</th>
+                            <th class="font-bold text-gray-800 text-sm py-2">Dt. Criação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var (item, index) in Model.Select((item, index) => (item, index)))
+                        {
+                            <tr>
+                                <th class="py-2">@(index + 1)</th>
+                                <td class="py-2">@item.Codigo</td>
+                                <td class="py-2">
+                                    @if (item.Tipo == "TROCA")
+                                    {
+                                        <span class="bg-orange-100 text-orange-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">@item.Tipo</span>
+                                    }
+
+                                    @if (item.Tipo == "CUPONS")
+                                    {
+                                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">@item.Tipo</span>
+                                    }
+
+                                    @if (item.Tipo == "REEMBOLSO")
+                                    {
+                                        <span class="bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">@item.Tipo</span>
+                                    }
+
+                                    @if (item.Tipo == "DEVOLUCAO")
+                                    {
+                                        <span class="bg-sky-100 text-sky-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">@item.Tipo</span>
+                                    }
+                                </td>
+                                <td class="py-2">
+                                    <span class='@(item.Resgatado ? "bg-red-100 text-red-800" : "bg-green-100 text-green-800")  text-xs font-medium me-2 px-2.5 py-0.5 rounded'>
+                                        @(item.Resgatado ? "RESGATADO" : "DISPONÍVEL")
+                                    </span>
+                                </td>
+                                <td class="py-2">
+                                    @if (item.IdSolicitacao == 0)
+                                    {
+                                        <span>@item.Desconto%</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@item.Desconto.ToString("C")</span>
+                                    }
+                                </td>
+                                <td>@item.Criacao.ToString("d")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </form>
+
+    </div>
+</div>

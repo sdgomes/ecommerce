@@ -33,7 +33,7 @@
                     <th class="relative min-w-[85px]">Gênero</th>
                     <th class="relative min-w-[155px]">Criação</th>
                     <th class="relative min-w-[65px]">Status</th>
-                    <th class="relative min-w-[60px]">Ação</th>
+                    <th class="relative min-w-[140px]">Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,10 +52,19 @@
                         <td>@Item.Criacao.ToString("dd/MM/yyyy") às @Item.Criacao.ToString("HH:mm")</td>
                         <td>@(Item.Situacao ? "Ativo" : "Inativo")</td>
                         <td>
+                           <div class="space-x-4">
+                            <div class="tooltip tooltip-left" data-tip="Resetar Senha">
+                                <a asp-controller="Admin" asp-action="ResetarSenha"
+                                   asp-route-codigo="@Item.Codigo"
+                                   class="btn btn-sm btn-warning btn-square">
+                                   <i class="fa-solid fa-unlock-keyhole"></i>
+                                </a>
+                            </div>
+                            
                             @if (Item.Situacao)
                             {
                                 <div class="tooltip tooltip-left" data-tip="Inativar">
-                                    <a asp-controller="Admin" asp-action="CadastrarCliente"
+                                    <a asp-controller="Admin" asp-action="SatatusCliente"
                                        asp-route-situacao="inativar" asp-route-codigo="@Item.Codigo"
                                        class="btn btn-sm btn-error btn-square">
                                         <i class="fa-solid fa-ban"></i>
@@ -65,12 +74,13 @@
                             else
                             {
                                 <div class="tooltip tooltip-left" data-tip="Ativar">
-                                    <a asp-controller="Admin" asp-action="CadastrarCliente" asp-route-situacao="ativar"
+                                    <a asp-controller="Admin" asp-action="SatatusCliente" asp-route-situacao="ativar"
                                        asp-route-codigo="@Item.Codigo" class="btn btn-sm btn-success btn-square">
                                         <i class="fa-solid fa-check"></i>
                                     </a>
                                 </div>
                             }
+                            </div>
                         </td>
                     </tr>
                 }
@@ -80,27 +90,5 @@
 </div>
 
 @section Scripts {
-    <script>
-        $(document).ready(function () {
-
-            const clientes = {
-                tabela: new DataTable('#myTable', {
-                    "dom": 'Bfrtip',
-                    "scrollX": true,
-                    "ordering": true,
-                    "paging": true,
-                    "language": {
-                        "url": '/json/pt-BR.json',
-                    },
-                    "columnDefs": [{
-                        "targets": 11,
-                        "orderable": false
-                    }
-                    ]
-                }),
-            }
-
-        });
-
-    </script>
+    <script src="~/js/Admin/RegistroCliente.js" asp-append-version="true"></script>
 }

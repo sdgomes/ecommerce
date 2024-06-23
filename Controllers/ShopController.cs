@@ -48,12 +48,12 @@ namespace crm.Controllers
         }
 
         [HttpPost]
-        [Route("altera/etapa/troca")]
-        public IActionResult EtapaTroca(long IdSolicitacao, string Etapa, string Motivo)
+        [Route("altera/etapa/solicitacao")]
+        public IActionResult EtapaSolicitacao(long IdSolicitacao, string Etapa, string Motivo, string Tipo)
         {
             try
             {
-                TransactionBLL.EtapaTroca(IdSolicitacao, Etapa, Motivo);
+                TransactionBLL.AlteraSolicitacao(IdSolicitacao, Etapa, Motivo, Tipo);
                 return Json(new { success = true });
             }
             catch (Exception ex)

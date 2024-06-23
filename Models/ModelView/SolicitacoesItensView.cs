@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace crm.Models.ModelView
 {
-    public class TrocasItensView
+    public class SolicitacoesItensView
     {
         public int Codigo { get; set; }
 

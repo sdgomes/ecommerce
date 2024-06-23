@@ -8,172 +8,172 @@ CREATE PROCEDURE dbo.Simulation
 AS
     BEGIN
         INSERT INTO ECM_USUARIOS (EMAIL,SENHA,TIPO)
-        VALUES ('oseias.ti@purpleray.com', '$2a$12$I6G6b.sJ716n8QZVG0N2BOuDUj8HiQ/KEYQ/H53cnJR/S/kx.pJFC', 'ADMINISTRADOR'),
-        ('quis.diam.luctus@google.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'ADMINISTRADOR'),
-        ('luctus.ipsum@outlook.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'ADMINISTRADOR'),
-        ('morbi@outlook.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'ADMINISTRADOR'),
-        ('sodales.elit@porpleray.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'ADMINISTRADOR'),
-        ('ante@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'ADMINISTRADOR'),
-        ('venenatis.vel@porpleray.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'ADMINISTRADOR'),
-        ('non.lacinia@porpleray.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'ADMINISTRADOR'),
-        ('sed@outlook.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'ADMINISTRADOR'),
-        ('mattis.integer@icloud.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'ADMINISTRADOR')
+        VALUES ('oseias.ti@purpleray.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'ADMINISTRADOR'),
+        ('quis.diam.luctus@google.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'ADMINISTRADOR'),
+        ('luctus.ipsum@outlook.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'ADMINISTRADOR'),
+        ('morbi@outlook.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'ADMINISTRADOR'),
+        ('sodales.elit@porpleray.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'ADMINISTRADOR'),
+        ('ante@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'ADMINISTRADOR'),
+        ('venenatis.vel@porpleray.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'ADMINISTRADOR'),
+        ('non.lacinia@porpleray.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'ADMINISTRADOR'),
+        ('sed@outlook.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'ADMINISTRADOR'),
+        ('mattis.integer@icloud.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'ADMINISTRADOR')
 
 
         INSERT INTO ECM_USUARIOS (EMAIL,SENHA,TIPO)
-        VALUES ('oseias.gerente@purpleray.com', '$2a$12$MGvWESY.pr84nFL1SBvFcuYUcBb9VLbz8icAnUNqwhKPFDPWGieca', 'GERENTE'),
-        ('posuere.enim@porpleray.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'GERENTE'),
-        ('fringilla.porttitor@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'GERENTE'),
-        ('pede@outlook.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'GERENTE'),
-        ('cum@outlook.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'GERENTE'),
-        ('vehicula.aliquet@porpleray.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'GERENTE'),
-        ('nunc.sed.pede@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'GERENTE'),
-        ('dapibus.quam@outlook.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'GERENTE'),
-        ('vulputate@hotmail.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'GERENTE'),
-        ('pellentesque.ultricies@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'GERENTE')
+        VALUES ('oseias.gerente@purpleray.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'GERENTE'),
+        ('posuere.enim@porpleray.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'GERENTE'),
+        ('fringilla.porttitor@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'GERENTE'),
+        ('pede@outlook.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'GERENTE'),
+        ('cum@outlook.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'GERENTE'),
+        ('vehicula.aliquet@porpleray.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'GERENTE'),
+        ('nunc.sed.pede@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'GERENTE'),
+        ('dapibus.quam@outlook.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'GERENTE'),
+        ('vulputate@hotmail.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'GERENTE'),
+        ('pellentesque.ultricies@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'GERENTE')
 
 
         INSERT INTO ECM_USUARIOS (EMAIL,SENHA,TIPO)
-        VALUES ('oseias.funcionario@purpleray.com', '$2a$12$vZgv/MpWKX6F6NjGzty.AeGLQ87HmvLRY3jt54yZ0tnDdhyy3OAWy', 'FUNCIONARIO'),
-        ('auctor.ullamcorper@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'FUNCIONARIO'),
-        ('ligula.aliquam.erat@outlook.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'FUNCIONARIO'),
-        ('molestie.sodales@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'FUNCIONARIO'),
-        ('curabitur.massa@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'FUNCIONARIO'),
-        ('libero@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'FUNCIONARIO'),
-        ('tempus.eu@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'FUNCIONARIO'),
-        ('est.mauris@outlook.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'FUNCIONARIO'),
-        ('dignissim@outlook.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'FUNCIONARIO'),
-        ('egestas.duis.ac@icloud.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'FUNCIONARIO')
+        VALUES ('oseias.funcionario@purpleray.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'FUNCIONARIO'),
+        ('auctor.ullamcorper@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'FUNCIONARIO'),
+        ('ligula.aliquam.erat@outlook.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'FUNCIONARIO'),
+        ('molestie.sodales@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'FUNCIONARIO'),
+        ('curabitur.massa@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'FUNCIONARIO'),
+        ('libero@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'FUNCIONARIO'),
+        ('tempus.eu@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'FUNCIONARIO'),
+        ('est.mauris@outlook.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'FUNCIONARIO'),
+        ('dignissim@outlook.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'FUNCIONARIO'),
+        ('egestas.duis.ac@icloud.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'FUNCIONARIO')
 
 
         INSERT INTO ECM_USUARIOS (EMAIL,SENHA,TIPO)
-        VALUES ('oseias.cliente@hotmail.com.br', '$2a$12$JgSo8e8qRUad6JSneELrd.uwjyLL6DHK0HF98HdDnMC67QJ450jPq', 'CLIENTE'),
-        ('donec.nibh.enim@google.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('fermentum.convallis@icloud.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('elit.a.feugiat@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('cum.sociis.natoque@porpleray.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('odio.semper.cursus@outlook.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('lobortis.tellus.justo@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('tellus@porpleray.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('aliquam@outlook.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('magna.et@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE')
+        VALUES ('oseias.cliente@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('donec.nibh.enim@google.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('fermentum.convallis@icloud.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('elit.a.feugiat@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('cum.sociis.natoque@porpleray.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('odio.semper.cursus@outlook.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('lobortis.tellus.justo@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('tellus@porpleray.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('aliquam@outlook.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('magna.et@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE')
 
 
         INSERT INTO ECM_USUARIOS (EMAIL,SENHA,TIPO)
-        VALUES ('elit@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('sagittis@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('ut.nec.urna@outlook.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('pede@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('est.mollis@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('laoreet@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('nulla.dignissim.maecenas@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('ipsum.dolor@google.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('arcu.eu.odio@outlook.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('quis.urna.nunc@porpleray.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE')
+        VALUES ('elit@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('sagittis@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('ut.nec.urna@outlook.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('pede@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('est.mollis@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('laoreet@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('nulla.dignissim.maecenas@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('ipsum.dolor@google.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('arcu.eu.odio@outlook.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('quis.urna.nunc@porpleray.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE')
 
 
         INSERT INTO ECM_USUARIOS (EMAIL,SENHA,TIPO)
-        VALUES ('ornare.fusce@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('in.faucibus@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('tortor@porpleray.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('sociis.natoque@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('in@hotmail.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('volutpat.nulla@google.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('nunc.commodo.auctor@porpleray.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('lacinia.vitae@outlook.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('tincidunt.aliquam@hotmail.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('eget.ipsum@icloud.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE')
+        VALUES ('ornare.fusce@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('in.faucibus@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('tortor@porpleray.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('sociis.natoque@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('in@hotmail.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('volutpat.nulla@google.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('nunc.commodo.auctor@porpleray.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('lacinia.vitae@outlook.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('tincidunt.aliquam@hotmail.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('eget.ipsum@icloud.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE')
 
 
         INSERT INTO ECM_USUARIOS (EMAIL,SENHA,TIPO)
-        VALUES ('aliquam@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('sollicitudin.a@porpleray.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('dui.fusce@google.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('malesuada.fringilla.est@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('erat.nonummy.ultricies@outlook.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('augue.ac.ipsum@google.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('dictum.augue.malesuada@icloud.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('mollis.dui@google.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('aliquet@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('duis@google.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE')
+        VALUES ('aliquam@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('sollicitudin.a@porpleray.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('dui.fusce@google.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('malesuada.fringilla.est@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('erat.nonummy.ultricies@outlook.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('augue.ac.ipsum@google.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('dictum.augue.malesuada@icloud.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('mollis.dui@google.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('aliquet@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('duis@google.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE')
 
 
         INSERT INTO ECM_USUARIOS (EMAIL,SENHA,TIPO)
-        VALUES ('placerat@porpleray.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('sapien.nunc@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('accumsan.interdum@icloud.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('condimentum@outlook.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('elementum.sem@google.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('interdum@icloud.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('etiam.vestibulum@google.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('parturient@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('rutrum.non.hendrerit@hotmail.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('nec.urna@google.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE')
+        VALUES ('placerat@porpleray.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('sapien.nunc@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('accumsan.interdum@icloud.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('condimentum@outlook.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('elementum.sem@google.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('interdum@icloud.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('etiam.vestibulum@google.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('parturient@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('rutrum.non.hendrerit@hotmail.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('nec.urna@google.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE')
 
 
         INSERT INTO ECM_USUARIOS (EMAIL,SENHA,TIPO)
-        VALUES ('vitae.semper@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('sed.dictum.eleifend@porpleray.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('vel@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('elementum.purus@google.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('convallis@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('dolor.egestas.rhoncus@porpleray.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('tortor.at@outlook.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('semper@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('enim.nisl@porpleray.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('netus@google.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE')
+        VALUES ('vitae.semper@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('sed.dictum.eleifend@porpleray.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('vel@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('elementum.purus@google.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('convallis@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('dolor.egestas.rhoncus@porpleray.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('tortor.at@outlook.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('semper@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('enim.nisl@porpleray.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('netus@google.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE')
 
 
         INSERT INTO ECM_USUARIOS (EMAIL,SENHA,TIPO)
-        VALUES ('ligula.eu.enim@hotmail.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('scelerisque@icloud.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('libero.est@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('nec.malesuada@icloud.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('sociis.natoque@outlook.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('quisque@hotmail.com.br', '$2a$12$ZmQA6nb2bRhUJmtWGnEcy.X9VnoaYQwOVd5fktRAOZwoEfXNNcbj.', 'CLIENTE'),
-        ('class.aptent.taciti@porpleray.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('risus@google.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('id.libero@hotmail.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE'),
-        ('orci@porpleray.com', '$2a$12$vOfOptYytKw3KY9I5wiL4Ovgnm5wnR/sGJvs1IRHoV5l9qeZNYMAK', 'CLIENTE')
+        VALUES ('ligula.eu.enim@hotmail.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('scelerisque@icloud.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('libero.est@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('nec.malesuada@icloud.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('sociis.natoque@outlook.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('quisque@hotmail.com.br', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('class.aptent.taciti@porpleray.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('risus@google.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('id.libero@hotmail.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE'),
+        ('orci@porpleray.com', '$2a$12$9x/O3VpmmIHdv3p902rQ7O3nrxHdlyRSYdxF5ZV9VW1HCHRe5/ngi', 'CLIENTE')
 
 
         INSERT INTO ECM_FUNCIONARIOS (ID_USUARIO,NOME_COMPLETO,CODIGO,CARGO)
-        VALUES (1,UPPER('Oséias Gomes'),'fuv05hro6bn','TI'),
-        (2,UPPER('Amy Guimaraes'),'jmt82rtc5xc','APROVADOR'),
-        (3,UPPER('Vincent Mota'),'jut78jwu2fz','TI'),
-        (4,UPPER('Martina Custodio'),'pgf67fls5cg','TI'),
-        (5,UPPER('Minerva Garcia'),'ykh68chz9ww','APROVADOR'),
-        (6,UPPER('Nasim Torres'),'kbq82iar1gp','TI'),
-        (7,UPPER('Phyllis Dantas'),'tbt84cav5xe','APROVADOR'),
-        (8,UPPER('Ezra Neves'),'xgq41svq4pl','TI'),
-        (9,UPPER('Quinn de Andrade'),'jqd73cpg1ld','TI'),
-        (10,UPPER('Sandra Guedes'),'hyl14ecj7zm','TI')
+        VALUES (1,UPPER('Oséias Gomes'),UPPER('fuv05hro6bn'),'TI'),
+        (2,UPPER('Amy Guimaraes'),UPPER('jmt82rtc5xc'),'APROVADOR'),
+        (3,UPPER('Vincent Mota'),UPPER('jut78jwu2fz'),'TI'),
+        (4,UPPER('Martina Custodio'),UPPER('pgf67fls5cg'),'TI'),
+        (5,UPPER('Minerva Garcia'),UPPER('ykh68chz9ww'),'APROVADOR'),
+        (6,UPPER('Nasim Torres'),UPPER('kbq82iar1gp'),'TI'),
+        (7,UPPER('Phyllis Dantas'),UPPER('tbt84cav5xe'),'APROVADOR'),
+        (8,UPPER('Ezra Neves'),UPPER('xgq41svq4pl'),'TI'),
+        (9,UPPER('Quinn de Andrade'),UPPER('jqd73cpg1ld'),'TI'),
+        (10,UPPER('Sandra Guedes'),UPPER('hyl14ecj7zm'),'TI')
 
 
         INSERT INTO ECM_FUNCIONARIOS (ID_USUARIO,NOME_COMPLETO,CODIGO,CARGO)
-        VALUES (11,UPPER('Oséias Gomes'),'xqw84qgq0ll','GERENTE GERAL'),
-        (12,UPPER('Whoopi Sales'),'icj92kon4mw','GERENTE DE VENDAS'),
-        (13,UPPER('Fallon Teles'),'pwo66ois3rv','GERENTE COMERCIAL'),
-        (14,UPPER('Lavinia Paulino'),'hjm52kms2sw','GERENTE DE VENDAS'),
-        (15,UPPER('Alea Braga'),'qpt74kyp6ge','GERENTE FINANCEIRO'),
-        (16,UPPER('Drake de Abreu'),'wyp75fal7ec','GERENTE COMERCIAL'),
-        (17,UPPER('Dorian Freire'),'mgt40xvw1uj','GERENTE ADMINISTRATIVO'),
-        (18,UPPER('Ruth de Sousa'),'swa84joj2pj','GERENTE COMERCIAL'),
-        (19,UPPER('Anthony Das Dores'),'ehm65kfw7jk','GERENTE FINANCEIRO'),
-        (20,UPPER('Maile Bezerra'),'wag03dfa3rp','GERENTE ADMINISTRATIVO')
+        VALUES (11,UPPER('Oséias Gomes'),UPPER('xqw84qgq0ll'),'GERENTE GERAL'),
+        (12,UPPER('Whoopi Sales'),UPPER('icj92kon4mw'),'GERENTE DE VENDAS'),
+        (13,UPPER('Fallon Teles'),UPPER('pwo66ois3rv'),'GERENTE COMERCIAL'),
+        (14,UPPER('Lavinia Paulino'),UPPER('hjm52kms2sw'),'GERENTE DE VENDAS'),
+        (15,UPPER('Alea Braga'),UPPER('qpt74kyp6ge'),'GERENTE FINANCEIRO'),
+        (16,UPPER('Drake de Abreu'),UPPER('wyp75fal7ec'),'GERENTE COMERCIAL'),
+        (17,UPPER('Dorian Freire'),UPPER('mgt40xvw1uj'),'GERENTE ADMINISTRATIVO'),
+        (18,UPPER('Ruth de Sousa'),UPPER('swa84joj2pj'),'GERENTE COMERCIAL'),
+        (19,UPPER('Anthony Das Dores'),UPPER('ehm65kfw7jk'),'GERENTE FINANCEIRO'),
+        (20,UPPER('Maile Bezerra'),UPPER('wag03dfa3rp'),'GERENTE ADMINISTRATIVO')
 
 
         INSERT INTO ECM_FUNCIONARIOS (ID_USUARIO,NOME_COMPLETO,CODIGO,CARGO)
-        VALUES(21,UPPER('Oséias Gomes'),'bwl78nnw8hi','SUPERVISOR'),
-        (22, UPPER('Rana Dutra'),'voj17dgx1nt','SUPERVISOR'),
-        (23, UPPER('Kuame de Santana'),'jcr32hxf0rp','ESTOQUISTA'),
-        (24, UPPER('Keaton Pinheiro'),'nor74dre5xf','ESTOQUISTA'),
-        (25, UPPER('Josiah Matos'),'eye47cfb5ks','LOGISTA'),
-        (26, UPPER('Myra Nogueira'),'pkz62ghi4jx','ESTOQUISTA'),
-        (27, UPPER('Jena Mendes'),'nhj86clk0jr','ESTOQUISTA'),
-        (28, UPPER('Ralph de Paula'),'csw55nks5rk','LOGISTA'),
-        (29, UPPER('Kiona Silveira'),'you13lgn1uw','LOGISTA'),
-        (30, UPPER('Dorian Gomes'),'ciy85qpe1lh','VENDEDOR')
+        VALUES(21,UPPER('Oséias Gomes'),UPPER('bwl78nnw8hi'),'SUPERVISOR'),
+        (22, UPPER('Rana Dutra'),UPPER('voj17dgx1nt'),'SUPERVISOR'),
+        (23, UPPER('Kuame de Santana'),UPPER('jcr32hxf0rp'),'ESTOQUISTA'),
+        (24, UPPER('Keaton Pinheiro'),UPPER('nor74dre5xf'),'ESTOQUISTA'),
+        (25, UPPER('Josiah Matos'),UPPER('eye47cfb5ks'),'LOGISTA'),
+        (26, UPPER('Myra Nogueira'),UPPER('pkz62ghi4jx'),'ESTOQUISTA'),
+        (27, UPPER('Jena Mendes'),UPPER('nhj86clk0jr'),'ESTOQUISTA'),
+        (28, UPPER('Ralph de Paula'),UPPER('csw55nks5rk'),'LOGISTA'),
+        (29, UPPER('Kiona Silveira'),UPPER('you13lgn1uw'),'LOGISTA'),
+        (30, UPPER('Dorian Gomes'),UPPER('ciy85qpe1lh'),'VENDEDOR')
 
 
         INSERT INTO ECM_CLIENTES (ID_USUARIO,CODIGO,NOME,SOBRENOME,CPF,DATA_NASCIMENTO,RG,TELEFONE,CELULAR,SITUACAO,GENERO)

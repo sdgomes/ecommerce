@@ -511,6 +511,14 @@ $(document).on("click", ".remove-item-carrinho", function () {
     Carrinho.Remove($(this).attr("data-id-produto"));
 })
 
+$(document).on('click', '#eye', function () { 
+    $button = $(this);
+    $button.prev().toggleAttrVal('type', 'password', 'text')
+    $button.prev().toggleAttrVal('placeholder', '••••••••', '123456')
+    $button.find('i').toggleClass('fa-eye fa-eye-slash')
+
+});
+
 $(document).on('click', '[data-action="finalizar-carrinho"]', function (e) {
     e.preventDefault();
 
@@ -518,60 +526,74 @@ $(document).on('click', '[data-action="finalizar-carrinho"]', function (e) {
     if (codigo == null) {
 
         Swal.fire({
-            title: "Informe seu código de cliente!",
-            input: "text",
+            title: "Login de Acesso.",
+            html: `<form id="login-cliente" class="space-y-5 w-[340px] mx-auto">
+                <label class="form-control w-full">
+                    <div class="label">
+                    <span class="label-text-alt">E-mail</span>
+                    </div>
+                    <label class="input input-bordered flex items-center gap-2 focus:!outline-none focus-within:!outline-none">
+                    <i class="fa-solid fa-at"></i>
+                    <input autocomplete="off" type="text" class="grow focus:!outline-none focus-within:!outline-none" name="email" placeholder="ex.: exemplo@mail.com" />
+                    </label>
+                </label>
+    
+                <label class="form-control w-full">
+                    <div class="label">
+                    <span class="label-text-alt">Senha</span>
+                    </div>
+                    <label class="input input-bordered flex items-center gap-2 focus:!outline-none focus-within:!outline-none">
+                        <i class="fa-solid fa-key"></i>
+                        <input autocomplete="off" type="password" class="grow focus:!outline-none focus-within:!outline-none placeholder:text-base" name="password" placeholder="••••••••" />
+                        <button type="button" id="eye"><i class="fa-solid fa-eye"></i></button>
+                    </label>
+                </label>
+            </form>`,
             allowOutsideClick: false,
+            width: 410,
             allowEscapeKey: false,
             allowEnterKey: false,
-            inputAttributes: {
-                autocapitalize: "off",
-                autocomplete: "off"
-            },
             showCancelButton: true,
             showDenyButton: true,
             confirmButtonText: "Entrar",
             denyButtonText: "Criar Cadastro",
             cancelButtonText: 'Cancelar',
             showLoaderOnConfirm: true,
-            reverseButtons: true,
             customClass: {
-                confirmButton: "!bg-[#130235] !twxt-white",
-                denyButton: "!bg-[#ffcc00] !text-gray-800",
+                confirmButton: "!bg-[#130235] !twxt-white !w-full",
+                denyButton: "!bg-[#ffcc00] !text-gray-800 !w-full",
+                cancelButton: "!w-full",
             },
-            preConfirm: async (Codigo) => {
+            preConfirm: async () => {
                 try {
-                    if (Codigo == "" || Codigo == null) {
-                        Swal.showValidationMessage(`Informe um código de cliente`);
+                    let login = $("#login-cliente").serializeJson()
+    
+                    if (login.email.trim() == "") {
+                        Swal.showValidationMessage(`É necessário informar um email.`);
                         return false;
                     }
-
+    
+                    if (login.password.trim() == "") {
+                        Swal.showValidationMessage(`Coloque sua senha para continuar.`);
+                        return false;
+                    }
+    
                     const response = await $.ajax({
-                        url: `/buscar/cliente/${Codigo}`,
-                        type: 'POST'
+                        url: `/buscar/cliente`,
+                        type: 'POST',
+                        data: login
                     });
-
+    
                     return response;
                 } catch (error) {
                     console.log(error);
-                    Swal.showValidationMessage(`Request failed: ${error}`);
+                    Swal.showValidationMessage(error.responseJSON.message);
                 }
             },
         }).then((result) => {
             if (result.isConfirmed) {
-                if (result.value.isCliente) {
-                    cookie.Set("codigo", result.value.codigo, 0.02)
-                    location.href = `/finalizar`;
-                }
-
-                else if (!result.value.isCliente)
-                    Swal.fire({
-                        position: "center",
-                        icon: "warning",
-                        title: "Atenção!",
-                        text: 'Seu código não é válido ou foi digitado errado.\nTente novamente',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                cookie.Set("codigo", result.value.data.codigo, 0.02)
+                location.href = `/finalizar`
             }
             else if (result.isDenied)
                 location.href = `/cadastro/cliente?finalizar=true`;
@@ -588,60 +610,74 @@ $(document).on('click', '#sair', function () {
 
 $(document).on('click', '#entrar', function () {
     Swal.fire({
-        title: "Informe seu código de cliente!",
-        input: "text",
+        title: "Login de Acesso.",
+        html: `<form id="login-cliente" class="space-y-5 w-[340px] mx-auto">
+            <label class="form-control w-full">
+                <div class="label">
+                <span class="label-text-alt">E-mail</span>
+                </div>
+                <label class="input input-bordered flex items-center gap-2 focus:!outline-none focus-within:!outline-none">
+                <i class="fa-solid fa-at"></i>
+                <input autocomplete="off" type="text" class="grow focus:!outline-none focus-within:!outline-none" name="email" placeholder="ex.: exemplo@mail.com" />
+                </label>
+            </label>
+
+            <label class="form-control w-full">
+                <div class="label">
+                <span class="label-text-alt">Senha</span>
+                </div>
+                <label class="input input-bordered flex items-center gap-2 focus:!outline-none focus-within:!outline-none">
+                    <i class="fa-solid fa-key"></i>
+                    <input autocomplete="off" type="password" class="grow focus:!outline-none focus-within:!outline-none" name="password" placeholder="••••••••" />
+                    <button type="button" id="eye"><i class="fa-solid fa-eye"></i></button>
+                </label>
+            </label>
+        </form>`,
         allowOutsideClick: false,
+        width: 410,
         allowEscapeKey: false,
         allowEnterKey: false,
-        inputAttributes: {
-            autocapitalize: "off",
-            autocomplete: "off"
-        },
         showCancelButton: true,
         showDenyButton: true,
         confirmButtonText: "Entrar",
         denyButtonText: "Criar Cadastro",
         cancelButtonText: 'Cancelar',
         showLoaderOnConfirm: true,
-        reverseButtons: true,
         customClass: {
-            confirmButton: "!bg-[#130235] !twxt-white",
-            denyButton: "!bg-[#ffcc00] !text-gray-800",
+            confirmButton: "!bg-[#130235] !twxt-white !w-full",
+            denyButton: "!bg-[#ffcc00] !text-gray-800 !w-full",
+            cancelButton: "!w-full",
         },
-        preConfirm: async (Codigo) => {
+        preConfirm: async () => {
             try {
-                if (Codigo == "" || Codigo == null) {
-                    Swal.showValidationMessage(`Informe um código de cliente`);
+                let login = $("#login-cliente").serializeJson()
+
+                if (login.email.trim() == "") {
+                    Swal.showValidationMessage(`É necessário informar um email.`);
+                    return false;
+                }
+
+                if (login.password.trim() == "") {
+                    Swal.showValidationMessage(`Coloque sua senha para continuar.`);
                     return false;
                 }
 
                 const response = await $.ajax({
-                    url: `/buscar/cliente/${Codigo}`,
-                    type: 'POST'
+                    url: `/buscar/cliente`,
+                    type: 'POST',
+                    data: login
                 });
 
                 return response;
             } catch (error) {
                 console.log(error);
-                Swal.showValidationMessage(`Request failed: ${error}`);
+                Swal.showValidationMessage(error.responseJSON.message);
             }
         },
     }).then((result) => {
         if (result.isConfirmed) {
-            if (result.value.isCliente) {
-                cookie.Set("codigo", result.value.codigo, 0.02)
-                location.href = `/cliente/perfil/${result.value.codigo}`
-            }
-
-            else if (!result.value.isCliente)
-                Swal.fire({
-                    position: "center",
-                    icon: "warning",
-                    title: "Atenção!",
-                    text: 'Seu código não é válido ou foi digitado errado.\nTente novamente',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+            cookie.Set("codigo", result.value.data.codigo, 0.02)
+            location.href = `/cliente/perfil/${result.value.data.codigo}`
         }
         else if (result.isDenied)
             location.href = `/cadastro/cliente`;
