@@ -61,7 +61,7 @@ namespace crm.Controllers
         [HttpGet("/cliente/perfil/{Codigo}/{Tipo}")]
         public IActionResult Solicitacoes(string Codigo, string Tipo)
         {
-            SolicitacoesView Model = ClientBLL.GetSolicitacoes(Codigo, Tipo == "trocas" ? "TROCA" : "DEVOLUCAO");
+            SolicitacoesView Model = ClientBLL.GetSolicitacoes(Codigo, Tipo == "trocas" ? "TROCA" : "DEVOLUÇÃO");
             return View((Tipo == "trocas" ? "Trocas" : "Devolucoes"), Model);
         }
 
@@ -70,7 +70,7 @@ namespace crm.Controllers
         [HttpGet("/cliente/perfil/{Codigo}/{Tipo}/{GrupoCodigo}")]
         public IActionResult SolicitacoesItens(string Codigo, string Tipo, int GrupoCodigo)
         {
-            SolicitacoesItensView Model = ClientBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, Tipo == "trocas" ? "TROCA" : "DEVOLUCAO");
+            SolicitacoesItensView Model = ClientBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, Tipo == "trocas" ? "TROCA" : "DEVOLUÇÃO");
             return View((Tipo == "trocas" ? "TrocasItens" : "DevolucoesItens"), Model);
         }
 

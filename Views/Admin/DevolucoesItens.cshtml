@@ -145,7 +145,7 @@
                                             <button type="button" data-id-solicitacao="@item.IdSolicitacao"
                                                     data-etapa="CANCELADO" data-before-title="Atenção!"
                                                     data-before-message="Comfirma que deseja cancelar a solicitação desse item?"
-                                                    data-after-title="Feito!"
+                                                    data-after-title="Feito!" data-tipo="DEVOLUÇÃO"
                                                     data-after-message='Solicitação de devolução de item cancelada com sucesso.'
                                                     data-trigger="manage" class="btn btn-sm btn-error btn-square">
                                                 <i class="fa-solid fa-ban"></i>
@@ -157,7 +157,7 @@
                                     {
                                         <div class="tooltip" data-tip="Aprovar solicitação do item">
                                             <button type="button" data-id-solicitacao="@item.IdSolicitacao"
-                                                    data-etapa="APROVAR SOLICITACAO DE DEVOLUÇÃO" data-before-title="Atenção!"
+                                                    data-tipo="DEVOLUÇÃO" data-etapa="APROVAR SOLICITACAO DE DEVOLUÇÃO" data-before-title="Atenção!"
                                                     data-before-message="Comfirma a aprovação da solicitação de devolução desse item?"
                                                     data-after-title="Feito!" data-after-message='Item aprovado para envio.'
                                                     data-trigger="manage" class="btn btn-sm btn-success btn-square">
@@ -170,7 +170,7 @@
                                     {
                                         <div class="tooltip" data-tip="Item enviado">
                                             <button type="button" data-id-solicitacao="@item.IdSolicitacao"
-                                                    data-etapa="ENVIADO PARA DEVOLUÇÃO" data-before-title="Atenção!"
+                                                    data-tipo="DEVOLUÇÃO" data-etapa="ENVIADO PARA DEVOLUÇÃO" data-before-title="Atenção!"
                                                     data-before-message="Comfirma que esse item foi entrege aos correios e está a caminho?"
                                                     data-after-title="Feito!" data-after-message='Item enviado.'
                                                     data-trigger="manage" class="btn btn-sm btn-primary btn-square">
@@ -185,7 +185,7 @@
                                             <button type="button" data-id-solicitacao="@item.IdSolicitacao"
                                                     data-etapa="APROVAR DEVOLUÇÃO" data-before-title="Atenção!"
                                                     data-before-message="Comfirma que o item foi recebido e está apto para devolução?"
-                                                    data-after-title="Feito!"
+                                                    data-after-title="Feito!" data-tipo="DEVOLUÇÃO"
                                                     data-after-message='Item liberado para finalização.' data-trigger="manage"
                                                     class="btn btn-sm btn-warning btn-square">
                                                 <i class="fa-solid fa-box-circle-check"></i>
@@ -197,7 +197,7 @@
                                     {
                                         <div class="tooltip" data-tip="Aprovar devolução">
                                             <button type="button" data-id-solicitacao="@item.IdSolicitacao"
-                                                    data-tipo="DEVOLUCAO"
+                                                    data-tipo="DEVOLUÇÃO"
                                                     data-etapa="ENTREGUE" data-before-title="Atenção!"
                                                     data-before-message="Comfirma a aprovação da devolução desse item?"
                                                     data-after-title="Feito!" data-after-message='Devolução feita com sucesso.'

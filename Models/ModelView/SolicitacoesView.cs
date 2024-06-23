@@ -13,9 +13,9 @@ namespace crm.Models.ModelView
 
         public List<Solicitation> Solicitacoes { get; set; }
 
-        public List<ProductDTO> GetProdutos(long IdTransacao)
+        public List<ProductDTO> GetProdutos(string GrupoCodigo)
         {
-            return ProductDAO.ImagensCapaPedido(IdTransacao);
+            return ProductDAO.ImagensCapaSolicitacao(GrupoCodigo);
         }
     }
 }

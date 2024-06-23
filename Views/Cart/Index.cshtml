@@ -1,3 +1,5 @@
+@model List<Product>
+
 @{
     ViewBreadcrumbs breadcrumbs = new();
     breadcrumbs.Title = "Meu Carrinho";
@@ -16,10 +18,7 @@
     <div class="container mx-auto px-4">
 
         <div id="container-carrinho">
-            <div class="text-center">
-                <span class="loading loading-spinner loading-lg text-primary"></span>
-                <h3>Carregando</h3>
-            </div>
+            @(await Component.InvokeAsync<ProdutosCartViewComponent>(Model))
         </div>
 
     </div>

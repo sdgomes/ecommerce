@@ -35,7 +35,8 @@
                 </div>
 
                 <div  class="w-3/12 px-5 mb-10">
-                    <a asp-action="Solicitacoes" asp-controller="Admin" asp-route-codigo="@Model.Funcionario.Codigo" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                    <a asp-controller="Admin" asp-action="Solicitacoes"
+                        asp-route-tipo="trocas"  asp-route-codigo="@Model.Funcionario.Codigo" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
                         <div class="px-3 pt-3 h-[155px]">
                             <figure class="rounded-xl bg-white h-full">
                                 <img src="~/img/images/perfil/administrador/troca.png" alt="" class="h-full rounded-xl" />
@@ -51,7 +52,8 @@
                 </div>
 
                 <div class="w-3/12 px-5 mb-10">
-                    <a href="#" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
+                    <a asp-controller="Admin" asp-action="Solicitacoes"
+                        asp-route-tipo="devolucoes"  asp-route-codigo="@Model.Funcionario.Codigo" class="card bg-gray-100 h-full hover:bg-gray-200 shadow">
                         <div class="px-3 pt-3 h-[155px]">
                             <figure class="rounded-xl bg-white h-full">
                                 <img src="~/img/images/perfil/administrador/devolucao.png" alt="" class="h-full rounded-xl" />

@@ -40,16 +40,16 @@ namespace crm.Controllers
         [HttpGet("/admin/perfil/{Codigo}/{Tipo}")]
         public IActionResult Solicitacoes(string Codigo, string Tipo)
         {
-            SolicitacoesView Model = AdminBLL.GetSolicitacoes(Codigo, Tipo == "trocas" ? "TROCA" : "DEVOLUCAO");
+            SolicitacoesView Model = AdminBLL.GetSolicitacoes(Codigo, Tipo == "trocas" ? "TROCA" : "DEVOLUÇÃO");
             return View((Tipo == "trocas" ? "Trocas" : "Devolucoes"), Model);
         }
 
         [FuncionarioLogado]
         [FuncionarioExiste]
         [HttpGet("/admin/perfil/{Codigo}/{Tipo}/{GrupoCodigo}")]
-        public IActionResult SolicitacoesItens(string Codigo, int GrupoCodigo)
+        public IActionResult SolicitacoesItens(string Codigo, string Tipo, int GrupoCodigo)
         {            
-            SolicitacoesItensView Model = AdminBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, Tipo == "trocas" ? "TROCA" : "DEVOLUCAO");
+            SolicitacoesItensView Model = AdminBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, Tipo == "trocas" ? "TROCA" : "DEVOLUÇÃO");
             return View((Tipo == "trocas" ? "TrocasItens" : "DevolucoesItens"), Model);
         }
 

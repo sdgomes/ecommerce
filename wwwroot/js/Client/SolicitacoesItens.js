@@ -110,13 +110,13 @@ $(document).on('click', '[data-trigger="manage"]', function () {
                                         <span data-target="motivo-recusa" class="block absolute bottom-2 right-3 text-sm font-bold">0</span>
                                         <textarea name="motivoRecusa" rows="15"
                                             class="textarea textarea-bordered h-24 placeholder:italic resize-none"
-                                            placeholder="Descreva o motivo que deseja cancelar a solicitação de troca! Lembrando que a descrição do motivo é para o item selecionado."></textarea>
+                                            placeholder="Descreva o motivo que deseja cancelar a solicitação de ${data.tipo.toLowerCase()}! Lembrando que a descrição do motivo é para o item selecionado."></textarea>
                                     </label>
                                 </div>
                             </form>`,
                     showCancelButton: true,
                     reverseButtons: true,
-                    title: "Cancelar troca de item.",
+                    title: `Cancelar ${data.tipo.toLowerCase()} de item.`,
                     customClass: {
                         confirmButton: "!bg-[#ffcc00] !text-gray-800",
                     },
@@ -133,7 +133,7 @@ $(document).on('click', '[data-trigger="manage"]', function () {
                             const item = $("#from-solicitacao").serializeJsonComplex()
 
                             if (item.motivoRecusa == "") {
-                                return Swal.showValidationMessage(`É necessário informar o motivo da sua solicitação de troca.`);
+                                return Swal.showValidationMessage(`É necessário informar o motivo da sua solicitação de ${data.tipo.toLowerCase()}.`);
                             }
 
                             if (item.motivoRecusa.length > 520) {

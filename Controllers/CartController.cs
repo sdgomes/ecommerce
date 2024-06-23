@@ -15,7 +15,7 @@ namespace crm.Controllers
         [HttpGet("/carrinho")]
         public IActionResult Index()
         {
-            return View();
+            return View(Produtos);
         }
 
         #region Actions

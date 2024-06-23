@@ -46,156 +46,6 @@ const currency = (number) => {
 
 var DescontosMias = 0;
 
-const Carrinho = {
-    getItems: function () {
-        var items = localStorage.getItem("produtos-carrinho")
-        return items == null ? [] : JSON.parse(items);
-    },
-
-    AtualizaFreCalculos: function () {
-        var lf = localStorage.getItem("frete");
-        var frete = parseFloat(lf ?? 0);
-
-        var items = this.getItems();
-
-        const subtotal = items.length == 0 ? 0 : items.map((item) => (item.qntCompra * toFloat(item.preco))).reduce((prev, current) => prev + current);
-        $("[menu-total-amount]").html(currency(subtotal))
-
-        var descontos = items.length == 0 ? 0 : items.map((item) => toFloat(item.desconto)).reduce((prev, current) => prev + current);
-
-        $('[total-descontos]').html(currency(descontos))
-        var total = (subtotal + parseFloat(frete)) - descontos;
-        if (DescontosMias != 0) {
-            var valDesconto = (DescontosMias * total) / 100;
-            total = total - valDesconto;
-        }
-
-        $('[valor-frete]').html(currency(frete))
-
-        $('[total-compra]').html(currency((subtotal + parseFloat(frete)) - descontos))
-    },
-
-    AtualizaQuantidade: function (idProduto, qntCompra) {
-        var items = this.getItems();
-
-        var tempCarrinho = items.map((item) => {
-            if (item.idProduto == idProduto)
-                item.qntCompra = qntCompra
-
-            return item
-        })
-
-        localStorage.setItem("produtos-carrinho", JSON.stringify(tempCarrinho));
-
-        this.Carrega()
-    },
-
-    Carrega: function () {
-        var items = this.getItems();
-
-        $("#carrinho, #carrinho-items-count").html(items.length)
-
-        $("#carrinho-items").empty();
-
-        items.map((item, index) => {
-            $(`[preco-unitario="${item.idProduto}"]`).html(currency(parseInt(item.qntCompra) * parseFloat(item.preco)))
-
-            if (index < 3) {
-                $("#carrinho-items").append(`<li class="relative">
-                            <button class="!text-white right-0 btn btn-xs btn-error btn-circle absolute remove-carrinho" data-id-produto="${item.idProduto}">
-                                <i class="fa-light fa-xmark"></i>
-                            </button>
-                            
-                            <div class="cart-img-head">
-                                <a class="cart-img" href="https://localhost:44388/produtos/${item.tipoProduto}/${item.subcategoria}/detalhes/${item.idProduto}">
-                                    <img src="${item.imagem}" alt="...">
-                                </a>
-                            </div>
-
-                            <div class="content">
-                                <h4>
-                                    <a class="line-clamp-2" href="https://localhost:44388/produtos/${item.tipoProduto}/${item.subcategoria}/detalhes/${item.idProduto}">
-                                        ${item.nome}
-                                    </a>
-                                </h4>
-                                <p class="quantity">${item.qntCompra}x - <span class="amount">${currency(parseInt(item.qntCompra) * parseFloat(item.preco))}</span></p>
-                            </div>
-                        </li>`)
-            }
-        });
-
-        this.AtualizaFreCalculos()
-    },
-
-    Adicona: function ({ idProduto, qntCompra, imagem, preco, nome, tipoProduto, subcategoria, desconto }) {
-        var items = this.getItems();
-
-        if (items.length == 0 || !items.some((item) => item.idProduto == idProduto)) {
-
-            var tempCarrinho = [...items, { idProduto, qntCompra, imagem, preco, nome, tipoProduto, subcategoria, desconto }]
-
-            localStorage.setItem("produtos-carrinho", JSON.stringify(tempCarrinho));
-
-            $("#carrinho, #carrinho-items-count").html(tempCarrinho.length)
-
-            this.Carrega()
-        }
-    },
-
-    Remove: function (idProduto) {
-        var items = JSON.parse(localStorage.getItem("produtos-carrinho"))
-
-        var tempCarrinho = items.filter((item) => item.idProduto != idProduto)
-
-        localStorage.setItem("produtos-carrinho", JSON.stringify(tempCarrinho));
-
-        $("#carrinho, #carrinho-items-count").html(tempCarrinho.length)
-
-        this.Carrega()
-    }
-}
-
-Carrinho.Carrega();
-
-const Favoritos = {
-    getItems: function () {
-        var items = localStorage.getItem("produtos-favoritos");
-        return items == null ? [] : JSON.parse(items);
-    },
-
-    Carrega: function () {
-        var items = this.getItems();
-
-        items.forEach(favorito => {
-            $(`[data-id-produto=${favorito.idProduto}]`).attr('data-favorito', true)
-        });
-
-        $("#favoritos").html(items.length)
-    },
-
-    Adicona: function (idProduto) {
-        var items = this.getItems();
-
-        var tempFavoritos = [...items, { idProduto: idProduto }]
-
-        localStorage.setItem("produtos-favoritos", JSON.stringify(tempFavoritos));
-
-        $("#favoritos").html(tempFavoritos.length)
-    },
-
-    Remove: function (idProduto) {
-        var items = JSON.parse(localStorage.getItem("produtos-favoritos"))
-
-        var tempFavoritos = items.filter((item) => item.idProduto != idProduto)
-
-        localStorage.setItem("produtos-favoritos", JSON.stringify(tempFavoritos));
-
-        $("#favoritos").html(tempFavoritos.length)
-    }
-}
-
-Favoritos.Carrega();
-
 const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -480,17 +330,9 @@ $(document).on('click', '[data-trigger="remove-produto"]', function () {
     }
 })
 
-$(document).on("click", '[data-compra-direta]', function () {
-    $button = $(this);
-    const data = $button.getData();
-    Carrinho.Adicona(data);
-});
-
 $(document).on("click", '[data-action="carrinho"]', function () {
     $button = $(this);
-
     const data = $button.getData();
-    Carrinho.Adicona(data);
 
     $button.html(`<span class="loading loading-spinner loading-sm"></span> Carregando`)
     setTimeout(() => {
@@ -499,16 +341,6 @@ $(document).on("click", '[data-action="carrinho"]', function () {
             $button.html(`<i class="fa-light fa-cart-circle-plus text-sm"></i> Carrinho`)
         }, 325);
     }, 325);
-})
-
-$(document).on("click", ".remove-carrinho", function () {
-    $(this).parent().remove();
-    Carrinho.Remove($(this).attr("data-id-produto"));
-});
-
-$(document).on("click", ".remove-item-carrinho", function () {
-    $(this).parents(".cart-single-list").remove();
-    Carrinho.Remove($(this).attr("data-id-produto"));
 })
 
 $(document).on('click', '#eye', function () { 

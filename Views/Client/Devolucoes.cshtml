@@ -62,7 +62,7 @@
                 </div>
 
                 <div class='mt-3 flex'>
-                    @foreach (var imagem in Model.GetProdutos(solicitacao.IdTransacao))
+                    @foreach (var imagem in Model.GetProdutos(solicitacao.GrupoCodigo))
                     {
                         <img class='w-1/4 px-2'
                              src="@imagem.ImageSource" alt="">

@@ -5,11 +5,11 @@
     var codigo = url["Codigo"].ToString();
 
     ViewBreadcrumbs breadcrumbs = new();
-    breadcrumbs.Title = "Solicitações de Trocas";
+    breadcrumbs.Title = "Solicitações de Devoluções";
     breadcrumbs.Breadcrumbs = new BreadcrumbsDTO[] {
         new BreadcrumbsDTO("Início", "/", "fa-solid fa-house"),
         new BreadcrumbsDTO("Perfil", Url.Action("Index", "Admin", new{ codigo }), "fa-solid fa-user"),
-        new BreadcrumbsDTO("Trocas")
+        new BreadcrumbsDTO("Devoluções")
     };
 
     ViewData["Title"] = breadcrumbs.Title;
@@ -22,7 +22,7 @@
     <div class="container mx-auto text-left">
         <h1 class="text-2xl font-bold">Solicitações</h1>
         <p class="text-base text-yellow-600 mt-2">
-            Acompanhe o andamento das solicitações de trocas dos clientes abra os itens para ver com detalhes e
+            Acompanhe o andamento das solicitações de Devoluções dos clientes abra os itens para ver com detalhes e
             preços.
         </p>
     </div>
@@ -33,7 +33,7 @@
 
         @foreach (var solicitacao in Model.Solicitacoes)
         {
-            <a asp-controller="Admin" asp-action="SolicitacoesItens" asp-route-tipo="trocas" asp-route-codigo="@Model.Codigo" asp-route-grupocodigo="@solicitacao.GrupoCodigo"
+            <a asp-controller="Admin" asp-action="SolicitacoesItens" asp-route-tipo="devolucoes" asp-route-codigo="@Model.Codigo" asp-route-grupocodigo="@solicitacao.GrupoCodigo"
                class="block bg-gray-50 hover:bg-gray-100 border border-gray-200 shadow-md rounded-lg p-6">
                 <div class="flex flex-wrap justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold">Nº da Solicitação #@solicitacao.GrupoCodigo</h2>

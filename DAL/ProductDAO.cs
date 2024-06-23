@@ -10,6 +10,28 @@ namespace crm.DAL
 {
     public class ProductDAO : BaseDAO
     {
+        public static List<ProductDTO> ImagensCapaSolicitacao(string GrupoCodigo)
+        {
+            try
+            {
+                string query = @$"SELECT TOP 4
+	                EI.IMAGEM
+                FROM ECM_IMAGENS EI
+                WHERE EI.NOME = 'COVER'
+                AND EI.ID_PRODUTO IN (SELECT ID_PRODUTO FROM ECM_SOLICITACOES WHERE GRUPO_CODIGO = @GRUPO_CODIGO);";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@GRUPO_CODIGO", GrupoCodigo)
+                };
+
+                return DatabaseProgramas().Select<ProductDTO>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static List<ProductDTO> ImagensCapaPedido(long IdTransacao)
         {
             try
