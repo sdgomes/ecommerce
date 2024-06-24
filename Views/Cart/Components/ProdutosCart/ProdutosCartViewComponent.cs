@@ -22,8 +22,8 @@ namespace crm.Views.Cart.Components.ProdutosCart
                 ViewProdutosCart Model = new();
                 if (IdsProdutos != "")
                 {
-                    Model.Products = ProductDAO.SelectProductsByInId(IdsProdutos);
-                    foreach (var Item in Model.Products)
+                    Model.Produtos = ProductDAO.SelectProductsByInId(IdsProdutos);
+                    foreach (var Item in Model.Produtos)
                     {
                         Product Produto = Produtos.Where(x => x.IdProduto == Item.IdProduto).FirstOrDefault();
                         Item.QntCompra = Produto.QntCompra;
@@ -41,6 +41,28 @@ namespace crm.Views.Cart.Components.ProdutosCart
 
     public class ViewProdutosCart
     {
-        public List<ProductDTO> Products { get; set; }
+        public List<ProductDTO> Produtos { get; set; }
+
+
+        public double Subtotal()
+        {
+            if (Produtos == null)
+                return 0;
+
+            return Produtos.Sum(x => x.QntCompra * x.Preco);
+        }
+
+        public double Descontos()
+        {
+            if (Produtos == null)
+                return 0;
+
+            return Produtos.Where(x => x.Desconto).Sum(x => x.QntCompra * x.CalculoDesconto);
+        }
+
+        public double Total()
+        {
+            return Subtotal() - Descontos();
+        }
     }
 }

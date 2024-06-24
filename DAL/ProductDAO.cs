@@ -10,6 +10,24 @@ namespace crm.DAL
 {
     public class ProductDAO : BaseDAO
     {
+        public static Product RetornaImagem(long IdProduto)
+        {
+            try
+            {
+                string query = @$"SELECT IMAGEM FROM ECM_IMAGENS WHERE ID_PRODUTO = @ID_PRODUTO AND NOME = 'COVER' AND D_E_L_E_T_ <> '*';";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@ID_PRODUTO", IdProduto)
+                };
+
+                return DatabaseProgramas().Choose<Product>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static List<ProductDTO> ImagensCapaSolicitacao(string GrupoCodigo)
         {
             try

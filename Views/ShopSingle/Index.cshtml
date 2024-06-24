@@ -36,7 +36,7 @@
             </p>
             <div class="flex gap-4 justify-between items-center w-full">
                 <h1 class="text-2xl font-bold w-full">@Model.Produto.Nome.Capitalize()</h1>
-                <button type="button" class="text-primary text-2xl">
+                <button type="button" class="text-primary text-2xl" data-action="favoritos" data-id-produto="@Model.Produto.IdProduto">
                     <i class="fa-regular fa-heart"></i>
                 </button>
             </div>
@@ -88,7 +88,7 @@
             </div>
         </div>
         <button type="submit" class="w-full btn bg-purple-700 hover:bg-purple-800 text-white mb-2">Comprar</button>
-        <a class="w-full btn btn-warning">Adicionar ao Carrinho <i class="fa-solid fa-cart-shopping"></i></a>
+        <button type="button" data-action="carrinho" class="w-full btn btn-warning">Adicionar ao Carrinho <i class="fa-solid fa-cart-shopping"></i></button>
         </form>
 </div>
 

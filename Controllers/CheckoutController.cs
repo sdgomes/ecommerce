@@ -16,11 +16,11 @@ namespace crm.Controllers
     public class CheckoutController : Controller
     {
         [ValidaCompra]
-        [HttpGet("/finalizar/compra")]
-        public IActionResult Index(List<Product> Produtos)
+        [HttpGet("/finalizar/compra/{Carrinho?}")]
+        public IActionResult Index(List<Product> Produtos, string Carrinho)
         {
             var codigo = Request.Cookies["codigo"];
-            return View(ClientBLL.ClientCheckoutByCodigo(codigo, Produtos));
+            return View(ClientBLL.ClientCheckoutByCodigo(codigo, Produtos, Carrinho));
         }
 
         [HttpPost("/registra/transacao")]
@@ -30,7 +30,7 @@ namespace crm.Controllers
             {
                 var Codigo = Request.Cookies["codigo"];
 
-                long IdTransacao = await ProductBLL.RegistraTransacao(Transaction);
+                long IdTransacao = await ProductBLL.RegistraTransacao(Transaction, Codigo);
                 return Json(new { Transacoes = Transaction, Url = Url.Action("Pedido", "Client", new { Codigo, Pedido = IdTransacao }) });
             }
             catch (Exception)

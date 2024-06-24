@@ -8,6 +8,8 @@ namespace crm.Models.ModelView
 {
     public class CheckoutView
     {
+        public bool Carrinho { get; set; }
+        
         public List<ProductDTO> Produtos { get; set; }
 
         public Client Cliente { get; set; }

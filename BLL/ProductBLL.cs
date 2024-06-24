@@ -181,8 +181,13 @@ namespace crm.BLL
             return transaction;
         }
 
-        public static async Task<long> RegistraTransacao(TransactionDTO transaction)
+        public static async Task<long> RegistraTransacao(TransactionDTO transaction, string Codigo)
         {
+            if (transaction.LimpaCarrinho)
+            {
+                ClientDAO.LimpaCarrinho(Codigo);
+            }
+
             dynamic via = await CalcularFrete(transaction.CEP);
             transaction.Frete = via.preco;
 

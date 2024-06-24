@@ -417,7 +417,6 @@ $(document).ready(function () {
 });
 
 var totalTravado;
-var descontoPlus = 0;
 
 $(document).on("keyup", ".por-cartao", function (e) {
     const numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -442,6 +441,8 @@ $(document).on("keyup", ".por-cartao", function (e) {
 });
 
 $(document).on("click", '[comprar]', async function () {
+    const data = $(this).getData();
+
     if ($.isEmptyObject($("#lista-produtos").serializeJsonComplex())) {
         Swal.fire({
             icon: 'warning',
@@ -588,6 +589,7 @@ $(document).on("click", '[comprar]', async function () {
             IdEndereco: $('[name="enderecoEntrega"]:checked').val(),
             IdCliente: $('[name="idCliente"]').val(),
             CEP: $('[calculo-frete]').val().trim(),
+            LimpaCarrinho: data.limpaCarrinho
         }
     }
 
@@ -603,39 +605,6 @@ $(document).on("click", '[comprar]', async function () {
         },
     });
 
-})
-
-$(document).on("click", '[data-action="frete"]', function () {
-    $button = $(this);
-    $input = $button.parents('form').find('input');
-
-    if ($input.val().trim() == "")
-        Toast.fire({
-            icon: "error",
-            title: "O campo CEP precisa ser preenchido."
-        });
-    else {
-        $button.html(`<span class="loading loading-spinner loading-sm"></span> Calculando`)
-
-        $.ajax({
-            type: "GET",
-            url: `/calcular/frete/${$input.val()}`,
-            success: function (data) {
-                $button.html(`Cálcular frete`)
-
-                Toast.fire({
-                    icon: data.response.success ? "success" : "error",
-                    title: data.response.message
-                });
-
-                $('.frete').html(`R$ ${data.response.preco.toMoney()}`)
-                atualizaTabelaPrecos()
-            },
-            error: function (response) {
-                console.log(response);
-            },
-        });
-    }
 })
 
 $(document).on("click", "[data-action='desconto'], [data-action='cupons']", function () {

@@ -35,6 +35,22 @@ const cookie = new Cookie();
 //#endregion
 /** ==========================  */
 
+window.addEventListener("load", (event) => {
+    const codigo = cookie.Get("codigo");
+    if (codigo == null) {
+        const carrinho = sessionStorage.getItem("carrinho");
+
+        if (carrinho != null) {
+            $("#carrinho").html(JSON.parse(carrinho).length);
+        }
+
+        const favoritos = sessionStorage.getItem("favoritos");
+
+        if (favoritos != null) {
+            $("#favoritos").html(JSON.parse(favoritos).length);
+        }
+    }
+});
 
 const toFloat = (palavra) => {
     return parseFloat(palavra.toString().replace(/\./g, '').replace(/\,/g, '.'));
@@ -44,7 +60,7 @@ const currency = (number) => {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(number)
 }
 
-var DescontosMias = 0;
+var descontoPlus = 0;
 
 const Toast = Swal.mixin({
     toast: true,
@@ -233,17 +249,37 @@ $(document).ready(function () {
     window.onDomChange = onDomChange;
 })(window);
 
-$(document).on('click', '[data-action="favoritos"]', function () {
+$(document).on("click", '[data-action="frete"]', function () {
     $button = $(this);
+    $input = $button.parents('form').find('input[data-name="CEP"]');
 
-    const idProduto = $button.attr('data-id-produto')
-    const toggleFavorito = $button.attr('data-favorito').parseBool();
-    $button.attr('data-favorito', !toggleFavorito);
+    if ($input.val().trim() == "")
+        Toast.fire({
+            icon: "error",
+            title: "O campo CEP precisa ser preenchido."
+        });
+    else {
+        $button.html(`<span class="loading loading-spinner loading-sm"></span> Calculando`)
 
-    if (!toggleFavorito)
-        Favoritos.Adicona(idProduto);
-    else
-        Favoritos.Remove(idProduto);
+        $.ajax({
+            type: "GET",
+            url: `/calcular/frete/${$input.val()}`,
+            success: function (data) {
+                $button.html(`Cálcular frete`)
+
+                Toast.fire({
+                    icon: data.response.success ? "success" : "error",
+                    title: data.response.message
+                });
+
+                $('.frete').html(`R$ ${data.response.preco.toMoney()}`)
+                atualizaTabelaPrecos()
+            },
+            error: function (response) {
+                console.log(response);
+            },
+        });
+    }
 })
 
 $(document).on("click", ".button-qnt", function () {
@@ -300,6 +336,7 @@ const atualizaTabelaPrecos = () => {
 
         let frete = $('.frete').toFloat().toFloat();
         let cupons = $('.cupons').toFloat().toFloat();
+        cupons = isNaN(cupons) ? 0 : cupons;
 
         $('.subtotal').html(`R$ ${subtotal.toMoney()}`)
         $('.descontos').html(`R$ ${descontos.toMoney()}`)
@@ -330,20 +367,93 @@ $(document).on('click', '[data-trigger="remove-produto"]', function () {
     }
 })
 
-$(document).on("click", '[data-action="carrinho"]', function () {
+$(document).on('click', '[data-action="favoritos"]', function () {
     $button = $(this);
+    const content = $button.html();
     const data = $button.getData();
 
-    $button.html(`<span class="loading loading-spinner loading-sm"></span> Carregando`)
+    $button.html(`<span class="loading loading-spinner loading-sm"></span>`)
+    const codigo = cookie.Get("codigo");
+    if (codigo != null) {
+        $.ajax({
+            type: "POST",
+            data: { ...data, codigo },
+            url: "/favoritos/adiciona/item",
+            success: function (response) {
+                $("#favoritos").html(response.quantidade);
+            },
+            error: function (response) {
+                console.log(response);
+            },
+        });
+    }else{
+        const favoritos = sessionStorage.getItem("favoritos");
+        if (favoritos != null) {
+            let temp = JSON.parse(favoritos).filter((item) => item.idProduto != data.idProduto)
+            temp = [...temp, data];
+
+            sessionStorage.setItem("favoritos", JSON.stringify(temp))
+            $("#favoritos").html(temp.length);
+        }
+        else {
+            sessionStorage.setItem("favoritos", JSON.stringify([data]))
+            $("#favoritos").html(1);
+        };
+    }
+
     setTimeout(() => {
-        $button.html(`<i class="fa-solid fa-check"></i> Adicionado`);
+        $button.html(`<i class="fa-solid fa-check"></i>`);
         setTimeout(() => {
-            $button.html(`<i class="fa-light fa-cart-circle-plus text-sm"></i> Carrinho`)
+            $button.html(content)
         }, 325);
     }, 325);
 })
 
-$(document).on('click', '#eye', function () { 
+$(document).on("click", '[data-action="carrinho"]', function () {
+    $button = $(this);
+    const content = $button.html();
+    const data = $button.getData();
+    data.qntCompra = $button.parents('form').find('input.input-qnt').val() ?? 1;
+
+    $button.html(`<span class="loading loading-spinner loading-sm"></span> Carregando`)
+
+    const codigo = cookie.Get("codigo");
+    if (codigo != null) {
+        $.ajax({
+            type: "POST",
+            data: { ...data, codigo },
+            url: "/carrinho/adiciona/item",
+            success: function (response) {
+                $("#carrinho").html(response.quantidade);
+            },
+            error: function (response) {
+                console.log(response);
+            },
+        });
+    } else {
+        const carrinho = sessionStorage.getItem("carrinho");
+        if (carrinho != null) {
+            let temp = JSON.parse(carrinho).filter((item) => item.idProduto != data.idProduto)
+            temp = [...temp, data];
+
+            sessionStorage.setItem("carrinho", JSON.stringify(temp))
+            $("#carrinho").html(temp.length);
+        }
+        else {
+            sessionStorage.setItem("carrinho", JSON.stringify([data]))
+            $("#carrinho").html(1);
+        };
+    }
+
+    setTimeout(() => {
+        $button.html(`<i class="fa-solid fa-check"></i> Adicionado`);
+        setTimeout(() => {
+            $button.html(content)
+        }, 325);
+    }, 325);
+})
+
+$(document).on('click', '#eye', function () {
     $button = $(this);
     $button.prev().toggleAttrVal('type', 'password', 'text')
     $button.prev().toggleAttrVal('placeholder', '••••••••', '123456')
@@ -399,23 +509,23 @@ $(document).on('click', '[data-action="finalizar-carrinho"]', function (e) {
             preConfirm: async () => {
                 try {
                     let login = $("#login-cliente").serializeJson()
-    
+
                     if (login.email.trim() == "") {
                         Swal.showValidationMessage(`É necessário informar um email.`);
                         return false;
                     }
-    
+
                     if (login.password.trim() == "") {
                         Swal.showValidationMessage(`Coloque sua senha para continuar.`);
                         return false;
                     }
-    
+
                     const response = await $.ajax({
                         url: `/buscar/cliente`,
                         type: 'POST',
                         data: login
                     });
-    
+
                     return response;
                 } catch (error) {
                     console.log(error);

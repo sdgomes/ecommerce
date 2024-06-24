@@ -316,7 +316,7 @@
                         <form>
                             <div class="single-form form-default">
                                 <div class="form-input form">
-                                    <input calculo-frete autocomplete="off" type="text" placeholder="Insira seu CEP"
+                                    <input data-name="CEP" calculo-frete autocomplete="off" type="text" placeholder="Insira seu CEP"
                                            data-mask="00000-000">
                                 </div>
                                 <div class="button">
@@ -361,10 +361,11 @@
                             </div>
                         </div>
                         <div class="price-table-btn button">
-                            <button comprar disabled="@(!Model.Cliente.Situacao)"
+                            <button comprar disabled="@(!Model.Cliente.Situacao)" data-limpa-carrinho='@(Model.Carrinho ? "true" : "false")'
                                class='@(!Model.Cliente.Situacao ? "disabled:!opacity-50" : "") btn w-full !bg-[#130235] !text-white !flex !itens-center hover:!bg-[#372853] hover:!text-gray-800 btn-alt'>Comprar</button>
                         </div>
                     </div>
+
                     <div class="checkout-sidebar-banner mt-30">
                         <a asp-action="Index" asp-controller="Shop">
                             <img src="~/img/images/banner/banner.jpg" alt="...">

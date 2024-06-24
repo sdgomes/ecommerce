@@ -1,3 +1,5 @@
+@model FavoritesView
+
 @{
 ViewBreadcrumbs breadcrumbs = new();
 breadcrumbs.Title = "Favoritos";
@@ -14,11 +16,8 @@ ViewData["Title"] = breadcrumbs.Title;
     <div class="shopping-cart section">
         <div class="container mx-auto px-4">
 
-            <div id="container-favorites">
-                <div class="text-center">
-                    <span class="loading loading-spinner loading-lg text-primary"></span>
-                    <h3>Carregando</h3>
-                </div>
+            <div id="container-favoritos">
+                @(await Component.InvokeAsync<ProdutosFavoritesViewComponent>(Model.Produtos))
             </div>
         </div>
     </div>

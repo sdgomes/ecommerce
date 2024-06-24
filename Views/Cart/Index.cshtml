@@ -1,4 +1,4 @@
-@model List<Product>
+@model CartView
 
 @{
     ViewBreadcrumbs breadcrumbs = new();
@@ -18,7 +18,7 @@
     <div class="container mx-auto px-4">
 
         <div id="container-carrinho">
-            @(await Component.InvokeAsync<ProdutosCartViewComponent>(Model))
+            @(await Component.InvokeAsync<ProdutosCartViewComponent>(Model.Produtos))
         </div>
 
     </div>

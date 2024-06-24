@@ -1,4 +1,5 @@
-﻿using crm.Models;
+﻿using crm.DTO;
+using crm.Models;
 using crm.Utility;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,208 @@ namespace crm.DAL
 {
     public class ClientDAO : BaseDAO
     {
+        public static int FavoritosAdicionaItem(string Codigo, long IdProduto)
+        {
+            try
+            {
+                string query = @$"BEGIN
+                        IF NOT EXISTS (
+                            SELECT ID_PRODUTO FROM ECM_FAVORITOS
+                            WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) AND 
+                            ID_PRODUTO = @ID_PRODUTO
+                        )
+                        BEGIN
+                            INSERT INTO ECM_FAVORITOS (ID_CLIENTE, ID_PRODUTO)
+                            VALUES ((SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO),
+                            @ID_PRODUTO)
+                        END
+                        ELSE
+                            UPDATE ECM_FAVORITOS SET D_E_L_E_T_ = ''
+                            WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) AND 
+                            ID_PRODUTO = @ID_PRODUTO
+                    END
+
+                    SELECT COUNT(1) FROM ECM_FAVORITOS
+                    WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) AND D_E_L_E_T_ <> '*'";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo),
+                    new SqlParameter("@ID_PRODUTO", IdProduto),
+                };
+
+                return DatabaseProgramas().ChoosePrimitiveType<int>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static int CarrinhoAdicionaItem(string Codigo, long IdProduto, int Quantidade)
+        {
+            try
+            {
+                string query = @$"BEGIN
+                        IF NOT EXISTS (
+                            SELECT ID_PRODUTO, QUANTIDADE FROM ECM_CARRINHOS
+                            WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) AND 
+                            ID_PRODUTO = @ID_PRODUTO
+                        )
+                        BEGIN
+                            INSERT INTO ECM_CARRINHOS (ID_CLIENTE, ID_PRODUTO, QUANTIDADE)
+                            VALUES ((SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO),
+                            @ID_PRODUTO, @QUANTIDADE)
+                        END
+                        ELSE
+                            UPDATE ECM_CARRINHOS SET D_E_L_E_T_ = '', QUANTIDADE = @QUANTIDADE
+                            WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) AND 
+                            ID_PRODUTO = @ID_PRODUTO
+                    END
+
+                    SELECT COUNT(1) FROM ECM_CARRINHOS
+                    WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) AND D_E_L_E_T_ <> '*'";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo),
+                    new SqlParameter("@ID_PRODUTO", IdProduto),
+                    new SqlParameter("@QUANTIDADE", Quantidade),
+                };
+
+                return DatabaseProgramas().ChoosePrimitiveType<int>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void LimpaCarrinho(string Codigo)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_CARRINHOS SET D_E_L_E_T_ = '*'
+                WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO)";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo),
+                };
+
+                DatabaseProgramas().ChoosePrimitiveType<int>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static int FavoritoDeletaItem(string Codigo, long IdProduto)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_FAVORITOS SET D_E_L_E_T_ = '*'
+                WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) 
+                AND ID_PRODUTO = @ID_PRODUTO
+
+                SELECT COUNT(1) FROM ECM_FAVORITOS
+                WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) AND D_E_L_E_T_ <> '*'";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo),
+                    new SqlParameter("@ID_PRODUTO", IdProduto)
+                };
+
+                return DatabaseProgramas().ChoosePrimitiveType<int>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static int CarrinhoDeletaItem(string Codigo, long IdProduto)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_CARRINHOS SET D_E_L_E_T_ = '*'
+                WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) 
+                AND ID_PRODUTO = @ID_PRODUTO
+
+                SELECT COUNT(1) FROM ECM_CARRINHOS
+                WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) AND D_E_L_E_T_ <> '*'";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo),
+                    new SqlParameter("@ID_PRODUTO", IdProduto)
+                };
+
+                return DatabaseProgramas().ChoosePrimitiveType<int>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void CarrinhoAlteraQuantidade(string Codigo, long IdProduto, int Quantidade)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_CARRINHOS SET QUANTIDADE = @QUANTIDADE
+                WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) AND D_E_L_E_T_ <> '*'
+                AND ID_PRODUTO = @ID_PRODUTO";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo),
+                    new SqlParameter("@ID_PRODUTO", IdProduto),
+                    new SqlParameter("@QUANTIDADE", Quantidade),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<Product> SelectFavoritosByClient(string Codigo)
+        {
+            try
+            {
+                string query = @$"SELECT ID_PRODUTO FROM ECM_FAVORITOS
+                    WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) AND D_E_L_E_T_ <> '*'" ;
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo)
+                };
+
+                return DatabaseProgramas().Select<Product>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<Product> SelectCarrinhoByClient(string Codigo)
+        {
+            try
+            {
+                string query = @$"SELECT ID_PRODUTO, QUANTIDADE AS QNT_COMPRA FROM ECM_CARRINHOS
+                WHERE ID_CLIENTE = (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CODIGO = @CODIGO) AND D_E_L_E_T_ <> '*'"  ;
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@CODIGO", Codigo)
+                };
+
+                return DatabaseProgramas().Select<Product>(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static List<Discount> SelectDiscountByClient(string Codigo)
         {
             try

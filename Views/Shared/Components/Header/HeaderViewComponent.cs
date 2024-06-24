@@ -17,8 +17,12 @@ namespace crm.Views.Shared.Components.Header
             if (Request.Cookies["codigo"] != null)
             {
                 var codigo = Request.Cookies["codigo"];
+
                 Model.Cliente = ClientDAO.SearchForClientByCodigo(codigo);
                 Model.Employee = EmployeeDAO.SearchForEmployeeByCodigo(codigo);
+
+                Model.Favoritos = ClientDAO.SelectFavoritosByClient(codigo).Count;
+                Model.Carrinho = ClientDAO.SelectCarrinhoByClient(codigo).Count;
             }
 
             return View(Model);
@@ -35,7 +39,7 @@ namespace crm.Views.Shared.Components.Header
 
         public int Favoritos { get; set; }
 
-        public List<CarrinhoDTO> Carrinho { get; set; }
+        public int Carrinho { get; set; }
 
         public ViewHeader()
         {

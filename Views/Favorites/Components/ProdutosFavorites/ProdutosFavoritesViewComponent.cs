@@ -15,18 +15,25 @@ namespace crm.Views.Favorites.Components.ProdutosFavorites
     {
         public IViewComponentResult Invoke(List<Product> Produtos)
         {
-            var IdsProdutos = String.Join(", ", Produtos.Select(x => x.IdProduto.ToString()).ToArray());
+            try
+            {
+                var IdsProdutos = String.Join(", ", Produtos.Select(x => x.IdProduto.ToString()).ToArray());
 
-            ViewProdutosFavorites Model = new();
-            if (IdsProdutos != "")
-                Model.Products = ProductDAO.SelectProductsByInId(IdsProdutos);
+                ViewProdutosFavorites Model = new();
+                if (IdsProdutos != "")
+                    Model.Produtos = ProductDAO.SelectProductsByInId(IdsProdutos);
 
-            return View(Model);
+                return View(Model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 
     public class ViewProdutosFavorites
     {
-        public List<ProductDTO> Products { get; set; }
+        public List<ProductDTO> Produtos { get; set; }
     }
 }

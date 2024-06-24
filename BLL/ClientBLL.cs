@@ -13,6 +13,66 @@ namespace crm.BLL
 {
     public class ClientBLL
     {
+        public static string Imagem(long IdProduto)
+        {
+            try
+            {
+                Product Produto = ProductDAO.RetornaImagem(IdProduto);
+                return "data:image/webp;base64," + Convert.ToBase64String(Produto.Imagem);
+            }
+            catch (Exception)
+            {
+                return "data:image/webp;base64,";
+            }
+        }
+
+        public static FavoritesView RetornaFavoritos(string codigo)
+        {
+            FavoritesView Model = new();
+            if (codigo == null)
+                Model.Produtos = new();
+            else
+                Model.Produtos = ClientDAO.SelectFavoritosByClient(codigo);
+
+            return Model;
+        }
+
+        public static int AdicionaFavoritoItem(long IdProduto, string Codigo)
+        {
+            return ClientDAO.FavoritosAdicionaItem(Codigo, IdProduto);
+        }
+
+        public static int AdicionaQuantidadeItem(long IdProduto, string Codigo, int Quantidade)
+        {
+            return ClientDAO.CarrinhoAdicionaItem(Codigo, IdProduto, Quantidade);
+        }
+
+        public static void AlteraQuantidadeItem(long IdProduto, string Codigo, int Quantidade)
+        {
+            ClientDAO.CarrinhoAlteraQuantidade(Codigo, IdProduto, Quantidade);
+        }
+
+        public static int RemoveItemFavoritos(long IdProduto, string Codigo)
+        {
+            return ClientDAO.FavoritoDeletaItem(Codigo, IdProduto);
+        }
+
+        public static int RemoveItemCarrinho(long IdProduto, string Codigo)
+        {
+            return ClientDAO.CarrinhoDeletaItem(Codigo, IdProduto);
+        }
+
+        public static CartView RetornaCarrinho(string codigo)
+        {
+            CartView Model = new();
+            if (codigo == null)
+                Model.Produtos = new();
+            else
+                Model.Produtos = ClientDAO.SelectCarrinhoByClient(codigo);
+
+            return Model;
+        }
+
         public static long NovaMensagem(Notification notification)
         {
             return NotificationDAO.CreateChat(notification);
@@ -121,9 +181,11 @@ namespace crm.BLL
             return Model;
         }
 
-        public static CheckoutView ClientCheckoutByCodigo(string Codigo, List<Product> Produtos)
+        public static CheckoutView ClientCheckoutByCodigo(string Codigo, List<Product> Produtos, string Carrinho)
         {
             CheckoutView Model = new();
+
+            Model.Carrinho = Carrinho != null;
 
             var IdsProdutos = String.Join(", ", Produtos.Select(x => x.IdProduto.ToString()).ToArray());
             Model.Produtos = ProductDAO.SelectProductsByInId(IdsProdutos);

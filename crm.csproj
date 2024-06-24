@@ -5,14 +5,7 @@
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
     <Configurations>Debug;Release;Debug_Work</Configurations>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="BLL\NovaPasta\**" />
-    <Content Remove="BLL\NovaPasta\**" />
-    <EmbeddedResource Remove="BLL\NovaPasta\**" />
-    <None Remove="BLL\NovaPasta\**" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Grpc.Core" Version="2.46.6" />

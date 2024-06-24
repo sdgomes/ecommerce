@@ -18,20 +18,6 @@ namespace crm.DTO
 
         public string CodDesconto { get; set; }
 
-        public string ImageSource
-        {
-            get
-            {
-                try
-                {
-                    return "data:image/webp;base64," + Convert.ToBase64String(Imagem);
-                }
-                catch (Exception)
-                {
-                    return "data:image/webp;base64,";
-                }
-
-            }
-        }
+        public bool LimpaCarrinho { get; set; }
     }
 }
