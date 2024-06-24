@@ -57,7 +57,7 @@ namespace crm.Views.Cart.Components.ProdutosCart
             if (Produtos == null)
                 return 0;
 
-            return Produtos.Where(x => x.Desconto).Sum(x => x.QntCompra * x.CalculoDesconto);
+            return Produtos.Where(x => x.Desconto).Sum(x => ((x.QntCompra * x.Preco) - (x.QntCompra * x.CalculoDesconto)));
         }
 
         public double Total()

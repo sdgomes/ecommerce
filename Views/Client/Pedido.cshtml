@@ -301,10 +301,10 @@
                     <th class="font-bold text-gray-800 text-sm py-2">Item</th>
                     <th class="font-bold text-gray-800 text-sm py-2">Produto</th>
                     <th class="font-bold text-gray-800 text-sm py-2">Quantidade</th>
-                    <th class="font-bold text-gray-800 text-sm py-2">Preço Unidade</th>
+                    <th class="font-bold text-gray-800 text-sm py-2">Preço Unid.</th>
                     <th class="font-bold text-gray-800 text-sm py-2">Preço Compra</th>
                     <th class="font-bold text-gray-800 text-sm py-2">Desconto</th>
-                    <th class="font-bold text-gray-800 text-sm py-2">Total Preço</th>
+                    <th class="font-bold text-gray-800 text-sm py-2">Preço Pago</th>
                 </tr>
             </thead>
             <tbody>
@@ -332,7 +332,7 @@
                         <td class="py-2">
                             @if (item.Desconto)
                             {
-                                <span>@(((item.Preco * item.QntCompra) - item.CalculoDesconto).ToString("C"))</span>
+                                <span>@((item.CalculoDesconto * item.QntCompra).ToString("C"))</span>
                             }
                             else
                             {

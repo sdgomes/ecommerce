@@ -329,17 +329,22 @@ const atualizaTabelaPrecos = () => {
             return total + item.preco.toFloat();
         }, 0).toTwo();
 
-        let descontos = (descontoPlus + produtos.filter(item => item.desconto.parseBool())
+        let SubTotaldescontos = produtos.filter(item => item.desconto.parseBool())
+            .reduce((total, item) => {
+                return total + item.preco.toFloat();
+            }, 0).toTwo();
+
+        let descontos = (SubTotaldescontos - (descontoPlus + produtos.filter(item => item.desconto.parseBool())
             .reduce((total, item) => {
                 return total + item.calculoDesconto.toFloat();
-            }, 0)).toTwo();
+            }, 0))).toTwo();
 
         let frete = $('.frete').toFloat().toFloat();
         let cupons = $('.cupons').toFloat().toFloat();
         cupons = isNaN(cupons) ? 0 : cupons;
 
         $('.subtotal').html(`R$ ${subtotal.toMoney()}`)
-        $('.descontos').html(`R$ ${descontos.toMoney()}`)
+        $('.descontos').html(`R$ ${(descontos).toMoney()}`)
 
         const total = ((subtotal + frete) - descontos).toTwo();
         var cuponsExtra = (total / 100) * cupons;
@@ -386,7 +391,7 @@ $(document).on('click', '[data-action="favoritos"]', function () {
                 console.log(response);
             },
         });
-    }else{
+    } else {
         const favoritos = sessionStorage.getItem("favoritos");
         if (favoritos != null) {
             let temp = JSON.parse(favoritos).filter((item) => item.idProduto != data.idProduto)
@@ -414,7 +419,7 @@ $(document).on("click", '[data-action="carrinho"]', function () {
     const content = $button.html();
     const data = $button.getData();
     data.qntCompra = $button.parents('form').find('input.input-qnt').val() ?? 1;
-
+console.log(data);
     $button.html(`<span class="loading loading-spinner loading-sm"></span> Carregando`)
 
     const codigo = cookie.Get("codigo");

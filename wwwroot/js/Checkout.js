@@ -592,7 +592,7 @@ $(document).on("click", '[comprar]', async function () {
             LimpaCarrinho: data.limpaCarrinho
         }
     }
-
+    
     $.ajax({
         type: "POST",
         url: `/registra/transacao`,

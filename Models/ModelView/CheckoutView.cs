@@ -23,7 +23,7 @@ namespace crm.Models.ModelView
 
         public double Descontos()
         {
-            return Produtos.Where(x => x.Desconto).Sum(x => x.QntCompra * x.CalculoDesconto);
+            return Produtos.Where(x => x.Desconto).Sum(x => ((x.QntCompra * x.Preco) - (x.QntCompra * x.CalculoDesconto)));
         }
 
         public double Total()

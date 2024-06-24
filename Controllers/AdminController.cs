@@ -28,6 +28,14 @@ namespace crm.Controllers
 
         [FuncionarioLogado]
         [FuncionarioExiste]
+        [HttpGet("/admin/perfil/{Codigo}/relatorio")]
+        public IActionResult RelatorioVendas(string Codigo)
+        {
+            return View();
+        }
+
+        [FuncionarioLogado]
+        [FuncionarioExiste]
         [HttpGet("/admin/perfil/{Codigo}/pedidos")]
         public IActionResult Pedidos(string Codigo)
         {
@@ -48,7 +56,7 @@ namespace crm.Controllers
         [FuncionarioExiste]
         [HttpGet("/admin/perfil/{Codigo}/{Tipo}/{GrupoCodigo}")]
         public IActionResult SolicitacoesItens(string Codigo, string Tipo, int GrupoCodigo)
-        {            
+        {
             SolicitacoesItensView Model = AdminBLL.GetSolicitacoesByGrupoCodigo(Codigo, GrupoCodigo, Tipo == "trocas" ? "TROCA" : "DEVOLUÇÃO");
             return View((Tipo == "trocas" ? "TrocasItens" : "DevolucoesItens"), Model);
         }

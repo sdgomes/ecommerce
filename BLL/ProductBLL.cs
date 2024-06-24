@@ -145,7 +145,7 @@ namespace crm.BLL
 
         public static TransactionDTO ValidaDesconto(TransactionDTO transaction)
         {
-            transaction.Descontos = transaction.Produtos.Where(x => x.Desconto).Sum(x => x.QntCompra * x.CalculoDesconto);
+            transaction.Descontos = transaction.Produtos.Where(x => x.Desconto).Sum(x => ((x.QntCompra * x.Preco) - (x.QntCompra * x.CalculoDesconto)));
 
             if (transaction.CodDesconto != null)
             {

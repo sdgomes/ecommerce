@@ -52,11 +52,11 @@ namespace crm.Controllers
         }
 
         [HttpPost("/carrinho/adiciona/item")]
-        public IActionResult AdicionaQuantidadeItem(long IdProduto, string Codigo, int Quantidade)
+        public IActionResult AdicionaQuantidadeItem(long IdProduto, string Codigo, int QntCompra)
         {
             try
             {
-                return Json(new { Quantidade = ClientBLL.AdicionaQuantidadeItem(IdProduto, Codigo, Quantidade) });
+                return Json(new { Quantidade = ClientBLL.AdicionaQuantidadeItem(IdProduto, Codigo, QntCompra) });
             }
             catch (Exception ex)
             {
