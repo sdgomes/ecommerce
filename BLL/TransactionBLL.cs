@@ -1,7 +1,7 @@
-﻿using crm.DAL;
-using crm.DTO;
-using crm.Models;
-using crm.Models.ModelView;
+﻿using Ecommerce.DAL;
+using Ecommerce.DTO;
+using Ecommerce.Models;
+using Ecommerce.Models.ModelView;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace crm.BLL
+namespace Ecommerce.BLL
 {
     public class TransactionBLL
     {

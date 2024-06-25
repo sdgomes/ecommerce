@@ -1,11 +1,11 @@
-﻿using crm.BLL;
+﻿using Ecommerce.BLL;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.Controllers
+namespace Ecommerce.Controllers
 {
     public class RelatorioController : Controller
     {

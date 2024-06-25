@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace crm.Views.Shared.Components.Product
+namespace Ecommerce.Views.Shared.Components.Product
 {
     public class ProductViewComponent : ViewComponent
     {

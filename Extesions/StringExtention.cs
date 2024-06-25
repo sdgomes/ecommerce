@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.Extesions
+namespace Ecommerce.Extesions
 {
     public static class StringExtention
     {

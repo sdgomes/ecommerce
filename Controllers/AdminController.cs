@@ -1,8 +1,8 @@
-﻿using crm.BLL;
-using crm.Controllers.Attributes;
-using crm.DTO;
-using crm.Models;
-using crm.Models.ModelView;
+﻿using Ecommerce.BLL;
+using Ecommerce.Controllers.Attributes;
+using Ecommerce.DTO;
+using Ecommerce.Models;
+using Ecommerce.Models.ModelView;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.Controllers
+namespace Ecommerce.Controllers
 {
     public class AdminController : Controller
     {

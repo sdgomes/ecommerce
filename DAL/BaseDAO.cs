@@ -1,10 +1,10 @@
-﻿using crm.Connection;
+﻿using Ecommerce.Connection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.DAL
+namespace Ecommerce.DAL
 {
     public class BaseDAO : Connections
     {

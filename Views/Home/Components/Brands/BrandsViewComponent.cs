@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace crm.Views.Home.Components.Brands
+namespace Ecommerce.Views.Home.Components.Brands
 {
     public class BrandsViewComponent : ViewComponent
     {

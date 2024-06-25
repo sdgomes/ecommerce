@@ -1,12 +1,12 @@
-﻿using crm.DAL;
-using crm.Models;
+﻿using Ecommerce.DAL;
+using Ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace crm.Views.Home.Components.FeaturedCategories
+namespace Ecommerce.Views.Home.Components.FeaturedCategories
 {
     public class FeaturedCategoriesViewComponent : ViewComponent
     {

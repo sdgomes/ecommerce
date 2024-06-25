@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace crm.Views.Home.Components.SpecialOffer
+namespace Ecommerce.Views.Home.Components.SpecialOffer
 {
     public class SpecialOfferViewComponent : ViewComponent
     {

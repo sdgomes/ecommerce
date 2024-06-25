@@ -1,6 +1,6 @@
-﻿using crm.DTO;
-using crm.Models;
-using crm.Utility;
+﻿using Ecommerce.DTO;
+using Ecommerce.Models;
+using Ecommerce.Utility;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Crypt = BCrypt.Net.BCrypt;
 
-namespace crm.DAL
+namespace Ecommerce.DAL
 {
     public class ClientDAO : BaseDAO
     {
@@ -286,7 +286,7 @@ namespace crm.DAL
             try
             {
                 string query = @$"BEGIN
-	                                IF NOT EXISTS (SELECT ID_USUARIO FROM ECM_USUARIOS WHERE EMAIL = @EMAIL) 
+	                                IF NOT EXISTS (SELECT ID_USUARIO FROM ECM_USUARIOS WHERE EMAIL = @EMAIL AND D_E_L_E_T_ <> '*') 
 	                                BEGIN
 		                                IF NOT EXISTS (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CPF = @CPF)
 		                                BEGIN

@@ -1,10 +1,10 @@
-﻿using crm.Models;
+﻿using Ecommerce.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.DTO
+namespace Ecommerce.DTO
 {
     public class ImageDTO : Image
     {

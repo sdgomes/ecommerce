@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace crm.Views.Home.Components.HeroArea
+namespace Ecommerce.Views.Home.Components.HeroArea
 {
     public class HeroAreaViewComponent : ViewComponent
     {

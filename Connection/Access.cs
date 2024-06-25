@@ -1,12 +1,12 @@
-using crm.Helpers;
-using crm.Models;
+using Ecommerce.Helpers;
+using Ecommerce.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 
-namespace crm.Connection
+namespace Ecommerce.Connection
 {
     public class Access
     {
@@ -18,7 +18,7 @@ namespace crm.Connection
             {
                 if (!File.Exists(_connectionStringPath))
                     throw new Exception
-                        ("Não foi possível encontrar o arquivo contendo as connection strings! Verificar a existência do arquivo no servidor (pasta padrão: C:\\crm\\connection).");
+                        ("Não foi possível encontrar o arquivo contendo as connection strings! Verificar a existência do arquivo no servidor (pasta padrão: Connection\\databases.json).");
 
                 string json = File.ReadAllText(_connectionStringPath);
 

@@ -1,18 +1,18 @@
-﻿using crm.BLL;
-using crm.Controllers.Attributes;
-using crm.DTO;
-using crm.Models;
-using crm.Models.ModelView;
-using crm.Views.Client.Components.AlteraSenha;
-using crm.Views.Client.Components.Cartao;
-using crm.Views.Client.Components.Endereco;
+﻿using Ecommerce.BLL;
+using Ecommerce.Controllers.Attributes;
+using Ecommerce.DTO;
+using Ecommerce.Models;
+using Ecommerce.Models.ModelView;
+using Ecommerce.Views.Client.Components.AlteraSenha;
+using Ecommerce.Views.Client.Components.Cartao;
+using Ecommerce.Views.Client.Components.Endereco;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.Controllers
+namespace Ecommerce.Controllers
 {
     public class ClientController : Controller
     {

@@ -1,12 +1,12 @@
-﻿using crm.DAL;
-using crm.DTO;
-using crm.Models;
+﻿using Ecommerce.DAL;
+using Ecommerce.DTO;
+using Ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace crm.Views.Home.Components.TrendingProduct
+namespace Ecommerce.Views.Home.Components.TrendingProduct
 {
     public class TrendingProductViewComponent : ViewComponent
     {

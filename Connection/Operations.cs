@@ -1,4 +1,4 @@
-﻿using crm.Helpers;
+﻿using Ecommerce.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.Connection
+namespace Ecommerce.Connection
 {
     public class Operations : Access
     {

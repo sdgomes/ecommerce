@@ -1,6 +1,6 @@
-﻿using crm.DAL;
-using crm.Extesions;
-using crm.Models;
+﻿using Ecommerce.DAL;
+using Ecommerce.Extesions;
+using Ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.Controllers.Attributes
+namespace Ecommerce.Controllers.Attributes
 {
     public class FuncionarioExisteAttribute : ActionFilterAttribute
     {

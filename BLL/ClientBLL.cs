@@ -1,7 +1,7 @@
-﻿using crm.DAL;
-using crm.DTO;
-using crm.Models;
-using crm.Models.ModelView;
+﻿using Ecommerce.DAL;
+using Ecommerce.DTO;
+using Ecommerce.Models;
+using Ecommerce.Models.ModelView;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Crypt = BCrypt.Net.BCrypt;
 
-namespace crm.BLL
+namespace Ecommerce.BLL
 {
     public class ClientBLL
     {

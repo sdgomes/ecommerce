@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace crm.Views.Shared.Components.Breadcrumbs
+namespace Ecommerce.Views.Shared.Components.Breadcrumbs
 {
     public class BreadcrumbsViewComponent : ViewComponent
     {

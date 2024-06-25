@@ -1,10 +1,10 @@
-﻿using crm.DTO;
+﻿using Ecommerce.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.Models.ModelView
+namespace Ecommerce.Models.ModelView
 {
     public class CheckoutView
     {

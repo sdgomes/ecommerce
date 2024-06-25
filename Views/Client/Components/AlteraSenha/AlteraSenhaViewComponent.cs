@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.Views.Client.Components.AlteraSenha
+namespace Ecommerce.Views.Client.Components.AlteraSenha
 {
     [ViewComponent(Name = "AlteraSenha")]
     public class AlteraSenhaViewComponent : ViewComponent

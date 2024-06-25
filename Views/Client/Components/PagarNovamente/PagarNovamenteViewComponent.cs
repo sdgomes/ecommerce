@@ -1,13 +1,13 @@
-﻿using crm.DAL;
-using crm.DTO;
-using crm.Models;
+﻿using Ecommerce.DAL;
+using Ecommerce.DTO;
+using Ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.Views.Client.Components.PagarNovamente
+namespace Ecommerce.Views.Client.Components.PagarNovamente
 {
 
     [ViewComponent(Name = "PagarNovamente")]

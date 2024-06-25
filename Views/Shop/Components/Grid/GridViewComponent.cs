@@ -1,11 +1,11 @@
-﻿using crm.DAL;
-using crm.DTO;
+﻿using Ecommerce.DAL;
+using Ecommerce.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace crm.Views.Shop.Components.Grid
+namespace Ecommerce.Views.Shop.Components.Grid
 {
     [ViewComponent(Name = "Grid")]
     public class GridViewComponent : ViewComponent

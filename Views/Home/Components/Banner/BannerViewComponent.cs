@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace crm.Views.Home.Components.Banner
+namespace Ecommerce.Views.Home.Components.Banner
 {
     public class BannerViewComponent : ViewComponent
     {

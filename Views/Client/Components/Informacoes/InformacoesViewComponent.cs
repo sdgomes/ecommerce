@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace crm.Views.Client.Components.Informacoes
+namespace Ecommerce.Views.Client.Components.Informacoes
 {
     public class InformacoesViewComponent : ViewComponent
     {

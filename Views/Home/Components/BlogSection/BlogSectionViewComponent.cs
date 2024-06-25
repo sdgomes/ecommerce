@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace crm.Views.Home.Components.BlogSection
+namespace Ecommerce.Views.Home.Components.BlogSection
 {
     public class BlogSectionViewComponent : ViewComponent
     {

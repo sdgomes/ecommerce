@@ -1,9 +1,9 @@
-﻿using crm.DTO;
+﻿using Ecommerce.DTO;
 using Microsoft.AspNetCore.Mvc;
-using crm.Models;
-using crm.BLL;
+using Ecommerce.Models;
+using Ecommerce.BLL;
 
-namespace crm.Views.Client.Components.ProdutoSolicitacao
+namespace Ecommerce.Views.Client.Components.ProdutoSolicitacao
 {
     [ViewComponent(Name = "ProdutoSolicitacao")]
     public class ProdutoSolicitacaoViewComponent : ViewComponent

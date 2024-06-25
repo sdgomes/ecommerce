@@ -1,11 +1,11 @@
-﻿using crm.DAL;
-using crm.DTO;
+﻿using Ecommerce.DAL;
+using Ecommerce.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.BLL
+namespace Ecommerce.BLL
 {
     public class RelatorioBLL
     {

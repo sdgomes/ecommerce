@@ -1,12 +1,12 @@
-﻿using crm.DAL;
-using crm.Models;
+﻿using Ecommerce.DAL;
+using Ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.Views.Client.Components.Cartoes
+namespace Ecommerce.Views.Client.Components.Cartoes
 {
 
     [ViewComponent(Name = "Cartoes")]

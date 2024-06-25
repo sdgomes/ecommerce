@@ -1,5 +1,5 @@
-﻿using crm.Models;
-using crm.Utility;
+﻿using Ecommerce.Models;
+using Ecommerce.Utility;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Crypt = BCrypt.Net.BCrypt;
 
-namespace crm.DAL
+namespace Ecommerce.DAL
 {
     public class UserDAO : BaseDAO
     {

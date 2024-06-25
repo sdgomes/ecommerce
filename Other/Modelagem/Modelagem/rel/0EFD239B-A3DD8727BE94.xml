@@ -8,7 +8,7 @@
 <importDDLFileStamps>
 <importDDLFileStamp class="oracle.dbtools.crest.imports.DDLFileStamp">
 <fileName>Modelagem.sql</fileName>
-<pathName>C:\Users\oseia\OneDrive\Documentos\les_fatec\crm\Other</pathName>
+<pathName>C:\Users\oseia\OneDrive\Documentos\les_fatec\Ecommerce\Other</pathName>
 <dbType>13</dbType>
 </importDDLFileStamp>
 </importDDLFileStamps>

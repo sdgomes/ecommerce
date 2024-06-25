@@ -8,17 +8,17 @@ CREATE PROCEDURE dbo.Populate
 AS
     BEGIN
         INSERT INTO ECM_BANDEIRAS (NOME, COR, IMAGEM)
-        VALUES ('VISA', 'linear-gradient(to right, #005ca8, #f6a723)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\visa.png', SINGLE_BLOB) AS IMAGE)),
-        ('MASTERCARD', 'linear-gradient(45deg, #f50014, #f79c03)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\mastercard.png', SINGLE_BLOB) AS IMAGE)),
-        ('HIPER', 'linear-gradient(45deg, #950f18, #a1161c)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\hiper.png', SINGLE_BLOB) AS IMAGE)),
-        ('ELO', 'linear-gradient(45deg, #009fd8, #f7c405, #e73f22)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\elo.png', SINGLE_BLOB) AS IMAGE)),
-        ('AURA', 'linear-gradient(45deg, #6ab5a8, #398c76)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\aura.png', SINGLE_BLOB) AS IMAGE)),
-        ('AMEX', 'linear-gradient(45deg, #aac2b8, #d6e6dc)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\amex.png', SINGLE_BLOB) AS IMAGE)),
-        ('VOYAGER', 'linear-gradient(45deg, #afafaf, #2e2e2e)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\voyager.png', SINGLE_BLOB) AS IMAGE)),
-        ('DINERS', 'linear-gradient(45deg, #a27c38, #947d3f)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\diners.png', SINGLE_BLOB) AS IMAGE)), 
-        ('JCB', 'linear-gradient(45deg, #bca561, #dbc383)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\jcb.png', SINGLE_BLOB) AS IMAGE)), 
-        ('DISCOVER', 'linear-gradient(45deg, #509dbd, #6cb4ce)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\discover.png', SINGLE_BLOB) AS IMAGE)),
-        ('ENROUTE', 'linear-gradient(45deg, #242424, #000000)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\bandeiras\enroute.png', SINGLE_BLOB) AS IMAGE))
+        VALUES ('VISA', 'linear-gradient(to right, #005ca8, #f6a723)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\bandeiras\visa.png', SINGLE_BLOB) AS IMAGE)),
+        ('MASTERCARD', 'linear-gradient(45deg, #f50014, #f79c03)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\bandeiras\mastercard.png', SINGLE_BLOB) AS IMAGE)),
+        ('HIPER', 'linear-gradient(45deg, #950f18, #a1161c)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\bandeiras\hiper.png', SINGLE_BLOB) AS IMAGE)),
+        ('ELO', 'linear-gradient(45deg, #009fd8, #f7c405, #e73f22)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\bandeiras\elo.png', SINGLE_BLOB) AS IMAGE)),
+        ('AURA', 'linear-gradient(45deg, #6ab5a8, #398c76)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\bandeiras\aura.png', SINGLE_BLOB) AS IMAGE)),
+        ('AMEX', 'linear-gradient(45deg, #aac2b8, #d6e6dc)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\bandeiras\amex.png', SINGLE_BLOB) AS IMAGE)),
+        ('VOYAGER', 'linear-gradient(45deg, #afafaf, #2e2e2e)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\bandeiras\voyager.png', SINGLE_BLOB) AS IMAGE)),
+        ('DINERS', 'linear-gradient(45deg, #a27c38, #947d3f)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\bandeiras\diners.png', SINGLE_BLOB) AS IMAGE)), 
+        ('JCB', 'linear-gradient(45deg, #bca561, #dbc383)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\bandeiras\jcb.png', SINGLE_BLOB) AS IMAGE)), 
+        ('DISCOVER', 'linear-gradient(45deg, #509dbd, #6cb4ce)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\bandeiras\discover.png', SINGLE_BLOB) AS IMAGE)),
+        ('ENROUTE', 'linear-gradient(45deg, #242424, #000000)', (SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\bandeiras\enroute.png', SINGLE_BLOB) AS IMAGE))
 
         INSERT INTO ECM_TIPOS_LOGRADOURO (NOME)
         VALUES ('AEROPORTO'), ('ALAMEDA'), ('ÁREA'), ('AVENIDA'), ('CAMPO'), 
@@ -301,795 +301,795 @@ AS
 
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (1,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Batidão Tropical.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (2,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Não Para Não.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (3,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Noitada.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (4,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\After.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (5,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Batidão Tropical 2.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (6,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Anti-Herói.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (7,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lobos.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (8,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Back to Black.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (9,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Amy.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (10,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lioness Hidden Treasures.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
+        (1,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Batidão Tropical.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (2,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Não Para Não.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (3,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Noitada.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (4,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\After.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (5,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Batidão Tropical 2.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (6,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Anti-Herói.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (7,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lobos.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (8,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Back to Black.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (9,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Amy.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (10,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lioness Hidden Treasures.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Like a Virgin.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Rebel Heart.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (13,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Erotica.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (14,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Madonna.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Ray of Light.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Madame X.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\MDNA.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Like a Prayer.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (19,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Im Breathless.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Whos That Girl.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
+        (11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Like a Virgin.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Rebel Heart.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (13,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Erotica.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (14,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Madonna.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Ray of Light.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Madame X.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\MDNA.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Like a Prayer.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (19,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Im Breathless.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Whos That Girl.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Abbey Road.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Beatles.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (23,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Revolver.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Please Please Me.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Help!.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Magical Mystery Tour.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\With the Beatles.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Let It Be.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (29,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\A Hard Days Night.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (30,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Yellow Submarine.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
+        (21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Abbey Road.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Beatles.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (23,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Revolver.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Please Please Me.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Help!.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Magical Mystery Tour.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\With the Beatles.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Let It Be.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (29,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\A Hard Days Night.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (30,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Yellow Submarine.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Random Access Memories.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Discovery.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Tron Legacy.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Homework.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alive 2007.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (36,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Human After All.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Greatest Hits.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Daft Club.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (39,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Deep Cuts.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alive 1997.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
+        (31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Random Access Memories.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Discovery.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Tron Legacy.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Homework.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alive 2007.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (36,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Human After All.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Greatest Hits.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Daft Club.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (39,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Deep Cuts.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alive 1997.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (41,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Homecoming The Live Album.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\BDay.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\4.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lemonade.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\I Am Sasha Fierce.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dangerously in Love.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (47,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Renaissance.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (48,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Beyoncé.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Cowboy Carter.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Lion King The Gift.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
+        (41,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Homecoming The Live Album.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\BDay.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\4.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lemonade.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\I Am Sasha Fierce.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dangerously in Love.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (47,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Renaissance.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (48,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Beyoncé.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Cowboy Carter.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Lion King The Gift.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (51,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Sucka Free.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (52,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Barbie World.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (53,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Queen.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (54,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday Roman Reloaded.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (55,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Massive Attack.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (56,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Pinkprint.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (57,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Beam Me Up Scotty.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (58,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Playtime Is Over.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (59,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (60,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday 2.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
+        (51,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Sucka Free.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (52,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Barbie World.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (53,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Queen.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (54,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday Roman Reloaded.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (55,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Massive Attack.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (56,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Pinkprint.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (57,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Beam Me Up Scotty.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (58,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Playtime Is Over.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (59,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (60,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday 2.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (61,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Never Say Never The Remixes.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (62,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My World.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (63,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Journals.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (64,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Under the Mistletoe.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (65,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Believe.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (66,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My World 2.0.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (67,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Changes.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (68,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Justice.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (69,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Purpose.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (70,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Freedom.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
+        (61,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Never Say Never The Remixes.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (62,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My World.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (63,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Journals.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (64,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Under the Mistletoe.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (65,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Believe.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (66,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My World 2.0.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (67,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Changes.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (68,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Justice.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (69,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Purpose.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (70,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Freedom.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (71,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pure Heroine.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (72,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Melodrama.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (73,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Solar Power.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (74,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Four Pink Walls.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (75,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Know-It-All.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (76,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Pains of Growing.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (77,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\This Summer.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (78,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\In The Meantime.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (79,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Cry Baby.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (80,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\K12.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
+        (71,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pure Heroine.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (72,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Melodrama.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (73,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Solar Power.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (74,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Four Pink Walls.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (75,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Know-It-All.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (76,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Pains of Growing.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (77,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\This Summer.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (78,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\In The Meantime.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (79,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Cry Baby.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (80,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\K12.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (81,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\After School.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (82,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Portals.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (83,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Ao vivo.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (84,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\A Voz Do Samba.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (85,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Morte De Um Poeta.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (86,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Fogo da Vida.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (87,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Da Cor Do Brasil.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (88,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Profissão Cantora.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (89,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alerta geral.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (90,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\De Tudo Que eu Gosto.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
+        (81,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\After School.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (82,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Portals.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (83,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Ao vivo.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (84,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\A Voz Do Samba.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (85,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Morte De Um Poeta.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (86,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Fogo da Vida.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (87,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Da Cor Do Brasil.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (88,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Profissão Cantora.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (89,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alerta geral.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (90,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\De Tudo Que eu Gosto.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (91,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Thank U, Next.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (92,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dangerous Woman.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (93,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Yours Truly.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (94,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My Everything.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (95,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Sweetener.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (96,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Positions.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
-        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
+        (91,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Thank U, Next.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (92,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dangerous Woman.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (93,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Yours Truly.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (94,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My Everything.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (95,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Sweetener.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (96,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Positions.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'COVER'),
+        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'COVER')
 
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (1,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Batidão Tropical.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (2,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Não Para Não.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (3,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Noitada.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (4,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\After.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (5,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Batidão Tropical 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (6,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Anti-Herói.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (7,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lobos.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (8,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Back to Black.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (9,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Amy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (10,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lioness Hidden Treasures.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
+        (1,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Batidão Tropical.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (2,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Não Para Não.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (3,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Noitada.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (4,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\After.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (5,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Batidão Tropical 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (6,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Anti-Herói.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (7,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lobos.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (8,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Back to Black.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (9,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Amy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (10,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lioness Hidden Treasures.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Like a Virgin.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Rebel Heart.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (13,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Erotica.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (14,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Madonna.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Ray of Light.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Madame X.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\MDNA.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Like a Prayer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (19,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Im Breathless.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Whos That Girl.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
+        (11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Like a Virgin.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Rebel Heart.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (13,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Erotica.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (14,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Madonna.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Ray of Light.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Madame X.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\MDNA.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Like a Prayer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (19,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Im Breathless.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Whos That Girl.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Abbey Road.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (23,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Revolver.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Please Please Me.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Help!.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Magical Mystery Tour.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\With the Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Let It Be.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (29,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\A Hard Days Night.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (30,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Yellow Submarine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
+        (21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Abbey Road.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (23,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Revolver.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Please Please Me.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Help!.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Magical Mystery Tour.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\With the Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Let It Be.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (29,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\A Hard Days Night.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (30,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Yellow Submarine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Random Access Memories.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Discovery.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Tron Legacy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Homework.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alive 2007.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (36,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Human After All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Greatest Hits.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Daft Club.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (39,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Deep Cuts.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alive 1997.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
+        (31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Random Access Memories.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Discovery.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Tron Legacy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Homework.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alive 2007.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (36,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Human After All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Greatest Hits.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Daft Club.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (39,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Deep Cuts.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alive 1997.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (41,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Homecoming The Live Album.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\BDay.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\4.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lemonade.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\I Am Sasha Fierce.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dangerously in Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (47,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Renaissance.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (48,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Beyoncé.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Cowboy Carter.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Lion King The Gift.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
+        (41,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Homecoming The Live Album.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\BDay.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\4.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lemonade.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\I Am Sasha Fierce.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dangerously in Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (47,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Renaissance.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (48,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Beyoncé.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Cowboy Carter.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Lion King The Gift.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (51,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Sucka Free.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (52,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Barbie World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (53,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Queen.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (54,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday Roman Reloaded.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (55,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Massive Attack.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (56,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Pinkprint.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (57,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Beam Me Up Scotty.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (58,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Playtime Is Over.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (59,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (60,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
+        (51,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Sucka Free.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (52,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Barbie World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (53,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Queen.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (54,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday Roman Reloaded.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (55,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Massive Attack.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (56,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Pinkprint.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (57,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Beam Me Up Scotty.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (58,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Playtime Is Over.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (59,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (60,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (61,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Never Say Never The Remixes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (62,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (63,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Journals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (64,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Under the Mistletoe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (65,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Believe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (66,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My World 2.0.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (67,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Changes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (68,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Justice.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (69,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Purpose.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (70,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Freedom.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
+        (61,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Never Say Never The Remixes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (62,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (63,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Journals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (64,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Under the Mistletoe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (65,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Believe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (66,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My World 2.0.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (67,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Changes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (68,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Justice.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (69,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Purpose.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (70,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Freedom.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (71,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pure Heroine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (72,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Melodrama.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (73,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Solar Power.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (74,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Four Pink Walls.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (75,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Know-It-All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (76,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Pains of Growing.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (77,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\This Summer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (78,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\In The Meantime.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (79,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Cry Baby.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (80,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\K12.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
+        (71,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pure Heroine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (72,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Melodrama.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (73,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Solar Power.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (74,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Four Pink Walls.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (75,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Know-It-All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (76,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Pains of Growing.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (77,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\This Summer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (78,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\In The Meantime.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (79,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Cry Baby.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (80,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\K12.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (81,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\After School.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (82,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Portals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (83,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Ao vivo.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (84,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\A Voz Do Samba.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (85,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Morte De Um Poeta.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (86,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Fogo da Vida.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (87,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Da Cor Do Brasil.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (88,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Profissão Cantora.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (89,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alerta geral.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (90,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\De Tudo Que eu Gosto.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
+        (81,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\After School.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (82,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Portals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (83,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Ao vivo.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (84,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\A Voz Do Samba.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (85,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Morte De Um Poeta.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (86,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Fogo da Vida.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (87,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Da Cor Do Brasil.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (88,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Profissão Cantora.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (89,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alerta geral.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (90,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\De Tudo Que eu Gosto.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (91,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Thank U, Next.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (92,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dangerous Woman.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (93,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Yours Truly.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (94,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My Everything.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (95,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Sweetener.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (96,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Positions.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
-        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
+        (91,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Thank U, Next.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (92,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dangerous Woman.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (93,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Yours Truly.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (94,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My Everything.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (95,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Sweetener.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (96,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Positions.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1'),
+        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_1')
 
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (1,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Batidão Tropical.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (2,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Não Para Não.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (3,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Noitada.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (4,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\After.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (5,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Batidão Tropical 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (6,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Anti-Herói.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (7,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lobos.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (8,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Back to Black.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (9,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Amy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (10,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lioness Hidden Treasures.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
+        (1,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Batidão Tropical.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (2,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Não Para Não.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (3,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Noitada.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (4,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\After.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (5,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Batidão Tropical 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (6,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Anti-Herói.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (7,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lobos.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (8,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Back to Black.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (9,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Amy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (10,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lioness Hidden Treasures.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Like a Virgin.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Rebel Heart.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (13,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Erotica.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (14,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Madonna.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Ray of Light.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Madame X.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\MDNA.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Like a Prayer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (19,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Im Breathless.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Whos That Girl.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
+        (11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Like a Virgin.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Rebel Heart.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (13,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Erotica.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (14,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Madonna.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Ray of Light.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Madame X.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\MDNA.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Like a Prayer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (19,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Im Breathless.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Whos That Girl.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Abbey Road.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (23,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Revolver.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Please Please Me.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Help!.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Magical Mystery Tour.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\With the Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Let It Be.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (29,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\A Hard Days Night.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (30,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Yellow Submarine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
+        (21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Abbey Road.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (23,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Revolver.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Please Please Me.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Help!.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Magical Mystery Tour.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\With the Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Let It Be.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (29,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\A Hard Days Night.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (30,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Yellow Submarine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Random Access Memories.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Discovery.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Tron Legacy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Homework.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alive 2007.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (36,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Human After All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Greatest Hits.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Daft Club.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (39,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Deep Cuts.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alive 1997.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
+        (31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Random Access Memories.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Discovery.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Tron Legacy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Homework.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alive 2007.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (36,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Human After All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Greatest Hits.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Daft Club.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (39,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Deep Cuts.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alive 1997.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (41,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Homecoming The Live Album.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\BDay.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\4.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lemonade.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\I Am Sasha Fierce.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dangerously in Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (47,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Renaissance.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (48,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Beyoncé.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Cowboy Carter.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Lion King The Gift.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
+        (41,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Homecoming The Live Album.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\BDay.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\4.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lemonade.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\I Am Sasha Fierce.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dangerously in Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (47,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Renaissance.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (48,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Beyoncé.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Cowboy Carter.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Lion King The Gift.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (51,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Sucka Free.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (52,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Barbie World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (53,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Queen.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (54,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday Roman Reloaded.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (55,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Massive Attack.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (56,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Pinkprint.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (57,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Beam Me Up Scotty.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (58,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Playtime Is Over.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (59,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (60,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
+        (51,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Sucka Free.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (52,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Barbie World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (53,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Queen.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (54,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday Roman Reloaded.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (55,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Massive Attack.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (56,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Pinkprint.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (57,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Beam Me Up Scotty.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (58,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Playtime Is Over.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (59,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (60,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (61,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Never Say Never The Remixes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (62,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (63,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Journals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (64,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Under the Mistletoe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (65,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Believe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (66,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My World 2.0.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (67,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Changes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (68,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Justice.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (69,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Purpose.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (70,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Freedom.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
+        (61,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Never Say Never The Remixes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (62,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (63,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Journals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (64,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Under the Mistletoe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (65,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Believe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (66,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My World 2.0.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (67,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Changes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (68,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Justice.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (69,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Purpose.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (70,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Freedom.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (71,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pure Heroine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (72,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Melodrama.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (73,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Solar Power.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (74,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Four Pink Walls.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (75,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Know-It-All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (76,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Pains of Growing.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (77,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\This Summer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (78,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\In The Meantime.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (79,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Cry Baby.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (80,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\K12.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
+        (71,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pure Heroine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (72,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Melodrama.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (73,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Solar Power.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (74,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Four Pink Walls.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (75,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Know-It-All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (76,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Pains of Growing.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (77,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\This Summer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (78,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\In The Meantime.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (79,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Cry Baby.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (80,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\K12.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (81,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\After School.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (82,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Portals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (83,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Ao vivo.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (84,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\A Voz Do Samba.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (85,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Morte De Um Poeta.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (86,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Fogo da Vida.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (87,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Da Cor Do Brasil.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (88,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Profissão Cantora.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (89,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alerta geral.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (90,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\De Tudo Que eu Gosto.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
+        (81,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\After School.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (82,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Portals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (83,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Ao vivo.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (84,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\A Voz Do Samba.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (85,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Morte De Um Poeta.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (86,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Fogo da Vida.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (87,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Da Cor Do Brasil.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (88,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Profissão Cantora.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (89,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alerta geral.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (90,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\De Tudo Que eu Gosto.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (91,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Thank U, Next.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (92,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dangerous Woman.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (93,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Yours Truly.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (94,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My Everything.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (95,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Sweetener.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (96,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Positions.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
-        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
+        (91,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Thank U, Next.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (92,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dangerous Woman.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (93,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Yours Truly.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (94,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My Everything.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (95,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Sweetener.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (96,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Positions.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2'),
+        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_2')
 
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (1,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Batidão Tropical.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (2,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Não Para Não.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (3,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Noitada.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (4,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\After.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (5,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Batidão Tropical 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (6,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Anti-Herói.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (7,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lobos.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (8,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Back to Black.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (9,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Amy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (10,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lioness Hidden Treasures.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
+        (1,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Batidão Tropical.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (2,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Não Para Não.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (3,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Noitada.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (4,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\After.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (5,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Batidão Tropical 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (6,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Anti-Herói.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (7,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lobos.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (8,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Back to Black.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (9,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Amy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (10,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lioness Hidden Treasures.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Like a Virgin.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Rebel Heart.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (13,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Erotica.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (14,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Madonna.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Ray of Light.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Madame X.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\MDNA.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Like a Prayer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (19,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Im Breathless.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Whos That Girl.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
+        (11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Like a Virgin.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Rebel Heart.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (13,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Erotica.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (14,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Madonna.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Ray of Light.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Madame X.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\MDNA.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Like a Prayer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (19,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Im Breathless.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Whos That Girl.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Abbey Road.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (23,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Revolver.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Please Please Me.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Help!.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Magical Mystery Tour.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\With the Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Let It Be.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (29,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\A Hard Days Night.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (30,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Yellow Submarine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
+        (21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Abbey Road.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (23,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Revolver.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Please Please Me.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Help!.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Magical Mystery Tour.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\With the Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Let It Be.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (29,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\A Hard Days Night.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (30,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Yellow Submarine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Random Access Memories.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Discovery.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Tron Legacy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Homework.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alive 2007.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (36,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Human After All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Greatest Hits.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Daft Club.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (39,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Deep Cuts.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alive 1997.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
+        (31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Random Access Memories.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Discovery.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Tron Legacy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Homework.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alive 2007.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (36,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Human After All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Greatest Hits.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Daft Club.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (39,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Deep Cuts.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alive 1997.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (41,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Homecoming The Live Album.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\BDay.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\4.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lemonade.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\I Am Sasha Fierce.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dangerously in Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (47,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Renaissance.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (48,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Beyoncé.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Cowboy Carter.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Lion King The Gift.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
+        (41,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Homecoming The Live Album.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\BDay.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\4.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lemonade.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\I Am Sasha Fierce.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dangerously in Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (47,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Renaissance.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (48,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Beyoncé.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Cowboy Carter.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Lion King The Gift.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (51,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Sucka Free.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (52,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Barbie World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (53,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Queen.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (54,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday Roman Reloaded.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (55,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Massive Attack.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (56,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Pinkprint.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (57,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Beam Me Up Scotty.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (58,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Playtime Is Over.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (59,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (60,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
+        (51,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Sucka Free.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (52,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Barbie World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (53,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Queen.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (54,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday Roman Reloaded.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (55,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Massive Attack.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (56,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Pinkprint.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (57,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Beam Me Up Scotty.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (58,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Playtime Is Over.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (59,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (60,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (61,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Never Say Never The Remixes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (62,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (63,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Journals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (64,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Under the Mistletoe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (65,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Believe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (66,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My World 2.0.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (67,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Changes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (68,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Justice.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (69,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Purpose.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (70,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Freedom.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
+        (61,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Never Say Never The Remixes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (62,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (63,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Journals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (64,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Under the Mistletoe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (65,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Believe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (66,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My World 2.0.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (67,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Changes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (68,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Justice.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (69,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Purpose.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (70,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Freedom.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (71,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pure Heroine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (72,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Melodrama.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (73,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Solar Power.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (74,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Four Pink Walls.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (75,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Know-It-All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (76,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Pains of Growing.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (77,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\This Summer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (78,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\In The Meantime.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (79,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Cry Baby.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (80,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\K12.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
+        (71,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pure Heroine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (72,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Melodrama.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (73,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Solar Power.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (74,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Four Pink Walls.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (75,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Know-It-All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (76,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Pains of Growing.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (77,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\This Summer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (78,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\In The Meantime.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (79,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Cry Baby.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (80,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\K12.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (81,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\After School.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (82,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Portals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (83,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Ao vivo.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (84,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\A Voz Do Samba.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (85,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Morte De Um Poeta.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (86,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Fogo da Vida.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (87,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Da Cor Do Brasil.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (88,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Profissão Cantora.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (89,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alerta geral.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (90,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\De Tudo Que eu Gosto.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
+        (81,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\After School.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (82,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Portals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (83,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Ao vivo.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (84,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\A Voz Do Samba.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (85,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Morte De Um Poeta.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (86,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Fogo da Vida.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (87,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Da Cor Do Brasil.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (88,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Profissão Cantora.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (89,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alerta geral.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (90,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\De Tudo Que eu Gosto.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (91,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Thank U, Next.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (92,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dangerous Woman.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (93,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Yours Truly.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (94,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My Everything.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (95,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Sweetener.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (96,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Positions.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
-        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
+        (91,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Thank U, Next.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (92,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dangerous Woman.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (93,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Yours Truly.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (94,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My Everything.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (95,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Sweetener.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (96,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Positions.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3'),
+        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_3')
 
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (1,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Batidão Tropical.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (2,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Não Para Não.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (3,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Noitada.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (4,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\After.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (5,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Batidão Tropical 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (6,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Anti-Herói.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (7,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lobos.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (8,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Back to Black.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (9,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Amy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (10,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lioness Hidden Treasures.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
+        (1,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Batidão Tropical.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (2,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Não Para Não.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (3,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Noitada.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (4,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\After.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (5,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Batidão Tropical 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (6,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Anti-Herói.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (7,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lobos.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (8,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Back to Black.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (9,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Amy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (10,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lioness Hidden Treasures.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Like a Virgin.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Rebel Heart.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (13,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Erotica.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (14,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Madonna.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Ray of Light.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Madame X.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\MDNA.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Like a Prayer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (19,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Im Breathless.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Whos That Girl.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
+        (11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Like a Virgin.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Rebel Heart.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (13,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Erotica.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (14,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Madonna.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Ray of Light.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Madame X.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\MDNA.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Like a Prayer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (19,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Im Breathless.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Whos That Girl.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Abbey Road.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (23,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Revolver.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Please Please Me.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Help!.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Magical Mystery Tour.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\With the Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Let It Be.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (29,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\A Hard Days Night.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (30,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Yellow Submarine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
+        (21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Abbey Road.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (23,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Revolver.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Please Please Me.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Help!.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Magical Mystery Tour.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\With the Beatles.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Let It Be.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (29,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\A Hard Days Night.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (30,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Yellow Submarine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Random Access Memories.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Discovery.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Tron Legacy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Homework.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alive 2007.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (36,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Human After All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Greatest Hits.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Daft Club.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (39,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Deep Cuts.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alive 1997.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
+        (31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Random Access Memories.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Discovery.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Tron Legacy.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Homework.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alive 2007.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (36,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Human After All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Greatest Hits.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Daft Club.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (39,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Deep Cuts.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alive 1997.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (41,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Homecoming The Live Album.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\BDay.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\4.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Lemonade.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\I Am Sasha Fierce.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dangerously in Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (47,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Renaissance.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (48,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Beyoncé.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Cowboy Carter.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Lion King The Gift.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
+        (41,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Homecoming The Live Album.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\BDay.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\4.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Lemonade.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\I Am Sasha Fierce.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dangerously in Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (47,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Renaissance.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (48,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Beyoncé.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Cowboy Carter.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Lion King The Gift.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (51,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Sucka Free.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (52,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Barbie World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (53,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Queen.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (54,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday Roman Reloaded.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (55,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Massive Attack.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (56,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Pinkprint.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (57,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Beam Me Up Scotty.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (58,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Playtime Is Over.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (59,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (60,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pink Friday 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
+        (51,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Sucka Free.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (52,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Barbie World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (53,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Queen.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (54,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday Roman Reloaded.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (55,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Massive Attack.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (56,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Pinkprint.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (57,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Beam Me Up Scotty.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (58,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Playtime Is Over.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (59,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (60,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pink Friday 2.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (61,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Never Say Never The Remixes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (62,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (63,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Journals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (64,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Under the Mistletoe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (65,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Believe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (66,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My World 2.0.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (67,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Changes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (68,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Justice.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (69,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Purpose.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (70,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Freedom.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
+        (61,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Never Say Never The Remixes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (62,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My World.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (63,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Journals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (64,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Under the Mistletoe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (65,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Believe.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (66,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My World 2.0.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (67,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Changes.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (68,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Justice.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (69,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Purpose.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (70,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Freedom.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (71,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Pure Heroine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (72,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Melodrama.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (73,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Solar Power.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (74,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Four Pink Walls.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (75,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Know-It-All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (76,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Pains of Growing.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (77,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\This Summer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (78,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\In The Meantime.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (79,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Cry Baby.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (80,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\K12.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
+        (71,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Pure Heroine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (72,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Melodrama.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (73,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Solar Power.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (74,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Four Pink Walls.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (75,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Know-It-All.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (76,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Pains of Growing.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (77,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\This Summer.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (78,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\In The Meantime.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (79,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Cry Baby.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (80,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\K12.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (81,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\After School.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (82,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Portals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (83,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Ao vivo.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (84,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\A Voz Do Samba.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (85,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Morte De Um Poeta.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (86,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Fogo da Vida.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (87,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Da Cor Do Brasil.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (88,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Profissão Cantora.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (89,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Alerta geral.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (90,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\De Tudo Que eu Gosto.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
+        (81,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\After School.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (82,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Portals.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (83,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Ao vivo.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (84,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\A Voz Do Samba.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (85,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Morte De Um Poeta.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (86,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Fogo da Vida.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (87,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Da Cor Do Brasil.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (88,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Profissão Cantora.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (89,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Alerta geral.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (90,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\De Tudo Que eu Gosto.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
         
         INSERT INTO ECM_IMAGENS (ID_PRODUTO,IMAGEM,NOME)
         VALUES
-        (91,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Thank U, Next.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (92,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dangerous Woman.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (93,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Yours Truly.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (94,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\My Everything.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (95,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Sweetener.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (96,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Positions.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
-        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
+        (91,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Thank U, Next.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (92,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dangerous Woman.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (93,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Yours Truly.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (94,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\My Everything.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (95,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Sweetener.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (96,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Positions.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (97,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Eternal Sunshine.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (98,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Reputation.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (99,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\The Tortured Poets Department.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (100,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\1989 Taylors Version.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (101,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Radical Optimism.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4'),
+        (102,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\imagens\Dont Say Love.jpg', SINGLE_BLOB) AS IMAGE),'PRODUTO_4')
 
         INSERT INTO ECM_ESTOQUES (ID_PRODUTO,CODIGO,SALDO,NOTA_FISCAL,COR,PRECO_UNITARIO,TIPO,TAMANHO,MARCA,GRAVADORA,PESO)
         VALUES
-        (1,'7899673881858',45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',148.87,'','120mm','SONY','WARNER MUSIC',1.3),
-        (2,'7893513377117',14,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',119.07,'','120mm','MAKETECH','VIRGIN MUSIC',1.3),
-        (3,'7898734244027',12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',136.26,'','17.50cm','ELGIN','TODAH MUSIC',1.6),
-        (4,'7895511388953',22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',120.37,'','17.50cm','MAXPRINT','SONY MUSIC',1.6),
-        (5,'7892907498215',24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',125.43,'','120mm','VERBATIM','SPOTLIGHT RECORDS',2.3),
-        (6,'7898650158417',49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',160.25,'','120mm','CIS','SINEWAVE',2.3),
-        (7,'7898985117888',21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',130.92,'','17.50cm','MULTILASER','POLYSOM',1.3),
-        (8,'7897820505246',50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',93.92,'','17.50cm','SONY','ONIMUSIC',1.3),
-        (9,'7895558082712',24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',85.60,'','120mm','MAKETECH','NOVO TEMPO',1.6),
-        (10,'7890446177526',20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',144.72,'','120mm','ELGIN','MOVIEPLAY',1.6)
+        (1,'7899673881858',45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',148.87,'','120mm','SONY','WARNER MUSIC',1.3),
+        (2,'7893513377117',14,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',119.07,'','120mm','MAKETECH','VIRGIN MUSIC',1.3),
+        (3,'7898734244027',12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',136.26,'','17.50cm','ELGIN','TODAH MUSIC',1.6),
+        (4,'7895511388953',22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',120.37,'','17.50cm','MAXPRINT','SONY MUSIC',1.6),
+        (5,'7892907498215',24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',125.43,'','120mm','VERBATIM','SPOTLIGHT RECORDS',2.3),
+        (6,'7898650158417',49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',160.25,'','120mm','CIS','SINEWAVE',2.3),
+        (7,'7898985117888',21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',130.92,'','17.50cm','MULTILASER','POLYSOM',1.3),
+        (8,'7897820505246',50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',93.92,'','17.50cm','SONY','ONIMUSIC',1.3),
+        (9,'7895558082712',24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',85.60,'','120mm','MAKETECH','NOVO TEMPO',1.6),
+        (10,'7890446177526',20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',144.72,'','120mm','ELGIN','MOVIEPLAY',1.6)
         
         INSERT INTO ECM_ESTOQUES (ID_PRODUTO,CODIGO,SALDO,NOTA_FISCAL,COR,PRECO_UNITARIO,TIPO,TAMANHO,MARCA,GRAVADORA,PESO)
         VALUES
-        (11,'7896562109621',40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',166.41,'','17.50cm','MAXPRINT','MONSTRO DISCOS',2.3),
-        (12,'7892548307425',32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',153.28,'','17.50cm','VERBATIM','MK MUSIC',2.3),
-        (13,'7891815878205',35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',121.97,'','120mm','CIS','MIDSUMMER MADNESS',1.3),
-        (14,'7893591834164',15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',79.46,'','120mm','MULTILASER','FURACÃO 2000',1.3),
-        (15,'7898851074796',10,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',111.86,'','17.50cm','SONY','ELO MUSIC',1.6),
-        (16,'7894308575425',33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',149.00,'','17.50cm','MAKETECH','WARNER MUSIC',1.6),
-        (17,'7898497558619',28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',135.00,'','120mm','ELGIN','VIRGIN MUSIC',2.3),
-        (18,'7893105862273',27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',151.56,'','120mm','MAXPRINT','TODAH MUSIC',2.3),
-        (19,'7893993032295',12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',133.51,'','17.50cm','VERBATIM','SONY MUSIC',1.3),
-        (20,'7893352238356',40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',157.24,'','17.50cm','CIS','SPOTLIGHT RECORDS',1.3)
+        (11,'7896562109621',40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',166.41,'','17.50cm','MAXPRINT','MONSTRO DISCOS',2.3),
+        (12,'7892548307425',32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',153.28,'','17.50cm','VERBATIM','MK MUSIC',2.3),
+        (13,'7891815878205',35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',121.97,'','120mm','CIS','MIDSUMMER MADNESS',1.3),
+        (14,'7893591834164',15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',79.46,'','120mm','MULTILASER','FURACÃO 2000',1.3),
+        (15,'7898851074796',10,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',111.86,'','17.50cm','SONY','ELO MUSIC',1.6),
+        (16,'7894308575425',33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',149.00,'','17.50cm','MAKETECH','WARNER MUSIC',1.6),
+        (17,'7898497558619',28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',135.00,'','120mm','ELGIN','VIRGIN MUSIC',2.3),
+        (18,'7893105862273',27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',151.56,'','120mm','MAXPRINT','TODAH MUSIC',2.3),
+        (19,'7893993032295',12,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',133.51,'','17.50cm','VERBATIM','SONY MUSIC',1.3),
+        (20,'7893352238356',40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',157.24,'','17.50cm','CIS','SPOTLIGHT RECORDS',1.3)
         
         INSERT INTO ECM_ESTOQUES (ID_PRODUTO,CODIGO,SALDO,NOTA_FISCAL,COR,PRECO_UNITARIO,TIPO,TAMANHO,MARCA,GRAVADORA,PESO)
         VALUES
-        (21,'7898198862433',13,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',143.76,'','120mm','MULTILASER','SINEWAVE',1.6),
-        (22,'7898486861674',28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',129.99,'','120mm','SONY','POLYSOM',1.6),
-        (23,'7892215238255',36,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',75.29,'','17.50cm','MAKETECH','ONIMUSIC',2.3),
-        (24,'7898082255445',49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',107.20,'','17.50cm','ELGIN','NOVO TEMPO',2.3),
-        (25,'7893831086025',35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',95.48,'','120mm','MAXPRINT','MOVIEPLAY',1.3),
-        (26,'7895662912826',32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',88.97,'','120mm','VERBATIM','MONSTRO DISCOS',1.3),
-        (27,'7896344777104',33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',115.48,'','17.50cm','CIS','MK MUSIC',1.6),
-        (28,'7890262627244',24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',139.36,'','17.50cm','MULTILASER','MIDSUMMER MADNESS',1.6),
-        (29,'7899918021214',22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',158.91,'','120mm','SONY','FURACÃO 2000',2.3),
-        (30,'7898203755837',17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',119.02,'','120mm','MAKETECH','ELO MUSIC',2.3)
+        (21,'7898198862433',13,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',143.76,'','120mm','MULTILASER','SINEWAVE',1.6),
+        (22,'7898486861674',28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',129.99,'','120mm','SONY','POLYSOM',1.6),
+        (23,'7892215238255',36,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',75.29,'','17.50cm','MAKETECH','ONIMUSIC',2.3),
+        (24,'7898082255445',49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',107.20,'','17.50cm','ELGIN','NOVO TEMPO',2.3),
+        (25,'7893831086025',35,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',95.48,'','120mm','MAXPRINT','MOVIEPLAY',1.3),
+        (26,'7895662912826',32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',88.97,'','120mm','VERBATIM','MONSTRO DISCOS',1.3),
+        (27,'7896344777104',33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',115.48,'','17.50cm','CIS','MK MUSIC',1.6),
+        (28,'7890262627244',24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',139.36,'','17.50cm','MULTILASER','MIDSUMMER MADNESS',1.6),
+        (29,'7899918021214',22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',158.91,'','120mm','SONY','FURACÃO 2000',2.3),
+        (30,'7898203755837',17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',119.02,'','120mm','MAKETECH','ELO MUSIC',2.3)
         
         INSERT INTO ECM_ESTOQUES (ID_PRODUTO,CODIGO,SALDO,NOTA_FISCAL,COR,PRECO_UNITARIO,TIPO,TAMANHO,MARCA,GRAVADORA,PESO)
         VALUES
-        (31,'7898157225798',34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',82.96,'','17.50cm','ELGIN','WARNER MUSIC',1.3),
-        (32,'7894842177971',45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',149.92,'','17.50cm','MAXPRINT','VIRGIN MUSIC',1.3),
-        (33,'7894821726167',16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',125.72,'','120mm','VERBATIM','TODAH MUSIC',1.6),
-        (34,'7897822848031',15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',104.41,'','120mm','CIS','SONY MUSIC',1.6),
-        (35,'7898055857716',38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',144.05,'','17.50cm','MULTILASER','SPOTLIGHT RECORDS',2.3),
-        (36,'7899883962321',49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',128.37,'','17.50cm','SONY','SINEWAVE',2.3),
-        (37,'7897854441469',42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',80.12,'','120mm','MAKETECH','POLYSOM',1.3),
-        (38,'7898133388273',11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',165.57,'','120mm','ELGIN','ONIMUSIC',1.3),
-        (39,'7892013850788',39,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',157.00,'','17.50cm','MAXPRINT','NOVO TEMPO',1.6),
-        (40,'7893952251796',26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',93.13,'','17.50cm','VERBATIM','MOVIEPLAY',1.6)
+        (31,'7898157225798',34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',82.96,'','17.50cm','ELGIN','WARNER MUSIC',1.3),
+        (32,'7894842177971',45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',149.92,'','17.50cm','MAXPRINT','VIRGIN MUSIC',1.3),
+        (33,'7894821726167',16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',125.72,'','120mm','VERBATIM','TODAH MUSIC',1.6),
+        (34,'7897822848031',15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',104.41,'','120mm','CIS','SONY MUSIC',1.6),
+        (35,'7898055857716',38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',144.05,'','17.50cm','MULTILASER','SPOTLIGHT RECORDS',2.3),
+        (36,'7899883962321',49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',128.37,'','17.50cm','SONY','SINEWAVE',2.3),
+        (37,'7897854441469',42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',80.12,'','120mm','MAKETECH','POLYSOM',1.3),
+        (38,'7898133388273',11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',165.57,'','120mm','ELGIN','ONIMUSIC',1.3),
+        (39,'7892013850788',39,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',157.00,'','17.50cm','MAXPRINT','NOVO TEMPO',1.6),
+        (40,'7893952251796',26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',93.13,'','17.50cm','VERBATIM','MOVIEPLAY',1.6)
         
         INSERT INTO ECM_ESTOQUES (ID_PRODUTO,CODIGO,SALDO,NOTA_FISCAL,COR,PRECO_UNITARIO,TIPO,TAMANHO,MARCA,GRAVADORA,PESO)
         VALUES
-        (41,'7891120212247',42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',101.75,'','120mm','CIS','MONSTRO DISCOS',2.3),
-        (42,'7896067702047',45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',90.66,'','120mm','MULTILASER','MK MUSIC',2.3),
-        (43,'7890333696109',20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',126.39,'','17.50cm','SONY','MIDSUMMER MADNESS',1.3),
-        (44,'7893312597821',38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',174.42,'','17.50cm','MAKETECH','FURACÃO 2000',1.3),
-        (45,'7893773614526',27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',160.39,'','120mm','ELGIN','ELO MUSIC',1.6),
-        (46,'7890563610353',22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',149.18,'','120mm','MAXPRINT','WARNER MUSIC',1.6),
-        (47,'7893267624964',23,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',155.70,'','17.50cm','VERBATIM','VIRGIN MUSIC',2.3),
-        (48,'7897444973686',49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',118.29,'','17.50cm','CIS','TODAH MUSIC',2.3),
-        (49,'7895108628739',43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',125.29,'','120mm','MULTILASER','SONY MUSIC',1.3),
-        (50,'7898152540388',11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',134.66,'','120mm','SONY','SPOTLIGHT RECORDS',1.3)
+        (41,'7891120212247',42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',101.75,'','120mm','CIS','MONSTRO DISCOS',2.3),
+        (42,'7896067702047',45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',90.66,'','120mm','MULTILASER','MK MUSIC',2.3),
+        (43,'7890333696109',20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',126.39,'','17.50cm','SONY','MIDSUMMER MADNESS',1.3),
+        (44,'7893312597821',38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',174.42,'','17.50cm','MAKETECH','FURACÃO 2000',1.3),
+        (45,'7893773614526',27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',160.39,'','120mm','ELGIN','ELO MUSIC',1.6),
+        (46,'7890563610353',22,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',149.18,'','120mm','MAXPRINT','WARNER MUSIC',1.6),
+        (47,'7893267624964',23,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',155.70,'','17.50cm','VERBATIM','VIRGIN MUSIC',2.3),
+        (48,'7897444973686',49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',118.29,'','17.50cm','CIS','TODAH MUSIC',2.3),
+        (49,'7895108628739',43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',125.29,'','120mm','MULTILASER','SONY MUSIC',1.3),
+        (50,'7898152540388',11,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',134.66,'','120mm','SONY','SPOTLIGHT RECORDS',1.3)
         
         INSERT INTO ECM_ESTOQUES (ID_PRODUTO,CODIGO,SALDO,NOTA_FISCAL,COR,PRECO_UNITARIO,TIPO,TAMANHO,MARCA,GRAVADORA,PESO)
         VALUES
-        (51,'7891364108499',24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',111.84,'','17.50cm','MAKETECH','SINEWAVE',1.6),
-        (52,'7898278373197',34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',113.61,'','17.50cm','ELGIN','POLYSOM',1.6),
-        (53,'7894537718471',49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',162.62,'','120mm','MAXPRINT','ONIMUSIC',2.3),
-        (54,'7891255944715',41,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',129.97,'','120mm','VERBATIM','NOVO TEMPO',2.3),
-        (55,'7898443982862',45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',92.35,'','17.50cm','CIS','MOVIEPLAY',1.3),
-        (56,'7891990168344',29,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',75.98,'','17.50cm','MULTILASER','MONSTRO DISCOS',1.3),
-        (57,'7895863872504',16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',166.96,'','120mm','SONY','MK MUSIC',1.6),
-        (58,'7896588238767',28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',142.40,'','120mm','MAKETECH','MIDSUMMER MADNESS',1.6),
-        (59,'7898473648573',43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',161.24,'','17.50cm','ELGIN','FURACÃO 2000',2.3),
-        (60,'7892855743156',42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',163.63,'','17.50cm','MAXPRINT','ELO MUSIC',2.3)
+        (51,'7891364108499',24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',111.84,'','17.50cm','MAKETECH','SINEWAVE',1.6),
+        (52,'7898278373197',34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',113.61,'','17.50cm','ELGIN','POLYSOM',1.6),
+        (53,'7894537718471',49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',162.62,'','120mm','MAXPRINT','ONIMUSIC',2.3),
+        (54,'7891255944715',41,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',129.97,'','120mm','VERBATIM','NOVO TEMPO',2.3),
+        (55,'7898443982862',45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',92.35,'','17.50cm','CIS','MOVIEPLAY',1.3),
+        (56,'7891990168344',29,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',75.98,'','17.50cm','MULTILASER','MONSTRO DISCOS',1.3),
+        (57,'7895863872504',16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',166.96,'','120mm','SONY','MK MUSIC',1.6),
+        (58,'7896588238767',28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',142.40,'','120mm','MAKETECH','MIDSUMMER MADNESS',1.6),
+        (59,'7898473648573',43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',161.24,'','17.50cm','ELGIN','FURACÃO 2000',2.3),
+        (60,'7892855743156',42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',163.63,'','17.50cm','MAXPRINT','ELO MUSIC',2.3)
         
         INSERT INTO ECM_ESTOQUES (ID_PRODUTO,CODIGO,SALDO,NOTA_FISCAL,COR,PRECO_UNITARIO,TIPO,TAMANHO,MARCA,GRAVADORA,PESO)
         VALUES
-        (61,'7891536597171',49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',148.30,'','120mm','VERBATIM','WARNER MUSIC',1.3),
-        (62,'7895753631524',48,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',88.06,'','120mm','CIS','VIRGIN MUSIC',1.3),
-        (63,'7892127026034',15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',90.15,'','17.50cm','MULTILASER','TODAH MUSIC',1.6),
-        (64,'7897078338688',47,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',92.67,'','17.50cm','SONY','SONY MUSIC',1.6),
-        (65,'7895047129002',32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',150.20,'','120mm','MAKETECH','SPOTLIGHT RECORDS',2.3),
-        (66,'7894489960232',25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',158.76,'','120mm','ELGIN','SINEWAVE',2.3),
-        (67,'7895742873341',20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',112.45,'','17.50cm','MAXPRINT','POLYSOM',1.3),
-        (68,'7898465442563',21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',105.32,'','17.50cm','VERBATIM','ONIMUSIC',1.3),
-        (69,'7891446171705',17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',133.39,'','120mm','CIS','NOVO TEMPO',1.6),
-        (70,'7895141126289',25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',99.56,'','120mm','MULTILASER','MOVIEPLAY',1.6)
+        (61,'7891536597171',49,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',148.30,'','120mm','VERBATIM','WARNER MUSIC',1.3),
+        (62,'7895753631524',48,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',88.06,'','120mm','CIS','VIRGIN MUSIC',1.3),
+        (63,'7892127026034',15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',90.15,'','17.50cm','MULTILASER','TODAH MUSIC',1.6),
+        (64,'7897078338688',47,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',92.67,'','17.50cm','SONY','SONY MUSIC',1.6),
+        (65,'7895047129002',32,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',150.20,'','120mm','MAKETECH','SPOTLIGHT RECORDS',2.3),
+        (66,'7894489960232',25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',158.76,'','120mm','ELGIN','SINEWAVE',2.3),
+        (67,'7895742873341',20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',112.45,'','17.50cm','MAXPRINT','POLYSOM',1.3),
+        (68,'7898465442563',21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',105.32,'','17.50cm','VERBATIM','ONIMUSIC',1.3),
+        (69,'7891446171705',17,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',133.39,'','120mm','CIS','NOVO TEMPO',1.6),
+        (70,'7895141126289',25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',99.56,'','120mm','MULTILASER','MOVIEPLAY',1.6)
         
         INSERT INTO ECM_ESTOQUES (ID_PRODUTO,CODIGO,SALDO,NOTA_FISCAL,COR,PRECO_UNITARIO,TIPO,TAMANHO,MARCA,GRAVADORA,PESO)
         VALUES
-        (71,'7892686492735',42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',162.79,'','17.50cm','SONY','MONSTRO DISCOS',2.3),
-        (72,'7898322306344',50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',87.43,'','17.50cm','MAKETECH','MK MUSIC',2.3),
-        (73,'7893454775381',38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',92.78,'','120mm','ELGIN','MIDSUMMER MADNESS',1.3),
-        (74,'7898013317471',30,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',149.73,'','120mm','MAXPRINT','FURACÃO 2000',1.3),
-        (75,'7895188034351',27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',133.89,'','17.50cm','VERBATIM','ELO MUSIC',1.6),
-        (76,'7895918641511',24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',96.73,'','17.50cm','CIS','WARNER MUSIC',1.6),
-        (77,'7892441277852',42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',114.56,'','120mm','MULTILASER','VIRGIN MUSIC',2.3),
-        (78,'7896312505121',37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',148.31,'','120mm','SONY','TODAH MUSIC',2.3),
-        (79,'7895513908516',46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',169.51,'','17.50cm','MAKETECH','SONY MUSIC',1.3),
-        (80,'7899654075376',25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',130.12,'','17.50cm','ELGIN','SPOTLIGHT RECORDS',1.3)
+        (71,'7892686492735',42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',162.79,'','17.50cm','SONY','MONSTRO DISCOS',2.3),
+        (72,'7898322306344',50,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',87.43,'','17.50cm','MAKETECH','MK MUSIC',2.3),
+        (73,'7893454775381',38,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',92.78,'','120mm','ELGIN','MIDSUMMER MADNESS',1.3),
+        (74,'7898013317471',30,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',149.73,'','120mm','MAXPRINT','FURACÃO 2000',1.3),
+        (75,'7895188034351',27,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',133.89,'','17.50cm','VERBATIM','ELO MUSIC',1.6),
+        (76,'7895918641511',24,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',96.73,'','17.50cm','CIS','WARNER MUSIC',1.6),
+        (77,'7892441277852',42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',114.56,'','120mm','MULTILASER','VIRGIN MUSIC',2.3),
+        (78,'7896312505121',37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',148.31,'','120mm','SONY','TODAH MUSIC',2.3),
+        (79,'7895513908516',46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',169.51,'','17.50cm','MAKETECH','SONY MUSIC',1.3),
+        (80,'7899654075376',25,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',130.12,'','17.50cm','ELGIN','SPOTLIGHT RECORDS',1.3)
         
         INSERT INTO ECM_ESTOQUES (ID_PRODUTO,CODIGO,SALDO,NOTA_FISCAL,COR,PRECO_UNITARIO,TIPO,TAMANHO,MARCA,GRAVADORA,PESO)
         VALUES
-        (81,'7897678458077',21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',150.18,'','120mm','MAXPRINT','SINEWAVE',1.6),
-        (82,'7893652936623',34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',159.30,'','120mm','VERBATIM','POLYSOM',1.6),
-        (83,'7895482566767',18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',123.11,'','17.50cm','CIS','ONIMUSIC',2.3),
-        (84,'7893761887414',46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',86.31,'','17.50cm','MULTILASER','NOVO TEMPO',2.3),
-        (85,'7896445316131',37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',138.29,'','120mm','SONY','MOVIEPLAY',1.3),
-        (86,'7895444833694',40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',159.87,'','120mm','MAKETECH','MONSTRO DISCOS',1.3),
-        (87,'7899534735787',15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',88.48,'','17.50cm','ELGIN','MK MUSIC',1.6),
-        (88,'7898280083382',43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',129.22,'','17.50cm','MAXPRINT','MIDSUMMER MADNESS',1.6),
-        (89,'7898362186063',42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',95.33,'','120mm','VERBATIM','FURACÃO 2000',2.3),
-        (90,'7891762824510',31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',160.10,'','120mm','CIS','ELO MUSIC',2.3)
+        (81,'7897678458077',21,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',150.18,'','120mm','MAXPRINT','SINEWAVE',1.6),
+        (82,'7893652936623',34,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',159.30,'','120mm','VERBATIM','POLYSOM',1.6),
+        (83,'7895482566767',18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',123.11,'','17.50cm','CIS','ONIMUSIC',2.3),
+        (84,'7893761887414',46,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BEGE',86.31,'','17.50cm','MULTILASER','NOVO TEMPO',2.3),
+        (85,'7896445316131',37,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',138.29,'','120mm','SONY','MOVIEPLAY',1.3),
+        (86,'7895444833694',40,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERDE',159.87,'','120mm','MAKETECH','MONSTRO DISCOS',1.3),
+        (87,'7899534735787',15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',88.48,'','17.50cm','ELGIN','MK MUSIC',1.6),
+        (88,'7898280083382',43,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'CINZA',129.22,'','17.50cm','MAXPRINT','MIDSUMMER MADNESS',1.6),
+        (89,'7898362186063',42,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',95.33,'','120mm','VERBATIM','FURACÃO 2000',2.3),
+        (90,'7891762824510',31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AMARELO',160.10,'','120mm','CIS','ELO MUSIC',2.3)
         
         INSERT INTO ECM_ESTOQUES (ID_PRODUTO,CODIGO,SALDO,NOTA_FISCAL,COR,PRECO_UNITARIO,TIPO,TAMANHO,MARCA,GRAVADORA,PESO)
         VALUES
-        (91,'7897611486763',45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',114.37,'','17.50cm','MULTILASER','WARNER MUSIC',1.3),
-        (92,'7896532792674',16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',129.63,'','17.50cm','SONY','VIRGIN MUSIC',1.3),
-        (93,'7893490466362',20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',126.94,'','120mm','MAKETECH','TODAH MUSIC',1.6),
-        (94,'7892817494146',15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',147.85,'','120mm','ELGIN','SONY MUSIC',1.6),
-        (95,'7894693011184',26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',129.80,'','17.50cm','MAXPRINT','SPOTLIGHT RECORDS',2.3),
-        (96,'7897420564268',28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',116.15,'','17.50cm','VERBATIM','SINEWAVE',2.3),
-        (97,'7893672436219',44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',163.37,'','120mm','CIS','POLYSOM',1.3),
-        (98,'7896210284033',33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',89.13,'','120mm','MULTILASER','ONIMUSIC',1.3),
-        (99,'7897985628068',18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',107.59,'','17.50cm','SONY','NOVO TEMPO',1.6),
-        (100,'7896514521745',31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',102.57,'','17.50cm','MAKETECH','MOVIEPLAY',1.6),
-        (101,'7896514521745',31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',102.57,'','17.50cm','MAKETECH','MOVIEPLAY',1.6),
-        (102,'7896514521745',31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\crm\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',102.57,'','17.50cm','MAKETECH','MOVIEPLAY',1.6)
+        (91,'7897611486763',45,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',114.37,'','17.50cm','MULTILASER','WARNER MUSIC',1.3),
+        (92,'7896532792674',16,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',129.63,'','17.50cm','SONY','VIRGIN MUSIC',1.3),
+        (93,'7893490466362',20,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',126.94,'','120mm','MAKETECH','TODAH MUSIC',1.6),
+        (94,'7892817494146',15,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'BRANCO',147.85,'','120mm','ELGIN','SONY MUSIC',1.6),
+        (95,'7894693011184',26,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',129.80,'','17.50cm','MAXPRINT','SPOTLIGHT RECORDS',2.3),
+        (96,'7897420564268',28,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',116.15,'','17.50cm','VERBATIM','SINEWAVE',2.3),
+        (97,'7893672436219',44,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',163.37,'','120mm','CIS','POLYSOM',1.3),
+        (98,'7896210284033',33,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'VERMELHO',89.13,'','120mm','MULTILASER','ONIMUSIC',1.3),
+        (99,'7897985628068',18,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',107.59,'','17.50cm','SONY','NOVO TEMPO',1.6),
+        (100,'7896514521745',31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'ROSA',102.57,'','17.50cm','MAKETECH','MOVIEPLAY',1.6),
+        (101,'7896514521745',31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'AZUL',102.57,'','17.50cm','MAKETECH','MOVIEPLAY',1.6),
+        (102,'7896514521745',31,(SELECT * FROM OPENROWSET(BULK N'C:\Users\Public\Documents\Ecommerce\nota\exemplo-de-nota-fiscal.jpg', SINGLE_BLOB) AS IMAGE),'PRETO',102.57,'','17.50cm','MAKETECH','MOVIEPLAY',1.6)
   
         INSERT INTO [ECM_CAT_PRO] (ID_PRODUTO,ID_CATEGORIA)
         VALUES

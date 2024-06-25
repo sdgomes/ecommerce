@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crm.Models.ModelView
+namespace Ecommerce.Models.ModelView
 {
     public class CartView
     {

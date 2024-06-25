@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace crm.Views.Shared.Components.Footer
+namespace Ecommerce.Views.Shared.Components.Footer
 {
     public class FooterViewComponent : ViewComponent
     {
