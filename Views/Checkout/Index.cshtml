@@ -57,95 +57,97 @@
                                             </div>
                                         </td>
                                     </tr>
-                                }
-
-                                @foreach (var (Item, Index) in Model.Produtos.Select((Item, Index) => (Item, Index)))
-                                {
-                                    <tr>
-                                        <td>
-                                            <a asp-action="Index" asp-controller="ShopSingle"
-                                               asp-route-categoria="@Item.TipoProduto.ToLower()"
-                                               asp-route-subcategoria="@Item.Subcategoria.ToLower()"
-                                               asp-route-idproduto="@Item.IdProduto">
-                                                <img src="@Item.ImageSource" class="w-14" alt="...">
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <h5 class="product-name">
+                                }else{
+                                    foreach (var (Item, Index) in Model.Produtos.Select((Item, Index) => (Item, Index)))
+                                    {
+                                        <tr>
+                                            <td>
                                                 <a asp-action="Index" asp-controller="ShopSingle"
                                                    asp-route-categoria="@Item.TipoProduto.ToLower()"
                                                    asp-route-subcategoria="@Item.Subcategoria.ToLower()"
                                                    asp-route-idproduto="@Item.IdProduto">
-                                                    @Item.Nome
+                                                    <img src="@Item.ImageSource" class="w-14" alt="...">
                                                 </a>
-                                            </h5>
-                                            <p class="product-des">
-                                                <span>
-                                                    @Item.Subcategoria.Capitalize(), @Item.TipoProduto.Capitalize(),
-                                                    @Item.Cor.Capitalize(), @Item.Marca.Capitalize()
-                                                </span>
-                                                <span><em>Cor:</em> @Item.Cor.Capitalize()</span>
-                                            </p>
-                                        </td>
-                                        <td>
-                                            <input type="hidden" value="@Item.IdProduto"
-                                                   name="produtos[@Index].idProduto">
-                                            <input type="hidden" value="@Item.Preco"
-                                                   name="produtos[@Index].preco">
-                                            <input type="hidden" value='@(Item.Desconto ? "true" : "false")'
-                                                   name="produtos[@Index].desconto">
-                                            <input type="hidden" value="@Item.CalculoDesconto"
-                                                   name="produtos[@Index].calculoDesconto">
-                                            <input type="hidden" value="@Item.QntDesconto"
-                                                   name="produtos[@Index].qntDesconto">
-
-                                            <div class="count-input flex">
-                                                <button type="button" class="button-qnt"
-                                                        data-desconto='@(Item.Desconto ? "true" : "false")'
-                                                        data-id-produto="@Item.IdProduto"
-                                                        data-preco="@Item.Preco"
-                                                        data-calculo-desconto="@Item.CalculoDesconto"
-                                                        data-operador="menos">
-                                                    <i class="fa-solid fa-minus"></i>
+                                            </td>
+                                            <td>
+                                                <h5 class="product-name">
+                                                    <a asp-action="Index" asp-controller="ShopSingle"
+                                                       asp-route-categoria="@Item.TipoProduto.ToLower()"
+                                                       asp-route-subcategoria="@Item.Subcategoria.ToLower()"
+                                                       asp-route-idproduto="@Item.IdProduto">
+                                                        @Item.Nome
+                                                    </a>
+                                                </h5>
+                                                <p class="product-des">
+                                                    <span>
+                                                        @Item.Subcategoria.Capitalize(), @Item.TipoProduto.Capitalize(),
+                                                        @Item.Cor.Capitalize(), @Item.Marca.Capitalize()
+                                                    </span>
+                                                    <span><em>Cor:</em> @Item.Cor.Capitalize()</span>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <input type="hidden" value="@Item.IdProduto"
+                                                       name="produtos[@Index].idProduto">
+                                                <input type="hidden" value="@Item.Preco"
+                                                       name="produtos[@Index].preco">
+                                                <input type="hidden" value='@(Item.Desconto ? "true" : "false")'
+                                                       name="produtos[@Index].desconto">
+                                                <input type="hidden" value="@Item.CalculoDesconto"
+                                                       name="produtos[@Index].calculoDesconto">
+                                                <input type="hidden" value="@Item.QntDesconto"
+                                                       name="produtos[@Index].qntDesconto">
+    
+                                                <div class="count-input flex">
+                                                    <button type="button" class="button-qnt"
+                                                            data-desconto='@(Item.Desconto ? "true" : "false")'
+                                                            data-id-produto="@Item.IdProduto"
+                                                            data-preco="@Item.Preco"
+                                                            data-calculo-desconto="@Item.CalculoDesconto"
+                                                            data-operador="menos">
+                                                        <i class="fa-solid fa-minus"></i>
+                                                    </button>
+    
+                                                    <input autocomplete="off" type="text"
+                                                           value="@Item.QntCompra"
+                                                           name="produtos[@Index].qntCompra"
+                                                           class="input-qnt !w-[65px] !mx-2" />
+    
+                                                    <button type="button" class="button-qnt"
+                                                            data-desconto='@(Item.Desconto ? "true" : "false")'
+                                                            data-id-produto="@Item.IdProduto"
+                                                            data-preco="@Item.Preco"
+                                                            data-calculo-desconto="@Item.CalculoDesconto"
+                                                            data-operador="mais">
+                                                        <i class="fa-solid fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p data-target="preco">@((Item.QntCompra * Item.Preco).ToString("C"))</p>
+                                            </td>
+                                            <td>
+                                                @if (Item.Desconto)
+                                                {
+                                                    <p data-target="desconto">@((Item.QntCompra * Item.CalculoDesconto).ToString("C"))</p>
+                                                }
+                                                else
+                                                {
+                                                    <span>-</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <button data-trigger="remove-produto"
+                                                        class="remove-item-carrinho btn btn-error btn-sm btn-square text-white">
+                                                    <i class="fa-light fa-xmark"></i>
                                                 </button>
-
-                                                <input autocomplete="off" type="text"
-                                                       value="@Item.QntCompra"
-                                                       name="produtos[@Index].qntCompra"
-                                                       class="input-qnt !w-[65px] !mx-2" />
-
-                                                <button type="button" class="button-qnt"
-                                                        data-desconto='@(Item.Desconto ? "true" : "false")'
-                                                        data-id-produto="@Item.IdProduto"
-                                                        data-preco="@Item.Preco"
-                                                        data-calculo-desconto="@Item.CalculoDesconto"
-                                                        data-operador="mais">
-                                                    <i class="fa-solid fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p data-target="preco">@((Item.QntCompra * Item.Preco).ToString("C"))</p>
-                                        </td>
-                                        <td>
-                                            @if (Item.Desconto)
-                                            {
-                                                <p data-target="desconto">@((Item.QntCompra * Item.CalculoDesconto).ToString("C"))</p>
-                                            }
-                                            else
-                                            {
-                                                <span>-</span>
-                                            }
-                                        </td>
-                                        <td>
-                                            <button data-trigger="remove-produto"
-                                                    class="remove-item-carrinho btn btn-error btn-sm btn-square text-white">
-                                                <i class="fa-light fa-xmark"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-
+                                            </td>
+                                        </tr>
+    
+                                    }
                                 }
+
+                              
                             </tbody>
                         </table>
                     </div>

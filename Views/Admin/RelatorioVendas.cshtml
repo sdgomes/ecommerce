@@ -76,11 +76,6 @@ ViewData["Title"] = breadcrumbs.Title;
                     }
                 },
 
-                title: {
-                    text: 'Análise por Produto',
-                    align: 'left'
-                },
-
                 subtitle: {
                     text: 'Análise de vendas: Quantidade vendida pro produto. Para um melhor resultado filtre os produtos.',
                     align: 'left'
@@ -135,47 +130,6 @@ ViewData["Title"] = breadcrumbs.Title;
                 },
             }
 
-            const dataJsonUpdate = [
-                [
-                    null, "Qnt. Venda", "Teste"
-                ],
-                ["24/01/2021", 4, 5],
-                ["25/02/2021", 2, 6
-                ],
-                [
-                    "01/03/2021",
-                    7, 4
-                ],
-                [
-                    "03/03/2022",
-                    8, 5
-                ],
-                [
-                    "24/03/2022",
-                    1, 4
-                ],
-                [
-                    "22/04/2022",
-                    1, 7
-                ],
-                [
-                    "24/04/2022",
-                    2, 6
-                ],
-                [
-                    "01/01/2023",
-                    1, 8
-                ],
-                [
-                    "24/01/2023",
-                    9, 5
-                ],
-                [
-                    "24/02/2023",
-                    0, 3
-                ]
-            ]
-
             Highcharts.setOptions({
                 lang: {
                     months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
@@ -199,25 +153,6 @@ ViewData["Title"] = breadcrumbs.Title;
             });
 
             var chartGeral, chartProduto;
-
-
-            // var chartProduto = Highcharts.chart('container_produto', {
-            //     ...defautl, series: [{
-            //         name: 'Installation & Developers',
-            //         data: [
-            //             ["04/02/2023", 43934], ["11/07/2020", 48656], ["06/20/2024", 65165], ["01/28/2023", 81827], ["12/17/2019", 112143], ["05/16/2023", 142383],
-            //             ["05/11/2022", 171533], ["03/21/2021", 165174], ["04/14/2021", 155157], ["12/27/2023", 161454], ["06/20/2024", 154610]
-            //         ]
-            //     }, {
-            //         name: 'Manufacturing',
-            //         data: [
-            //             ["08/18/2023", 24916], ["08/23/2023", 37941], ["09/13/2021", 29742], ["12/10/2021", 29851], ["03/16/2023", 32490], ["12/14/2021", 30282],
-            //             ["02/22/2024", 38121], ["03/09/2021", 36885], ["06/06/2021", 33726], ["04/19/2021", 34243], ["03/01/2024", 31050]
-            //         ]
-            //     }],
-            // });
-
-
 
             $(document).on('click', '#limpar_filtro', function () {
                 $(this).hide();
@@ -257,8 +192,13 @@ ViewData["Title"] = breadcrumbs.Title;
 
                         chartGeral.destroy();
                         chartGeral = new Highcharts.Chart('container_geral', {
-                            ...defautl, data: {
-                                rows: geral
+                            ...defautl, ...{
+                                title: {
+                                    text: 'Análise Geral',
+                                    align: 'left'
+                                }, data: {
+                                    rows: geral
+                                }
                             }
                         });
 
@@ -272,7 +212,12 @@ ViewData["Title"] = breadcrumbs.Title;
 
                         chartProduto.destroy();
                         chartProduto = Highcharts.chart('container_produto', {
-                            ...defautl, series: result,
+                            ...defautl, ...{
+                                title: {
+                                    text: 'Análise por Produto',
+                                    align: 'left'
+                                }, series: result
+                            },
                         });
 
                         setTimeout(() => {

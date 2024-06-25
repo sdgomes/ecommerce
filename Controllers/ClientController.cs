@@ -180,7 +180,11 @@ namespace Ecommerce.Controllers
                 HttpContext.Response.Cookies.Append("codigo", codigoCliente, new Microsoft.AspNetCore.Http.CookieOptions { IsEssential = true });
 
                 if (newClient.Retorno)
-                    return RedirectToAction("Index", "Checkout");
+                {
+                    var QueryString = HttpContext.Request.QueryString;
+                    var Url = $"/finalizar/compra/carrinho{QueryString}";
+                    return Redirect(Url);
+                }
 
                 return RedirectToAction("Cliente", new { Codigo = codigoCliente });
             }

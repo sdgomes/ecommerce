@@ -188,11 +188,14 @@ namespace Ecommerce.BLL
             Model.Carrinho = Carrinho != null;
 
             var IdsProdutos = String.Join(", ", Produtos.Select(x => x.IdProduto.ToString()).ToArray());
-            Model.Produtos = ProductDAO.SelectProductsByInId(IdsProdutos);
-            foreach (var Item in Model.Produtos)
+            if (IdsProdutos != "")
             {
-                Product Produto = Produtos.Where(x => x.IdProduto == Item.IdProduto).FirstOrDefault();
-                Item.QntCompra = Produto.QntCompra;
+                Model.Produtos = ProductDAO.SelectProductsByInId(IdsProdutos);
+                foreach (var Item in Model.Produtos)
+                {
+                    Product Produto = Produtos.Where(x => x.IdProduto == Item.IdProduto).FirstOrDefault();
+                    Item.QntCompra = Produto.QntCompra;
+                }
             }
 
             Model.Cliente = ClientDAO.SearchForClientByCodigo(Codigo);

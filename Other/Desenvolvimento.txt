@@ -1,4 +1,0 @@
-TELAS - DESENVOLVER
-
-[ ] - Cadastro de usuário e endereço e cartão
-[ ] - Tela para update dos dados

@@ -15,11 +15,12 @@ namespace Ecommerce.Controllers.Attributes
         {
             try
             {
+                var QueryString = context.HttpContext.Request.QueryString;
                 var codigo = context.HttpContext.Request.Cookies["codigo"];
                 if (codigo == null)
                 {
                     var controller = (Controller)context.Controller;
-                    context.Result = controller.RedirectToAction("Cadastro", "Client", new { finalizar = true });
+                    context.Result = controller.RedirectToAction("Cadastro", "Client", new { finalizar = true, Produtos = QueryString });
                 }
                 else
                 {

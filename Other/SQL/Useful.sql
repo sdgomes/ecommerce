@@ -10,7 +10,6 @@ AS
         EXEC dbo.Elimination;
         EXEC dbo.Creation;
         EXEC dbo.Populate;
-        EXEC dbo.Simulation;
     END
 GO
 
@@ -22,7 +21,6 @@ AS
     BEGIN
         EXEC dbo.Cleaning;
         EXEC dbo.Populate;
-        EXEC dbo.Simulation;
     END
 GO
 

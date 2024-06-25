@@ -20,7 +20,8 @@ namespace Ecommerce.Controllers
         public IActionResult Index(List<Product> Produtos, string Carrinho)
         {
             var codigo = Request.Cookies["codigo"];
-            return View(ClientBLL.ClientCheckoutByCodigo(codigo, Produtos, Carrinho));
+            var Model = ClientBLL.ClientCheckoutByCodigo(codigo, Produtos, Carrinho);
+            return View(Model);
         }
 
         [HttpPost("/registra/transacao")]

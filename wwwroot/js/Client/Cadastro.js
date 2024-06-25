@@ -1,3 +1,15 @@
+$(function () {
+    setTimeout(() => {
+        const urlParams = new URLSearchParams(location.search);
+
+        const produtos = urlParams.get("Produtos");
+        if (produtos != null && produtos != "") {
+            const newAction = $("body > main > div.my-10.px-5.checkout-steps-form-style-1 > form").attr('action')
+            $("body > main > div.my-10.px-5.checkout-steps-form-style-1 > form").attr('action', `${newAction}${produtos}`)
+        }
+    }, 325);
+});
+
 onDomChange(function () {
     setTimeout(() => {
         $.applyDataMask('[data-mask');

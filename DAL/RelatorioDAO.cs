@@ -13,14 +13,14 @@ namespace Ecommerce.DAL
         {
             try
             {
-                string query = $@"SELECT TOP 45 
+                string query = $@"SELECT TOP 100 
 	                    SUM(EPT.QUANTIDADE) AS QUANTIDADE,
 	                    FORMAT(ET.CRIACAO, 'd') AS DATA_VENDA  
                     FROM ECM_TRANSACOES ET
 	                    INNER JOIN ECM_PRO_TRA EPT ON EPT.ID_TRANSACAO = ET.ID_TRANSACAO
                     WHERE ET.PAGAMENTO = 'APROVADO'
                     AND ET.D_E_L_E_T_ <> '*'
-                    GROUP BY ET.CRIACAO
+                    GROUP BY ET.CRIACAO, EPT.QUANTIDADE
                     ORDER BY ET.CRIACAO DESC";
 
                 return DatabaseProgramas().Select<RelatorioDTO>(query);
@@ -47,7 +47,7 @@ namespace Ecommerce.DAL
 	                FORMAT(@INICIO, 'd') AND 
 	                FORMAT(@FIM, 'd')
                 )
-                GROUP BY ET.CRIACAO
+                GROUP BY ET.CRIACAO, EPT.QUANTIDADE
                 ORDER BY ET.CRIACAO DESC";
 
                 SqlParameter[] parameters = new SqlParameter[] {
