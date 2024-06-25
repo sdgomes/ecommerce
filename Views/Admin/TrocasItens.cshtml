@@ -164,20 +164,7 @@
                                                 <i class="fa-solid fa-thumbs-up"></i>
                                             </button>
                                         </div>
-                                    }
-
-                                    @if (item.Aprovacao1 && !item.Aprovacao2 && item.Etapa != "ENVIADO PARA TROCA")
-                                    {
-                                        <div class="tooltip" data-tip="Item enviado">
-                                            <button type="button" data-id-solicitacao="@item.IdSolicitacao"
-                                                    data-etapa="ENVIADO PARA TROCA" data-before-title="Atenção!"
-                                                    data-before-message="Comfirma que esse item foi entrege aos correios e está a caminho?"
-                                                    data-after-title="Feito!" data-after-message='Item enviado.'
-                                                    data-trigger="manage" data-tipo="TROCA" class="btn btn-sm btn-primary btn-square">
-                                                <i class="fa-solid fa-mailbox"></i>
-                                            </button>
-                                        </div>
-                                    }
+                                    }                                   
 
                                     @if (item.Aprovacao1 && !item.Aprovacao2 && item.Etapa == "ENVIADO PARA TROCA")
                                     {

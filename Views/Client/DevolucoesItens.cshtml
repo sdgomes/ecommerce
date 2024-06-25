@@ -151,6 +151,19 @@
                                             </button>
                                         </div>
                                     }
+
+                                    @if (item.Aprovacao1 && !item.Aprovacao2 && item.Etapa != "ENVIADO PARA DEVOLUÇÃO")
+                                    {
+                                        <div class="tooltip" data-tip="Item enviado">
+                                            <button type="button" data-id-solicitacao="@item.IdSolicitacao"
+                                                    data-tipo="DEVOLUÇÃO" data-etapa="ENVIADO PARA DEVOLUÇÃO" data-before-title="Atenção!"
+                                                    data-before-message="Comfirma que esse item foi entrege aos correios e está a caminho?"
+                                                    data-after-title="Feito!" data-after-message='Item enviado.'
+                                                    data-trigger="manage" class="btn btn-sm btn-primary btn-square">
+                                                <i class="fa-solid fa-mailbox"></i>
+                                            </button>
+                                        </div>
+                                    }
                                 </td>
                             </tr>
                         }
