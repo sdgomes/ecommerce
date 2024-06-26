@@ -52,6 +52,13 @@ ViewData["Title"] = breadcrumbs.Title;
             <hr>
 
             <div id="container_produto"></div>
+
+
+            <div class="mt-2 border-t pt-5">
+                <button id="filtro_categorias" class="btn btn-sm btn-info">Filtar Tema</button>
+
+                <form id="lista-categorias" class="mt-4 flex flex-wrap items-center gap-4"></form>
+            </div>
         </div>
     </main>
 
@@ -67,7 +74,70 @@ ViewData["Title"] = breadcrumbs.Title;
     <script>
         $(function () {
 
-            const defautl = {
+            var porCategoria,
+                chartGeral, chartCaregorias;
+
+            const listaCategorias = () => {
+                $("#lista-categorias").empty();
+                porCategoria
+                    .forEach((categoria, index) => {
+                        $("#lista-categorias").append(` <label
+                                class="bg-white cursor-pointer flex gap-4 bg-yellow-400 w-fit rounded-md block items-center px-3 py-2 text-gray-800">
+                                <input type="checkbox" ${index < 6 ? "checked" : ""} value="${categoria.name}" name="categorias[${index}]"  class="checkbox [&:not(:checked)]:bg-white" />
+                                <span class="font-bold pointer-events-none">${categoria.name}</span>
+                            </label>`)
+                    });
+            }
+
+            $(document).on('click', '#filtro_categorias', function () {
+                $button = $(this);
+                const content = $button.html();
+                const data = $("#lista-categorias").serializeJsonComplex();
+
+                if (!data.categorias) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        title: "Atenção!",
+                        text: 'Para filtrar é importante escolher os temas desejados',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    return false;
+                }
+
+                $button.html(`<span class="loading loading-spinner loading-sm"></span> Filtrando`)
+
+                const filtrar = data.categorias.filter((categoria) => categoria != "")
+                const filtro = porCategoria.filter((item) => filtrar.some((vendor) => vendor === item.name))
+
+                chartCaregorias = Highcharts.chart('container_produto', {
+                    ...highchartsSet,
+                    ...{
+                        title: {
+                            text: 'Análise Categoria',
+                            align: 'left'
+                        },
+
+                        subtitle: {
+                            text: 'Gráfico com a quantidade de vendas por categoria.\nPara um melhor resultado filtre as categorias desejadas.',
+                            align: 'left'
+                        },
+
+                        series: filtro
+                    }
+                });
+
+                setTimeout(() => {
+                    $button.html(`<i class="fa-solid fa-check"></i> Filtrado`);
+                    setTimeout(() => {
+                        $button.html(content)
+                    }, 325);
+                }, 325);
+
+            })
+
+            const highchartsSet = {
 
                 chart: {
                     type: 'spline',
@@ -76,18 +146,15 @@ ViewData["Title"] = breadcrumbs.Title;
                     }
                 },
 
-                subtitle: {
-                    text: 'Análise de vendas: Quantidade vendida pro produto. Para um melhor resultado filtre os produtos.',
-                    align: 'left'
-                },
-
                 xAxis: {
                     tickWidth: 0,
                     gridLineWidth: 1,
+                    type: 'datetime',
+                    ordinal: true,
                     labels: {
                         align: 'left',
                         x: 3,
-                        y: -3
+                        y: -3,
                     }
                 },
 
@@ -123,11 +190,14 @@ ViewData["Title"] = breadcrumbs.Title;
                         }
                     }
                 },
+
                 exporting: {
                     enabled: false
-                }, credits: {
-                    enabled: false
                 },
+
+                credits: {
+                    enabled: false
+                }
             }
 
             Highcharts.setOptions({
@@ -151,8 +221,6 @@ ViewData["Title"] = breadcrumbs.Title;
                     resetZoomTitle: 'Voltar Zoom para nível 1:1',
                 }
             });
-
-            var chartGeral, chartProduto;
 
             $(document).on('click', '#limpar_filtro', function () {
                 $(this).hide();
@@ -185,39 +253,64 @@ ViewData["Title"] = breadcrumbs.Title;
                     url: `/relatorio/geral/range`,
                     data: data,
                     success: function (response) {
-                        const geral = [["Qnt. Venda"]]
-                        response.data.geral.forEach(element => {
-                            geral.push([element.dataVenda, element.quantidade]);
-                        });
-
                         chartGeral.destroy();
                         chartGeral = new Highcharts.Chart('container_geral', {
-                            ...defautl, ...{
+                            ...highchartsSet,
+                            ...{
                                 title: {
                                     text: 'Análise Geral',
                                     align: 'left'
-                                }, data: {
-                                    rows: geral
-                                }
+                                },
+
+                                subtitle: {
+                                    text: 'Gráfico geral com a quantidade total de produto vendido por dia.\nPara um melhor resultado filtre os por data.',
+                                    align: 'left'
+                                },
+
+                                series: [{
+                                    name: 'Qnt. Venda',
+                                    data: (function () {
+                                        return response.data.geral
+                                            .sort((a, b) => new Date(b.dataVenda) - new Date(a.dataVenda))
+                                            .map(function (item) {
+                                                return [Date.parse(item.dataVenda), item.quantidade];
+                                            });
+                                    })()
+                                }]
                             }
                         });
 
-                        let data = response.data.produto;
-                        let result = [...new Set(data.map(x => x.nome))].map(x => {
+                        let data = response.data.caregorias;
+                        porCategoria = [...new Set(data.map(x => x.nome))].map(x => {
                             return {
                                 name: x,
-                                data: data.filter(y => y.nome == x)[0].data.map(e => [e.dataVenda, e.quantidade])
+                                data: data.filter(y => y.nome == x)
+                                    .sort((a, b) => new Date(b.dataVenda) - new Date(a.dataVenda))
+                                    .map(e => [Date.parse(e.dataVenda), e.quantidade])
                             }
+                        }).sort((a, b) => {
+                            if (a.name < b.name) { return -1; }
+                            if (a.name > b.name) { return 1; }
+                            return 0;
                         })
 
-                        chartProduto.destroy();
-                        chartProduto = Highcharts.chart('container_produto', {
-                            ...defautl, ...{
+                        listaCategorias()
+
+                        chartCaregorias = Highcharts.chart('container_produto', {
+                            ...highchartsSet,
+                            ...{
                                 title: {
-                                    text: 'Análise por Produto',
+                                    text: 'Análise Categoria',
                                     align: 'left'
-                                }, series: result
-                            },
+                                },
+
+                                subtitle: {
+                                    text: 'Gráfico com a quantidade de vendas por categoria.\nPara um melhor resultado filtre as categorias desejadas.',
+                                    align: 'left'
+                                },
+
+                                series: porCategoria.Divide(6)[0]
+                            }
                         });
 
                         setTimeout(() => {
@@ -238,27 +331,63 @@ ViewData["Title"] = breadcrumbs.Title;
                     type: "POST",
                     url: `/relatorio/geral`,
                     success: function (response) {
-                        const geral = [[null, "Qnt. Venda"]]
-                        response.data.geral.forEach(element => {
-                            geral.push([element.dataVenda, element.quantidade]);
-                        });
-
                         chartGeral = new Highcharts.Chart('container_geral', {
-                            ...defautl, data: {
-                                rows: geral
+                            ...highchartsSet,
+                            ...{
+                                title: {
+                                    text: 'Análise Geral',
+                                    align: 'left'
+                                },
+
+                                subtitle: {
+                                    text: 'Gráfico geral com a quantidade total de produto vendido por dia.\nPara um melhor resultado filtre os por data.',
+                                    align: 'left'
+                                },
+
+                                series: [{
+                                    name: 'Qnt. Venda',
+                                    data: (function () {
+                                        return response.data.geral
+                                            .sort((a, b) => new Date(b.dataVenda) - new Date(a.dataVenda))
+                                            .map(function (item) {
+                                                return [Date.parse(item.dataVenda), item.quantidade];
+                                            });
+                                    })()
+                                }]
                             }
                         });
 
-                        let data = response.data.produto;
-                        let result = [...new Set(data.map(x => x.nome))].map(x => {
+                        let data = response.data.caregorias;
+                        porCategoria = [...new Set(data.map(x => x.nome))].map(x => {
                             return {
                                 name: x,
-                                data: data.filter(y => y.nome == x)[0].data.map(e => [e.dataVenda, e.quantidade])
+                                data: data.filter(y => y.nome == x)
+                                    .sort((a, b) => new Date(b.dataVenda) - new Date(a.dataVenda))
+                                    .map(e => [Date.parse(e.dataVenda), e.quantidade])
                             }
-                        })
+                        }).sort((a, b) => {
+                            if (a.name < b.name) { return -1; }
+                            if (a.name > b.name) { return 1; }
+                            return 0;
+                        });
 
-                        chartProduto = Highcharts.chart('container_produto', {
-                            ...defautl, series: result,
+                        listaCategorias()
+
+                        chartCaregorias = Highcharts.chart('container_produto', {
+                            ...highchartsSet,
+                            ...{
+                                title: {
+                                    text: 'Análise Categoria',
+                                    align: 'left'
+                                },
+
+                                subtitle: {
+                                    text: 'Gráfico com a quantidade de vendas por categoria.\nPara um melhor resultado filtre as categorias desejadas.',
+                                    align: 'left'
+                                },
+
+                                series: porCategoria.Divide(6)[0]
+                            }
                         });
                     },
                     error: function (response) {

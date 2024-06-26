@@ -19,7 +19,5 @@ namespace Ecommerce.DTO
 
         [Column("DATA_VENDA")]
         public string DataVenda { get; set; }
-
-        public List<RelatorioDTO> Data { get; set; }
     }
 }

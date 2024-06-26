@@ -3710,6 +3710,10 @@ details.collapse summary::-webkit-details-marker {
   width: 140px;
 }
 
+.w-\[175px\] {
+  width: 175px;
+}
+
 .w-\[17px\] {
   width: 17px;
 }
@@ -3753,10 +3757,6 @@ details.collapse summary::-webkit-details-marker {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[175px\] {
-  width: 175px;
 }
 
 .min-w-\[110px\] {
@@ -3833,10 +3833,6 @@ details.collapse summary::-webkit-details-marker {
 
 .max-w-md {
   max-width: 28rem;
-}
-
-.max-w-xs {
-  max-width: 20rem;
 }
 
 .flex-1 {
@@ -4065,6 +4061,10 @@ details.collapse summary::-webkit-details-marker {
 
 .border-b {
   border-bottom-width: 1px;
+}
+
+.border-t {
+  border-top-width: 1px;
 }
 
 .\!border-solid {
@@ -4443,6 +4443,14 @@ details.collapse summary::-webkit-details-marker {
   padding-top: 0.75rem;
 }
 
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -4535,6 +4543,11 @@ details.collapse summary::-webkit-details-marker {
 
 .italic {
   font-style: italic;
+}
+
+.ordinal {
+  --tw-ordinal: ordinal;
+  font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
 }
 
 .leading-3 {
@@ -4918,16 +4931,6 @@ details.collapse summary::-webkit-details-marker {
   color: var(--fallback-wac,oklch(var(--wac)/var(--tw-text-opacity)));
 }
 
-.placeholder\:text-base::-moz-placeholder {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-.placeholder\:text-base::placeholder {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
 .placeholder\:italic::-moz-placeholder {
   font-style: italic;
 }
@@ -5218,4 +5221,14 @@ details.collapse summary::-webkit-details-marker {
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
+
+.\[\&\:not\(\:checked\)\]\:bg-red-100:not(:checked) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+
+.\[\&\:not\(\:checked\)\]\:bg-white:not(:checked) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }

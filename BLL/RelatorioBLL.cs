@@ -11,24 +11,18 @@ namespace Ecommerce.BLL
     {
         public static dynamic Geral()
         {
-            List<RelatorioDTO> relatorios = RelatorioDAO.VendaPorProdutos();
-            foreach (var rel in relatorios)
-            {
-                rel.Data = RelatorioDAO.VendaPorProdutosId(rel.IdProduto);
-            }
+            List<RelatorioDTO> Geral = RelatorioDAO.Geral();
+            List<RelatorioDTO> Caregorias = RelatorioDAO.VendaPorProdutos();
 
-            return new { Geral = RelatorioDAO.Geral(), Produto = relatorios };
+            return new { Geral, Caregorias };
         }
 
         public static dynamic GeralRange(DateTime Inicio, DateTime Fim)
         {
-            List<RelatorioDTO> relatorios = RelatorioDAO.VendaPorProdutosPeriodo(Inicio, Fim);
-            foreach (var rel in relatorios)
-            {
-                rel.Data = RelatorioDAO.VendaPorProdutosId(rel.IdProduto);
-            }
+            List<RelatorioDTO> Geral = RelatorioDAO.GeralComPeriodo(Inicio, Fim);
+            List<RelatorioDTO> Caregorias = RelatorioDAO.VendaPorProdutosPeriodo(Inicio, Fim);
 
-            return new { Geral = RelatorioDAO.GeralComPeriodo(Inicio, Fim), Produto = relatorios };
+            return new { Geral, Caregorias };
         }
     }
 }

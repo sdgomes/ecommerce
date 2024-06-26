@@ -13,15 +13,14 @@ namespace Ecommerce.DAL
         {
             try
             {
-                string query = $@"SELECT TOP 100 
-	                    SUM(EPT.QUANTIDADE) AS QUANTIDADE,
-	                    FORMAT(ET.CRIACAO, 'd') AS DATA_VENDA  
-                    FROM ECM_TRANSACOES ET
-	                    INNER JOIN ECM_PRO_TRA EPT ON EPT.ID_TRANSACAO = ET.ID_TRANSACAO
-                    WHERE ET.PAGAMENTO = 'APROVADO'
-                    AND ET.D_E_L_E_T_ <> '*'
-                    GROUP BY ET.CRIACAO, EPT.QUANTIDADE
-                    ORDER BY ET.CRIACAO DESC";
+                string query = $@"SELECT TOP 700
+	                FORMAT(ET.CRIACAO, 'yyyy-MM-dd') AS DATA_VENDA,
+	                SUM(ETP.QUANTIDADE) AS QUANTIDADE
+                FROM ECM_TRANSACOES ET
+	                INNER JOIN ECM_PRO_TRA ETP ON ETP.ID_TRANSACAO = ET.ID_TRANSACAO
+                WHERE ET.PAGAMENTO = 'APROVADO' AND ET.D_E_L_E_T_ <> '*'
+                GROUP BY FORMAT(ET.CRIACAO, 'yyyy-MM-dd')
+                ORDER BY FORMAT(ET.CRIACAO, 'yyyy-MM-dd') DESC";
 
                 return DatabaseProgramas().Select<RelatorioDTO>(query);
             }
@@ -36,19 +35,14 @@ namespace Ecommerce.DAL
             try
             {
                 string query = $@"SELECT 
-	                SUM(EPT.QUANTIDADE) AS QUANTIDADE,
-	                FORMAT(ET.CRIACAO, 'd') AS DATA_VENDA  
+	                FORMAT(ET.CRIACAO, 'yyyy-MM-dd') AS DATA_VENDA,
+	                SUM(ETP.QUANTIDADE) AS QUANTIDADE
                 FROM ECM_TRANSACOES ET
-	                INNER JOIN ECM_PRO_TRA EPT ON EPT.ID_TRANSACAO = ET.ID_TRANSACAO
-                WHERE ET.PAGAMENTO = 'APROVADO'
-                AND ET.D_E_L_E_T_ <> '*' AND
-                (
-	                FORMAT(ET.CRIACAO, 'd') BETWEEN 
-	                FORMAT(@INICIO, 'd') AND 
-	                FORMAT(@FIM, 'd')
-                )
-                GROUP BY ET.CRIACAO, EPT.QUANTIDADE
-                ORDER BY ET.CRIACAO DESC";
+	                INNER JOIN ECM_PRO_TRA ETP ON ETP.ID_TRANSACAO = ET.ID_TRANSACAO
+                WHERE ET.PAGAMENTO = 'APROVADO' AND ET.D_E_L_E_T_ <> '*'
+                    AND (FORMAT(ET.CRIACAO, 'yyyy-MM-dd') BETWEEN FORMAT(@INICIO, 'yyyy-MM-dd') AND FORMAT(@FIM, 'yyyy-MM-dd'))
+                GROUP BY FORMAT(ET.CRIACAO, 'yyyy-MM-dd')
+                ORDER BY FORMAT(ET.CRIACAO, 'yyyy-MM-dd') DESC";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@INICIO", Inicio),
@@ -67,16 +61,17 @@ namespace Ecommerce.DAL
         {
             try
             {
-                string query = $@"SELECT TOP 5
-	                EP.NOME,
-	                EP.ID_PRODUTO
-                FROM ECM_TRANSACOES ET
-	                INNER JOIN ECM_PRO_TRA EPT ON EPT.ID_TRANSACAO = ET.ID_TRANSACAO
-	                INNER JOIN ECM_PRODUTOS EP ON EP.ID_PRODUTO = EPT.ID_PRODUTO
-                WHERE ET.PAGAMENTO = 'APROVADO'
-                AND ET.D_E_L_E_T_ <> '*'
-                GROUP BY EP.NOME,EP.ID_PRODUTO
-                ORDER BY NEWID()";
+                string query = $@"SELECT 
+	                EC.NOME,
+	                FORMAT(ET.CRIACAO, 'yyyy-MM-dd') AS DATA_VENDA,
+	                SUM(ETP.QUANTIDADE) AS QUANTIDADE
+                FROM ECM_CATEGORIAS EC
+                INNER JOIN ECM_CAT_PRO ECP ON ECP.ID_CATEGORIA = EC.ID_CATEGORIA
+                INNER JOIN ECM_PRO_TRA ETP ON ETP.ID_PRODUTO = ECP.ID_PRODUTO
+                INNER JOIN ECM_TRANSACOES ET ON ET.ID_TRANSACAO = ETP.ID_TRANSACAO
+	                AND ET.PAGAMENTO = 'APROVADO' AND ET.D_E_L_E_T_ <> '*'
+                GROUP BY EC.NOME, FORMAT(ET.CRIACAO, 'yyyy-MM-dd')
+                ORDER BY EC.NOME DESC";
 
                 return DatabaseProgramas().Select<RelatorioDTO>(query);
             }
@@ -90,20 +85,18 @@ namespace Ecommerce.DAL
         {
             try
             {
-                string query = $@"SELECT
-	                EP.NOME,
-	                EP.ID_PRODUTO
-                FROM ECM_TRANSACOES ET
-	                INNER JOIN ECM_PRO_TRA EPT ON EPT.ID_TRANSACAO = ET.ID_TRANSACAO
-	                INNER JOIN ECM_PRODUTOS EP ON EP.ID_PRODUTO = EPT.ID_PRODUTO
-                WHERE ET.PAGAMENTO = 'APROVADO'
-                AND ET.D_E_L_E_T_ <> '*'
-                AND (
-	                FORMAT(ET.CRIACAO, 'd') BETWEEN 
-	                FORMAT(@INICIO, 'd') AND 
-	                FORMAT(@FIM, 'd')
-                )
-                GROUP BY EP.NOME,EP.ID_PRODUTO";
+                string query = $@"SELECT 
+	                EC.NOME,
+	                FORMAT(ET.CRIACAO, 'yyyy-MM-dd') AS DATA_VENDA,
+	                SUM(ETP.QUANTIDADE) AS QUANTIDADE
+                FROM ECM_CATEGORIAS EC
+                INNER JOIN ECM_CAT_PRO ECP ON ECP.ID_CATEGORIA = EC.ID_CATEGORIA
+                INNER JOIN ECM_PRO_TRA ETP ON ETP.ID_PRODUTO = ECP.ID_PRODUTO
+                INNER JOIN ECM_TRANSACOES ET ON ET.ID_TRANSACAO = ETP.ID_TRANSACAO
+	                AND ET.PAGAMENTO = 'APROVADO' AND ET.D_E_L_E_T_ <> '*'
+                    AND (FORMAT(ET.CRIACAO, 'yyyy-MM-dd') BETWEEN FORMAT(@INICIO, 'yyyy-MM-dd') AND FORMAT(@FIM, 'yyyy-MM-dd'))
+                GROUP BY EC.NOME, FORMAT(ET.CRIACAO, 'yyyy-MM-dd')
+                ORDER BY EC.NOME DESC";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@INICIO", Inicio),
@@ -117,33 +110,5 @@ namespace Ecommerce.DAL
                 throw;
             }
         }
-
-        public static List<RelatorioDTO> VendaPorProdutosId(long IdProduto)
-        {
-            try
-            {
-                string query = $@"SELECT
-	                SUM(EPT.QUANTIDADE) AS QUANTIDADE,
-	                FORMAT(ET.CRIACAO, 'd') AS DATA_VENDA
-                FROM ECM_TRANSACOES ET
-	                INNER JOIN ECM_PRO_TRA EPT ON EPT.ID_TRANSACAO = ET.ID_TRANSACAO
-	                INNER JOIN ECM_PRODUTOS EP ON EP.ID_PRODUTO = EPT.ID_PRODUTO
-		                AND EP.ID_PRODUTO = @ID_PRODUTO
-                WHERE ET.PAGAMENTO = 'APROVADO'
-                AND ET.D_E_L_E_T_ <> '*'
-                GROUP BY ET.CRIACAO";
-
-                SqlParameter[] parameters = new SqlParameter[] {
-                    new SqlParameter("@ID_PRODUTO", IdProduto)
-                };
-
-                return DatabaseProgramas().Select<RelatorioDTO>(query, parameters);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
     }
 }
