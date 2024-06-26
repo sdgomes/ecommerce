@@ -126,15 +126,36 @@ function populate(frm, data) {
 }
 
 $(document).ready(function () {
-    const urlParams = new URLSearchParams(location.search);
-    const error = urlParams.get("error");
+    const url = new URL(location.href);
 
+    const error = url.searchParams.get("error");
     if (error != null && error != "") {
         Toast.fire({
             icon: "error",
             title: b64DecodeUnicode(error)
         });
-        history.pushState({}, window.document.title, `${location.origin}${location.pathname}`);
+
+        url.searchParams.delete("error");
+        history.pushState({}, window.document.title, url.href);
+    }
+
+    const message = url.searchParams.get("message");
+    if (message != null && message != "") {
+        
+        Swal.fire({
+            customClass: {
+                htmlContainer: "custom-warning"
+            },
+            position: "center",
+            icon: "warning",
+            title: "Atenção!",
+            text: message,
+            showConfirmButton: true,
+            timer: 2500
+        })
+
+        url.searchParams.delete("message");
+        history.pushState({}, window.document.title, url.href);
     }
 });
 
@@ -419,7 +440,7 @@ $(document).on("click", '[data-action="carrinho"]', function () {
     const content = $button.html();
     const data = $button.getData();
     data.qntCompra = $button.parents('form').find('input.input-qnt').val() ?? 1;
-console.log(data);
+    console.log(data);
     $button.html(`<span class="loading loading-spinner loading-sm"></span> Carregando`)
 
     const codigo = cookie.Get("codigo");

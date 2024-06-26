@@ -176,12 +176,17 @@ namespace Ecommerce.Controllers
             try
             {
                 string codigoCliente = ClientBLL.CreateClient(newClient);
+                var QueryString = HttpContext.Request.QueryString;
+
+                if (codigoCliente == "")
+                {
+                    return RedirectToAction("Cadastro", new { message = "Cliente já cadastrado no sistema!", Produtos = QueryString });
+                }
 
                 HttpContext.Response.Cookies.Append("codigo", codigoCliente, new Microsoft.AspNetCore.Http.CookieOptions { IsEssential = true });
 
                 if (newClient.Retorno)
                 {
-                    var QueryString = HttpContext.Request.QueryString;
                     var Url = $"/finalizar/compra/carrinho{QueryString}";
                     return Redirect(Url);
                 }

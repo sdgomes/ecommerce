@@ -288,7 +288,7 @@ namespace Ecommerce.DAL
                 string query = @$"BEGIN
 	                                IF NOT EXISTS (SELECT ID_USUARIO FROM ECM_USUARIOS WHERE EMAIL = @EMAIL AND D_E_L_E_T_ <> '*') 
 	                                BEGIN
-		                                IF NOT EXISTS (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CPF = @CPF)
+		                                IF NOT EXISTS (SELECT ID_CLIENTE FROM ECM_CLIENTES WHERE CPF = @CPF AND D_E_L_E_T_ <> '*')
 		                                BEGIN
 			                                INSERT INTO ECM_USUARIOS (EMAIL, SENHA, TIPO)
 			                                VALUES (@EMAIL, @SENHA, @TIPO);

@@ -233,23 +233,34 @@ namespace Ecommerce.BLL
 
         public static string CreateClient(ClientDTO newClient)
         {
-            long idCliente = ClientDAO.CreateClient(newClient.Client);
-            Client client = SelectClientById(idCliente);
-
-            foreach (var address in newClient.Adresses)
+            try
             {
-                AddressDAO.CreateAddress(idCliente, address);
-            }
+                long idCliente = ClientDAO.CreateClient(newClient.Client);
 
-            foreach (var (card, index) in newClient.Cards.Select((card, index) => (card, index)))
+                if (idCliente == 0)
+                    return "";
+
+                Client client = SelectClientById(idCliente);
+
+                foreach (var address in newClient.Adresses)
+                {
+                    AddressDAO.CreateAddress(idCliente, address);
+                }
+
+                foreach (var (card, index) in newClient.Cards.Select((card, index) => (card, index)))
+                {
+                    if (index == newClient.MainCard)
+                        card.Principal = true;
+
+                    CardDAO.CreateCard(idCliente, card);
+                }
+
+                return client.Codigo;
+            }
+            catch (Exception)
             {
-                if (index == newClient.MainCard)
-                    card.Principal = true;
-
-                CardDAO.CreateCard(idCliente, card);
+                throw;
             }
-
-            return client.Codigo;
         }
 
         public static Card CreateNewCard(Card card)
