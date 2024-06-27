@@ -532,7 +532,7 @@ namespace Ecommerce.DAL
 									DATEADD(dd, 0, DATEDIFF(dd, 0, ET.CRIACAO)),
 	                                ES.MOTIVO_SOLICITACAO,
 	                                DATEADD(dd, 0, DATEDIFF(dd, 0, ES.DATA_SOLICITACAO))
-                                ORDER BY ES.GRUPO_CODIGO;";
+                                ORDER BY DATA_SOLICITACAO DESC;";
 
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@CODIGO", I(Codigo)),

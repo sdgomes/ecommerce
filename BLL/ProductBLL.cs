@@ -22,7 +22,7 @@ namespace Ecommerce.BLL
                 throw new ArgumentException("Pedido não encontrado, entre em contato com o suporte.");
 
             transacao.Produtos = ProductDAO.SelectAllProductsTransactionsSolicitacao(transacao.IdTransacao);
-
+            transacao.Produtos = transacao.Produtos.OrderBy(x => x.QntCompra).ToList();
             return transacao;
         }
 

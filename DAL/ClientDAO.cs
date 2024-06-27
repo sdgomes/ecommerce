@@ -393,6 +393,25 @@ namespace Ecommerce.DAL
             }
         }
 
+        public static void DeleteClientByEmail(string Email)
+        {
+            try
+            {
+                string query = @$"UPDATE ECM_CLIENTES SET D_E_L_E_T_ = '*' WHERE ID_USUARIO = (SELECT ID_USUARIO FROM ECM_USUARIOS WHERE EMAIL = @EMAIL);
+                                UPDATE ECM_USUARIOS SET D_E_L_E_T_ = '*' WHERE EMAIL = @EMAIL";
+
+                SqlParameter[] parameters = new SqlParameter[] {
+                    new SqlParameter("@EMAIL", Email),
+                };
+
+                DatabaseProgramas().Execute(query, parameters);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public static void DeleteClientByCodigo(string Codigo)
         {
             try

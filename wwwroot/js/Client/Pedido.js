@@ -383,10 +383,8 @@ $(document).on('click', '#solicitar-troca, #solicitar-devolucao', function () {
                         showConfirmButton: false,
                         timer: 1500
                     }).then(() => {
-                        var path = location.pathname.split('/');
-                        path.pop(); path.pop();
-                        path.push(data.caminho);
-                        location.href = path.join('/')
+                        const  codigo = cookie.Get("codigo");
+                        location.href = `/cliente/perfil/${codigo}/${data.tipo == "TROCA" ? "trocas" : "devolucoes"}/${result.value.grupoCodigo}`
                     })
             });
         },

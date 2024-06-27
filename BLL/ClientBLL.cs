@@ -116,7 +116,8 @@ namespace Ecommerce.BLL
                     message = "Atenção! Uma de suas solicitações não foi registrada, por favor entre em contato com o suporte da loja.";
                 }
             }
-            return new { sucesso, message };
+
+            return new { sucesso, message, GrupoCodigo };
         }
 
         public static void RemoveEndereco(long IdEndereco)
